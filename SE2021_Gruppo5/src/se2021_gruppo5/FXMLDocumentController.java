@@ -32,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField inputText;
     @FXML
+
     private TableView<String> viewHistory;
     @FXML
     private TableColumn<String, String> historyColumn;
@@ -41,6 +42,7 @@ public class FXMLDocumentController implements Initializable {
     private Button enterBtn;
     @FXML
     private AnchorPane rootPane;
+
     
     private ObservableList<String> history;
     
