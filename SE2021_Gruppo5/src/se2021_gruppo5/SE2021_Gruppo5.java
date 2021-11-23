@@ -24,6 +24,7 @@ public class SE2021_Gruppo5 extends Application {
         
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     /**
