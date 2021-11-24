@@ -6,10 +6,10 @@ supporting complex numbers
 based on Java
 
 ## Members
-Marco Pastore
-Giovanni Paolo Tobia
-Roberto Catania
-Salvatore del Sorbo
+- Marco Pastore
+- Giovanni Paolo Tobia
+- Roberto Catania
+- Salvatore del Sorbo
 
 
 ## Documents
