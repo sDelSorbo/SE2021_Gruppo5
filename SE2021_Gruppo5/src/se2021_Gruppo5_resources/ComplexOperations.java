@@ -13,7 +13,7 @@ import java.util.LinkedList;
  *
  * @author gianpaolotobia
  */
-
+ 
 public class ComplexOperations {
 
     public ComplexOperations() {
