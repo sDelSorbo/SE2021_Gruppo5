@@ -22,6 +22,7 @@ public class SE2021_Gruppo5 extends Application {
         
         Scene scene = new Scene(root);
         
+        stage.setTitle("Complex Calculator");
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
