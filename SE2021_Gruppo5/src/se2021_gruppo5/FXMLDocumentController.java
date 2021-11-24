@@ -33,9 +33,9 @@ public class FXMLDocumentController implements Initializable {
     private TextField inputText;
     @FXML
 
-    private TableView<String> viewHistory;
+    private TableView<Stringa> viewHistory;
     @FXML
-    private TableColumn<String, String> historyColumn;
+    private TableColumn<Stringa, String> historyColumn;
     @FXML
     private Button cancBtn;
     @FXML
@@ -44,19 +44,17 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane rootPane;
 
     
-    private ObservableList<String> history;
+    private ObservableList<Stringa> stack;
     
-   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        history = FXCollections.observableArrayList();
-        history.add("ciao");
-        history.add("cdsdsds");
-        history.add("ciao123214");
-        historyColumn.setCellValueFactory(new PropertyValueFactory<String,String>("history"));
+        stack = FXCollections.observableArrayList();
+        
+
+        historyColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
         historyColumn.setCellFactory(TextFieldTableCell.forTableColumn());  
        
-        viewHistory.setItems(history);
+        viewHistory.setItems(stack);
         
         
     }    
@@ -74,7 +72,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onEnterPressed(ActionEvent event) {
         System.out.println("Hai premuto enter");
-        history.add(inputText.getText());
+        
+        stack.add(new Stringa(inputText.getText()));
     }
     
 }
