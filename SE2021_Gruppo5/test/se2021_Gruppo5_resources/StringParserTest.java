@@ -93,10 +93,21 @@ public class StringParserTest {
         result = spr.isOperation(toParse);
         assertEquals(expResult, result);
         
-        //Test12
+        //Test13
         toParse = "arcsqrt";
         result = spr.isOperation(toParse);
         assertEquals(expResult, result);
+        
+        //Test14
+        toParse = "sqrttz";
+        result = spr.isOperation(toParse);
+        assertEquals(expResult, result);
+        
+        //Test15
+        toParse = "sqrt ";
+        result = spr.isOperation(toParse);
+        assertEquals(expResult, result);
+        
         
         
     }

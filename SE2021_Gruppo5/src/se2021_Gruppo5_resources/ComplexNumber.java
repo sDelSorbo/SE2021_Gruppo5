@@ -1,9 +1,11 @@
+/**
+ * ComplexNumber
+ * 
+ */
+
 package se2021_Gruppo5_resources;
 import java.text.DecimalFormat;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 /**
  * Questa classe crea un oggetto corrispondente ad un numero complesso
@@ -39,7 +41,7 @@ public class ComplexNumber {
     }
     
     /**
-    * Costruisce un numero complesso nullo, ovvero con parte reale ed immaginaria pari a 0
+    * Costruisce un numero complesso nullo, ovvero con parte reale ed immaginaria pari a 0.
     *  
     */
     public ComplexNumber() {
@@ -89,7 +91,7 @@ public class ComplexNumber {
         return complex;
     }
     /**
-    * Setta la stringa che rappresenta il numero complesso
+    * Setta la stringa che rappresenta il numero complesso.
     *
     */
     public void setComplex() {
@@ -133,10 +135,10 @@ public class ComplexNumber {
             return false;
         }
         final ComplexNumber other = (ComplexNumber) obj;
-        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real)) {
+        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real) && !(this.real == 0.0f && other.real == -0.0f)) {
             return false;
         }
-        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary)) {
+        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary) && !(this.imaginary == 0.0f && this.imaginary == -0.0f)) {
             return false;
         }
         return true;
