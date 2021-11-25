@@ -61,8 +61,9 @@ public class FXMLDocumentController implements Initializable {
            if(inputText.getText().isEmpty())
             showGenericAlert("Inserisci un numero");
         
-        // Qua in realtà si richiamerà il calculator per fargli vedere che è per fare un po' di test appena è pronto lo stack puoi buttarci dei numeri dentro e vedere se si aggiorna.
+
         //stack.add(new ComplexNumber(inputText.getText()));
+
     }
     
     // Questa classe crea una finestra di errore. Tramite questo metodo gestiamo tutte le eccezioni.
