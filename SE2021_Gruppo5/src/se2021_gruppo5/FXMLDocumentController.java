@@ -61,7 +61,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Hai premuto enter"); //Prova a fare che se premi enter e non ci sta niente dentro usi l'alert per mostrare un messaggio
         
         // Qua in realtà si richiamerà il calculator per fargli vedere che è per fare un po' di test appena è pronto lo stack puoi buttarci dei numeri dentro e vedere se si aggiorna.
-       // stack.add(new ComplexNumber(inputText.getText()));
+        stack.add(new ComplexNumber(inputText.getText()));
     }
     
     // Questa classe crea una finestra di errore. Tramite questo metodo gestiamo tutte le eccezioni.
