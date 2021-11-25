@@ -18,8 +18,14 @@ import javafx.scene.control.TextField;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import se2021_Gruppo5_resources.ComplexNumber;
+import se2021_Gruppo5_resources.Stack;
+import se2021_Gruppo5_resources.StringParser;
 
 /**
  *
@@ -28,7 +34,7 @@ import se2021_Gruppo5_resources.ComplexNumber;
 public class FXMLDocumentController implements Initializable {
 
     
-    private ObservableList<Stringa> stack;
+    
     @FXML
     private TableView<ComplexNumber> stackTab;
     @FXML
@@ -41,12 +47,26 @@ public class FXMLDocumentController implements Initializable {
     private Button enterBtn;
     
     private ObservableList<ComplexNumber> complexNumberStack;
+    @FXML
+    private AnchorPane anchorPaneTop;
+    @FXML
+    private AnchorPane anchorPaneBottom;
+    @FXML
+    private AnchorPane anchorPane4;
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private Menu File;
+    @FXML
+    private Menu Edit;
+    @FXML
+    private Menu Help;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         complexNumberStack = FXCollections.observableArrayList();  // Qua ci va il complexNumberStack
 
-        numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("Fromatted")); // Qua giampaolo crea in ComplexNumber un attributo con il numero sotto forma di stringa
+        numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("Formatted")); // Qua giampaolo crea in ComplexNumber un attributo con il numero sotto forma di stringa
                
         stackTab.setItems(complexNumberStack);       
     }    
@@ -62,7 +82,13 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("Inserisci un numero");
         
         // Qua in realtà si richiamerà il calculator per fargli vedere che è per fare un po' di test appena è pronto lo stack puoi buttarci dei numeri dentro e vedere se si aggiorna.
-        //stack.add(new ComplexNumber(inputText.getText()));
+        StringParser s1 = new StringParser();
+       
+        complexNumberStack.add(s1.parseComplexNumber(inputText.getText()));
+        
+          //stack.add(new ComplexNumber(inputText.getText()));
+          
+        //stack.add(new ComplexNumber(s1.parseComplexNumber("ciao")));
     }
     
     // Questa classe crea una finestra di errore. Tramite questo metodo gestiamo tutte le eccezioni.
@@ -76,6 +102,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void quitApplication(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    private void onHelp(ActionEvent event) {
+        Alert alert=new Alert(Alert.AlertType.INFORMATION,"Calculator v0.1");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
     }
     
     
