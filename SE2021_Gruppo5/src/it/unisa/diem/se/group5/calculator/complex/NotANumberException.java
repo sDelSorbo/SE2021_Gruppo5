@@ -4,7 +4,7 @@
  * 
  * Version 1.0
  */
-package se2021_Gruppo5_resources;
+package it.unisa.diem.se.group5.calculator.complex;
 /**
  *
  * @author marco

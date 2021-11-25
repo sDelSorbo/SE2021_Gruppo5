@@ -1,7 +1,7 @@
 /*
  * Stack
  */
-package se2021_Gruppo5_resources;
+package it.unisa.diem.se.group5.calculator.complex;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -35,7 +35,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
     /**
      * Instanza della classe per implementare pattern di Singleton
      */
-    private static Stack instance;
+    private static ComplexStack instance;
     
     /**
      * Costruttore privato per il pattern Singleton

@@ -2,10 +2,12 @@
  * StringParserTest
  *
  */
-package se2021_Gruppo5_resources;
+package it.unisa.diem.se.group5.calculator.complex;
 
 
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -93,21 +95,10 @@ public class StringParserTest {
         result = spr.isOperation(toParse);
         assertEquals(expResult, result);
         
-        //Test13
+        //Test12
         toParse = "arcsqrt";
         result = spr.isOperation(toParse);
         assertEquals(expResult, result);
-        
-        //Test14
-        toParse = "sqrttz";
-        result = spr.isOperation(toParse);
-        assertEquals(expResult, result);
-        
-        //Test15
-        toParse = "sqrt ";
-        result = spr.isOperation(toParse);
-        assertEquals(expResult, result);
-        
         
         
     }
@@ -320,26 +311,4 @@ public class StringParserTest {
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);       
     }
-    /*
-    //Test 4 Spazio vuoto, Garbage, Null, Stringa vuota
-        toParse = "";
-        expResult = new ComplexNumber(+995.42f,+643.24f);
-        result = spr.parseComplexNumber(toParse);
-        assertEquals(expResult, result);
-        
-        toParse = " ";
-        expResult = new ComplexNumber(+995.42f,+643.24f);
-        result = spr.parseComplexNumber(toParse);
-        assertEquals(expResult, result);
-        
-        toParse = "Gibberish";
-        expResult = new ComplexNumber(+995.42f,+643.24f);
-        result = spr.parseComplexNumber(toParse);
-        assertEquals(expResult, result);
-        
-        toParse = null;
-        expResult = new ComplexNumber(+995.42f,+643.24f);
-        result = spr.parseComplexNumber(toParse);
-        assertEquals(expResult, result);
-    */
 }

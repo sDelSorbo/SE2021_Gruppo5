@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se2021_Gruppo5_resources;
+package it.unisa.diem.se.group5.calculator.complex;
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -14,13 +16,13 @@ import static org.junit.Assert.*;
  */
 public class StackTest {
     
-    private static Stack s;
-    ComplexNumber c, c1;
+    private ComplexStack s;
+    private ComplexNumber c, c1;
     
     
     @BeforeClass
-    public static void setUp() {
-        s = Stack.getInstance();  
+    public void setUp() {
+        s = ComplexStack.getInstance();
     }
     
     @After
@@ -37,11 +39,8 @@ public class StackTest {
         boolean expResult = true;
          
         boolean result = s.isEmpty();
-        assertEquals(expResult, result);
-        
-        
-    }
-    
+        assertEquals(expResult, result);       
+    }    
     
      // Seguono test con esito atteso negativo
      // Test2 : Stack con un elemento

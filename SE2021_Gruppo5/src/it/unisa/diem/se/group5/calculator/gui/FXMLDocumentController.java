@@ -1,8 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
+ * FXMLDocumentController
+ *
  */
-package se2021_gruppo5;
+package it.unisa.diem.se.group5.calculator.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +19,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import se2021_Gruppo5_resources.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 
 /**
  *
@@ -28,7 +28,7 @@ import se2021_Gruppo5_resources.ComplexNumber;
 public class FXMLDocumentController implements Initializable {
 
     
-    private ObservableList<Stringa> stack;
+    
     @FXML
     private TableView<ComplexNumber> stackTab;
     @FXML
@@ -70,7 +70,7 @@ public class FXMLDocumentController implements Initializable {
     // come messaggio della finestra di alert.
     public void showGenericAlert(String alertMessage){
         Alert alert = new Alert(Alert.AlertType.ERROR, alertMessage);
-         alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> System.out.print("Hello"));
+        alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> System.out.print("Hello"));
     }
 
     @FXML
