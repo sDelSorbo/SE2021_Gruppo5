@@ -1,11 +1,9 @@
-/**
- * ComplexNumber
- * 
- */
-
 package it.unisa.diem.se.group5.calculator.complex;
 import java.text.DecimalFormat;
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
 /**
  * Questa classe crea un oggetto corrispondente ad un numero complesso
@@ -41,12 +39,13 @@ public class ComplexNumber {
     }
     
     /**
-    * Costruisce un numero complesso nullo, ovvero con parte reale ed immaginaria pari a 0.
+    * Costruisce un numero complesso nullo, ovvero con parte reale ed immaginaria pari a 0
     *  
     */
     public ComplexNumber() {
         real = 0;
         imaginary = 0;
+        complex = this.toString();
     }
     /**
     * Restituisce la parte reale del numero complesso
@@ -91,7 +90,7 @@ public class ComplexNumber {
         return complex;
     }
     /**
-    * Setta la stringa che rappresenta il numero complesso.
+    * Setta la stringa che rappresenta il numero complesso
     *
     */
     public void setComplex() {
@@ -106,10 +105,10 @@ public class ComplexNumber {
       final String UNITA_IMMAGINARIA = "j";
       String sign = "";
       if (imaginary==0)
-         return String.valueOf(real);
+         return df.format(real);
 
       if (real==0)
-         return String.valueOf(imaginary) + UNITA_IMMAGINARIA;
+         return df.format(imaginary);
          
       if (imaginary > 0)
          sign = "+";
@@ -135,11 +134,11 @@ public class ComplexNumber {
             return false;
         }
         final ComplexNumber other = (ComplexNumber) obj;
-        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real) && !(this.real == 0.0f && other.real == -0.0f)) {
+        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real)) {
             return false;
         }
-        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary) && !(this.imaginary == 0.0f && this.imaginary == -0.0f)) {
-            return false;
+        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary)) {
+                return false;
         }
         return true;
     }
