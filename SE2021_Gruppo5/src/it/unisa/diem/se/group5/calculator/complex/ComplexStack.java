@@ -53,11 +53,9 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws ExceptionInInitializerError 
      */
     public static ComplexStack getInstance() throws ExceptionInInitializerError {
-        if(instance!=null)
-            throw new ExceptionInInitializerError("E' già presente un'istanza della classe stack");        
-        instance = new ComplexStack();
-        return instance;
-      
+        if(instance==null)
+            instance = new ComplexStack();       
+        return instance;      
     }
         
  

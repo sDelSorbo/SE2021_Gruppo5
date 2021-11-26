@@ -1,8 +1,9 @@
 /*
- * 
- * 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
  */
 package it.unisa.diem.se.group5.calculator.gui;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class SE2021_Gruppo5 extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("se2021_gruppo5.css").toExternalForm());
         
         stage.setTitle("Complex Calculator");
         stage.setScene(scene);

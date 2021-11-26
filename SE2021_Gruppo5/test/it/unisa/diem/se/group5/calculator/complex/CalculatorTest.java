@@ -61,6 +61,7 @@ public class CalculatorTest {
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
+
         
         input = "10";        
         instance.elaborate(input);
