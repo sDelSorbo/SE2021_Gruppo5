@@ -113,8 +113,11 @@ public class ComplexNumber {
         return hash;
     }   
     
-    
-    //Metodo per verificare se due ComplexNumber sono uguali
+    /**
+     * Metodo che verifica se due numeri complessi sono uguali
+     * @param obj oggetto che viene confrontato con il numero complesso
+     * @return ritorna true se i numeri complessisono uguali altrimenti false
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -136,6 +139,11 @@ public class ComplexNumber {
         return true;
     }
     
+    /**
+     * Metodo che restituisce la stringa rappresentativa del numero complesso
+     * 
+     * @return ritorna la stringa del numero complesso in rappresentazione cartesiana
+     */
     @Override
     public String toString(){       
         //Formato della stringa da salvare in complex
