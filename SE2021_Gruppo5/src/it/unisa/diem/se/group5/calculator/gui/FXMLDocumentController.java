@@ -25,9 +25,7 @@ import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
  *
  * @author delso
  */
-public class FXMLDocumentController implements Initializable {
-
-    
+public class FXMLDocumentController implements Initializable {  
     
     @FXML
     private TableView<ComplexNumber> stackTab;
