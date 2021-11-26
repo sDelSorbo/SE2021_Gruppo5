@@ -139,15 +139,13 @@ public class ComplexNumber {
     @Override
     public String toString(){       
         //Formato della stringa da salvare in complex
-        boolean firstElementPositive = true;
         boolean secondElementPositive = true;
 
-        if (this.real < 0)
-            firstElementPositive = false;
+        
         if (this.imaginary < 0)
             secondElementPositive = false;
 
-        String realPart = (firstElementPositive ? "" : "") + (this.real == 0 ? "0.0" : real.toString());        
+        String realPart = (this.real == 0 ? "0.0" : real.toString());        
         
         String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
 
