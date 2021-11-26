@@ -1,19 +1,15 @@
+/**
+ * ComplexImport
+ * 
+ */
 package it.unisa.diem.se.group5.calculator.complex;
-
-
 import java.util.LinkedList;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- *
-
 
 /**
  * Questa classe crea un oggetto opearazione, che permette di effettuare operazioni con i numeri complessi
+ * 
  * @author gianpaolotobia
- */
- 
+ */ 
 public class ComplexOperations {
 
     public ComplexOperations() {
@@ -129,7 +125,6 @@ public class ComplexOperations {
         double argument = arg(op); //Definisco l'argomento dell'operando
         double module = mod(op); //Definisco il modulo dell'operando
         int k=0;
-//    LinkedList<ComplexNumber> squares = new LinkedList<>(); //Definisco una lista di numeri complessi
         
         ComplexNumber sqr = new ComplexNumber();
         sqr.setReal((float) (Math.sqrt(module)*(Math.cos((argument + (2*k*Math.PI))/2)))); //Calcolo la parte reale della radice

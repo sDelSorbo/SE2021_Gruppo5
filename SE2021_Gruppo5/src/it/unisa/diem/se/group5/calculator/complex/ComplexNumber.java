@@ -1,9 +1,12 @@
 /**
  * ComplexNumber
+ * 
+ * Version 1.0m
  */
 package it.unisa.diem.se.group5.calculator.complex;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
  * Questa classe crea un oggetto corrispondente ad un numero complesso
@@ -11,8 +14,8 @@ import java.math.RoundingMode;
  * @author gianpaolotobia
  */
 public class ComplexNumber {
-    private float real; //Parte reale del numero complesso
-    private float imaginary; //Parte immaginaria del numero complesso
+    private Float real; //Parte reale del numero complesso
+    private Float imaginary; //Parte immaginaria del numero complesso
     private String complex; //Stringa contenente il numero complesso con parte reale e parte immaginaria
     /**
     * Costruisce un numero complesso, definendo sia la parte reale che la parte immaginaria
@@ -39,7 +42,7 @@ public class ComplexNumber {
     public ComplexNumber(float real) {
         BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
         this.real = bd.floatValue();
-        imaginary = 0;
+        imaginary = 0f;
         complex = this.toString();
     }
     
@@ -48,8 +51,8 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber() {
-        real = 0;
-        imaginary = 0;
+        real = 0f;
+        imaginary = 0f;
         complex = this.toString();
     }
     /**
@@ -105,8 +108,12 @@ public class ComplexNumber {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.real);
+        hash = 37 * hash + Objects.hashCode(this.imaginary);
         return hash;
-    }
+    }   
+    
+    
     //Metodo per verificare se due ComplexNumber sono uguali
     @Override
     public boolean equals(Object obj) {
@@ -120,35 +127,39 @@ public class ComplexNumber {
             return false;
         }
         final ComplexNumber other = (ComplexNumber) obj;
-        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real)) {
+        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real) && (this.real == 0f && other.real == -0f)) {
             return false;
         }
-        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary)) {
+        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary) && (this.imaginary == 0f && this.imaginary == -0f)) {
                 return false;
         }
         return true;
     }
+    
+    @Override
+    public String toString(){       
+        //Formato della stringa da salvare in complex
+        boolean firstElementPositive = true;
+        boolean secondElementPositive = true;
 
-   //Metodo che ritorna la stringa del numero complesso
-   public String toString(){
-         //Formato della stringa da salvare in complex
-      
-      final String IMAGINARY_UNIT = "j";
-      String sign = "";
-      
-      if (real==0&&imaginary==0)
-         return String.valueOf(0);
-      
-      if (imaginary==0)
-         return String.valueOf(real);
+        if (this.real < 0)
+            firstElementPositive = false;
+        if (this.imaginary < 0)
+            secondElementPositive = false;
 
-      if (real==0)
-         return String.valueOf(imaginary);
-      
-      
-      if (imaginary > 0)
-         sign = "+";
-         
-      return String.valueOf(real) + sign + String.valueOf(imaginary) + IMAGINARY_UNIT;
+        String realPart = (this.real == 0 ? "0.0" : real.toString());
+        if (this.imaginary != 0 && realPart.equals("0.0")){
+            realPart = "";
+        }       
+        String imgPart = (this.imaginary == 0 ? "0.0" : imaginary.toString());
+
+        if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
+            realPart = realPart.split("\\.")[0];
+
+        if (imgPart.contains(".0") && imgPart.split("\\.")[1].length() == 1)
+            imgPart = imgPart.split("\\.")[0];
+
+        return (firstElementPositive ? "" : "-") + realPart + (secondElementPositive ? "+" : "-") + imgPart + "j";     
    }
+    
 }
