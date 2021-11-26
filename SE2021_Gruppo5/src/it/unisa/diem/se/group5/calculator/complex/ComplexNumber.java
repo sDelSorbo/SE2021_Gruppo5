@@ -69,7 +69,8 @@ public class ComplexNumber {
     * @param real parametro che viene settato
     */
     public void setReal(float real) {
-        this.real = real;
+        BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
+        this.real = bd.floatValue();
         this.setComplex();
     }
    /**
@@ -86,7 +87,8 @@ public class ComplexNumber {
     * @param imaginary parametro che viene settato
     */
     public void setImaginary(float imaginary) {
-        this.imaginary = imaginary;
+        BigDecimal bd = new BigDecimal(imaginary).setScale(5, RoundingMode.HALF_UP);
+        this.imaginary = bd.floatValue();
         this.setComplex();
     }
    /**
