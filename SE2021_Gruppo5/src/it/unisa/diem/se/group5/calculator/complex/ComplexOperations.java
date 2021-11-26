@@ -3,6 +3,8 @@
  * 
  */
 package it.unisa.diem.se.group5.calculator.complex;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedList;
 
 /**
@@ -75,7 +77,7 @@ public class ComplexOperations {
     */
     static public float mod(ComplexNumber op){
         
-        return (float) Math.sqrt(op.getReal()*op.getReal()+op.getImaginary()*op.getImaginary()); //Ritorna il modulo effettuando la radice quadrata della somma dei quadrati di parte reale e parte immaginaria
+        return (float) Math.sqrt((op.getReal()*op.getReal())+(op.getImaginary()*op.getImaginary())); //Ritorna il modulo effettuando la radice quadrata della somma dei quadrati di parte reale e parte immaginaria
     }
     /**
     *  Metodo statico che restituisce l'inverso di un numero complesso
@@ -122,13 +124,18 @@ public class ComplexOperations {
     *  @return ritorna una lista contenente le radici quadrate dell'operando
     */
     static public ComplexNumber complexSqrt(ComplexNumber op){
-        double argument = arg(op); //Definisco l'argomento dell'operando
-        double module = mod(op); //Definisco il modulo dell'operando
-        int k=0;
-        
-        ComplexNumber sqr = new ComplexNumber();
-        sqr.setReal((float) (Math.sqrt(module)*(Math.cos((argument + (2*k*Math.PI))/2)))); //Calcolo la parte reale della radice
-        sqr.setImaginary((float) (Math.sqrt(module)*(Math.sin((argument + (2*k*Math.PI))/2)))); //Calcolo la parte immaginari della radice
+        float argument;
+        float module;
+        if(op.equals(new ComplexNumber(0,0))){
+            argument = 0;
+            module = 0;
+        } else{
+                argument = arg(op); //Definisco l'argomento dell'operando
+                module = mod(op); //Definisco il modulo dell'operando
+        }
+        float realPart = (float) (Math.sqrt(module)*(Math.cos(argument/2)));
+        float imaginaryPart = (float) (Math.sqrt(module)*(Math.sin(argument/2)));
+        ComplexNumber sqr = new ComplexNumber(realPart,imaginaryPart);
         return sqr;
     }
     
