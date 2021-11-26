@@ -1,11 +1,12 @@
-package it.unisa.diem.se.group5.calculator.complex;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
+ * ComplexOperationsTest
+ * 
+ * Version 2.0m
  */
+package it.unisa.diem.se.group5.calculator.complex;
 
-import java.util.LinkedList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -102,7 +103,7 @@ public class ComplexOperationsTest {
         ComplexNumber op2 = new ComplexNumber(-2,6);
         ComplexNumber op3 = new ComplexNumber();
         ComplexNumber op4 = new ComplexNumber(3);
-        ComplexNumber expResult1 = new ComplexNumber(0.15665f,-2.30755f);
+        ComplexNumber expResult1 = new ComplexNumber(1.50985f,+1.75205f);
         ComplexNumber expResult2 = new ComplexNumber(0);
         ComplexNumber result1 = ComplexOperations.div(op1, op2);
         ComplexNumber result2 = ComplexOperations.div(op3, op4);
@@ -132,30 +133,10 @@ public class ComplexOperationsTest {
     }
 
     /**
-     * Test of inv method, of class ComplexOperations.
-     */
-    @Test
-    public void testInv() {
-        System.out.println("inv");
-        ComplexNumber op1 = new ComplexNumber(2,4);
-        ComplexNumber op2 = new ComplexNumber();
-        ComplexNumber op3 = new ComplexNumber(1);
-        ComplexNumber expResult1 = new ComplexNumber(0.1f,-0.2f);
-        //ComplexNumber expResult2 = 0;
-        ComplexNumber expResult3 = new ComplexNumber(1);
-        ComplexNumber result1 = ComplexOperations.inv(op1);
-       // ComplexNumber result2 = ComplexOperations.inv(op2);
-        ComplexNumber result3 = ComplexOperations.inv(op3);
-        assertEquals(expResult1, result1);
-      // assertEquals(expResult2, result2,0.0);
-        assertEquals(expResult3, result3);
-    }
-
-    /**
      * Test of sign_inv method, of class ComplexOperations.
      */
     @Test
-    public void testSign_inv() {
+    public void testSignInv() {
         System.out.println("sign_inv");
         ComplexNumber op1 = new ComplexNumber(2,4);
         ComplexNumber op2 = new ComplexNumber();
@@ -172,30 +153,10 @@ public class ComplexOperationsTest {
     }
 
     /**
-     * Test of arg method, of class ComplexOperations.
+     * Test of sqrt method, of class ComplexOperations.
      */
     @Test
-    public void testArg() {
-        System.out.println("arg");
-        ComplexNumber op1 = new ComplexNumber(1,1);
-        ComplexNumber op2 = new ComplexNumber();
-        ComplexNumber op3 = new ComplexNumber(1);
-        float expResult1 = (float) (Math.PI/4);
-        float expResult2 = 0;
-        float expResult3 = 0;
-        float result1 = (float) ComplexOperations.arg(op1);
-        float result2 = (float) ComplexOperations.arg(op2);
-        float result3 = (float) ComplexOperations.arg(op3);
-        assertEquals(expResult1, result1,0.0);
-      //  assertEquals(expResult2, result2,0.0);
-        assertEquals(expResult3, result3,0.0);
-    }
-
-    /**
-     * Test of sqrt_c method, of class ComplexOperations.
-     */
-    @Test
-    public void testComplexSqrt() {
+    public void testSqrt() {
         System.out.println("complexSqrt");
         ComplexNumber op1 = new ComplexNumber(2,1);
         ComplexNumber op2 = new ComplexNumber();
@@ -203,9 +164,9 @@ public class ComplexOperationsTest {
         ComplexNumber expResult1 = new ComplexNumber(1.4553467f,0.34356076f);
         ComplexNumber expResult2 = new ComplexNumber();
         ComplexNumber expResult3 = new ComplexNumber(1);
-        ComplexNumber result1 = ComplexOperations.complexSqrt(op1);
-        ComplexNumber result2 = ComplexOperations.complexSqrt(op2);
-        ComplexNumber result3 = ComplexOperations.complexSqrt(op3);
+        ComplexNumber result1 = ComplexOperations.sqrt(op1);
+        ComplexNumber result2 = ComplexOperations.sqrt(op2);
+        ComplexNumber result3 = ComplexOperations.sqrt(op3);
         assertEquals(expResult1, result1);
         assertEquals(expResult2, result2);
         assertEquals(expResult3, result3);

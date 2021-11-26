@@ -110,8 +110,7 @@ public class FXMLDocumentController implements Initializable {
         for(ComplexNumber x: stack)
             result.add(x); 
         complexNumberStack.setAll(result);
-        result.clear();
-         
+        result.clear();         
     }
 
     /**

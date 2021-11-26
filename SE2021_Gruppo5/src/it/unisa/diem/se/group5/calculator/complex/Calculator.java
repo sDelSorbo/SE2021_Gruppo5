@@ -112,7 +112,7 @@ public class Calculator {
             case "sqrt":
                 operands[0] = retrieveOperand();
                // result = ComplexOperations.complexSqrt(operands[0]);
-                result = ComplexOperations.complexSqrt(operands[0]);
+                result = ComplexOperations.sqrt(operands[0]);
             break;
             
             default:

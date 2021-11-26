@@ -1,11 +1,9 @@
 /**
  * ComplexImport
  * 
+ * Version 2.0m
  */
 package it.unisa.diem.se.group5.calculator.complex;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.LinkedList;
 
 /**
  * Questa classe crea un oggetto opearazione, che permette di effettuare operazioni con i numeri complessi
@@ -15,59 +13,8 @@ import java.util.LinkedList;
 public class ComplexOperations {
 
     public ComplexOperations() {
-    }
-    /**
-    *  Metodo statico che restituisce la somma di due numeri complessi
-    *
-    *  @param op1   primo operando
-    *  @param op2   secondo operando
-    *  
-    *  @return ritorna un numero complesso che è la somma dei due operandi
-    */
-    static public ComplexNumber add(ComplexNumber op1, ComplexNumber op2){
-        
-        return new ComplexNumber((op1.getReal()+op2.getReal()),(op1.getImaginary()+op2.getImaginary()));
-        
-    }
-    /**
-    *  Metodo statico che restituisce la differenza di due numeri complessi
-    *
-    *  @param op1   primo operando
-    *  @param op2   secondo operando
-    *  
-    *  @return ritorna un numero complesso che è la differenza dei due operandi
-    */
-    static public ComplexNumber sub(ComplexNumber op1, ComplexNumber op2){
-   
-        return new ComplexNumber((op1.getReal()-op2.getReal()),(op1.getImaginary()-op2.getImaginary()));
-    }
-    /**
-    *  Metodo statico che restituisce il prodotto di due numeri complessi
-    *
-    *  @param op1   primo operando
-    *  @param op2   secondo operando
-    *  
-    *  @return ritorna un numero complesso che è il prodotto dei due operandi
-    */
-    static public ComplexNumber mul(ComplexNumber op1, ComplexNumber op2){
-   
-        return new ComplexNumber(((op1.getReal()*op2.getReal())-(op1.getImaginary()*op2.getImaginary())),((op1.getReal()*op2.getImaginary())+(op1.getImaginary()*op2.getReal())));
-    }
-    /**
-    *  Metodo statico che restituisce il risultato della divisione di due numeri complessi
-    *
-    *  @param op1   primo operando
-    *  @param op2   secondo operando
-    *  
-    *  @return ritorna un numero complesso che è il risultato della divisione dei due operandi
-    */
-    static public ComplexNumber div(ComplexNumber op1, ComplexNumber op2){
-        
-        if(op2.equals(new ComplexNumber())) //Verifico se il secondo operando è uguale a 0
-            throw new ArithmeticException("Divisione per 0"); // Se il secondo operando è uguale a 0, viene eseguita l'eccezzione
-        return mul(op1,inv(op2)); //Ritorna il prodotto fra il primo operando e l'inverso del secondo operando
-        
-    }
+    }    
+    
     /**
     *  Metodo statico che restituisce il modulo di un numero complesso
     *
@@ -76,34 +23,13 @@ public class ComplexOperations {
     *  @return ritorna il valore del modulo di un numero complesso
     */
     static public float mod(ComplexNumber op){
-        
-        return (float) Math.sqrt((op.getReal()*op.getReal())+(op.getImaginary()*op.getImaginary())); //Ritorna il modulo effettuando la radice quadrata della somma dei quadrati di parte reale e parte immaginaria
+        if (op.getReal()!=0 || op.getImaginary()!=0) {
+            return (float) Math.sqrt(op.getReal()*op.getReal() + op.getImaginary()*op.getImaginary());
+        } else {
+            return 0f;
+        }
     }
-    /**
-    *  Metodo statico che restituisce l'inverso di un numero complesso
-    *
-    *  @param op   operando
-    *  
-    *  @return ritorna un numero complesso che è l'inverso dell'operando
-    */
     
-    static public ComplexNumber inv(ComplexNumber op){
-        
-        return new ComplexNumber((float)(op.getReal()/(mod(op)*mod(op))),(float)(-op.getImaginary()/(mod(op)*mod(op)))); //Restituisce l'inverso calcolando un numero complesso la cui parte reale è la parte reale diviso il modulo quadro e la parte immaginaria è data dalla parte immaginaria diviso il modulo quadro
-        
-    }
-    /**
-    *  Metodo statico che restituisce inverte il segno di un numero complesso
-    *
-    *  @param op   operando
-    *  
-    *  @return ritorna un numero complesso che è l'operando con segno invertito
-    */
-    static public ComplexNumber signInv(ComplexNumber op){
-        
-        return new ComplexNumber(-op.getReal(),-op.getImaginary());
-
-    }
     /**
     *  Metodo statico che restituisce l'argomento di un numero complesso
     *
@@ -111,33 +37,98 @@ public class ComplexOperations {
     *  
     *  @return ritorna il valore dell'argomento dell'operando
     */
-    static public float arg(ComplexNumber op){
-        
-        return (float) Math.atan(op.getImaginary()/op.getReal());  
-
+    static private float arg(ComplexNumber op) {
+        return (float) Math.atan2(op.getImaginary(), op.getReal());
     }
+    
     /**
-    *  Metodo statico che restituisce le radici quadrate di un numero complesso
+        Restituisce il coniugato del numero complesso
+        (il coniugato di x+i*y è x-i*y).
+        @return il coniugato del numero complesso.
+    */
+    static private ComplexNumber conj(ComplexNumber op) {
+        return new ComplexNumber(op.getReal(),-op.getImaginary());
+    }
+    
+    /**
+    *  Metodo statico che restituisce la somma di due numeri complessi
+    *  <br>(x+i*y) + (s+i*t) = (x+s)+i*(y+t).
+    *
+    *  @param op1   primo operando
+    *  @param op2   secondo operando
+    * return ritorna un numero complesso che è la somma dei due operandi
+    *  
+    */
+    static public ComplexNumber add(ComplexNumber op1, ComplexNumber op2) {
+        return new ComplexNumber(op1.getReal() + op2.getReal(), op1.getImaginary() + op2.getImaginary());
+    }
+    
+    /**
+    *  Metodo statico che restituisce la differenza di due numeri complessi
+    *
+    *  @param op1   primo operando
+    *  @param op2   secondo operando
+    *  
+    *  @return ritorna un numero complesso che è la differenza dei due operandi
+    */
+    static public ComplexNumber sub(ComplexNumber op1, ComplexNumber op2) {
+        return new ComplexNumber(op1.getReal() - op2.getReal(), op1.getImaginary() - op2.getImaginary());
+    }
+    
+    /**
+    *  Metodo statico che restituisce il prodotto di due numeri complessi
+    *
+    *  @param op1   primo operando
+    *  @param op2   secondo operando
+    *  
+    *  @return ritorna un numero complesso che è il prodotto dei due operandi
+    */
+    static public ComplexNumber mul(ComplexNumber op1, ComplexNumber op2) {
+        return new ComplexNumber(op1.getReal() * op2.getReal() - op1.getImaginary() * op2.getImaginary(), op1.getReal() *op2.getImaginary()+op1.getImaginary() * op2.getReal());
+    }
+    
+    /**
+    *  Metodo statico che restituisce il risultato della divisione di due numeri complessi
+    *  <br>(x+i*y)/(s+i*t) = ((x*s+y*t) + i*(y*s-y*t)) / (s^2+t^2) 
+    * 
+    *  @param op1   primo operando
+    *  @param op2   secondo operando
+    *  
+    *  @return ritorna un numero complesso che è il risultato della divisione dei due operandi
+    */
+    static public ComplexNumber div(ComplexNumber op1, ComplexNumber op2){    
+        
+        float den = (float) Math.pow(ComplexOperations.mod(op2),2);
+        return new ComplexNumber((op1.getReal()*op2.getReal() + op1.getImaginary()* op2.getImaginary())/den,(op1.getImaginary()*op2.getReal()-op1.getReal()*op2.getImaginary())/den);
+    }
+    
+    /**
+    *  Metodo statico che restituisce inverte il segno di un numero complesso
     *
     *  @param op   operando
     *  
-    *  @return ritorna una lista contenente le radici quadrate dell'operando
+    *  @return ritorna un numero complesso che è l'operando con segno invertito
     */
-    static public ComplexNumber complexSqrt(ComplexNumber op){
-        float argument;
-        float module;
-        if(op.equals(new ComplexNumber(0,0))){
-            argument = 0;
-            module = 0;
-        } else{
-                argument = arg(op); //Definisco l'argomento dell'operando
-                module = mod(op); //Definisco il modulo dell'operando
-        }
-        float realPart = (float) (Math.sqrt(module)*(Math.cos(argument/2)));
-        float imaginaryPart = (float) (Math.sqrt(module)*(Math.sin(argument/2)));
-        ComplexNumber sqr = new ComplexNumber(realPart,imaginaryPart);
-        return sqr;
+    public static ComplexNumber signInv(ComplexNumber op){
+        
+        return new ComplexNumber(-op.getReal(),-op.getImaginary());
+
     }
     
-
+    /**
+    *  Metodo statico che restituisce le radici quadrate di un numero complesso
+    *
+     * @param op operando
+    *  
+    *  @return ritorna una lista contenente le radici quadrate dell'operando
+    */
+    public static ComplexNumber sqrt(ComplexNumber op) {
+        float r = (float) Math.sqrt(ComplexOperations.mod(op) );
+        float theta = ComplexOperations.arg(op)/2f;
+        return new ComplexNumber(r* (float) Math.cos(theta),r* (float) Math.sin(theta));
+    }
 }
+
+    
+
+
