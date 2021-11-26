@@ -147,19 +147,24 @@ public class ComplexNumber {
         if (this.imaginary < 0)
             secondElementPositive = false;
 
-        String realPart = (this.real == 0 ? "0.0" : real.toString());
-        if (this.imaginary != 0 && realPart.equals("0.0")){
-            realPart = "";
-        }       
-        String imgPart = (this.imaginary == 0 ? "0.0" : imaginary.toString());
+        String realPart = (firstElementPositive ? "" : "-") + (this.real == 0 ? "0.0" : real.toString());        
+        
+        String imgPart = (secondElementPositive ? "+" : "-") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
 
         if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
             realPart = realPart.split("\\.")[0];
 
-        if (imgPart.contains(".0") && imgPart.split("\\.")[1].length() == 1)
-            imgPart = imgPart.split("\\.")[0];
-
-        return (firstElementPositive ? "" : "-") + realPart + (secondElementPositive ? "+" : "-") + imgPart + "j";     
+        if (imgPart.contains(".0") && imgPart.split("\\.")[1].length() == 2)
+            imgPart = imgPart.split("\\.")[0]  + "j";
+        
+        if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
+            imgPart = "";
+        }        
+        if (this.real == 0 && this.imaginary != 0){
+            realPart = "";
+        }
+        
+        return realPart+imgPart;     
    }
     
 }
