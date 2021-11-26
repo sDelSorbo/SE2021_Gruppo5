@@ -125,6 +125,7 @@ public class ComplexOperations {
     *  
     *  @return ritorna una lista contenente le radici quadrate dell'operando
     */
+    //Gianpaolo deve ritornare un solo valore
     static public LinkedList complexSqrt(ComplexNumber op){
         double argument = arg(op); //Definisco l'argomento dell'operando
         double module = mod(op); //Definisco il modulo dell'operando
