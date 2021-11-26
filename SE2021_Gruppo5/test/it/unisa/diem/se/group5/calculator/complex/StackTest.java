@@ -1,12 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * StackTest
  */
 package it.unisa.diem.se.group5.calculator.complex;
 
-import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
-import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import java.util.NoSuchElementException;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -16,12 +13,12 @@ import static org.junit.Assert.*;
  */
 public class StackTest {
     
-    private ComplexStack s;
+    private static ComplexStack s;
     private ComplexNumber c, c1;
     
     
     @BeforeClass
-    public void setUp() {
+    public static void setUp() {
         s = ComplexStack.getInstance();
     }
     
@@ -31,35 +28,42 @@ public class StackTest {
     }  
     
     
-    // Seguono test con esito atteso positivo
-    // Test1 : Stack vuoto
+           
+    /**
+     * Test del metodo isEmpty della classe ComplexStack.
+     */
     @Test
-    public void test1IsEmpty(){
+    public void testIsEmpty(){
       
         boolean expResult = true;
          
         boolean result = s.isEmpty();
         assertEquals(expResult, result);       
     }    
+
     
-     // Seguono test con esito atteso negativo
-     // Test2 : Stack con un elemento
+    /**
+     * Test del metodo isFull della classe ComplexStack
+     */
     @Test
-    public void test2IsEmpty(){
+    public void testIsFull(){
         
-        boolean expResult = false;
+        boolean expResult = true;
         
-        s.push(c);
-        boolean result = s.isEmpty();
+        for(int i=0; i<256; i++){
+            c = new ComplexNumber(+5);
+            s.push(c);
+        }
+        boolean result = s.isFull();
         assertEquals(expResult, result);
-        
     }
     
     
-    // Seguono test con esito atteso positivo
-    // Test3 : Stack vuoto
+    /**
+     * Test del metodo size della classe ComlexStack.
+     */
     @Test
-    public void test3size(){
+    public void testSize(){
       
         int expResult = 0;
          
@@ -68,25 +72,15 @@ public class StackTest {
         
     }
     
-    // Seguono test con esito atteso positivo
-    // Test4 : Stack con un elemento
-    @Test
-    public void test4size(){
-      
-        int expResult = 1;
-         
-        s.push(c);
-        int result = s.size();
-        assertEquals(expResult, result);
-        
-    }
-    
    
-    // Test5 : inserimento elemento puramente reale con segno positivo
+   /**
+    * Test del metodo push della classe ComplexStack
+    */
     @Test
-    public void test5push(){
+    public void testPush(){
         
         ComplexNumber expResult = new ComplexNumber(+5);
+       
         int expResult1 = 1;
         
         c = new ComplexNumber(+5);
@@ -97,61 +91,13 @@ public class StackTest {
         assertEquals(expResult1, result1);
        
     }   
+   
     
-    
-     // Test6 : inserimento elemento puramente reale con segno negativo
+    /**
+     * Test del metodo pop della classe ComplexStack.
+     */
     @Test
-    public void test6push(){
-        
-        ComplexNumber expResult = new ComplexNumber(-5);
-        int expResult1 = 1;
-        
-        c = new ComplexNumber(-5);
-        s.push(c);
-        ComplexNumber result = s.peek();
-        int result1 = s.size();
-        assertEquals(expResult, result);
-        assertEquals(expResult1, result1);
-       
-    }   
-    
-     // Test7 : inserimento elemento puramente immaginario con segno positivo
-    @Test
-    public void test7push(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, +5);
-        int expResult1 = 1;
-        
-        c = new ComplexNumber(0, +5);
-        s.push(c);
-        ComplexNumber result = s.peek();
-        int result1 = s.size();
-        assertEquals(expResult, result);
-        assertEquals(expResult1, result1);
-       
-    }   
-    
-    
-    // Test8 : inserimento elemento puramente immaginario con segno negativo
-    @Test
-    public void test8push(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, -5);
-        int expResult1 = 1;
-        
-        c = new ComplexNumber(0, -5);
-        s.push(c);
-        ComplexNumber result = s.peek();
-        int result1 = s.size();
-        assertEquals(expResult, result);
-        assertEquals(expResult1, result1);
-       
-    }   
-    
-    
-    // Test9 : rimozione e ritorno di un elemento puramente reale con segno positivo
-    @Test
-    public void test9pop(){
+    public void testPop(){
         
         ComplexNumber expResult = new ComplexNumber(+5);
         int expResult1 = 0;
@@ -163,58 +109,13 @@ public class StackTest {
         assertEquals(expResult, result);
         assertEquals(expResult1, result1);
     }
+  
     
-     // Test10 : rimozione e ritorno di un elemento puramente reale con segno negativo
+   /**
+    * Test del metodo peek della classe ComplexStack.
+    */
     @Test
-    public void test10pop(){
-        
-        ComplexNumber expResult = new ComplexNumber(-5);
-        int expResult1 = 0;
-        
-        c = new ComplexNumber(-5);
-        s.push(c);
-        ComplexNumber result = s.pop();
-        int result1 = s.size();
-        assertEquals(expResult, result);
-        assertEquals(expResult1, result1);
-    }
-    
-    
-    // Test11 : rimozione e ritorno di un elemento puramente immaginario con segno positivo
-    @Test
-    public void test11pop(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, +5);
-        int expResult1 = 0;
-        
-        c = new ComplexNumber(0, +5);
-        s.push(c);
-        ComplexNumber result = s.pop();
-        int result1 = s.size();
-        assertEquals(expResult, result);
-        assertEquals(expResult1, result1);
-    }
-    
-    
-     // Test12 : rimozione e ritorno di un elemento puramente immaginario con segno negativo
-    @Test
-    public void test12pop(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, -5);
-        int expResult1 = 0;
-        
-        c = new ComplexNumber(0, -5);
-        s.push(c);
-        ComplexNumber result = s.pop();
-        int result1 = s.size();
-        assertEquals(expResult, result);
-        assertEquals(expResult1, result1);
-    }
-    
-    
-    // Test13 : ritorno dell'ultimo elemento puramente reale con segno positivo
-    @Test
-    public void test13peek(){
+    public void testPeek(){
         
         ComplexNumber expResult = new ComplexNumber(+5);
         
@@ -224,45 +125,12 @@ public class StackTest {
         assertEquals(expResult, result);
     }
     
-    // Test14 : ritorno dell'ultimo elemento puramente reale con segno negativo
-    @Test
-    public void test14peek(){
-        
-        ComplexNumber expResult = new ComplexNumber(-5);
-        
-        c = new ComplexNumber(-5);
-        s.push(c);
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-    }
     
-     // Test15 : ritorno dell'ultimo elemento puramente immaginario con segno positivo
+   /**
+    * Test del metodo clear della classe ComplexStack.
+    */
     @Test
-    public void test15peek(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, +5);
-        
-        c = new ComplexNumber(0, +5);
-        s.push(c);
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-    }
-    
-     // Test16 : ritorno dell'ultimo elemento puramente immaginario con segno negativo
-    @Test
-    public void test16peek(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, -5);
-        
-        c = new ComplexNumber(0, -5);
-        s.push(c);
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-    }
-    
-    //Test17 : verifica della rimozione di tutti gli elementi dallo stack
-    @Test
-    public void test17clear(){
+    public void testClear(){
         
         boolean expResult = true;
         
@@ -277,69 +145,29 @@ public class StackTest {
     }
     
     
-    //Test18 : verifica rimozione ultimo elemento puramente reale con segno positivo
+    /**
+     * Test del metodo drop della classe ComplexStack.
+     */
     @Test
-    public void test18drop(){
+    public void testDrop(){
         
-         ComplexNumber expResult = new ComplexNumber(+5);
+        ComplexNumber expResult = new ComplexNumber(+5);
          
-         c = new ComplexNumber(+5);
+        c = new ComplexNumber(+5);
         c1 = new ComplexNumber(-5);
-         s.push(c);
-         s.push(c1);
-         s.drop();
-         ComplexNumber result = s.peek();
-         assertEquals(expResult, result);
+        s.push(c);
+        s.push(c1);
+        s.drop();
+        ComplexNumber result = s.peek();
+        assertEquals(expResult, result);
     }
     
-     //Test19 : verifica rimozione ultimo elemento puramente reale con segno negativo
+     
+    /**
+     * Test del metodo dup della classe ComplexStack.
+     */
     @Test
-    public void test19drop(){
-        
-         ComplexNumber expResult = new ComplexNumber(-5);
-         
-         c = new ComplexNumber(-5);
-        c1 = new ComplexNumber(+5);
-         s.push(c);
-         s.push(c1);
-         s.drop();
-         ComplexNumber result = s.peek();
-         assertEquals(expResult, result);
-    }
-    
-     //Test20 : verifica rimozione ultimo elemento puramente immaginario con segno positivo
-    @Test
-    public void test20drop(){
-        
-         ComplexNumber expResult = new ComplexNumber(0, +5);
-         
-         c = new ComplexNumber(0, +5);
-        c1 = new ComplexNumber(+5);
-         s.push(c);
-         s.push(c1);
-         s.drop();
-         ComplexNumber result = s.peek();
-         assertEquals(expResult, result);
-    }
-    
-     //Test21 : verifica rimozione ultimo elemento puramente immaginario con segno negativo
-    @Test
-    public void test21drop(){
-        
-         ComplexNumber expResult = new ComplexNumber(0, -5);
-         
-         c = new ComplexNumber(0, -5);
-        c1 = new ComplexNumber(+5);
-         s.push(c);
-         s.push(c1);
-         s.drop();
-         ComplexNumber result = s.peek();
-         assertEquals(expResult, result);
-    }
-    
-    //Test22 : copia ultimo elemento puramente reale con segno positivo
-    @Test
-    public void test22dup(){
+    public void testDup(){
         
         ComplexNumber expResult = new ComplexNumber(+5);
         
@@ -353,58 +181,12 @@ public class StackTest {
         
     }
     
-    //Test23 : copia ultimo elemento puramente reale con segno negativo
-    @Test
-    public void test23dup(){
-        
-        ComplexNumber expResult = new ComplexNumber(-5);
-        
-        c = new ComplexNumber(+7);
-        c1 = new ComplexNumber(-5);
-        s.push(c);
-        s.push(c1);
-        s.dup();
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-        
-    }
     
-     //Test24 : copia ultimo elemento puramente immaginario con segno positivo
+    /**
+     * Test del metodo over della classe ComplexStack.
+     */
     @Test
-    public void test24dup(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, +5);
-        
-        c = new ComplexNumber(+7);
-        c1 = new ComplexNumber(0, +5);
-        s.push(c);
-        s.push(c1);
-        s.dup();
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-        
-    }
-    
-     //Test25 : copia ultimo elemento puramente immaginario con segno negativo
-    @Test
-    public void test25dup(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, -5);
-        
-        c = new ComplexNumber(+7);
-        c1 = new ComplexNumber(0, -5);
-        s.push(c);
-        s.push(c1);
-        s.dup();
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-        
-    }
-    
-    
-    //Test26 : copia penultimo elemento puramente reale con segno positivo
-    @Test
-    public void test26over(){
+    public void testOver(){
         
         ComplexNumber expResult = new ComplexNumber(+7);
         
@@ -417,40 +199,104 @@ public class StackTest {
         assertEquals(expResult, result);
         
     }
+ 
     
-    //Test27 : copia penultimo elemento puramente reale con segno negativo
-    @Test
-    public void test27over(){
+    /**
+     * Test del metodo push della classe ComplexStack per eccezione
+     * causata dal tentativo di inserire un elemento nello stack pieno
+     */
+    @Test(expected=SizeStackException.class)
+    public void testSizeStackExceptionOnPush(){
         
-        ComplexNumber expResult = new ComplexNumber(-7);
-        
-        c = new ComplexNumber(-7);
-        c1 = new ComplexNumber(+5);
-        s.push(c);
-        s.push(c1);
-        s.over();
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
-        
-    }
-    
-     //Test28 : copia penultimo elemento puramente immaginario con segno positivo
-    @Test
-    public void test28over(){
-        
-        ComplexNumber expResult = new ComplexNumber(0, +7);
-        
-        c = new ComplexNumber(0, +7);
-        c1 = new ComplexNumber(+5);
-        s.push(c);
-        s.push(c1);
-        s.over();
-        ComplexNumber result = s.peek();
-        assertEquals(expResult, result);
+         for(int i=0; i<256; i++){
+            c = new ComplexNumber(+5);
+            s.push(c);
+        }
+         s.push(c);
         
     }
     
     
+    /**
+     * Test del metodo push della classe ComplexStack per eccezione
+     * causata dal tentativo di inserire un elemento null nello stack
+     */
+     @Test(expected=NoSuchElementException.class)
+     public void testNoSuchElementExceptionOnPush(){
+         
+         ComplexNumber c = null;
+         
+         s.push(c);
+     }
+    
+     
+    /**
+    * Test del metodo pop della classe ComplexStack per eccezione
+    * causata dal tentativo di ritornare e rimuovere un elemento dallo stack vuoto
+    */
+     @Test(expected=SizeStackException.class)
+     public void testSizeStackExceptionOnPop(){
+         
+         s.pop();
+     }
+     
+     
+    /**
+    * Test del metodo drop della classe ComplexStack per eccezione
+    * causata dal tentativo di rimuovere un elemento dallo stack vuoto
+    */
+     @Test(expected=SizeStackException.class)
+     public void testSizeStackExceptionOnDrop(){
+         
+         s.drop();
+     }
+     
+     
+    /**
+     * Test del metodo dup della classe ComplexStack per eccezione
+     * causata dal tentativo di creare un nuovo nodo contenente l'ultimo
+     * elemento dello stack dallo stack pieno
+     */
+    @Test(expected=SizeStackException.class)
+    public void testSizeStackExceptionOnDup(){
+        
+         for(int i=0; i<256; i++){
+            c = new ComplexNumber(+5);
+            s.push(c);
+        }
+         s.dup();
+        
+    }
+    
+    
+    
+    /**
+     * Test del metodo over della classe ComplexStack per eccezione
+     * causata dal tentativo di creare un nuovo nodo contenente il penultimo
+     * elemento dello stack dallo stack pieno
+     */
+    @Test(expected=SizeStackException.class)
+    public void testSizeStackExceptionOnOver(){
+        
+         for(int i=0; i<256; i++){
+            c = new ComplexNumber(+5);
+            s.push(c);
+        }
+         s.over();
+        
+    }
+     
+    
+    /**
+    * Test del metodo peek della classe ComplexStack per eccezione
+    * causata dal tentativo di tornare un elemento dallo stack vuoto
+    */
+     @Test(expected=SizeStackException.class)
+     public void testSizeStackExceptionOnPeek(){
+         
+         s.peek();
+     }
+     
 }    
 
 
