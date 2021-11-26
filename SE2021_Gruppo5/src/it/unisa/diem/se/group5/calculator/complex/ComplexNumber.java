@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 
 /**
  * Questa classe crea un oggetto corrispondente ad un numero complesso
+ * in rappresentazione cartesiana
  * @author gianpaolotobia
  */
 public class ComplexNumber {
@@ -100,30 +101,6 @@ public class ComplexNumber {
     public void setComplex() {
         complex = this.toString();
     }
-    
-    
-   //Metodo che ritorna la stringa del numero complesso
-   public String toString(){
-         //Formato della stringa da salvare in complex
-      
-      final String UNITA_IMMAGINARIA = "j";
-      String sign = "";
-      
-      if (real==0&&imaginary==0)
-         return String.valueOf(0);
-      
-      if (imaginary==0)
-         return String.valueOf(real);
-
-      if (real==0)
-         return String.valueOf(imaginary);
-      
-      
-      if (imaginary > 0)
-         sign = "+";
-         
-      return String.valueOf(real) + sign + String.valueOf(imaginary) + UNITA_IMMAGINARIA;
-   }
 
     @Override
     public int hashCode() {
@@ -152,5 +129,26 @@ public class ComplexNumber {
         return true;
     }
 
-    
+   //Metodo che ritorna la stringa del numero complesso
+   public String toString(){
+         //Formato della stringa da salvare in complex
+      
+      final String IMAGINARY_UNIT = "j";
+      String sign = "";
+      
+      if (real==0&&imaginary==0)
+         return String.valueOf(0);
+      
+      if (imaginary==0)
+         return String.valueOf(real);
+
+      if (real==0)
+         return String.valueOf(imaginary);
+      
+      
+      if (imaginary > 0)
+         sign = "+";
+         
+      return String.valueOf(real) + sign + String.valueOf(imaginary) + IMAGINARY_UNIT;
+   }
 }
