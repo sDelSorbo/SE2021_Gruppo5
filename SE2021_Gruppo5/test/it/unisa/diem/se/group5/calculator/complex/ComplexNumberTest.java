@@ -46,10 +46,10 @@ public class ComplexNumberTest {
         System.out.println("getReal");
         ComplexNumber instance1 = new ComplexNumber();
         ComplexNumber instance2 = new ComplexNumber(3.1234599f,10);
-        ComplexNumber instance3 = new ComplexNumber(3);
+        ComplexNumber instance3 = new ComplexNumber(-3);
         float expResult1 = 0;
         float expResult2 = 3.12346f;
-        float expResult3 = 3;
+        float expResult3 = -3;
         float result1 = instance1.getReal();
         float result2 = instance2.getReal();
         float result3 = instance3.getReal();
@@ -77,10 +77,10 @@ public class ComplexNumberTest {
     public void testGetImaginary() {
         System.out.println("getImaginary");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3,10);      
+        ComplexNumber instance2 = new ComplexNumber(3.777823f,-10.202f);      
         ComplexNumber instance3 = new ComplexNumber(3);
         float expResult1 = 0;
-        float expResult2 = 10;
+        float expResult2 = -10.202f;
         float expResult3 = 0;
         float result1 = instance1.getImaginary();
         float result2 = instance2.getImaginary();
@@ -108,11 +108,11 @@ public class ComplexNumberTest {
     public void testGetComplex() {
         System.out.println("getComplex");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3,10);
+        ComplexNumber instance2 = new ComplexNumber(-3.33f,-10);
         ComplexNumber instance3 = new ComplexNumber(3);
         String expResult1 = "0";
-        String expResult2 = "3.0+10.0j";
-        String expResult3 = "3.0";
+        String expResult2 = "-3.33-10j";
+        String expResult3 = "3";
         String result1 = instance1.getComplex();
         String result2 = instance2.getComplex();
         String result3 = instance3.getComplex();
@@ -139,11 +139,11 @@ public class ComplexNumberTest {
     public void testToString() {
         System.out.println("toString");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(-3,-10);
+        ComplexNumber instance2 = new ComplexNumber(3,-10);
         ComplexNumber instance3 = new ComplexNumber(3);
         String expResult1 = "0";
-        String expResult2 = "-3.0-10.0j";
-        String expResult3 = "3.0";
+        String expResult2 = "3-10j";
+        String expResult3 = "3";
         String result1 = instance1.toString();
         String result2 = instance2.toString();
         String result3 = instance3.toString();
