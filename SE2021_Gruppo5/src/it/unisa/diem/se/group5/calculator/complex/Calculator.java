@@ -111,7 +111,8 @@ public class Calculator {
             
             case "sqrt":
                 operands[0] = retrieveOperand();
-                result = ComplexOperations.sqrt(operands[0]);
+               // result = ComplexOperations.complexSqrt(operands[0]);
+                result = ComplexOperations.signInv(operands[0]);
             break;
             
             default:
