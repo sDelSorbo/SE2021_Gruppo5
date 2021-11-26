@@ -28,6 +28,7 @@ public class SE2021_Gruppo5 extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+        scene.getStylesheets().add(getClass().getResource("se2021_gruppo5.css").toExternalForm());
     }
 
     /**

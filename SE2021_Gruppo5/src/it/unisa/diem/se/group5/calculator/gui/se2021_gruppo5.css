@@ -1,0 +1,44 @@
+
+#enterBtn{
+    
+    -fx-border: solid 2px #673ab7;
+    -fx-color: #6031c9;
+    -fx-cursor: hand;
+   -fx-border-radius: 30px;
+    -fx-font-size: 21px;
+    
+}
+#delBtn{
+    -fx-border: solid 2px #673ab7;
+    -fx-color: #6031c9;
+    -fx-cursor: hand;
+   -fx-border-radius: 30px;
+    -fx-font-size: 21px;
+}
+#anchorPaneTop{
+    -fx-background-color: darkorange;
+}
+#anchorPane4{
+     -fx-background-image: url("back.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size:  390 430;
+
+}
+#File,#Edit,#Help{
+    -fx-font-size: 14px; 
+    -fx-cursor: hand;
+}
+
+#menuBar{
+    -fx-background-color: orange;
+    -fx-border-radius: 30px;
+    -fx-box-shadow: 0 13px 30px -10px black;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+   
+}
+.split-pane:vertical > .split-pane-divider {
+  
+}
+

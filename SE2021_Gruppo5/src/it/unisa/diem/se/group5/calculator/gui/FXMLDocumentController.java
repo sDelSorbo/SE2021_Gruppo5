@@ -22,7 +22,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.List;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
@@ -31,8 +35,8 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author delso
  */
-public class FXMLDocumentController implements Initializable {  
-    
+public class FXMLDocumentController implements Initializable {
+
     @FXML
     private TableView<ComplexNumber> stackTab;
     @FXML
@@ -60,73 +64,83 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Menu Help;
     
-    private ComplexStack stack= ComplexStack.getInstance();//convertire stack da iterable a collection
-    private Calculator calculator= new Calculator(stack);
-    
+    Deque<ComplexNumber> result = new ArrayDeque<>();
+    private ComplexStack stack = ComplexStack.getInstance();//convertire stack da iterable a collection
+    private Calculator calculator = new Calculator(stack);
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        complexNumberStack = FXCollections.observableArrayList();  // Qua ci va il complexNumberStack
-                
-        numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("complex")); // Qua giampaolo crea in ComplexNumber un attributo con il numero sotto forma di stringa
+        complexNumberStack = FXCollections.observableArrayList();
+        // Qua ci va il complexNumberStack
+        //complexNumberStack.setAll(stack);
+        numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("complex")); 
         
-        stackTab.setItems(complexNumberStack);       
-    }    
+        stackTab.setItems(complexNumberStack);
+          
+    }
 
     /**
      * Quando si preme il pulsante DEL viene cancellato l'user input.
-     * 
-     * @param   event       un evento che viene passato.    
-     * 
+     *
+     * @param event un evento che viene passato.
+     *
      */
     @FXML
     private void onDeletePressed(ActionEvent event) {
         inputText.clear();
-    }   
-    
+    }
+
     /**
-     * Quando si preme il pulsante Enter viene 
-     * 
-     * @param   event        un evento che viene passato
+     * Quando si preme il pulsante Enter viene
+     *
+     * @param event un evento che viene passato
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
-        String input=inputText.getText();  //mettere limitatore
-  
-           try{
-               calculator.elaborate(input);
-           }catch(Exception ex){
-               showGenericAlert("ERROR",ex.getMessage());
-           } 
+        String input = inputText.getText();  //mettere limitatore
+       
+
+        try {
+            calculator.elaborate(input);
+        } catch (Exception ex) {
+            showGenericAlert("ERROR", ex.getMessage());
+        }
+        result.push(stack.peek());
+        complexNumberStack.setAll(result);
+         
     }
-    
-    
+
     /**
-     * Questa classe crea una alert personalizzato che mostra un messaggio a video.
-     * 
-     * @param   alertMessage    stringa di errore che volgiamo mostrare   
+     * Questa classe crea una alert personalizzato che mostra un messaggio a
+     * video.
+     *
+     * @param alertMessage stringa di errore che volgiamo mostrare
      */
-    public void showGenericAlert(String type,String alertMessage){  
+    public void showGenericAlert(String type, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
-         alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> System.out.print("Hello"));
+        alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> System.out.print("Hello"));
     }
+
     /**
-     * Nel sottomenù di "File" è presente un bottone per uscire dall'applicazione.
-     * 
-     * @param event     un evento che viene passato    
+     * Nel sottomenù di "File" è presente un bottone per uscire
+     * dall'applicazione.
+     *
+     * @param event un evento che viene passato
      */
     @FXML
     private void quitApplication(ActionEvent event) {
         Platform.exit();
     }
+
     /**
-     * Nel sottomenù di "Help" è presente un bottone per recuperare le info del programma.
-     * 
-     * @param   event 
+     * Nel sottomenù di "Help" è presente un bottone per recuperare le info del
+     * programma.
+     *
+     * @param event
      */
     @FXML
     private void onHelp(ActionEvent event) {
-        showGenericAlert("INFORMATION","Calculator v0.1");
+        showGenericAlert("INFORMATION", "Calculator v0.1");
     }
-    
-    
+
 }
