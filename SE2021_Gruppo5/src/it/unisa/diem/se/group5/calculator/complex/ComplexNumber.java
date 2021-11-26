@@ -1,11 +1,9 @@
+/**
+ * ComplexNumber
+ */
 package it.unisa.diem.se.group5.calculator.complex;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  * Questa classe crea un oggetto corrispondente ad un numero complesso
@@ -26,8 +24,10 @@ public class ComplexNumber {
     public ComplexNumber(float real, float imaginary) {
         BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
         this.real = bd.floatValue();
+        
         BigDecimal bd2 = new BigDecimal(imaginary).setScale(5, RoundingMode.HALF_UP);
         this.imaginary = bd2.floatValue();
+        
         complex = this.toString();
     }
     /**
