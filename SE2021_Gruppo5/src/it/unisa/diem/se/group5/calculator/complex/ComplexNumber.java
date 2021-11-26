@@ -1,9 +1,11 @@
-/**
- * ComplexNumber
- * 
- */
 package it.unisa.diem.se.group5.calculator.complex;
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
 /**
  * Questa classe crea un oggetto corrispondente ad un numero complesso
@@ -13,7 +15,6 @@ public class ComplexNumber {
     private float real; //Parte reale del numero complesso
     private float imaginary; //Parte immaginaria del numero complesso
     private String complex; //Stringa contenente il numero complesso con parte reale e parte immaginaria
-    
     /**
     * Costruisce un numero complesso, definendo sia la parte reale che la parte immaginaria
     *
@@ -22,8 +23,10 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(float real, float imaginary) {
-        this.real = real;
-        this.imaginary = imaginary;
+        BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
+        this.real = bd.floatValue();
+        BigDecimal bd2 = new BigDecimal(imaginary).setScale(5, RoundingMode.HALF_UP);
+        this.imaginary = bd2.floatValue();
         complex = this.toString();
     }
     /**
@@ -33,7 +36,8 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(float real) {
-        this.real = real;
+        BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
+        this.real = bd.floatValue();
         imaginary = 0;
         complex = this.toString();
     }
@@ -96,6 +100,30 @@ public class ComplexNumber {
     public void setComplex() {
         complex = this.toString();
     }
+    
+    
+   //Metodo che ritorna la stringa del numero complesso
+   public String toString(){
+         //Formato della stringa da salvare in complex
+      
+      final String UNITA_IMMAGINARIA = "j";
+      String sign = "";
+      
+      if (real==0&&imaginary==0)
+         return String.valueOf(0);
+      
+      if (imaginary==0)
+         return String.valueOf(real);
+
+      if (real==0)
+         return String.valueOf(imaginary);
+      
+      
+      if (imaginary > 0)
+         sign = "+";
+         
+      return String.valueOf(real) + sign + String.valueOf(imaginary) + UNITA_IMMAGINARIA;
+   }
 
     @Override
     public int hashCode() {
@@ -124,22 +152,5 @@ public class ComplexNumber {
         return true;
     }
 
-    //Metodo che ritorna la stringa del numero complesso
-    public String toString(){
-      DecimalFormat df = new DecimalFormat("###.#####"); //Formato della stringa da salvare in complex
-      
-      final String UNITA_IMMAGINARIA = "j";
-      String sign = "";
-      if (imaginary==0)
-         return df.format(real);
-
-      if (real==0)
-         return df.format(imaginary);
-         
-      if (imaginary > 0)
-         sign = "+";
-         
-      return df.format(real) + sign + df.format(imaginary) + UNITA_IMMAGINARIA;
-   }
     
 }

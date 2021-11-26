@@ -116,6 +116,7 @@ public class ComplexOperations {
     static public float arg(ComplexNumber op){
         
         return (float) Math.atan(op.getImaginary()/op.getReal());  
+
     }
     /**
     *  Metodo statico che restituisce le radici quadrate di un numero complesso
@@ -124,15 +125,15 @@ public class ComplexOperations {
     *  
     *  @return ritorna una lista contenente le radici quadrate dell'operando
     */
-    //Gianpaolo deve ritornare un solo valore
     static public ComplexNumber complexSqrt(ComplexNumber op){
         double argument = arg(op); //Definisco l'argomento dell'operando
         double module = mod(op); //Definisco il modulo dell'operando
+        int k=0;
+//    LinkedList<ComplexNumber> squares = new LinkedList<>(); //Definisco una lista di numeri complessi
         
         ComplexNumber sqr = new ComplexNumber();
-        sqr.setReal((float) (Math.sqrt(module)*(Math.cos((argument + (2*Math.PI))/2)))); //Calcolo la parte reale della radice
-        sqr.setImaginary((float) (Math.sqrt(module)*(Math.sin((argument + (2*Math.PI))/2)))); //Calcolo la parte immaginari della radice
-        
+        sqr.setReal((float) (Math.sqrt(module)*(Math.cos((argument + (2*k*Math.PI))/2)))); //Calcolo la parte reale della radice
+        sqr.setImaginary((float) (Math.sqrt(module)*(Math.sin((argument + (2*k*Math.PI))/2)))); //Calcolo la parte immaginari della radice
         return sqr;
     }
     
