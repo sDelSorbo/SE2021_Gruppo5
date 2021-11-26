@@ -64,7 +64,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Menu Help;
     
-    Deque<ComplexNumber> result = new ArrayDeque<>();
+    List<ComplexNumber> result = new ArrayList<>();
     private ComplexStack stack = ComplexStack.getInstance();//convertire stack da iterable a collection
     private Calculator calculator = new Calculator(stack);
 
@@ -105,8 +105,11 @@ public class FXMLDocumentController implements Initializable {
         } catch (Exception ex) {
             showGenericAlert("ERROR", ex.getMessage());
         }
-        result.push(stack.peek());
+        
+        for(ComplexNumber x: stack)
+            result.add(x); 
         complexNumberStack.setAll(result);
+        result.clear();
          
     }
 
