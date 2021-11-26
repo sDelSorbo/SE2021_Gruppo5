@@ -127,10 +127,10 @@ public class ComplexNumber {
             return false;
         }
         final ComplexNumber other = (ComplexNumber) obj;
-        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real) && (this.real == 0f && other.real == -0f)) {
+        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real)) {
             return false;
         }
-        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary) && (this.imaginary == 0f && this.imaginary == -0f)) {
+        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary)) {
                 return false;
         }
         return true;
@@ -147,9 +147,9 @@ public class ComplexNumber {
         if (this.imaginary < 0)
             secondElementPositive = false;
 
-        String realPart = (firstElementPositive ? "" : "-") + (this.real == 0 ? "0.0" : real.toString());        
+        String realPart = (firstElementPositive ? "" : "") + (this.real == 0 ? "0.0" : real.toString());        
         
-        String imgPart = (secondElementPositive ? "+" : "-") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
+        String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
 
         if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
             realPart = realPart.split("\\.")[0];

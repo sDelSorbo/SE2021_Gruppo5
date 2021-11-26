@@ -22,6 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
+import java.util.Arrays;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
@@ -67,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
         complexNumberStack = FXCollections.observableArrayList();  // Qua ci va il complexNumberStack
                 
         numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("complex")); // Qua giampaolo crea in ComplexNumber un attributo con il numero sotto forma di stringa
-               
+        
         stackTab.setItems(complexNumberStack);       
     }    
 
