@@ -52,7 +52,7 @@
                            <children>
                               <TableView fx:id="stackTab" editable="true" prefHeight="358.0" prefWidth="202.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn fx:id="numberClm" prefWidth="194.0" resizable="false" text="Stack" />
+                                  <TableColumn fx:id="numberClm" prefWidth="194.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Stack" />
                                 </columns>
                               </TableView>
                            </children>

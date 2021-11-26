@@ -98,7 +98,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onEnterPressed(ActionEvent event) {
         String input = inputText.getText();  //mettere limitatore
-       
+        
+         inputText.clear();
 
         try {
             calculator.elaborate(input);
