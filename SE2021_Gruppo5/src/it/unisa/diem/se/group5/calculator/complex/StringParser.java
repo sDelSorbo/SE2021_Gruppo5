@@ -5,7 +5,9 @@
  * Version 1.0
  */
 
-package se2021_Gruppo5_resources;
+package it.unisa.diem.se.group5.calculator.complex;
+
+
 
 
 /**
@@ -25,9 +27,9 @@ public class StringParser {
     }
 
     /**
-    * Testa se la stringa è un'operazione di base tra <code> +, -, *, /, sqrt, +- <code>
+    * Testa se la stringa è un'operazione di base tra <code> +, -, *, /, sqrt, +- </code>
     *
-    *  @param   toParse        uan stringa che deve essere analizzata.
+    *  @param   toParse        una stringa che deve essere analizzata.
     * 
     *  @return <code>true<code> se e solo se la stringa è un'operazione tra: "+", "-",
     *                           "*", "/" ,"sqrt" o "+-".
@@ -73,7 +75,7 @@ public class StringParser {
     /**
     * Testa se una stringa è un numero 
     *
-    *  @param   toParse        a string to be parsed.
+    *  @param   toParse        stringa da analizzare
     * 
     *  @return <code>true</code> se e solo se la stringa è un numero reale o complesso
     *                           nella forma a+bj.
@@ -123,7 +125,7 @@ public class StringParser {
         throw new NotANumberException();
     }
     
-    /*
+    /**
     * Data una Stringa ne estrae parte reale ed immaginaria
     *
     *  @param toParse stringa da cui estrarre la parte reale e immaginaria
@@ -168,9 +170,9 @@ public class StringParser {
         return realImaginary;
     }
     
-    /*
+    /**
     * Data una stringa corrispondente ad un numero complesso restituisce il 
-    * <code> ComplexNumber <code> corrispondente
+    * <code> ComplexNumber </code> corrispondente
     *
     *  @param toParse stringa da convertire in numero complesso
     *

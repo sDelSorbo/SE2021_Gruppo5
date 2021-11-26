@@ -1,7 +1,7 @@
 /*
- *  Stack
+ * Stack
  */
-package se2021_Gruppo5_resources;
+package it.unisa.diem.se.group5.calculator.complex;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -12,30 +12,50 @@ import java.util.NoSuchElementException;
  * Gli elementi verrranno inseriti e visualizzati secondo una politica LIFO
  * @author abc
  */
-public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNumber> {
-    private int n;          // dimensione dello stack
-    private Node first;     // cima dello stack
-
+public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<ComplexNumber> {
+    /**
+     * Dimensione dello stack
+     */
+    private int n;  
     
+    /**
+     * Primo elemento dello stack
+     */
+    private Node first;    
+
+    /**
+     * Nodo dello stack
+     */
     private class Node {
         private ComplexNumber item;
         private Node next;
     }
 
    
+    /**
+     * Instanza della classe per implementare pattern di Singleton
+     */
+    private static ComplexStack instance;
     
-    private static Stack instance;   // unica istanza della classe
-    
-    private Stack(){   // costruttore invisibile
-         first = null;
-         n = 0;
+    /**
+     * Costruttore privato per il pattern Singleton
+     */
+    private ComplexStack(){   
+        first = null;
+        n = 0;
     };   
     
-    public static Stack getInstance() throws ExceptionInInitializerError {
+    /**
+     * Restituisce un'instanza della classe. Utilizzato per l'implementazione del
+     * pattern singleton.
+     * 
+     * @return instanza della classe Stack
+     * @throws ExceptionInInitializerError 
+     */
+    public static ComplexStack getInstance() throws ExceptionInInitializerError {
         if(instance!=null)
-            throw new ExceptionInInitializerError("E' già presente un'istanza della classe stack");
-        
-        instance = new Stack();
+            throw new ExceptionInInitializerError("E' già presente un'istanza della classe stack");        
+        instance = new ComplexStack();
         return instance;
       
     }
@@ -43,9 +63,9 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
  
 
     /**
-     * Ritorna vero se lo stack è vuoto
+     * Testa se lo stack è vuoto.
      *
-     * @return vero se lo stack è vuoto; falso altrimenti
+     * @return <code>true</code> se lo stack è vuoto; falso altrimenti
      */
     @Override
     public boolean isEmpty() {
@@ -53,7 +73,7 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
     }
 
     /**
-     * Ritorna il numero di elementi nello stack.
+     * Ritorna la dimensione nello stack.
      *
      * @return il numero di elementi nello stack
      */
@@ -77,7 +97,7 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
     }
 
     /**
-     * Rimuove e ritorna l'ultimo elemento inserito nello stack.
+     * Rimuove l'ultimo elemento inserito nello stack ritornandolo.
      *
      * @return l'ultimo elemento aggiunto
      * @throws NoSuchElementException se lo stack è vuoto
@@ -91,10 +111,8 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
         return item;                   // return the saved item
     }
     
-     /**
-     * Elimina tutti gli elementi dallo stack
-     *
-    
+    /**
+     * Pulisce lo stack dei suoi elementi.
      */
     public void clear(){
         while(!isEmpty()){
@@ -108,8 +126,7 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
      * Rimuove l'ultimo elemento inserito nello stack.
      *
      * @throws NoSuchElementException se lo stack è vuoto
-     */
-    
+     */    
     public void drop(){
          if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         first = first.next;            
@@ -117,10 +134,9 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
     }
     
     /**
-     * Crea un nuovo nodo contenente l'ultimo elemento presente nello stack
+     * Crea un nuovo nodo contenente l'ultimo elemento presente nello stack.
      *
-     */
-    
+     */    
     public void dup(){
         Node oldfirst = first;
         first = new Node();
@@ -130,9 +146,8 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
     }
     
      /**
-     * Crea un nuovo nodo contenente il penultimo elemento presente nello stack
-     *
-    
+     * Crea un nuovo nodo contenente il penultimo elemento presente nello stack.
+     *    
      */
     public void over(){
         Node oldfirst = first;
@@ -143,7 +158,7 @@ public class Stack implements Iterable<ComplexNumber>, stackInterface<ComplexNum
     }
     
     /**
-     * Ritorna ma non rimuove l'ultimo elemento inserito nello stack
+     * Ritorna ma non rimuove l'ultimo elemento inserito nello stack.
      *
      * @return l'ultimo elemento inserito nello stack
      * @throws NoSuchElementException se lo stack è vuoto

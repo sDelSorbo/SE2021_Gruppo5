@@ -1,8 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
+ * FXMLDocumentController
+ *
  */
-package se2021_gruppo5;
+package it.unisa.diem.se.group5.calculator.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,14 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import se2021_Gruppo5_resources.ComplexNumber;
-import se2021_Gruppo5_resources.Stack;
-import se2021_Gruppo5_resources.StringParser;
 
 /**
  *
@@ -34,7 +32,7 @@ import se2021_Gruppo5_resources.StringParser;
 public class FXMLDocumentController implements Initializable {
 
     
-    
+     
     @FXML
     private TableView<ComplexNumber> stackTab;
     @FXML
