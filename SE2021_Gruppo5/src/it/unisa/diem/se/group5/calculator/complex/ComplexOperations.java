@@ -97,10 +97,13 @@ public class ComplexOperations {
     *  @return ritorna un numero complesso che è il risultato della divisione dei due operandi
     */
     static public ComplexNumber div(ComplexNumber op1, ComplexNumber op2){    
-        
+        if(op2.equals(new ComplexNumber()))
+            throw new ArithmeticException("Divisione per 0");
         float den = (float) Math.pow(ComplexOperations.mod(op2),2);
         return new ComplexNumber((op1.getReal()*op2.getReal() + op1.getImaginary()* op2.getImaginary())/den,(op1.getImaginary()*op2.getReal()-op1.getReal()*op2.getImaginary())/den);
-    }
+
+        
+        }
     
     /**
     *  Metodo statico che restituisce inverte il segno di un numero complesso

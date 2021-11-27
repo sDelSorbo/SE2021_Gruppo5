@@ -172,5 +172,12 @@ public class ComplexNumberTest {
         assertEquals(expResult, result2);
         assertEquals(expResult, result3);
     }
+     /**
+     * Test of NumberFormatException
+     */
+    @Test (expected =  NumberFormatException.class)
+    public void testNumberFormatrException() {
+        ComplexNumber op1 = new ComplexNumber((float) Math.pow(2, 130),10);
+    }
     
 }

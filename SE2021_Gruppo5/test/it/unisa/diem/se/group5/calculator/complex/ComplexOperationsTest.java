@@ -171,5 +171,22 @@ public class ComplexOperationsTest {
         assertEquals(expResult2, result2);
         assertEquals(expResult3, result3);
     }
-    
+        /**
+     * Test of ArithmeticException
+     */
+    @Test (expected = ArithmeticException.class)
+    public void testArithmeticException() {
+        ComplexNumber op1 = new ComplexNumber(3,10);
+        ComplexNumber op2 = new ComplexNumber();
+        ComplexOperations.div(op1, op2);
+    }
+    /**
+     * Test of NullPointerException
+     */
+    @Test (expected = NullPointerException.class)
+    public void testNullPointerException() {
+        ComplexNumber op1 = new ComplexNumber(3,10);
+        ComplexNumber op2 = null;
+        ComplexOperations.div(op1, op2);
+    }
 }
