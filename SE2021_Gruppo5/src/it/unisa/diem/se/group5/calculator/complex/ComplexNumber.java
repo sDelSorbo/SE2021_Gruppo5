@@ -1,9 +1,10 @@
+
+package it.unisa.diem.se.group5.calculator.complex;
 /**
  * ComplexNumber
  * 
  * Version 1.0m
  */
-package it.unisa.diem.se.group5.calculator.complex;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -157,8 +158,13 @@ public class ComplexNumber {
 
         String realPart = (this.real == 0 ? "0.0" : real.toString());        
         
-        String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
-
+        String imgPart = (secondElementPositive ? "+" : "");
+        
+        if(imaginary == 1)
+            imgPart += "j";
+        else
+            imgPart += (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
+        
         if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
             realPart = realPart.split("\\.")[0];
 
@@ -176,3 +182,4 @@ public class ComplexNumber {
    }
     
 }
+
