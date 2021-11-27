@@ -118,6 +118,20 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param alertMessage stringa di errore che volgiamo mostrare
      */
+    
+    //////
+    ////////// LEGGIMI
+    /////
+    // Nella javadoc NON dire questa classe o questa funzione. piuttosto descrivine il funzionamento
+    // Show generic è un metodo non una classe
+    // non scrivere che alertMessage è una stringa, lo vedi dall'interfaccia che tipo è, piuttosto scrivi che rappresenta.
+    //Cancella sopra e riscrivi sotto
+    
+    /**
+     * 
+     * @param type rappresenta il tipo di alert
+     * @param alertMessage errore che volgiamo mostrare
+     */
     public void showGenericAlert(String type, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.showAndWait().filter(response -> response == ButtonType.OK); // che è sta roba? .ifPresent(response -> System.out.print("Hello"));

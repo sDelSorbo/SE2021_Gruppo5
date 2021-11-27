@@ -55,10 +55,9 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * Restituisce un'instanza della classe. Utilizzato per l'implementazione del
      * pattern singleton.
      * 
-     * @return instanza della classe Stack
-     * @throws ExceptionInInitializerError 
+     * @return instanza della classe Stack 
      */
-    public static ComplexStack getInstance() throws ExceptionInInitializerError {
+    public static ComplexStack getInstance(){
         if(instance == null)
             instance = new ComplexStack();       
         return instance;      

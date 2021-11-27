@@ -31,7 +31,7 @@ public class StringParser {
     *
     *  @param   toParse        una stringa che deve essere analizzata.
     * 
-    *  @return <code>true<code> se e solo se la stringa è un'operazione tra: "+", "-",
+    *  @return <code>true</code> se e solo se la stringa è un'operazione tra: "+", "-",
     *                           "*", "/" ,"sqrt" o "+-".
     */
     public boolean isOperation(String toParse){

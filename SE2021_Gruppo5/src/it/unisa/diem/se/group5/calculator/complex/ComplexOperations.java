@@ -56,7 +56,7 @@ public class ComplexOperations {
     *
     *  @param op1   primo operando
     *  @param op2   secondo operando
-    * return ritorna un numero complesso che è la somma dei due operandi
+    *  @return ritorna un numero complesso che è la somma dei due operandi
     *  
     */
     static public ComplexNumber add(ComplexNumber op1, ComplexNumber op2) {

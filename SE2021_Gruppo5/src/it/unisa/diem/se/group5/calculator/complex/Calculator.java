@@ -40,7 +40,7 @@ public class Calculator {
      * dallos stack e inserendo il risulato nello stack. In caso di numero lo inserisce nello stack.
      * 
      * @param input stringa inserita nel calcolatore
-     * @throws NotAValidInputException 
+     * @throws NotAValidInputException in caso di input non rappresentante nè un'operazione nè un numero.
      */
     public void elaborate(String input) throws NotAValidInputException{
         if (parser.isNumber(input)){

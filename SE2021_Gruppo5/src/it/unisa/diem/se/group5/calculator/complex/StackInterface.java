@@ -8,7 +8,7 @@ package it.unisa.diem.se.group5.calculator.complex;
  * Interfaccia per la realizzazione di uno stack.
  * 
  * @author roberto
- * @param <ComplexNumber>
+ * @param <ComplexNumber> rappresentazione di un numero complesso
  */
 public interface StackInterface<ComplexNumber> {
     
@@ -29,7 +29,7 @@ public interface StackInterface<ComplexNumber> {
     /**
      * Ritorna la dimensione dello stack.
      * 
-     * @return 
+     * @return la dimensione dello stack
      */
     int size();
     
