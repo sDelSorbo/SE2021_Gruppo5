@@ -22,8 +22,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
@@ -44,8 +42,6 @@ public class FXMLDocumentController implements Initializable {
     private TextField inputText;
     @FXML
     private Button enterBtn;
-    
-    private ObservableList<ComplexNumber> complexNumberStack;
     @FXML
     private AnchorPane anchorPaneTop;
     @FXML
@@ -61,13 +57,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Menu Help;
     
-    List<ComplexNumber> result = new ArrayList<>();
+    private ObservableList<ComplexNumber> complexNumberStack;
     private ComplexStack stack = ComplexStack.getInstance();//convertire stack da iterable a collection
-    private Calculator calculator = new Calculator(stack);
+    private Calculator calculator;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        complexNumberStack = FXCollections.observableArrayList(result);
+        calculator = new Calculator(stack);
+        complexNumberStack = FXCollections.observableArrayList();
         
         numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("complex")); 
         
@@ -103,7 +100,9 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR", ex.getMessage());
         }        
         
-        stack.iterator().forEachRemaining(result::add);
+        complexNumberStack.clear();
+        for (ComplexNumber cn: stack)
+            complexNumberStack.add(cn);
                  
     }
 

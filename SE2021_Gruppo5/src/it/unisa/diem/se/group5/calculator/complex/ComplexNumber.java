@@ -158,18 +158,15 @@ public class ComplexNumber {
 
         String realPart = (this.real == 0 ? "0.0" : real.toString());        
         
-        String imgPart = (secondElementPositive ? "+" : "");
-        
-        if(imaginary == 1)
-            imgPart += "j";
-        else
-            imgPart += (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
-        
+        String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
+                
+        /* trim del .0
         if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
             realPart = realPart.split("\\.")[0];
 
         if (imgPart.contains(".0") && imgPart.split("\\.")[1].length() == 2)
             imgPart = imgPart.split("\\.")[0]  + "j";
+        */
         
         if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
             imgPart = "";
