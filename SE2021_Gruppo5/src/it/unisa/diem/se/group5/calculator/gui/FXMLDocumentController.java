@@ -53,12 +53,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Menu File;
     @FXML
-    private Menu Edit;
-    @FXML
     private Menu Help;
     
     private ObservableList<ComplexNumber> complexNumberStack;
-    private ComplexStack stack = ComplexStack.getInstance();//convertire stack da iterable a collection
+    private ComplexStack stack = ComplexStack.getInstance();
     private Calculator calculator;
 
     @Override
@@ -66,10 +64,9 @@ public class FXMLDocumentController implements Initializable {
         calculator = new Calculator(stack);
         complexNumberStack = FXCollections.observableArrayList();
         
-        numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("complex")); 
+        numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         
-        stackTab.setItems(complexNumberStack);
-          
+        stackTab.setItems(complexNumberStack);          
     }
 
     /**
@@ -98,12 +95,21 @@ public class FXMLDocumentController implements Initializable {
             calculator.elaborate(input);
         } catch (Exception ex) {
             showGenericAlert("ERROR", ex.getMessage());
-        }        
+        }            
         
+        converToObservable();
+    }
+    
+    private void converToObservable(){
         complexNumberStack.clear();
+        
+        int i = 0;
         for (ComplexNumber cn: stack)
-            complexNumberStack.add(cn);
-                 
+            if (i <16){
+                complexNumberStack.add(cn);
+                i++;
+            }           
+            else break; 
     }
 
     /**

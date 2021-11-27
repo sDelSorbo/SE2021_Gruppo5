@@ -116,7 +116,7 @@ public class Calculator {
             break;
             
             default:
-                throw new NotAnOperationException("NotAnOperationException");
+                throw new NotAnOperationException("L'input inserito non è valido");
             }
         
         stackInsert(result);
