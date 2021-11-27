@@ -1,4 +1,4 @@
-/*
+/**
  * Stack
  */
 package it.unisa.diem.se.group5.calculator.complex;
@@ -9,15 +9,16 @@ import java.util.NoSuchElementException;
 
 /**
  * Questa classe implementa uno stack di numeri complessi.
- * Gli elementi verrranno inseriti e visualizzati secondo una politica LIFO
- * @author abc
+ * Gli elementi verranno inseriti e visualizzati secondo una politica LIFO.
+ * 
+ * @author roberto
  */
 public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<ComplexNumber> {
     /**
      * Dimensione dello stack
      */
     private int n;  
-    
+   
     /**
      * Dimensione massima dello stack
      */
@@ -58,7 +59,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws ExceptionInInitializerError 
      */
     public static ComplexStack getInstance() throws ExceptionInInitializerError {
-        if(instance==null)
+        if(instance == null)
             instance = new ComplexStack();       
         return instance;      
     }
@@ -78,6 +79,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * 
      * @return <code>true</code> se lo stack è pieno; falso altrimenti
      */
+    @Override
     public boolean isFull() {
         return n >= MAXSIZE;
     }
@@ -102,7 +104,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
     @Override
     public void push(ComplexNumber item) {
         if (isFull()) throw new SizeStackException("Stack overflow");
-        if (item == null) throw new NoSuchElementException("Stack overflow");
+        if (item == null) throw new NoSuchElementException("null element");
         Node oldfirst = first;
         first = new Node();
         first.item = item;
@@ -142,7 +144,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è vuoto
      */    
     public void drop(){
-         if (isEmpty()) throw new SizeStackException("Stack underflow");
+        if (isEmpty()) throw new SizeStackException("Stack underflow");
         first = first.next;            
         n--;
     }

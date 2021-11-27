@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author abc
+ * @author roberto
  */
 public class StackTest {
     
@@ -26,9 +26,8 @@ public class StackTest {
     public void resetStack() {
         s.clear();
     }  
+   
     
-    
-           
     /**
      * Test del metodo isEmpty della classe ComplexStack.
      */
@@ -43,7 +42,7 @@ public class StackTest {
 
     
     /**
-     * Test del metodo isFull della classe ComplexStack
+     * Test del metodo isFull della classe ComplexStack.
      */
     @Test
     public void testIsFull(){
@@ -74,7 +73,7 @@ public class StackTest {
     
    
    /**
-    * Test del metodo push della classe ComplexStack
+    * Test del metodo push della classe ComplexStack.
     */
     @Test
     public void testPush(){
@@ -224,9 +223,9 @@ public class StackTest {
      @Test(expected=NoSuchElementException.class)
      public void testNoSuchElementExceptionOnPush(){
          
-         ComplexNumber c = null;
+         ComplexNumber x = null;
          
-         s.push(c);
+         s.push(x);
      }
     
      
@@ -267,7 +266,6 @@ public class StackTest {
          s.dup();
         
     }
-    
     
     
     /**

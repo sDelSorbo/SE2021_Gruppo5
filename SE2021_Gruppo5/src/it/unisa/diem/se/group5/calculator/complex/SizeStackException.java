@@ -6,7 +6,7 @@
 package it.unisa.diem.se.group5.calculator.complex;
 /**
  *
- * @author abc
+ * @author roberto
  */
 public class SizeStackException extends RuntimeException{
 
