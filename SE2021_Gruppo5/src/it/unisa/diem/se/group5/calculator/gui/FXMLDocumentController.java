@@ -120,7 +120,7 @@ public class FXMLDocumentController implements Initializable {
      */
     public void showGenericAlert(String type, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
-        alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> System.out.print("Hello"));
+        alert.showAndWait().filter(response -> response == ButtonType.OK); // che è sta roba? .ifPresent(response -> System.out.print("Hello"));
     }
 
     /**
@@ -143,6 +143,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onHelp(ActionEvent event) {
         showGenericAlert("INFORMATION", "Calculator v0.1");
+    }
+
+    @FXML
+    private void onEnter(ActionEvent event) {
+        onEnterPressed(event);
     }
 
 }

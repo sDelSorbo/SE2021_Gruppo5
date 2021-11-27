@@ -35,7 +35,7 @@
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <TextField fx:id="inputText" alignment="CENTER" layoutX="13.0" layoutY="43.0" prefHeight="93.0" prefWidth="556.0" promptText="a+bj">
+                  <TextField fx:id="inputText" alignment="CENTER" layoutX="13.0" layoutY="43.0" onAction="#onEnter" prefHeight="93.0" prefWidth="556.0" promptText="a+bj">
                      <font>
                         <Font size="22.0" />
                      </font>

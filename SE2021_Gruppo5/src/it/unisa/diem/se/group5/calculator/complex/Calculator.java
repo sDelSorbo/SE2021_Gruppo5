@@ -132,7 +132,7 @@ public class Calculator {
      */
     private ComplexNumber[] retrieveOperands() throws NotEnoughOperandsException{
         if (stack.size() < 2){
-            throw new NotEnoughOperandsException();
+            throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione");
         }
         ComplexNumber[] operands = new ComplexNumber[2];
         operands[0] = retrieveOperand();
