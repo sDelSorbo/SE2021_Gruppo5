@@ -119,6 +119,11 @@ public class StringParserTest {
         boolean result = spr.isNumber(toParse);
         assertEquals(expResult, result);
         
+        // Test21 Solo j
+        toParse = "-j";
+        result = spr.isNumber(toParse);
+        assertEquals(expResult, result);
+        
         // Test2 Puramente reale con seegno negativo
         toParse = "-3530";
         result = spr.isNumber(toParse);
@@ -309,6 +314,27 @@ public class StringParserTest {
         toParse = "+995.42+643.24j";
         expResult = new ComplexNumber(+995.42f,+643.24f);
         result = spr.parseComplexNumber(toParse);
-        assertEquals(expResult, result);       
+        assertEquals(expResult, result);    
+        
+        toParse = "+995.42+643.24j";
+        expResult = new ComplexNumber(+995.42f,+643.24f);
+        result = spr.parseComplexNumber(toParse);
+        assertEquals(expResult, result); 
+        
+        toParse = "-j";
+        expResult = new ComplexNumber(0f,-1f);
+        result = spr.parseComplexNumber(toParse);
+        assertEquals(expResult, result);  
+        
+        toParse = "j";
+        expResult = new ComplexNumber(0f,1f);
+        result = spr.parseComplexNumber(toParse);
+        assertEquals(expResult, result);  
+        
+        toParse = "j";
+        expResult = new ComplexNumber(0f,+1f);
+        result = spr.parseComplexNumber(toParse);
+        assertEquals(expResult, result);  
     }
+    
 }

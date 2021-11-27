@@ -100,7 +100,7 @@ public class StringParser {
     *
     * @return        la parte reale 
     */
-    private float extractReal(String toParse) throws NotANumberException{
+    private float extractReal(String toParse) throws NotANumberException{        
         if (isNumber(toParse)){
             return extractRI(toParse)[0];
         }
@@ -132,7 +132,10 @@ public class StringParser {
     *
     *  @return         una array in cui il primo elemento è la parte reale il secondo quella immaginaria
     */
-    private Float[] extractRI(String toParse){
+    private Float[] extractRI(String toParse){    
+        
+        Float realImaginary[] = new Float[2];
+            
         boolean firstElementPositive = true;  // Indicano se il primo e secondo 
         boolean secondElementPositive = true; // elemento sono positivi o meno
 
@@ -140,6 +143,12 @@ public class StringParser {
             firstElementPositive = false;
         if (toParse.substring(1).contains("-"))
             secondElementPositive = false;
+        
+        if (toParse.matches("^[+-]j$|^j$")){
+            realImaginary[0] = 0f;
+            realImaginary[1] = Float.parseFloat((firstElementPositive ? "+" : "-") + "1");
+            return realImaginary;
+        }
         
         String[] split = toParse.split("[+-]");
         if (split[0].equals("") ) {  // Gestisce i numeri che iniziano con un simobolo
@@ -166,7 +175,8 @@ public class StringParser {
                 realPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1]);
         }
         
-        Float realImaginary[] = {realPart , imgPart};
+        realImaginary[0]= realPart;
+        realImaginary[1]= imgPart;
         return realImaginary;
     }
     

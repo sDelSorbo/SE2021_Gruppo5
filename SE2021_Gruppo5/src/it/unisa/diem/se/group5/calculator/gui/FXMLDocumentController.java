@@ -22,10 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Deque;
 import java.util.List;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -70,9 +67,8 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        complexNumberStack = FXCollections.observableArrayList();
-        // Qua ci va il complexNumberStack
-        //complexNumberStack.setAll(stack);
+        complexNumberStack = FXCollections.observableArrayList(result);
+        
         numberClm.setCellValueFactory(new PropertyValueFactory<ComplexNumber, String>("complex")); 
         
         stackTab.setItems(complexNumberStack);
@@ -105,12 +101,10 @@ public class FXMLDocumentController implements Initializable {
             calculator.elaborate(input);
         } catch (Exception ex) {
             showGenericAlert("ERROR", ex.getMessage());
-        }
+        }        
         
-        for(ComplexNumber x: stack)
-            result.add(x); 
-        complexNumberStack.setAll(result);
-        result.clear();         
+        stack.iterator().forEachRemaining(result::add);
+                 
     }
 
     /**

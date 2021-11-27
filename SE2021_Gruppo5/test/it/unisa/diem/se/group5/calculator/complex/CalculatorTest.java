@@ -1,6 +1,7 @@
 /*
  * CalculatorTest
  *
+ * Version 1.0m Modified 27/11 13.03
  */
 package it.unisa.diem.se.group5.calculator.complex;
 
@@ -69,7 +70,7 @@ public class CalculatorTest {
         input = "*";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-20.4167f,20.4167f);
+        expResult = new ComplexNumber(20.4167f,-20.4167f);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -77,7 +78,7 @@ public class CalculatorTest {
         input = "sqrt";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(2.2526f,5.3482f);
+        expResult = new ComplexNumber(4.96439f,-2.05632f);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -85,7 +86,7 @@ public class CalculatorTest {
         input = "+-";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-2.2526f,-5.3482f);
+        expResult = new ComplexNumber(-4.96439f,2.05632f);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
