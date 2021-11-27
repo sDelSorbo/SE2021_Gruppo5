@@ -169,8 +169,13 @@ public class StringParser {
         // protegge dall'unica condizione in cui l'algoritmo non è funzionante cioè quando si ha sola parte 
         // immaginaria con segno        
         if (split.length > 1 && !(split[split.length-2].equals(split[split.length-1]) && split.length == 2)) {
-            if (split[1].contains("j"))
-                imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1].substring(0,split[1].length() - 1));
+            if (split[1].contains("j")){
+                if (split[1].matches("^[+-]j$|^j$")){
+                    imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + "1.0");                    
+                }
+                else 
+                    imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1].substring(0,split[1].length() - 1));
+            }
             else
                 realPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1]);
         }

@@ -90,6 +90,15 @@ public class CalculatorTest {
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
+        
+        input = "6+j";        
+        instance.elaborate(input);
+        
+        input = "23.564-j";        
+        instance.elaborate(input);
+        
+        input = "0+j";        
+        instance.elaborate(input);
     }
     
     /**
