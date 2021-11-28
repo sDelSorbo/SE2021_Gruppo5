@@ -201,6 +201,27 @@ public class StackTest {
  
     
     /**
+     * Test del metodo swap della classe ComplexStack.
+     */
+    @Test
+    public void testSwap(){
+        
+        ComplexNumber expResult = new ComplexNumber(+5);
+        ComplexNumber expResult1 = new ComplexNumber(+7);
+        
+        c = new ComplexNumber(+5);
+        c1 = new ComplexNumber(+7);
+        s.push(c);
+        s.push(c1);
+        s.swap();
+        ComplexNumber result = s.pop();
+        ComplexNumber result1 = s.pop();
+        assertEquals(expResult, result);
+        assertEquals(expResult1, result1);
+    }
+    
+    
+    /**
      * Test del metodo push della classe ComplexStack per eccezione
      * causata dal tentativo di inserire un elemento nello stack pieno
      */
@@ -295,6 +316,16 @@ public class StackTest {
          s.peek();
      }
      
+     
+     /**
+      * Test del metodo swap della classe ComplexStack per eccezione
+      * causata dal tentativo di scambiare gli ultimi due elementi dello stack vuoto
+      */
+      @Test(expected=SizeStackException.class)
+      public void testSizeStackExceptionOnSwap(){
+          
+          s.swap();
+      }
 }    
 
 
