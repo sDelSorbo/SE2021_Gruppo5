@@ -76,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onDeletePressed(ActionEvent event) {
         inputFocus();
-        inputText.clear();
+        inputClear();
     }
 
     /**
@@ -103,7 +103,7 @@ public class FXMLDocumentController implements Initializable {
      * Converte lo stack in una lista osservabile.
      */
     private void converToObservable(){
-        inputClear();
+        complexNumberStack.clear();
         
         int i = 0;
         for (ComplexNumber cn: stack)
