@@ -101,7 +101,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws NoSuchElementException se si prova ad inserire null
      */
     @Override
-    public void push(ComplexNumber item) {
+    public void push(ComplexNumber item) throws SizeStackException, NoSuchElementException{
         if (isFull()) throw new SizeStackException("Stack overflow");
         if (item == null) throw new NoSuchElementException("null element");
         Node oldfirst = first;
@@ -118,7 +118,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è vuoto
      */
     @Override
-    public ComplexNumber pop() {
+    public ComplexNumber pop() throws SizeStackException{
         if (isEmpty()) throw new SizeStackException("Stack underflow");
         ComplexNumber item = first.item;       
         first = first.next;            
@@ -142,7 +142,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      *
      * @throws SizeStackException se lo stack è vuoto
      */    
-    public void drop(){
+    public void drop() throws SizeStackException{
         if (isEmpty()) throw new SizeStackException("Stack underflow");
         first = first.next;            
         n--;
@@ -153,7 +153,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      *
      * @throws SizeStackException se lo stack è pieno
      */    
-    public void dup(){
+    public void dup() throws SizeStackException{
         if (isFull()) throw new SizeStackException("Stack overflow");
         if (isEmpty()) return;
         Node oldfirst = first;
@@ -168,7 +168,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      *    
      * @throws SizeStackException se lo stack è pieno
      */
-    public void over(){
+    public void over() throws SizeStackException{
         if (isFull()) throw new SizeStackException("Stack overflow");
         if (isEmpty()) return;
         Node oldfirst = first;
@@ -178,6 +178,22 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
         n++;
     }
     
+    
+    /**
+     * Scambia gli ultimi due elementi presenti nello stack.
+     * 
+     * @throws SizeStackException se lo stack è vuoto
+     */
+    public void swap() throws SizeStackException{
+        if (isEmpty()) throw new SizeStackException("Stack underflow");
+        ComplexNumber oldfirst = first.item;
+        first.item = first.next.item;
+        first.next.item = oldfirst;
+        
+      
+    }
+    
+    
     /**
      * Ritorna ma non rimuove l'ultimo elemento inserito nello stack.
      *
@@ -185,7 +201,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è vuoto
      */
     @Override
-    public ComplexNumber peek() {
+    public ComplexNumber peek() throws SizeStackException{
         if (isEmpty()) throw new SizeStackException("Stack underflow");
         return first.item;
     }
@@ -223,10 +239,13 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
         @Override
         public boolean hasNext()  { return current != null;                     }
         @Override
-        public void remove()      { throw new UnsupportedOperationException();  }
+        public void remove() throws UnsupportedOperationException{
+            throw new UnsupportedOperationException();
+        }  
+        
 
         @Override
-        public ComplexNumber next() {
+        public ComplexNumber next() throws NoSuchElementException{
             if (!hasNext()) throw new NoSuchElementException();
             ComplexNumber item = current.item;
             current = current.next; 
