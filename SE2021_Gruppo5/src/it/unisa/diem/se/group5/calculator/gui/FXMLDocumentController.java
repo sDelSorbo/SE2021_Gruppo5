@@ -76,7 +76,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onDeletePressed(ActionEvent event) {
         inputFocus();
-        inputClear();
     }
 
     /**
@@ -89,7 +88,6 @@ public class FXMLDocumentController implements Initializable {
         String input = inputText.getText();  
         
         inputFocus();
-        inputClear();
 
         try {
             calculator.elaborate(input);
@@ -159,16 +157,10 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * Setta il text field in modo da aver sempre il focus.
+     * Esegue il clear e setta il text field in modo da aver sempre il focus .
      */
     private void inputFocus() {
         inputText.requestFocus();
-    }
-    
-    /**
-     * Esegue il clear della text field.
-     */
-    private void inputClear(){
         inputText.clear();
     }
 }
