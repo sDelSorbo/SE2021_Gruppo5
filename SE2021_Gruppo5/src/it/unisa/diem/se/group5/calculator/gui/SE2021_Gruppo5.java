@@ -22,7 +22,6 @@ public class SE2021_Gruppo5 extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("se2021_gruppo5.css").toExternalForm());
         
         stage.setTitle("Complex Calculator");
         stage.setScene(scene);

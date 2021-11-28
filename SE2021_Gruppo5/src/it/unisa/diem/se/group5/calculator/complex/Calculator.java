@@ -80,46 +80,67 @@ public class Calculator {
      */
     private void executeOper(String input) throws NotAnOperationException{
         ComplexNumber[] operands = new ComplexNumber[2];
-        ComplexNumber result;
+        ComplexNumber result = null;
+        boolean hasResult = false;
         
-        switch(input){
-            
+        switch(input){            
             case "+":
                 operands = retrieveOperands();
                 result = ComplexOperations.add(operands[0], operands[1]);
+                hasResult = true;
             break;
             
             case "-":
                 operands = retrieveOperands();
                 result = ComplexOperations.sub(operands[0], operands[1]);
+                hasResult = true;
             break;
             
             case "*":
                 operands = retrieveOperands();
                 result = ComplexOperations.mul(operands[0], operands[1]);
+                hasResult = true;
             break;
             
             case "/":
                 operands = retrieveOperands();
                 result = ComplexOperations.div(operands[0], operands[1]);
+                hasResult = true;
             break;
             
             case "+-":
                 operands[0] = retrieveOperand();
                 result = ComplexOperations.signInv(operands[0]);
-            break;
-            
+                hasResult = true;
+            break;            
             case "sqrt":
                 operands[0] = retrieveOperand();
-               // result = ComplexOperations.complexSqrt(operands[0]);
                 result = ComplexOperations.sqrt(operands[0]);
+                hasResult = true;
             break;
-            
+            case "drop":
+                stack.drop();
+            break;
+            case "dup":
+                stack.dup();
+            break;
+            case "swap":
+                //stack.swap()
+            break;
+            case "clear":
+                stack.clear();
+            break;
+            case "over":
+                stack.over();
+            break;           
             default:
                 throw new NotAnOperationException("L'input inserito non è valido");
             }
         
-        stackInsert(result);
+        if (hasResult == true){
+            stackInsert(result);
+        }
+        
     }
     
     
