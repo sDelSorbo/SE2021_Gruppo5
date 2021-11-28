@@ -66,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
         complexNumberStack = FXCollections.observableArrayList();
         
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
-        
+        stackTab.setSelectionModel(null);
         stackTab.setItems(complexNumberStack);          
     }
 
@@ -78,6 +78,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onDeletePressed(ActionEvent event) {
+        inputFocus();
         inputText.clear();
     }
 
@@ -88,8 +89,8 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
-        String input = inputText.getText();  //mettere limitatore
-        inputText.requestFocus();
+        String input = inputText.getText();  
+        inputFocus();
         
          inputText.clear();
 
@@ -164,5 +165,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onEnter(ActionEvent event) {
         onEnterPressed(event);
+    }
+    
+    private void inputFocus() {
+        inputText.requestFocus();
     }
 }
