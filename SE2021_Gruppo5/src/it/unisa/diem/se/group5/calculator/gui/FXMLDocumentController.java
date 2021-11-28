@@ -61,10 +61,8 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         calculator = new Calculator(stack);
         complexNumberStack = FXCollections.observableArrayList();
-        
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
         stackTab.setItems(complexNumberStack);          
@@ -74,7 +72,6 @@ public class FXMLDocumentController implements Initializable {
      * Quando si preme il pulsante DEL viene cancellato l'user input.
      *
      * @param event un evento che viene passato.
-     *
      */
     @FXML
     private void onDeletePressed(ActionEvent event) {
@@ -83,28 +80,30 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Quando si preme il pulsante Enter viene
+     * Quando si preme il pulsante Enter viene passato l'input allo stackm.
      *
      * @param event un evento che viene passato
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
         String input = inputText.getText();  
-        inputFocus();
         
-         inputText.clear();
+        inputFocus();
+        inputClear();
 
         try {
             calculator.elaborate(input);
         } catch (Exception ex) {
             showGenericAlert("ERROR", ex.getMessage());
         }            
-        
         converToObservable();
     }
     
+    /**
+     * Converte lo stack in una lista osservabile.
+     */
     private void converToObservable(){
-        complexNumberStack.clear();
+        inputClear();
         
         int i = 0;
         for (ComplexNumber cn: stack)
@@ -116,28 +115,15 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Questa classe crea una alert personalizzato che mostra un messaggio a
+     * Crea una alert personalizzato che mostra un messaggio a
      * video.
      *
-     * @param alertMessage stringa di errore che volgiamo mostrare
-     */
-    
-    //////
-    ////////// LEGGIMI
-    /////
-    // Nella javadoc NON dire questa classe o questa funzione. piuttosto descrivine il funzionamento
-    // Show generic è un metodo non una classe
-    // non scrivere che alertMessage è una stringa, lo vedi dall'interfaccia che tipo è, piuttosto scrivi che rappresenta.
-    //Cancella sopra e riscrivi sotto
-    
-    /**
-     * 
+     * @param alertMessage errore che si vuole mostrare
      * @param type rappresenta il tipo di alert
-     * @param alertMessage errore che volgiamo mostrare
      */
     public void showGenericAlert(String type, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
-        alert.showAndWait().filter(response -> response == ButtonType.OK); // che è sta roba? .ifPresent(response -> System.out.print("Hello"));
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
     }
 
     /**
@@ -155,19 +141,34 @@ public class FXMLDocumentController implements Initializable {
      * Nel sottomenù di "Help" è presente un bottone per recuperare le info del
      * programma.
      *
-     * @param event
+     * @param event un evento che viene passato
      */
     @FXML
     private void onHelp(ActionEvent event) {
         showGenericAlert("INFORMATION", "Calculator v0.1");
     }
-
+    
+    /**
+     * Cattura la pressione del tasto "Enter" per inserire i numeri della text field nello stack.
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void onEnter(ActionEvent event) {
         onEnterPressed(event);
     }
     
+    /**
+     * Setta il text field in modo da aver sempre il focus.
+     */
     private void inputFocus() {
         inputText.requestFocus();
+    }
+    
+    /**
+     * Esegue il clear della text field.
+     */
+    private void inputClear(){
+        inputText.clear();
     }
 }
