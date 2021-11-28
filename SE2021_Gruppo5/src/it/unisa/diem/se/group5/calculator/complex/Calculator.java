@@ -25,6 +25,10 @@ public class Calculator {
     private ComplexStack stack;
     
     /**
+     * Contiene l'operando corrente
+     */
+    private String currentOp;
+    /**
      * Costruisce un calcolatore dotato di StringParser e stack di numeri complessi
      * 
      * @param stack Stack di numeri complessi 
@@ -51,6 +55,7 @@ public class Calculator {
         }
         
         if (parser.isOperation(input)){
+            currentOp = input;
             executeOper(input);
             return;
         }            
@@ -140,10 +145,7 @@ public class Calculator {
         if (hasResult == true){
             stackInsert(result);
         }
-        
-    }
-    
-    
+    }    
     
     /**
      * Ritorna i primi due elementi dello stack di numeri complessi, se presenti,
@@ -153,7 +155,7 @@ public class Calculator {
      */
     private ComplexNumber[] retrieveOperands() throws NotEnoughOperandsException{
         if (stack.size() < 2){
-            throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione");
+            throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }
         ComplexNumber[] operands = new ComplexNumber[2];
         operands[0] = retrieveOperand();
@@ -169,7 +171,7 @@ public class Calculator {
      */
     private ComplexNumber retrieveOperand() throws NotEnoughOperandsException{
         if (stack.size() < 1)
-            throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione");
+            throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         return stack.pop();        
     }
     
