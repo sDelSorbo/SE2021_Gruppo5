@@ -7,6 +7,9 @@
 
 package it.unisa.diem.se.group5.calculator.complex;
 
+
+
+
 /**
  * Questa classe implementa uno StringParser in grado di scansionare una stringa
  * andando a deterinare se si tratta di una operazione o un numero. Nel caso si
@@ -37,12 +40,13 @@ public class StringParser {
         }
         if (toParse.isEmpty()){
             return false;
-        }        
+        }
         
         if (toParse.length() <= 1)
-            return toParse.matches("[*+/-]");       
+            return toParse.matches("[*+/-]");            
+        
         else
-            return (toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|"));      
+            return toParse.matches("\\A(sqrt|\\+-)");        
     }    
     
     /**

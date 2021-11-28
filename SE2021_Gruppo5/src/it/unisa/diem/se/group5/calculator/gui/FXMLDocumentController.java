@@ -61,7 +61,6 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setCSS();
         calculator = new Calculator(stack);
         complexNumberStack = FXCollections.observableArrayList();
         
@@ -163,10 +162,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onEnter(ActionEvent event) {
         onEnterPressed(event);
-    }
-
-    private void setCSS() {
-        enterBtn.getStyleClass().add("button");
     }
 
 }
