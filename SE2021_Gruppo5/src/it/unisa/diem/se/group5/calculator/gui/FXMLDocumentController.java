@@ -43,12 +43,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button enterBtn;
     @FXML
-    private AnchorPane anchorPaneTop;
-    @FXML
-    private AnchorPane anchorPaneBottom;
-    @FXML
-    private AnchorPane anchorPane4;
-    @FXML
     private MenuBar menuBar;
     @FXML
     private Menu File;
