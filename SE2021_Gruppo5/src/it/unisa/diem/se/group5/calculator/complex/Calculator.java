@@ -44,12 +44,12 @@ public class Calculator {
      * dallos stack e inserendo il risulato nello stack. In caso di numero lo inserisce nello stack.
      * 
      * @param input stringa inserita nel calcolatore
-     * @throws NotAValidInputException in caso di input non rappresentante nè un'operazione nè un numero.
+     * @throws RuntimeException in caso di input non rappresentante nè un'operazione nè un numero.
      */
-    public void elaborate(String input) throws NotAValidInputException{
+    public void elaborate(String input) throws RuntimeException{
         if (parser.isNumber(input)){
             ComplexNumber number;
-            number = evaluateNum(input);  
+            number = evaluateNum(input);
             stack.push(number);
             return;
         }
@@ -60,7 +60,7 @@ public class Calculator {
             return;
         }            
         
-        throw new NotAValidInputException("L'input inserito non corrisponde a nessuna operazione");
+        throw new NotAValidInputException("L'input inserito non è valido.\nRicorda che i numeri devono essere inseriti nel formato a+bi.");
             
     }
     
@@ -83,7 +83,7 @@ public class Calculator {
      * @param input stringa contenente l'operazione da eseguire
      * @throws NotAnOperationException
      */
-    private void executeOper(String input) throws NotAnOperationException{
+    private void executeOper(String input) throws RuntimeException{
         ComplexNumber[] operands = new ComplexNumber[2];
         ComplexNumber result = null;
         boolean hasResult = false;
@@ -130,7 +130,7 @@ public class Calculator {
                 stack.dup();
             break;
             case "swap":
-                //stack.swap()
+                stack.swap();
             break;
             case "clear":
                 stack.clear();

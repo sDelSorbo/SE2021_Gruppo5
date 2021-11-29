@@ -102,8 +102,8 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      */
     @Override
     public void push(ComplexNumber item) throws SizeStackException, NoSuchElementException{
-        if (isFull()) throw new SizeStackException("Stack overflow");
-        if (item == null) throw new NoSuchElementException("null element");
+        if (isFull()) throw new SizeStackException("Non è possibile inserire ulteriori elementi");
+        if (item == null) throw new NoSuchElementException("Null element");
         Node oldfirst = first;
         first = new Node();
         first.item = item;
@@ -119,7 +119,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      */
     @Override
     public ComplexNumber pop() throws SizeStackException{
-        if (isEmpty()) throw new SizeStackException("Stack underflow");
+        if (isEmpty()) throw new SizeStackException("Non ci sono operandi a sufficienza.");
         ComplexNumber item = first.item;       
         first = first.next;            
         n--;
@@ -143,7 +143,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è vuoto
      */    
     public void drop() throws SizeStackException{
-        if (isEmpty()) throw new SizeStackException("Stack underflow");
+        if (isEmpty()) throw new SizeStackException("Non ci sono operandi a sufficienza.");
         first = first.next;            
         n--;
     }
@@ -154,7 +154,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è pieno
      */    
     public void dup() throws SizeStackException{
-        if (isFull()) throw new SizeStackException("Stack overflow");
+        if (isFull()) throw new SizeStackException("Non è possibile inserire ulteriori elementi");
         if (isEmpty()) return;
         Node oldfirst = first;
         first = new Node();
@@ -169,7 +169,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è pieno
      */
     public void over() throws SizeStackException{
-        if (isFull()) throw new SizeStackException("Stack overflow");
+        if (isFull()) throw new SizeStackException("Non è possibile inserire ulteriori elementi");
         if (isEmpty()) return;
         Node oldfirst = first;
         first = new Node();
@@ -185,9 +185,13 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      * @throws SizeStackException se lo stack è vuoto
      */
     public void swap() throws SizeStackException{
-        if (isEmpty()) throw new SizeStackException("Stack underflow");
+        if (isEmpty()) throw new SizeStackException("Non ci sono operandi a sufficienza.");
         ComplexNumber oldfirst = first.item;
+        try {
         first.item = first.next.item;
+        } catch (Exception e){
+            throw new SizeStackException("Non ci sono operandi a sufficienza.");
+        }
         first.next.item = oldfirst;
         
       
@@ -202,7 +206,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
      */
     @Override
     public ComplexNumber peek() throws SizeStackException{
-        if (isEmpty()) throw new SizeStackException("Stack underflow");
+        if (isEmpty()) throw new SizeStackException("Non ci sono operanci a sufficienza.");
         return first.item;
     }
 
