@@ -22,6 +22,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
+import it.unisa.diem.se.group5.calculator.complex.Variables;
+import java.util.Map;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
@@ -50,16 +54,33 @@ public class FXMLDocumentController implements Initializable {
     private Menu Help;
     
     private ObservableList<ComplexNumber> complexNumberStack;
+    private ObservableList<String> listVariables;
     private ComplexStack stack = ComplexStack.getInstance();
     private Calculator calculator;
+    private Variables varia;
+    @FXML
+    private ComboBox<String> boxVariables;
+    @FXML
+    private Label labelVariables;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator(stack);
+        varia=new Variables();
         complexNumberStack = FXCollections.observableArrayList();
+        listVariables = FXCollections.observableArrayList();
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
-        stackTab.setItems(complexNumberStack);          
+        stackTab.setItems(complexNumberStack);
+       
+        //listVariables.addAll(varia.getVariablesMap());
+        for(Map.Entry entry: varia.getVariablesMap().entrySet())
+        {
+            Object items = entry.getKey();
+            boxVariables.getItems().add((String)items);
+        }
+       varia.setVariable("a", new ComplexNumber(3,5));
+        
     }
 
     /**
@@ -156,5 +177,12 @@ public class FXMLDocumentController implements Initializable {
     private void inputFocus() {
         inputText.requestFocus();
         inputText.clear();
+    }
+
+    @FXML
+    private void onBoxAction(ActionEvent event) {
+        
+        String item=boxVariables.getValue();
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));
     }
 }

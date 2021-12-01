@@ -15,6 +15,8 @@ import java.util.Map;
 public class Variables {
     
     private static Map<String,ComplexNumber> variablesMap;
+
+    
  
     public Variables() {
         variablesMap = new HashMap<String,ComplexNumber>();
@@ -24,6 +26,10 @@ public class Variables {
             variablesMap.put(output, new ComplexNumber(0, 0));
             output = "";
         }
+    }
+    
+    public Map<String, ComplexNumber> getVariablesMap() {
+        return variablesMap;
     }
     
     public void setVariable(String var, ComplexNumber num) throws IllegalArgumentException{
