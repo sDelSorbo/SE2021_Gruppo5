@@ -14,17 +14,12 @@ import java.util.Map;
  */
 public class Variables {
     
-    private static Map<String,ComplexNumber> variablesMap;
-
-    
+    private static Map<String,ComplexNumber> variablesMap; 
  
     public Variables() {
         variablesMap = new HashMap<String,ComplexNumber>();
-        String output = "";
         for(char alphabet = 'a'; alphabet <='z'; alphabet++ ) {
-            output += alphabet;
-            variablesMap.put(output, new ComplexNumber(0, 0));
-            output = "";
+            variablesMap.put(String.valueOf(alphabet), new ComplexNumber(0, 0));
         }
     }
     
