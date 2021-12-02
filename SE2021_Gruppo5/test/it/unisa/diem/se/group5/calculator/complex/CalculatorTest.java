@@ -58,7 +58,7 @@ public class CalculatorTest {
         input = "/";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(2.04167f,-2.04167f);
+        expResult = new ComplexNumber(2.04166688d,-2.04166688d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -70,7 +70,7 @@ public class CalculatorTest {
         input = "*";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(20.4167f,-20.4167f);
+        expResult = new ComplexNumber(20.4166688d,-20.4166688d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -78,7 +78,7 @@ public class CalculatorTest {
         input = "sqrt";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(4.96439f,-2.05632f);
+        expResult = new ComplexNumber(4.96438265d,-2.05631495d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -86,7 +86,7 @@ public class CalculatorTest {
         input = "+-";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-4.96439f,2.05632f);
+        expResult = new ComplexNumber(-4.96438265d,2.05631495d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
