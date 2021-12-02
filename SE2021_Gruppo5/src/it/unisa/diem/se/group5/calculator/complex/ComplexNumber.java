@@ -26,8 +26,8 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(double real, double imaginary) {
-        this.real = real;
-        this.imaginary = imaginary;
+        this.real = this.roundEight(real);
+        this.imaginary = this.roundEight(imaginary);
         
         complex = this.toString();
     }
@@ -38,7 +38,7 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(double real) {
-        this.real = real;
+        this.real = this.roundEight(real);
         imaginary = 0d;
         complex = this.toString();
     }
@@ -66,7 +66,7 @@ public class ComplexNumber {
     * @param real parametro che viene settato
     */
     public void setReal(double real) {
-        this.real = real;
+        this.real = this.roundEight(real);
         this.setComplex();
     }
    /**
@@ -83,8 +83,7 @@ public class ComplexNumber {
     * @param imaginary parametro che viene settato
     */
     public void setImaginary(double imaginary) {
-        BigDecimal bd = new BigDecimal(imaginary).setScale(20, RoundingMode.HALF_UP);
-        this.imaginary = bd.doubleValue();
+        this.imaginary = this.roundEight(imaginary);
         this.setComplex();
     }
    /**
@@ -174,6 +173,15 @@ public class ComplexNumber {
             return String.valueOf(imaginary) +"j";
         return String.valueOf(real) + sign + String.valueOf(imaginary) + "j";
     }
-    
+    /**
+     * Metodo che arrotonda un numero double all'ottava cifra decimale
+     * 
+     * @param x numero double da arrotondare
+     * @return ritorna l'arrotondamento del numero x all'ottava cifra decimale
+     */
+    private double roundEight(double x){
+        double rounded = Math.round(x*100000000.0)/100000000.0;
+        return rounded;
+    }
 }
 
