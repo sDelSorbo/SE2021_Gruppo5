@@ -6,6 +6,7 @@
 package it.unisa.diem.se.group5.calculator.complex;
 
 
+import java.util.Stack;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class CalculatorTest {
     
-    private ComplexStack complexNumberStack = ComplexStack.getInstance();
+    private Stack<ComplexNumber> complexNumberStack = new Stack<>();
     private Calculator instance = new Calculator(complexNumberStack);
     
     public CalculatorTest() {        
@@ -25,9 +26,15 @@ public class CalculatorTest {
      * Test del metodo elaborate della classe Calculator.
      */
     @Test
-    public void testElaborate() {
+    public void testElaborate() {       
         
         String input = "5";        
+        instance.elaborate(input);
+        
+        input = "clear";        
+        instance.elaborate(input);
+        
+        input = "5";        
         instance.elaborate(input);
         
         input = "6";        
@@ -123,7 +130,12 @@ public class CalculatorTest {
     public void testNotAValidInputExceptionOnElaborate(){
         
         String input = "fuehufhuei";        
-        instance.elaborate(input);     
+        instance.elaborate(input);
+        input = "5.6464+j6567";        
+        instance.elaborate(input);
+        input = "5,453";        
+        instance.elaborate(input);
+        
     }
     
 }

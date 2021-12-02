@@ -4,6 +4,13 @@
  */
 package it.unisa.diem.se.group5.calculator.complex;
 
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.CommonOperations;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.StackOperation.StackOperations;
+import java.util.EmptyStackException;
+import java.util.Map;
+import java.util.Stack;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+
 
 /**
  * Questa classe implementa un Calcolatore in grado di eseguire le operazioni
@@ -22,20 +29,27 @@ public class Calculator {
     /**
      * Stack di numeri complessi. 
      */
-    private ComplexStack stack;
+    private Stack<ComplexNumber> stack;
     
     /**
      * Contiene l'operando corrente
      */
     private String currentOp;
+    
+    private Map<String, Operation> commonOperations;
+    
+    private Map<String, Operation> stackOperations;    
+    
     /**
      * Costruisce un calcolatore dotato di StringParser e stack di numeri complessi
      * 
      * @param stack Stack di numeri complessi 
-     */ 
-    public Calculator(ComplexStack stack){
+     */     
+    public Calculator(Stack stack){
         this.parser = new StringParser();
         this.stack = stack;
+        commonOperations = new CommonOperations().get();
+        stackOperations = new StackOperations().get();
     }
     
     /**
@@ -60,9 +74,11 @@ public class Calculator {
             return;
         }            
         
-        throw new NotAValidInputException("L'input inserito non è valido.\nRicorda che i numeri devono essere inseriti nel formato a+bi.");
+        throw new NotAValidInputException("L'input inserito non è valido.\n"
+                + "Ricorda che i numeri devono essere inseriti nel formato a+bi.");
             
     }
+
     
     /**
      * Data un stringa in ingresso che deve rappresentare un numero ne resituisce
@@ -70,9 +86,8 @@ public class Calculator {
      * 
      * @param input stringa contenente un numero da valutare
      * @return      il numero complesso associato
-     * @throws NotANumberException 
      */
-    private ComplexNumber evaluateNum(String input) throws NotANumberException{
+    private ComplexNumber evaluateNum(String input) {
         return parser.parseComplexNumber(input);           
     }
     
@@ -81,107 +96,16 @@ public class Calculator {
      * gli operandi dallo stack e inserendo i risultati nello stack.     * 
      * 
      * @param input stringa contenente l'operazione da eseguire
-     * @throws NotAnOperationException
+     * @throws NotEnoughOperandsException se il numero di operandi è insufficiente
      */
-    private void executeOper(String input) throws RuntimeException{
-        ComplexNumber[] operands = new ComplexNumber[2];
-        ComplexNumber result = null;
-        boolean hasResult = false;
-        
-        switch(input){            
-            case "+":
-                operands = retrieveOperands();
-                result = ComplexOperations.add(operands[0], operands[1]);
-                hasResult = true;
-            break;
-            
-            case "-":
-                operands = retrieveOperands();
-                result = ComplexOperations.sub(operands[0], operands[1]);
-                hasResult = true;
-            break;
-            
-            case "*":
-                operands = retrieveOperands();
-                result = ComplexOperations.mul(operands[0], operands[1]);
-                hasResult = true;
-            break;
-            
-            case "/":
-                operands = retrieveOperands();
-                result = ComplexOperations.div(operands[0], operands[1]);
-                hasResult = true;
-            break;
-            
-            case "+-":
-                operands[0] = retrieveOperand();
-                result = ComplexOperations.signInv(operands[0]);
-                hasResult = true;
-            break;            
-            case "sqrt":
-                operands[0] = retrieveOperand();
-                result = ComplexOperations.sqrt(operands[0]);
-                hasResult = true;
-            break;
-            case "drop":
-                stack.drop();
-            break;
-            case "dup":
-                stack.dup();
-            break;
-            case "swap":
-                stack.swap();
-            break;
-            case "clear":
-                stack.clear();
-            break;
-            case "over":
-                stack.over();
-            break;           
-            default:
-                throw new NotAnOperationException("L'input inserito non è valido");
-            }
-        
-        if (hasResult == true){
-            stackInsert(result);
-        }
-    }    
-    
-    /**
-     * Ritorna i primi due elementi dello stack di numeri complessi, se presenti,
-     * da usare come operandi.
-     * 
-     * @return ritorna il primo e il secondo operando
-     */
-    private ComplexNumber[] retrieveOperands() throws NotEnoughOperandsException{
-        if (stack.size() < 2){
+    private void executeOper(String input) throws NotEnoughOperandsException{
+        try{            
+            if (commonOperations.containsKey(input))
+                commonOperations.get(input).execute(stack);
+            else if (stackOperations.containsKey(input))
+                stackOperations.get(input).execute(stack);
+        } catch (EmptyStackException ex){
             throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }
-        ComplexNumber[] operands = new ComplexNumber[2];
-        operands[0] = retrieveOperand();
-        operands[1] = retrieveOperand();
-        return operands;
-    }
-
-    /**
-     * Ritorna il primo elemento dello stack di numeri complessi da usare come 
-     * operando
-     * 
-     * @return ritorna il primo operando
-     */
-    private ComplexNumber retrieveOperand() throws NotEnoughOperandsException{
-        if (stack.size() < 1)
-            throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
-        return stack.pop();        
-    }
-    
-    /**
-     * Inserisce un elemento nello stack di numeri complessi.
-     * 
-     * @param toPush elemento da inserire nello stack
-     */
-    private void stackInsert(ComplexNumber toPush) {
-        stack.push(toPush);
     }    
-
 }

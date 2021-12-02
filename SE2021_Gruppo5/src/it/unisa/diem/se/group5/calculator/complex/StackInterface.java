@@ -38,20 +38,20 @@ public interface StackInterface<ComplexNumber> {
      * 
      * @param item oggetto da inserire nello stack
      */
-    void push(ComplexNumber item);
+    void push(ComplexNumber item) throws SizeStackException;
     
     /**
      * Rimuove il primo elemento dallo stack e lo restituisce
      * 
      * @return primo elemento dello stack
      */
-    ComplexNumber pop();
+    ComplexNumber pop() throws SizeStackException;
     
     /**
      * Restituisce il primo elemento dello stack senza eliminarlo.
      * 
      * @return il primo elemento dello stack
      */
-    ComplexNumber peek();    
+    ComplexNumber peek() throws SizeStackException;    
     
 }

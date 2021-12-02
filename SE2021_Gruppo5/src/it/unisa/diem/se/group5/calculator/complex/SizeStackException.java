@@ -1,28 +1,29 @@
-/**
- *
- * SizeStackException
- * 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package it.unisa.diem.se.group5.calculator.complex;
+
 /**
  *
- * @author roberto
+ * @author Marco
  */
-public class SizeStackException extends RuntimeException{
-
-    /**
-     * Crea un'instanza di <code>SizeStackException</code> senza alcun messaggio di dettaglio.
+class SizeStackException extends Exception {
+        /**
+     * Creates a new instance of <code>NotAnOperationException</code> without
+     * detail message.
      */
     public SizeStackException() {
     }
 
     /**
-     * Crea un'instanza di <code>SizeStackException</code> con un messaggio di dettaglio.
-     * 
+     * Constructs an instance of <code>NotAnOperationException</code> with the
+     * specified detail message.
      *
-     * @param msg il messaggio di dettaglio.
+     * @param msg the detail message.
      */
     public SizeStackException(String msg) {
         super(msg);
     }
+    
 }

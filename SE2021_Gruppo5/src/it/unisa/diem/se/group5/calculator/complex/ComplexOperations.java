@@ -101,8 +101,6 @@ public class ComplexOperations {
             throw new ArithmeticException("Divisione per 0");
         float den = (float) Math.pow(ComplexOperations.mod(op2),2);
         return new ComplexNumber((op1.getReal()*op2.getReal() + op1.getImaginary()* op2.getImaginary())/den,(op1.getImaginary()*op2.getReal()-op1.getReal()*op2.getImaginary())/den);
-
-        
         }
     
     /**
