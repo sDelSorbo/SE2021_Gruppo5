@@ -15,8 +15,8 @@ import java.util.Objects;
  * @author gianpaolotobia
  */
 public class ComplexNumber {
-    private Float real; //Parte reale del numero complesso
-    private Float imaginary; //Parte immaginaria del numero complesso
+    private Double real; //Parte reale del numero complesso
+    private Double imaginary; //Parte immaginaria del numero complesso
     private String complex; //Stringa contenente il numero complesso con parte reale e parte immaginaria
     /**
     * Costruisce un numero complesso, definendo sia la parte reale che la parte immaginaria
@@ -25,12 +25,9 @@ public class ComplexNumber {
     *  @param imaginary   parte immaginaria
     *  
     */
-    public ComplexNumber(float real, float imaginary) {
-        BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
-        this.real = bd.floatValue();
-        
-        BigDecimal bd2 = new BigDecimal(imaginary).setScale(5, RoundingMode.HALF_UP);
-        this.imaginary = bd2.floatValue();
+    public ComplexNumber(double real, double imaginary) {
+        this.real = real;
+        this.imaginary = imaginary;
         
         complex = this.toString();
     }
@@ -40,10 +37,9 @@ public class ComplexNumber {
     *  @param real        parte reale
     *  
     */
-    public ComplexNumber(float real) {
-        BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
-        this.real = bd.floatValue();
-        imaginary = 0f;
+    public ComplexNumber(double real) {
+        this.real = real;
+        imaginary = 0d;
         complex = this.toString();
     }
     
@@ -52,8 +48,8 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber() {
-        real = 0f;
-        imaginary = 0f;
+        real = 0d;
+        imaginary = 0d;
         complex = this.toString();
     }
     /**
@@ -61,7 +57,7 @@ public class ComplexNumber {
     * 
     * @return ritorna la parte reale del numero complesso
     */
-    public float getReal() {
+    public double getReal() {
         return real;
     }
    /**
@@ -69,9 +65,8 @@ public class ComplexNumber {
     * 
     * @param real parametro che viene settato
     */
-    public void setReal(float real) {
-        BigDecimal bd = new BigDecimal(real).setScale(5, RoundingMode.HALF_UP);
-        this.real = bd.floatValue();
+    public void setReal(double real) {
+        this.real = real;
         this.setComplex();
     }
    /**
@@ -79,7 +74,7 @@ public class ComplexNumber {
     * 
     * @return ritorna la parte immaginaria del numero complesso
     */
-    public float getImaginary() {
+    public double getImaginary() {
         return imaginary;
     }
     /**
@@ -87,9 +82,9 @@ public class ComplexNumber {
     * 
     * @param imaginary parametro che viene settato
     */
-    public void setImaginary(float imaginary) {
-        BigDecimal bd = new BigDecimal(imaginary).setScale(5, RoundingMode.HALF_UP);
-        this.imaginary = bd.floatValue();
+    public void setImaginary(double imaginary) {
+        BigDecimal bd = new BigDecimal(imaginary).setScale(20, RoundingMode.HALF_UP);
+        this.imaginary = bd.doubleValue();
         this.setComplex();
     }
    /**
@@ -122,61 +117,63 @@ public class ComplexNumber {
      * @return ritorna true se i numeri complessisono uguali altrimenti false
      */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object obj){       
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ComplexNumber other = (ComplexNumber) obj;
-        if (Float.floatToIntBits(this.real) != Float.floatToIntBits(other.real)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.imaginary) != Float.floatToIntBits(other.imaginary)) {
-                return false;
-        }
-        return true;
-    }
+
     
+        if (obj == null) 
+            return false;
+        if (getClass() != obj.getClass()) 
+            return false;
+        final ComplexNumber other = (ComplexNumber) obj;
+        if (Double.doubleToLongBits(this.real) != Double.doubleToLongBits(other.real)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.imaginary) != Double.doubleToLongBits(other.imaginary)) {
+            return false;
+        }
+        return true;     
+   }
+
     /**
      * Metodo che restituisce la stringa rappresentativa del numero complesso
      * 
      * @return ritorna la stringa del numero complesso in rappresentazione cartesiana
      */
     @Override
-    public String toString(){       
-        //Formato della stringa da salvare in complex
-        boolean secondElementPositive = true;
-
+    public String toString() {       
         
-        if (this.imaginary < 0)
-            secondElementPositive = false;
-
-        String realPart = (this.real == 0 ? "0.0" : real.toString());        
+    //    String realPart = (this.real == 0 ? "0.0" : real.toString());
         
-        String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
+    //    String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
                 
         /* trim del .0
         if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
-            realPart = realPart.split("\\.")[0];
-
+        realPart = realPart.split("\\.")[0];
+        
         if (imgPart.contains(".0") && imgPart.split("\\.")[1].length() == 2)
-            imgPart = imgPart.split("\\.")[0]  + "j";
+        imgPart = imgPart.split("\\.")[0]  + "j";
         */
         
-        if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
+   /*     if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
             imgPart = "";
         }        
         if (this.real == 0 && this.imaginary != 0){
             realPart = "";
         }
-        
-        return realPart+imgPart;     
-   }
+        */
+        String sign = "";
+        if(imaginary>0)
+            sign ="+";
+        if(real==0 && imaginary == 0)
+            return String.valueOf(0);
+        if(imaginary==0)
+            return String.valueOf(real);
+        if(real==0)
+            return String.valueOf(imaginary) +"j";
+        return String.valueOf(real) + sign + String.valueOf(imaginary) + "j";
+    }
     
 }
 
