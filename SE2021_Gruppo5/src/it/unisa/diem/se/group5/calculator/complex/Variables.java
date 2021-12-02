@@ -17,7 +17,7 @@ public class Variables {
     private static Map<String,ComplexNumber> variablesMap; 
  
     public Variables() {
-        variablesMap = new HashMap<String,ComplexNumber>();
+        variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <='z'; alphabet++ ) {
             variablesMap.put(String.valueOf(alphabet), new ComplexNumber(0, 0));
         }
