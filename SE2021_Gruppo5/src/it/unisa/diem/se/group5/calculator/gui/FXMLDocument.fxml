@@ -55,6 +55,11 @@
                         </AnchorPane>
                       <AnchorPane maxHeight="421.0" maxWidth="374.0" minHeight="421.0" minWidth="374.0" prefHeight="421.0" prefWidth="317.0">
                            <children>
+                              <Button fx:id="setBtn" alignment="CENTER" layoutX="54.0" layoutY="124.0" mnemonicParsing="false" onAction="#onSetPressed" prefHeight="51.0" prefWidth="99.0" text="Set" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
                               <Button fx:id="delBtn" alignment="CENTER" layoutX="53.0" layoutY="232.0" mnemonicParsing="false" onAction="#onDeletePressed" prefHeight="51.0" prefWidth="99.0" text="Del" textAlignment="CENTER">
                                  <font>
                                     <Font size="24.0" />

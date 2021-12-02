@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
 import it.unisa.diem.se.group5.calculator.complex.Variables;
+import java.util.Collection;
 import java.util.Map;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -62,6 +63,8 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<String> boxVariables;
     @FXML
     private Label labelVariables;
+    @FXML
+    private Button setBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
         stackTab.setSelectionModel(null);
         stackTab.setItems(complexNumberStack);
        
-        //listVariables.addAll(varia.getVariablesMap());
+       // listVariables.setAll((Collection<? extends String>) varia.getVariablesMap());
         for(Map.Entry entry: varia.getVariablesMap().entrySet())
         {
             Object items = entry.getKey();
@@ -181,8 +184,23 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void onBoxAction(ActionEvent event) {
-        
+        changeVariable();
+    }
+
+    @FXML
+    private void onSetPressed(ActionEvent event) {
+        //prova da cancellare usato solo per vedere se funziona
+        if(varia.getVariablesMap().containsValue(new ComplexNumber(10,5))){
+           varia.setVariable("a", new ComplexNumber(5,5)); 
+           changeVariable();
+        }else{
+        varia.setVariable("a", new ComplexNumber(10,5));
+        changeVariable();
+        }
+    }
+    
+    private void changeVariable(){
         String item=boxVariables.getValue();
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
     }
 }
