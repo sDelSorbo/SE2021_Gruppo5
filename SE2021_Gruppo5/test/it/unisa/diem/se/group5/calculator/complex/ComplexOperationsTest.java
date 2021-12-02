@@ -1,9 +1,4 @@
 
-/*
- * ComplexOperationsTest
- * 
- * Version 2.0m
- */
 package it.unisa.diem.se.group5.calculator.complex;
 
 
