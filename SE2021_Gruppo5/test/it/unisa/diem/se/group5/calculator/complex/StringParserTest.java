@@ -275,64 +275,64 @@ public class StringParserTest {
         
         //Test 2 Numero Puramente Immaginario Positivo e Negativo con e senza Segno
         toParse = "-124.32j";
-        expResult = new ComplexNumber(0,-124.32f);
+        expResult = new ComplexNumber(0,-124.32d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         toParse = "+124.32j";
-        expResult = new ComplexNumber(0,124.32f);
+        expResult = new ComplexNumber(0,124.32d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         toParse = "124.32j";
-        expResult = new ComplexNumber(0,124.32f);
+        expResult = new ComplexNumber(0,124.32d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         
         //Test 3 Numero Complesso con Segni negativi e positivi
         toParse = "+995.42-643.24j";
-        expResult = new ComplexNumber(995.42f,-643.24f);
+        expResult = new ComplexNumber(995.42d,-643.24d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         toParse = "-995.42+643.24j";
-        expResult = new ComplexNumber(-995.42f,643.24f);
+        expResult = new ComplexNumber(-995.42d,643.24d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         toParse = "995.42+643.24j";
-        expResult = new ComplexNumber(995.42f,643.24f);
+        expResult = new ComplexNumber(995.42d,643.24d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         toParse = "-995.42-643.24j";
-        expResult = new ComplexNumber(-995.42f,-643.24f);
+        expResult = new ComplexNumber(-995.42d,-643.24d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);
         
         toParse = "+995.42+643.24j";
-        expResult = new ComplexNumber(+995.42f,+643.24f);
+        expResult = new ComplexNumber(+995.42d,+643.24d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);    
         
         toParse = "+995.42+643.24j";
-        expResult = new ComplexNumber(+995.42f,+643.24f);
+        expResult = new ComplexNumber(+995.42d,+643.24d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result); 
         
         toParse = "-j";
-        expResult = new ComplexNumber(0f,-1f);
+        expResult = new ComplexNumber(0d,-1d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);  
         
         toParse = "j";
-        expResult = new ComplexNumber(0f,1f);
+        expResult = new ComplexNumber(0d,1d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);  
         
         toParse = "j";
-        expResult = new ComplexNumber(0f,+1f);
+        expResult = new ComplexNumber(0d,+1d);
         result = spr.parseComplexNumber(toParse);
         assertEquals(expResult, result);  
     }

@@ -96,7 +96,7 @@ public class StringParser {
     *
     * @return        la parte reale 
     */
-    private float extractReal(String toParse) throws NotANumberException{        
+    private double extractReal(String toParse) throws NotANumberException{        
         if (isNumber(toParse)){
             return extractRI(toParse)[0];
         }
@@ -114,7 +114,7 @@ public class StringParser {
     * @return        la parte immaginaria
     * @throws NotANumberException se la stringa non corrisponde ad un numero
     */
-    private float extractImaginary(String toParse) throws NotANumberException{
+    private double extractImaginary(String toParse) throws NotANumberException{
         if (isNumber(toParse)){
             return extractRI(toParse)[1];
         }
@@ -128,9 +128,9 @@ public class StringParser {
     *
     *  @return         una array in cui il primo elemento è la parte reale il secondo quella immaginaria
     */
-    private Float[] extractRI(String toParse){    
+    private Double[] extractRI(String toParse){    
         
-        Float realImaginary[] = new Float[2];
+        Double realImaginary[] = new Double[2];
             
         boolean firstElementPositive = true;  // Indicano se il primo e secondo 
         boolean secondElementPositive = true; // elemento sono positivi o meno
@@ -141,8 +141,8 @@ public class StringParser {
             secondElementPositive = false;
         
         if (toParse.matches("^[+-]j$|^j$")){
-            realImaginary[0] = 0f;
-            realImaginary[1] = Float.parseFloat((firstElementPositive ? "+" : "-") + "1");
+            realImaginary[0] = 0d;
+            realImaginary[1] = Double.parseDouble((firstElementPositive ? "+" : "-") + "1");
             return realImaginary;
         }
         
@@ -153,13 +153,13 @@ public class StringParser {
             }
         }
         
-        float realPart = 0;
-        float imgPart = 0;
+        double realPart = 0;
+        double imgPart = 0;
         
         if (split[0].contains("j")) //Assumiamo che l'input non sia vuoto
-            imgPart = Float.parseFloat((firstElementPositive ? "+" : "-") + split[0].substring(0,split[0].length() - 1));
+            imgPart = Double.parseDouble((firstElementPositive ? "+" : "-") + split[0].substring(0,split[0].length() - 1));
         else
-            realPart = Float.parseFloat((firstElementPositive ? "+" : "-") + split[0]);
+            realPart = Double.parseDouble((firstElementPositive ? "+" : "-") + split[0]);
         
         // Parsing della seconda parte della stringa se esiste, la secona condizione dopo l'and(&&)
         // protegge dall'unica condizione in cui l'algoritmo non è funzionante cioè quando si ha sola parte 
@@ -167,13 +167,13 @@ public class StringParser {
         if (split.length > 1 && !(split[split.length-2].equals(split[split.length-1]) && split.length == 2)) {
             if (split[1].contains("j")){
                 if (split[1].matches("^[+-]j$|^j$")){
-                    imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + "1.0");                    
+                    imgPart = Double.parseDouble((secondElementPositive ? "+" : "-") + "1.0");                    
                 }
                 else 
-                    imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1].substring(0,split[1].length() - 1));
+                    imgPart = Double.parseDouble((secondElementPositive ? "+" : "-") + split[1].substring(0,split[1].length() - 1));
             }
             else
-                realPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1]);
+                realPart = Double.parseDouble((secondElementPositive ? "+" : "-") + split[1]);
         }
         
         realImaginary[0]= realPart;
@@ -190,8 +190,8 @@ public class StringParser {
     *  @return        il numero complesso associato 
     */
     public ComplexNumber parseComplexNumber(String toParse) throws NotANumberException {
-        float real = extractReal(toParse);
-        float imaginary = extractImaginary(toParse);
+        double real = extractReal(toParse);
+        double imaginary = extractImaginary(toParse);
         
         return new ComplexNumber(real,imaginary);
         
