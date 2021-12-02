@@ -5,8 +5,6 @@ package it.unisa.diem.se.group5.calculator.complex;
  * 
  * Version 1.0m
  */
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Objects;
 
 /**
