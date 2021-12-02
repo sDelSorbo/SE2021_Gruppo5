@@ -23,6 +23,7 @@
                     <menus>
                       <Menu fx:id="File" mnemonicParsing="false" text="File">
                         <items>
+                              <MenuItem mnemonicParsing="false" onAction="#clearApplication" text="Clear" />
                               <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Quit" />
                         </items>
                       </Menu>
@@ -55,7 +56,7 @@
                         </AnchorPane>
                       <AnchorPane maxHeight="421.0" maxWidth="374.0" minHeight="421.0" minWidth="374.0" prefHeight="421.0" prefWidth="317.0">
                            <children>
-                              <Button fx:id="setBtn" alignment="CENTER" layoutX="54.0" layoutY="124.0" mnemonicParsing="false" onAction="#onSetPressed" prefHeight="51.0" prefWidth="99.0" text="Set" textAlignment="CENTER">
+                              <Button fx:id="setBtn" alignment="CENTER" layoutX="53.0" layoutY="94.0" mnemonicParsing="false" onAction="#onSetPressed" prefHeight="51.0" prefWidth="99.0" text="Set" textAlignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -70,8 +71,11 @@
                                     <Font size="24.0" />
                                  </font>
                               </Button>
-                              <ComboBox fx:id="boxVariables" layoutX="28.0" layoutY="81.0" onAction="#onBoxAction" prefWidth="150.0" />
-                              <Label fx:id="labelVariables" layoutX="217.0" layoutY="78.0" prefHeight="32.0" prefWidth="56.0" text="Label" />
+                              <ComboBox fx:id="boxVariables" layoutX="46.0" layoutY="38.0" onAction="#onBoxAction" prefHeight="25.0" prefWidth="113.0" />
+                              <Label fx:id="labelVariables" alignment="CENTER" layoutX="180.0" layoutY="35.0" prefHeight="32.0" prefWidth="179.0" text="Label">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                            </children>
                         </AnchorPane>
                     </items>

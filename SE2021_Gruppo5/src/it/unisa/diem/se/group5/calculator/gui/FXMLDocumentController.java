@@ -110,7 +110,7 @@ public class FXMLDocumentController implements Initializable {
         try {
             calculator.elaborate(input);
         } catch (Exception ex) {
-            showGenericAlert("ERROR", ex.getMessage());
+            showGenericAlert("ERROR", ex.getMessage(),null);
         }            
         converToObservable();
     }
@@ -137,9 +137,11 @@ public class FXMLDocumentController implements Initializable {
      * @param alertMessage errore che si vuole mostrare
      * @param type rappresenta il tipo di alert
      */
-    public void showGenericAlert(String type, String alertMessage) {
+    public void showGenericAlert(String type, String alertMessage,String headerText) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
+        alert.setHeaderText(headerText);
         alert.showAndWait().filter(response -> response == ButtonType.OK);
+        
     }
 
     /**
@@ -161,7 +163,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onHelp(ActionEvent event) {
-        showGenericAlert("INFORMATION", "Calculator v0.1");
+        showGenericAlert("INFORMATION", "Calculator v0.2",null);
     }
     
     /**
@@ -191,7 +193,7 @@ public class FXMLDocumentController implements Initializable {
     private void onSetPressed(ActionEvent event) {
         //prova da cancellare usato solo per vedere se funziona
         if(varia.getVariablesMap().containsValue(new ComplexNumber(10,5))){
-           varia.setVariable("a", new ComplexNumber(5,5)); 
+           varia.setVariable("a", new ComplexNumber(50000000,500000)); 
            changeVariable();
         }else{
         varia.setVariable("a", new ComplexNumber(10,5));
@@ -202,5 +204,12 @@ public class FXMLDocumentController implements Initializable {
     private void changeVariable(){
         String item=boxVariables.getValue();
         labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
+    }
+
+    @FXML
+    private void clearApplication(ActionEvent event) {
+        stack.clear();
+        complexNumberStack.clear();
+        inputFocus();
     }
 }
