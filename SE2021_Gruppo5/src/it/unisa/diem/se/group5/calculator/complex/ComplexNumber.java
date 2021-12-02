@@ -5,6 +5,8 @@ package it.unisa.diem.se.group5.calculator.complex;
  * 
  * Version 1.0m
  */
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 /**
@@ -24,9 +26,10 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(double real, double imaginary) {
-        this.real = this.roundEight(real);
-        this.imaginary = this.roundEight(imaginary);
-        
+        BigDecimal bdR = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
+        BigDecimal bdI = new BigDecimal(imaginary).setScale(8, RoundingMode.HALF_UP);
+        this.real = bdR.doubleValue();
+        this.imaginary = bdI.doubleValue();
         complex = this.toString();
     }
     /**
@@ -36,7 +39,8 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(double real) {
-        this.real = this.roundEight(real);
+        BigDecimal bdR = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
+        this.real = bdR.doubleValue();        
         imaginary = 0d;
         complex = this.toString();
     }
@@ -64,7 +68,8 @@ public class ComplexNumber {
     * @param real parametro che viene settato
     */
     public void setReal(double real) {
-        this.real = this.roundEight(real);
+        BigDecimal bdR = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
+        this.real = bdR.doubleValue();    
         this.setComplex();
     }
    /**
@@ -81,7 +86,8 @@ public class ComplexNumber {
     * @param imaginary parametro che viene settato
     */
     public void setImaginary(double imaginary) {
-        this.imaginary = this.roundEight(imaginary);
+        BigDecimal bdI = new BigDecimal(imaginary).setScale(8, RoundingMode.HALF_UP);
+        this.imaginary = bdI.doubleValue();
         this.setComplex();
     }
    /**
@@ -140,26 +146,6 @@ public class ComplexNumber {
      */
     @Override
     public String toString() {       
-        
-    //    String realPart = (this.real == 0 ? "0.0" : real.toString());
-        
-    //    String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
-                
-        /* trim del .0
-        if (realPart.contains(".0") && realPart.split("\\.")[1].length() == 1)
-        realPart = realPart.split("\\.")[0];
-        
-        if (imgPart.contains(".0") && imgPart.split("\\.")[1].length() == 2)
-        imgPart = imgPart.split("\\.")[0]  + "j";
-        */
-        
-   /*     if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
-            imgPart = "";
-        }        
-        if (this.real == 0 && this.imaginary != 0){
-            realPart = "";
-        }
-        */
         String sign = "";
         if(imaginary>0)
             sign ="+";
@@ -170,16 +156,6 @@ public class ComplexNumber {
         if(real==0)
             return String.valueOf(imaginary) +"j";
         return String.valueOf(real) + sign + String.valueOf(imaginary) + "j";
-    }
-    /**
-     * Metodo che arrotonda un numero double all'ottava cifra decimale
-     * 
-     * @param x numero double da arrotondare
-     * @return ritorna l'arrotondamento del numero x all'ottava cifra decimale
-     */
-    private double roundEight(double x){
-        double rounded = Math.round(x*100000000.0)/100000000.0;
-        return rounded;
     }
 }
 

@@ -1,10 +1,5 @@
 package it.unisa.diem.se.group5.calculator.complex;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,10 +40,10 @@ public class ComplexNumberTest {
         
         System.out.println("getReal");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3.1234599f,10);
+        ComplexNumber instance2 = new ComplexNumber(3.123456789d,10);
         ComplexNumber instance3 = new ComplexNumber(-3);
         double expResult1 = 0;
-        double expResult2 = 3.12346f;
+        double expResult2 = 3.12345679d;
         double expResult3 = -3;
         double result1 = instance1.getReal();
         double result2 = instance2.getReal();
@@ -77,10 +72,10 @@ public class ComplexNumberTest {
     public void testGetImaginary() {
         System.out.println("getImaginary");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3.777823f,-10.202f);      
+        ComplexNumber instance2 = new ComplexNumber(3.777823d,-10.202674859d);      
         ComplexNumber instance3 = new ComplexNumber(3);
         double expResult1 = 0;
-        double expResult2 = -10.202f;
+        double expResult2 = -10.20267486d;
         double expResult3 = 0;
         double result1 = instance1.getImaginary();
         double result2 = instance2.getImaginary();
@@ -108,11 +103,11 @@ public class ComplexNumberTest {
     public void testGetComplex() {
         System.out.println("getComplex");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(-3.33f,-10);
+        ComplexNumber instance2 = new ComplexNumber(-3.33d,-10);
         ComplexNumber instance3 = new ComplexNumber(3);
         String expResult1 = "0";
-        String expResult2 = "-3.33-10j";
-        String expResult3 = "3";
+        String expResult2 = "-3.33-10.0j";
+        String expResult3 = "3.0";
         String result1 = instance1.getComplex();
         String result2 = instance2.getComplex();
         String result3 = instance3.getComplex();
@@ -139,17 +134,25 @@ public class ComplexNumberTest {
     public void testToString() {
         System.out.println("toString");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3,-10);
-        ComplexNumber instance3 = new ComplexNumber(3);
+        ComplexNumber instance2 = new ComplexNumber(3.123d,-10.777);
+        ComplexNumber instance3 = new ComplexNumber(-2.324d,18.45678);
+        ComplexNumber instance4 = new ComplexNumber(3);
+        ComplexNumber instance5 = new ComplexNumber(0,-2.808890835d);
         String expResult1 = "0";
-        String expResult2 = "3-10j";
-        String expResult3 = "3";
+        String expResult2 = "3.123-10.777j";
+        String expResult3 = "-2.324+18.45678j";
+        String expResult4 = "3.0";
+        String expResult5 = "-2.80889084j";
         String result1 = instance1.toString();
         String result2 = instance2.toString();
         String result3 = instance3.toString();
+        String result4 = instance4.toString();
+        String result5 = instance5.toString();
         assertEquals(expResult1, result1);
         assertEquals(expResult2, result2);
         assertEquals(expResult3, result3);
+        assertEquals(expResult4, result4);
+        assertEquals(expResult5, result5);
     }
 
     /**
@@ -172,12 +175,5 @@ public class ComplexNumberTest {
         assertEquals(expResult, result2);
         assertEquals(expResult, result3);
     }
-     /**
-     * Test of NumberFormatException
-     */
-    @Test (expected =  NumberFormatException.class)
-    public void testNumberFormatrException() {
-        ComplexNumber op1 = new ComplexNumber(Math.pow(2, 130),10);
-    }
-    
+
 }
