@@ -14,16 +14,19 @@ import java.util.Stack;
  * 
  * @author Marco
  */
-public class Sub implements Operation {
+public class Sub extends AbstractOnStackOperation {
+
+    public Sub(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
     
     /**
      * Esegue la sottrazione di due numeri prelevati dalla cima dello stack.
      *  
-     * @param stack di numeri complessi
      * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         ComplexNumber op1 = stack.pop();
         try{
             ComplexNumber op2 = stack.pop();        

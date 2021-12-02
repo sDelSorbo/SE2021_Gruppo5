@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations.StackOperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 
@@ -13,7 +14,11 @@ import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
  * 
  * @author Marco
  */
-public class Dup implements Operation{
+public class Dup extends AbstractOnStackOperation{
+
+    public Dup(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
     
     /**
      * Duplica il primo elemento di uno stack.
@@ -21,7 +26,7 @@ public class Dup implements Operation{
      * @param stack di cui duplicare il primo elemento
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         ComplexNumber element = stack.peek();
         stack.push(element);
     }

@@ -14,7 +14,11 @@ import java.util.Stack;
  * 
  * @author Marco
  */
-public class Mul implements Operation {
+public class Mul extends AbstractOnStackOperation {
+
+    public Mul(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
     
     /**
      * Esegue la moltiplicazione di due numeri prelevati dalla cima dello stack.
@@ -23,7 +27,7 @@ public class Mul implements Operation {
      * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         ComplexNumber op1 = stack.pop();
         try{
             ComplexNumber op2 = stack.pop();        

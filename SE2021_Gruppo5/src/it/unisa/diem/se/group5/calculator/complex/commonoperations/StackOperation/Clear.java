@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations.StackOperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 
@@ -13,7 +14,11 @@ import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
  * 
  * @author Marco
  */
-public class Clear implements Operation{
+public class Clear extends AbstractOnStackOperation{
+
+    public Clear(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
     
     /**
      * Esegue la pulizia degli elementi di uno stack.
@@ -21,7 +26,7 @@ public class Clear implements Operation{
      * @param stack da ripulire
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         stack.clear();    
     }
     

@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations.StackOperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 
@@ -13,7 +14,11 @@ import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
  * 
  * @author Marco
  */
-public class Over implements Operation{
+public class Over extends AbstractOnStackOperation{
+
+    public Over(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
 
     /**
      * Esegue il comando over aggiungendo in cima allo stack una copia del
@@ -22,7 +27,7 @@ public class Over implements Operation{
      * @param stack contenente i numeri complessi 
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         ComplexNumber last = stack.pop();
         ComplexNumber penultimate = stack.peek();
         stack.push(last);

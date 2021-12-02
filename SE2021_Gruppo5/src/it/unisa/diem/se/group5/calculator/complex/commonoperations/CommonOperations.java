@@ -4,8 +4,10 @@
  */
 package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * Classe che genera un'HashMap che associa i simboli delle operazioni sui 
@@ -16,18 +18,17 @@ import java.util.Map;
 public class CommonOperations {
     Map<String,Operation> commonOperations;
     
-    public CommonOperations(){
+    public CommonOperations(Stack<ComplexNumber> stack){
         commonOperations = new HashMap<>();
-        commonOperations.put("+", new Add());
-        commonOperations.put("-", new Sub());
-        commonOperations.put("*", new Mul());
-        commonOperations.put("/", new Div());
-        commonOperations.put("+-", new SignInv());
-        commonOperations.put("sqrt", new Sqrt());
+        commonOperations.put("+", new Add(stack));
+        commonOperations.put("-", new Sub(stack));
+        commonOperations.put("*", new Mul(stack));
+        commonOperations.put("/", new Div(stack));
+        commonOperations.put("+-", new SignInv(stack));
+        commonOperations.put("sqrt", new Sqrt(stack));
     }
     
     public Map<String,Operation> get(){
         return commonOperations;
     }
-    
 }

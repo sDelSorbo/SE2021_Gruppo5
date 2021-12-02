@@ -14,7 +14,11 @@ import java.util.Stack;
  * 
  * @author Marco
  */
-public class Sqrt implements Operation {
+public class Sqrt extends AbstractOnStackOperation{
+
+    public Sqrt(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
     
     /**
      * Esegue il calcolo dell'argomento del numero complesso
@@ -22,8 +26,8 @@ public class Sqrt implements Operation {
      * @param op numero complesso
      * @return argomento del numero complesso
      */
-    private float arg(ComplexNumber op) {
-        return (float) Math.atan2(op.getImaginary(), op.getReal());
+    private double arg(ComplexNumber op) {
+        return Math.atan2(op.getImaginary(), op.getReal());
     }    
     
     /**
@@ -32,11 +36,11 @@ public class Sqrt implements Operation {
      * @param stack di numeri complessi
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         ComplexNumber op = stack.pop();
-        float r = (float) Math.sqrt(ComplexOperations.mod(op) );
-        float theta = arg(op)/2f;
-        ComplexNumber result =  new ComplexNumber(r* (float) Math.cos(theta),r* (float) Math.sin(theta));
+        double r = Math.sqrt(ComplexOperations.mod(op) );
+        double theta = arg(op)/2f;
+        ComplexNumber result =  new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
         stack.push(result);
     }
     

@@ -48,8 +48,8 @@ public class Calculator {
     public Calculator(Stack stack){
         this.parser = new StringParser();
         this.stack = stack;
-        commonOperations = new CommonOperations().get();
-        stackOperations = new StackOperations().get();
+        commonOperations = new CommonOperations(stack).get();
+        stackOperations = new StackOperations(stack).get();
     }
     
     /**
@@ -101,9 +101,9 @@ public class Calculator {
     private void executeOper(String input) throws NotEnoughOperandsException{
         try{            
             if (commonOperations.containsKey(input))
-                commonOperations.get(input).execute(stack);
+                commonOperations.get(input).execute();
             else if (stackOperations.containsKey(input))
-                stackOperations.get(input).execute(stack);
+                stackOperations.get(input).execute();
         } catch (EmptyStackException ex){
             throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }

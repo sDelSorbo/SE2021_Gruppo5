@@ -65,7 +65,7 @@ public class CalculatorTest {
         input = "/";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(2.04167f,-2.04167f);
+        expResult = new ComplexNumber(2.04166667d,-2.04166667d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -77,7 +77,7 @@ public class CalculatorTest {
         input = "*";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(20.4167f,-20.4167f);
+        expResult = new ComplexNumber(20.4166667d,-20.4166667d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -85,7 +85,7 @@ public class CalculatorTest {
         input = "sqrt";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(4.96439f,-2.05632f);
+        expResult = new ComplexNumber(4.96438287d,-2.05631472d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -93,7 +93,7 @@ public class CalculatorTest {
         input = "+-";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-4.96439f,2.05632f);
+        expResult = new ComplexNumber(-4.96438287d,+2.05631472d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -115,7 +115,7 @@ public class CalculatorTest {
     @Test(expected=NotEnoughOperandsException.class)
     public void testNotEnoughOperandsExceptionOnElaborate(){
         
-        String input = "6";        
+        String input = "-12.465443j";        
         instance.elaborate(input);
         
         input = "+";        
@@ -131,11 +131,11 @@ public class CalculatorTest {
         
         String input = "fuehufhuei";        
         instance.elaborate(input);
+        
         input = "5.6464+j6567";        
         instance.elaborate(input);
-        input = "5,453";        
-        instance.elaborate(input);
         
-    }
-    
+        input = "5,453";        
+        instance.elaborate(input);        
+    }    
 }

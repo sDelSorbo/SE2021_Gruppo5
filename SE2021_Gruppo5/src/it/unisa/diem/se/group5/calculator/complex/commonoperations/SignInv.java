@@ -13,15 +13,18 @@ import java.util.Stack;
  * 
  * @author Marco
  */
-public class SignInv implements Operation {
+public class SignInv extends AbstractOnStackOperation {
+
+    public SignInv(Stack<ComplexNumber> stack) {
+        super(stack);
+    }
     
     /**
      * Esegue l'inversione di segno di un numero prelevato dalla cima dello stack.
-     *  
-     * @param stack di numeri complessi
+     * 
      */
     @Override
-    public void execute(Stack<ComplexNumber> stack) {
+    public void execute() {
         ComplexNumber op = stack.pop();       
         ComplexNumber result = new ComplexNumber(-op.getReal(),-op.getImaginary());
         stack.push(result);
