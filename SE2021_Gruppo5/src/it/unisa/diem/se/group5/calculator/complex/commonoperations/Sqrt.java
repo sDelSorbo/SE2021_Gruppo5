@@ -5,7 +5,6 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
-import it.unisa.diem.se.group5.calculator.complex.ComplexOperations;
 import java.util.Stack;
 
 /**
@@ -30,15 +29,22 @@ public class Sqrt extends AbstractOnStackOperation{
         return Math.atan2(op.getImaginary(), op.getReal());
     }    
     
+    public double mod(ComplexNumber op){
+        if (op.getReal()!=0 || op.getImaginary()!=0) {
+            return (float) Math.sqrt(op.getReal()*op.getReal() + op.getImaginary()*op.getImaginary());
+        } else {
+            return 0d;
+        }
+    }
+    
     /**
      * Esegue la radice quadrata di un numero prelevato dalla cima dello stack.
-     *  
-     * @param stack di numeri complessi
+     * 
      */
     @Override
     public void execute() {
         ComplexNumber op = stack.pop();
-        double r = Math.sqrt(ComplexOperations.mod(op) );
+        double r = Math.sqrt(mod(op) );
         double theta = arg(op)/2f;
         ComplexNumber result =  new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
         stack.push(result);

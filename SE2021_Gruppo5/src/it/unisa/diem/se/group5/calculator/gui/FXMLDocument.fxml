@@ -26,11 +26,16 @@
                               <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Quit" />
                         </items>
                       </Menu>
-                      <Menu fx:id="Help" mnemonicParsing="false" onAction="#onHelp" text="Help">
+                      <Menu fx:id="Help" mnemonicParsing="false" text="User-Defined">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem mnemonicParsing="false" onAction="#newUserDefined" text="New" />
                         </items>
                       </Menu>
+                        <Menu fx:id="Help1" mnemonicParsing="false" onAction="#onHelp" text="Help">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="About" />
+                           </items>
+                        </Menu>
                     </menus>
                   </MenuBar>
                   <TextField fx:id="inputText" alignment="CENTER" layoutX="13.0" layoutY="43.0" onAction="#onEnter" prefHeight="93.0" prefWidth="556.0" promptText="a+bj">

@@ -23,7 +23,6 @@ public class Mul extends AbstractOnStackOperation {
     /**
      * Esegue la moltiplicazione di due numeri prelevati dalla cima dello stack.
      *  
-     * @param stack di numeri complessi
      * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override

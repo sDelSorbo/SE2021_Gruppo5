@@ -22,6 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.Stack;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 
@@ -51,6 +52,8 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<ComplexNumber> complexNumberStack;
     private Stack<ComplexNumber> stack = new Stack<>();
     private Calculator calculator;
+    @FXML
+    private Menu Help1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -157,5 +160,11 @@ public class FXMLDocumentController implements Initializable {
     private void inputFocus() {
         inputText.requestFocus();
         inputText.clear();
+    }
+
+    @FXML
+    private void newUserDefined(ActionEvent event) {
+        
+        
     }
 }

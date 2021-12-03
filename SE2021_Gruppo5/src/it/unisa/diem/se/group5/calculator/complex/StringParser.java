@@ -196,4 +196,8 @@ public class StringParser {
         return new ComplexNumber(real,imaginary);
         
     }
+
+    boolean isCustomOperation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

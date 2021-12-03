@@ -1,3 +1,4 @@
+
 /*
  * Calculator
  * 
@@ -61,18 +62,17 @@ public class Calculator {
      * @throws RuntimeException in caso di input non rappresentante nè un'operazione nè un numero.
      */
     public void elaborate(String input) throws RuntimeException{
+        //Forse qua va il s
         if (parser.isNumber(input)){
             ComplexNumber number;
             number = evaluateNum(input);
             stack.push(number);
             return;
-        }
-        
-        if (parser.isOperation(input)){
+        } else if (parser.isOperation(input)){
             currentOp = input;
             executeOper(input);
             return;
-        }            
+        }
         
         throw new NotAValidInputException("L'input inserito non è valido.\n"
                 + "Ricorda che i numeri devono essere inseriti nel formato a+bi.");
