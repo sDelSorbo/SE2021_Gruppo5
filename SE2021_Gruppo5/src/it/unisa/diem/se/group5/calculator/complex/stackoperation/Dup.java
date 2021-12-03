@@ -2,7 +2,7 @@
  * Dup 
  *
  */
-package it.unisa.diem.se.group5.calculator.complex.commonoperations.StackOperation;
+package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;

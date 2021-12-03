@@ -6,7 +6,7 @@
 package it.unisa.diem.se.group5.calculator.complex;
 
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.CommonOperations;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.StackOperation.StackOperations;
+import it.unisa.diem.se.group5.calculator.complex.stackoperation.StackOperations;
 import java.util.EmptyStackException;
 import java.util.Map;
 import java.util.Stack;
