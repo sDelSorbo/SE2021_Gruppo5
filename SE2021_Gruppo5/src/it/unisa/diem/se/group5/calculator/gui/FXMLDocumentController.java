@@ -23,13 +23,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
 import it.unisa.diem.se.group5.calculator.complex.Variables;
-import java.util.Collection;
 import java.util.Map;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -64,7 +62,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label labelVariables;
     @FXML
-    private Button setBtn;
+    private Button loadingButton;
+    @FXML
+    private Button subtractionButton;
+    @FXML
+    private Button savingButton;
+    @FXML
+    private Button addingButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,14 +79,13 @@ public class FXMLDocumentController implements Initializable {
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
         stackTab.setItems(complexNumberStack);
-       
+        boxVariables.setValue("a");
        // listVariables.setAll((Collection<? extends String>) varia.getVariablesMap());
         for(Map.Entry entry: varia.getVariablesMap().entrySet())
         {
             Object items = entry.getKey();
             boxVariables.getItems().add((String)items);
         }
-       varia.setVariable("a", new ComplexNumber(3,5));
         
     }
 
@@ -110,7 +113,7 @@ public class FXMLDocumentController implements Initializable {
         try {
             calculator.elaborate(input);
         } catch (Exception ex) {
-            showGenericAlert("ERROR", ex.getMessage(),null);
+            showGenericAlert("ERROR", ex.getMessage(),null, "Error");
         }            
         converToObservable();
     }
@@ -137,9 +140,10 @@ public class FXMLDocumentController implements Initializable {
      * @param alertMessage errore che si vuole mostrare
      * @param type rappresenta il tipo di alert
      */
-    public void showGenericAlert(String type, String alertMessage,String headerText) {
+    public void showGenericAlert(String type, String alertMessage,String headerText,String title) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.setHeaderText(headerText);
+        alert.setTitle(title);
         alert.showAndWait().filter(response -> response == ButtonType.OK);
         
     }
@@ -163,7 +167,10 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onHelp(ActionEvent event) {
-        showGenericAlert("INFORMATION", "Calculator v0.2",null);
+        showGenericAlert("INFORMATION", "'>var' to set the selected variable, with the value on the top of the stack\n"
+                + "'<var' to insert the value of the selected variable on the top of the stack\n"
+                + "'+var' to add the value on the top of the stack to the selected variable\n"
+                + "'-var' to subtract the value on the top of the stack to the selected variable ","Manual Complex Calculator v 0.2","Help");
     }
     
     /**
@@ -189,7 +196,6 @@ public class FXMLDocumentController implements Initializable {
         changeVariable();
     }
 
-    @FXML
     private void onSetPressed(ActionEvent event) {
         //prova da cancellare usato solo per vedere se funziona
         if(varia.getVariablesMap().containsValue(new ComplexNumber(10,5))){
@@ -211,5 +217,30 @@ public class FXMLDocumentController implements Initializable {
         stack.clear();
         complexNumberStack.clear();
         inputFocus();
+    }
+
+    @FXML
+    private void onLoadingPressed(ActionEvent event) {
+        String item=boxVariables.getValue();
+        Variables.variableLoading(stack, item);
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
+    }
+
+    @FXML
+    private void onSubtractionPressed(ActionEvent event) {
+        String item=boxVariables.getValue();
+        Variables.variableSubtraction(stack, item);       
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));         
+    }
+
+    @FXML
+    private void onSavingPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void onAddingPressed(ActionEvent event) {
+        String item=boxVariables.getValue();
+        Variables.variableAdding(stack, item);       
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));          
     }
 }

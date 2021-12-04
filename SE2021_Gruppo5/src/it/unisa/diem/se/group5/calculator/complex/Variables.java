@@ -24,7 +24,7 @@ public class Variables {
     public Variables() {
         variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
-            variablesMap.put(String.valueOf(alphabet), new ComplexNumber(0, 0));
+            variablesMap.put(String.valueOf(alphabet), null);
         }
     }
     
@@ -61,7 +61,22 @@ public class Variables {
         }
         return variablesMap.get(var);
     }
-
+    static public void variableLoading(ComplexStack stack, String var){
+        ComplexNumber n = stack.peek();
+        variablesMap.replace(var, n);
+    }
+    static public void variableSaving(ComplexStack stack, String var){
+        if(variablesMap.get(var)!=null)
+            stack.push(variablesMap.get(var));
+    }
+    static public void variableAdding(ComplexStack stack, String var){
+        ComplexNumber n = stack.peek();
+        variablesMap.replace(var, ComplexOperations.add(n, variablesMap.get(var)));
+    }
+    static public void variableSubtraction(ComplexStack stack, String var){
+        ComplexNumber n = stack.peek();
+        variablesMap.replace(var, ComplexOperations.sub(variablesMap.get(var), n));        
+    }
     /**
      * Ritorna una stringa che rappresenta l' HashMap.
      * @return la sequenza di elementi visti come coppia chiave-valore contenuti nell'HashMap 
