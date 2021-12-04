@@ -25,6 +25,7 @@ import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.util.Stack;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -53,7 +54,6 @@ public class FXMLDocumentController implements Initializable {
     private Menu File;
     @FXML
     private Menu Help;
-
     @FXML
     private TextField userDefName;
     @FXML
@@ -65,18 +65,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<UserDefinedOperation, String> nameClm;
     @FXML
-    private TableColumn<UserDefinedOperation, String> opsClm;
-    
+    private TableColumn<UserDefinedOperation, String> opsClm;    
         
     private ObservableList<ComplexNumber> complexNumberStack;
     private Stack<ComplexNumber> stack = new Stack<>();
     private Calculator calculator;
     ObservableList<UserDefinedOperation> userOperationsObs;    
-    UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();     
+    UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();
+    Variables variables;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        calculator = new Calculator(stack);
+        variables = new Variables();
+        calculator = new Calculator(stack, variables);
         complexNumberStack = FXCollections.observableArrayList();
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
@@ -220,7 +221,6 @@ public class FXMLDocumentController implements Initializable {
             stage.setHeight(stage.getHeight() );
             stage.setWidth(stage.getWidth() + 520);
             extended = true;
-        }         
-        
+        }              
     }
 }
