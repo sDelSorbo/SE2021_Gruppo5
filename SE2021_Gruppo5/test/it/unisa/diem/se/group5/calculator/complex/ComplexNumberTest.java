@@ -45,14 +45,14 @@ public class ComplexNumberTest {
         
         System.out.println("getReal");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3.1234599f,10);
+        ComplexNumber instance2 = new ComplexNumber(3.1234599d,10);
         ComplexNumber instance3 = new ComplexNumber(-3);
-        float expResult1 = 0;
-        float expResult2 = 3.12346f;
-        float expResult3 = -3;
-        float result1 = instance1.getReal();
-        float result2 = instance2.getReal();
-        float result3 = instance3.getReal();
+        double expResult1 = 0;
+        double expResult2 = 3.12346d;
+        double expResult3 = -3;
+        double result1 = instance1.getReal();
+        double result2 = instance2.getReal();
+        double result3 = instance3.getReal();
         assertEquals(expResult1, result1, 0.0);
         assertEquals(expResult2, result2, 0.0);
         assertEquals(expResult3, result3, 0.0);
@@ -65,7 +65,7 @@ public class ComplexNumberTest {
     @Test
     public void testSetReal() {
         System.out.println("setReal");
-        float real = 0.0F;
+        double real = 0.0d;
         ComplexNumber instance = new ComplexNumber();
         instance.setReal(real);
     }
@@ -77,14 +77,14 @@ public class ComplexNumberTest {
     public void testGetImaginary() {
         System.out.println("getImaginary");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(3.777823f,-10.202f);      
+        ComplexNumber instance2 = new ComplexNumber(3.777823d,-10.202d);      
         ComplexNumber instance3 = new ComplexNumber(3);
-        float expResult1 = 0;
-        float expResult2 = -10.202f;
-        float expResult3 = 0;
-        float result1 = instance1.getImaginary();
-        float result2 = instance2.getImaginary();
-        float result3 = instance3.getImaginary();
+        double expResult1 = 0;
+        double expResult2 = -10.202d;
+        double expResult3 = 0;
+        double result1 = instance1.getImaginary();
+        double result2 = instance2.getImaginary();
+        double result3 = instance3.getImaginary();
         assertEquals(expResult1, result1, 0);
         assertEquals(expResult2, result2, 0);
         assertEquals(expResult3, result3, 0);
@@ -96,7 +96,7 @@ public class ComplexNumberTest {
     @Test
     public void testSetImaginary() {
         System.out.println("setImaginary");
-        float imaginary = 0.0F;
+        double imaginary = 0.0d;
         ComplexNumber instance = new ComplexNumber();
         instance.setImaginary(imaginary);
     }
@@ -108,7 +108,7 @@ public class ComplexNumberTest {
     public void testGetComplex() {
         System.out.println("getComplex");
         ComplexNumber instance1 = new ComplexNumber();
-        ComplexNumber instance2 = new ComplexNumber(-3.33f,-10);
+        ComplexNumber instance2 = new ComplexNumber(-3.33d,-10);
         ComplexNumber instance3 = new ComplexNumber(3);
         String expResult1 = "0";
         String expResult2 = "-3.33-10j";
@@ -177,7 +177,7 @@ public class ComplexNumberTest {
      */
     @Test (expected =  NumberFormatException.class)
     public void testNumberFormatrException() {
-        ComplexNumber op1 = new ComplexNumber((float) Math.pow(2, 130),10);
+        ComplexNumber op1 = new ComplexNumber((double) Math.pow(2, 130),10);
     }
     
 }
