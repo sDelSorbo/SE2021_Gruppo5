@@ -21,10 +21,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.StringParser;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import java.util.Stack;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 /**
  *
@@ -48,12 +53,26 @@ public class FXMLDocumentController implements Initializable {
     private Menu File;
     @FXML
     private Menu Help;
+
+    @FXML
+    private TextField userDefName;
+    @FXML
+    private TextArea userDefList;
+    @FXML
+    private Button userDefAdd;
+    @FXML
+    private TableView<UserDefinedOperation> userOpTab;
+    @FXML
+    private TableColumn<UserDefinedOperation, String> nameClm;
+    @FXML
+    private TableColumn<UserDefinedOperation, String> opsClm;
     
+        
     private ObservableList<ComplexNumber> complexNumberStack;
     private Stack<ComplexNumber> stack = new Stack<>();
     private Calculator calculator;
-    @FXML
-    private Menu Help1;
+    ObservableList<UserDefinedOperation> userOperationsObs;    
+    UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,7 +81,14 @@ public class FXMLDocumentController implements Initializable {
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
         
-        stackTab.setItems(complexNumberStack);          
+        stackTab.setItems(complexNumberStack);    
+        
+        userOperationsObs = FXCollections.observableArrayList();
+        
+        nameClm.setCellValueFactory(new PropertyValueFactory<>("name"));
+        opsClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
+        
+        userOpTab.setItems(userOperationsObs);    
     }
 
     /**
@@ -163,8 +189,38 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void newUserDefined(ActionEvent event) {
+    private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
+        String name = userDefName.getText();
+        String operations = userDefList.getText().trim();
+        StringParser sp = new StringParser();
         
+        if (!sp.isOperation(name))
+            throw new MalformedUserDefinedOperationException("Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
+        if (!sp.validateOperations(operations)){
+            throw new MalformedUserDefinedOperationException("Le operazioni inserite non sono valide");
+        }
+        
+        UserDefinedOperation userDefOp = new UserDefinedOperation(name, operations);
+        
+        userOperations.add(userDefOp);
+        userOperationsObs.add(userDefOp);
+    }
+    
+    private boolean extended = false;
+    
+    @FXML
+    private void OnExtends(ActionEvent event) {
+        Stage stage = (Stage) userDefAdd.getScene().getWindow();
+        
+        if (extended){
+            stage.setHeight(stage.getHeight() );
+            stage.setWidth(stage.getWidth() - 520);
+            extended = false;
+        } else {
+            stage.setHeight(stage.getHeight() );
+            stage.setWidth(stage.getWidth() + 520);
+            extended = true;
+        }         
         
     }
 }

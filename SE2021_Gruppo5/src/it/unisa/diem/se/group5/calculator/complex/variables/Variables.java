@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.diem.se.group5.calculator.complex;
+package it.unisa.diem.se.group5.calculator.complex.variables;
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.HashMap;
 import java.util.Map;
 
