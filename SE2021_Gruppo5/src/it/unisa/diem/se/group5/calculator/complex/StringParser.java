@@ -47,8 +47,9 @@ public class StringParser {
         else{
             boolean check = false;
             boolean isStackOrCommonOperation = toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|");
+            boolean isVariableOperation = toParse.matches("^[><+-][a-z]$");
             boolean isUserDefinedOperation = toParse.matches(generateUserDefinedRegex());
-            check =  check || isStackOrCommonOperation || isUserDefinedOperation;
+            check =  check || isStackOrCommonOperation || isVariableOperation || isUserDefinedOperation;
             return check;
         }     
     }    
