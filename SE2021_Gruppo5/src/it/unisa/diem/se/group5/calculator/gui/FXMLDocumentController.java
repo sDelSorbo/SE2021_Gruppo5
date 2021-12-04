@@ -31,6 +31,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -72,6 +73,8 @@ public class FXMLDocumentController implements Initializable {
     private Button savingButton;
     @FXML
     private Button addingButton;
+    @FXML
+    private AnchorPane parent;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -202,7 +205,6 @@ public class FXMLDocumentController implements Initializable {
         changeVariable();
     }
 
-    
     /**
      * Mostra il valore corrispondente alla variabile scelta.
      */
@@ -221,6 +223,7 @@ public class FXMLDocumentController implements Initializable {
         stack.clear();
         complexNumberStack.clear();
         inputFocus();
+        
     }
     /**
      * Inserisce il valore di una variabile sullo stack.
@@ -287,6 +290,14 @@ public class FXMLDocumentController implements Initializable {
         }catch (SizeStackException e){
          showGenericAlert("ERROR","The stack is empty", "The stack is empty","Error");
         }
+    }
+
+    @FXML
+    private void darkApplication(ActionEvent event) {
+        if(!parent.getStylesheets().contains("darkmode.css"))
+            parent.getStylesheets().add("darkmode.css");
+        else
+            parent.getStylesheets().remove("darkmode.css");
     }
     
 }
