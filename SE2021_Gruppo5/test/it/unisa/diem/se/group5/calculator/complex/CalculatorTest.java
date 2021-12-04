@@ -6,6 +6,7 @@
 package it.unisa.diem.se.group5.calculator.complex;
 
 
+import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.util.Stack;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,7 +18,8 @@ import static org.junit.Assert.*;
 public class CalculatorTest {
     
     private Stack<ComplexNumber> complexNumberStack = new Stack<>();
-    private Calculator instance = new Calculator(complexNumberStack);
+    private Variables var = new Variables();
+    private Calculator instance = new Calculator(complexNumberStack, var);
     
     public CalculatorTest() {        
     }
