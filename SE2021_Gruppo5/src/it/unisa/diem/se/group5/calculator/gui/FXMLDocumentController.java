@@ -192,25 +192,41 @@ public class FXMLDocumentController implements Initializable {
         inputText.requestFocus();
         inputText.clear();
     }
-
+    /**
+     * Cambia la variabile visualizzata a video quando si esegue una scelta nel "choicebox".
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void onBoxAction(ActionEvent event) {
         changeVariable();
     }
 
     
+    /**
+     * Mostra il valore corrispondente alla variabile scelta.
+     */
     private void changeVariable(){
         String item=boxVariables.getValue();
         labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
     }
 
+    /**
+     * Esegue il clear dello stack e della TextField.
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void clearApplication(ActionEvent event) {
         stack.clear();
         complexNumberStack.clear();
         inputFocus();
     }
-
+    /**
+     * Inserisce il valore di una variabile sullo stack.
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void onLoadingPressed(ActionEvent event) {
         try{
@@ -223,7 +239,11 @@ public class FXMLDocumentController implements Initializable {
          showGenericAlert("ERROR","The stack is empty", "Assignement Failed","Error");
         }
     }
-
+    /**
+     * Prende il primo valore dello stack e lo sottrae alla variabile selezionata.
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void onSubtractionPressed(ActionEvent event) {
         try{
@@ -236,7 +256,11 @@ public class FXMLDocumentController implements Initializable {
          showGenericAlert("ERROR","The stack is empty", "Assignement Failed","Error");
         }
     }
-
+    /**
+     * Salva l'ultimo valore dello stack in una variabile.
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void onSavingPressed(ActionEvent event) {
         try{
@@ -247,7 +271,11 @@ public class FXMLDocumentController implements Initializable {
          showGenericAlert("ERROR","Variable selected is empty", "Saving On Stack Failed","Error");
         }
     }
-
+    /**
+     * Prende il primo valore dello stack e lo addizziona alla variabile selezionata.
+     * 
+     * @param event un evento che viene passato
+     */
     @FXML
     private void onAddingPressed(ActionEvent event) {
         try{
