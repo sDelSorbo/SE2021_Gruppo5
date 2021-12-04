@@ -5,8 +5,13 @@ package it.unisa.diem.se.group5.calculator.complex;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.After;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -14,6 +19,28 @@ import org.junit.Test;
  * @author roberto
  */
 public class VariablesTest {
+    Variables varia;
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        varia = new Variables();
+        varia.setVariable("a", new ComplexNumber(3,1));
+        varia.setVariable("b", new ComplexNumber(3,1));
+        varia.setVariable("c", new ComplexNumber(3,1));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
    
     /**
      * Test del metodo getVariablesMap della classe Variables.
@@ -123,5 +150,76 @@ public class VariablesTest {
         ComplexNumber result = v.getValue(null);
          
      }
+
+    /**
+     * Test of variableLoading method, of class Variables.
+     */
+    @Test
+    public void testVariableLoading() {
+        System.out.println("variableLoading");
+        ComplexStack stack = new ComplexStack();
+        Variables varia=new Variables();
+        stack.push(new ComplexNumber(3,7));
+        String var = "a";
+        String expected = "3.0+7.0j";
+        Variables.variableLoading(stack, var);
+        assertEquals(expected,varia.getVariablesMap().get(var).toString());
+        
+    }
+
+    /**
+     * Test of variableSaving method, of class Variables.
+     */
+    @Test
+    public void testVariableSaving() {
+        System.out.println("variableSaving");
+        ComplexStack stack = new ComplexStack();
+        String var = "a";
+        Variables.variableSaving(stack, var);
+        String expected = "3.0+1.0j";
+        assertEquals(expected,stack.peek().toString()); 
+    }
+
+    /**
+     * Test of variableAdding method, of class Variables.
+     */
+    @Test
+    public void testVariableAdding() {
+        System.out.println("variableAdding");
+        ComplexStack stack = new ComplexStack();
+        Variables varia=new Variables();
+        stack.push(new ComplexNumber(3,7));
+        String var = "a";
+        String expected = "3.0+7.0j";
+        Variables.variableAdding(stack, var);
+        assertEquals(expected,varia.getVariablesMap().get(var).toString());
+    }
+
+    /**
+     * Test of variableSubtraction method, of class Variables.
+     */
+    @Test
+    public void testVariableSubtraction() {
+        System.out.println("variableSubtraction");
+        ComplexStack stack = null;
+        String var = "";
+        Variables.variableSubtraction(stack, var);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toString method, of class Variables.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Variables instance = new Variables();
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
