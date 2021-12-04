@@ -7,6 +7,9 @@
 
 package it.unisa.diem.se.group5.calculator.complex;
 
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import java.util.List;
+
 /**
  * Questa classe implementa uno StringParser in grado di scansionare una stringa
  * andando a deterinare se si tratta di una operazione o un numero. Nel caso si
@@ -41,29 +44,71 @@ public class StringParser {
         
         if (toParse.length() <= 1)
             return toParse.matches("[*+/-]");       
-        else
-            return (toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|"));      
+        else{
+            boolean check = false;
+            boolean isStackOrCommonOperation = toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|");
+            boolean isUserDefinedOperation = toParse.matches(generateUserDefinedRegex());
+            check =  check || isStackOrCommonOperation || isUserDefinedOperation;
+            return check;
+        }     
     }    
+    
+    /* Non usa le regex
+    private boolean isDefOp(String toCheck) {
+        List<UserDefinedOperation> usrDefOps = userDefOps.getCurrentOperations();
+        for (UserDefinedOperation usr: usrDefOps){
+            if (toCheck.equals(usr.getName()))
+                return true;
+        }
+        return false; 
+    } 
+    */
+    
+    /**
+     * 
+     * @param toParse
+     * @return 
+     */
+    public boolean validateOperations(String toParse) {
+        String[] st = toParse.split("\\s");
+        for (String s: st){
+            String token = s;
+            if (!isOperation(token) || !isNumber(token)) //Aggiungere controllo per Numeri
+                return false;
+        }    
+        return true;
+        
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    private String generateUserDefinedRegex(){
+        List<String> usr = UserDefinedOperations.getInstance().getCurrentOperationsTokenized();
+        if (usr.isEmpty()) return "\\b\\B"; //L'espressione regolare è una contraddizione e corrisponde a ritornare falso;
+        String usrRegex;
+        usrRegex = generateRegex(usr); 
+        return usrRegex;
+    }
     
     /**
     * Genera una espressione regolare che controlla se una delle operazioni passate
     * come argomento è contenuta in una stringa 
     *
-    *  @param   args  una serie di operazioni da aggiungere all'esperessione regolare
+    *  @param   list  una serie di operazioni da aggiungere all'esperessione regolare
     * 
     *  @return        l'espressione regolare che verifica se una stringa corrisponde 
     *                 ad una delle operazioni
     */
-    private String generateRegex(String... args){
-        String regex = "\\A(";
+    private String generateRegex(List<String> list){
+        String regex = "\"";
         
-        for (String arg: args){
-            regex = regex.concat(arg+"|");
+        for (String op: list){
+            regex = regex.concat("^"+op+"$|");
         }
         
-        regex = regex.substring(0, regex.length()-1);
-        
-        regex = regex.concat(")");
+        regex = regex.concat("\"");
         
         return regex;
     }
@@ -84,7 +129,9 @@ public class StringParser {
             return false;
         }
         
-        return toParse.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
+        return toParse.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)"
+                + "(?:[eE][+-]?\\d+)?(?![jJ.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)"
+                + "(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
     
     /**
@@ -195,9 +242,5 @@ public class StringParser {
         
         return new ComplexNumber(real,imaginary);
         
-    }
-
-    boolean isCustomOperation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
