@@ -70,9 +70,9 @@
                                     <Font size="24.0" />
                                  </font>
                               </Button>
-                              <ComboBox layoutX="78.0" layoutY="186.0" prefHeight="25.0" prefWidth="28.0" />
-                              <Label contentDisplay="RIGHT" layoutX="128.0" layoutY="186.0" prefHeight="25.0" prefWidth="80.0" text="Value" textAlignment="RIGHT" />
-                              <Button layoutX="244.0" layoutY="211.0" mnemonicParsing="false" onAction="#OnExtends" text="Extends" />
+                              <ComboBox fx:id="comboVariable" layoutX="73.0" layoutY="236.0" onAction="#variableChange" prefHeight="51.0" prefWidth="80.0" />
+                              <Label fx:id="labelVariable" contentDisplay="RIGHT" layoutX="164.0" layoutY="236.0" prefHeight="51.0" prefWidth="80.0" text="Value" textAlignment="RIGHT" />
+                              <Button layoutX="210.0" layoutY="27.0" mnemonicParsing="false" onAction="#OnExtends" prefHeight="51.0" prefWidth="99.0" text="Extend" />
                            </children>
                         </AnchorPane>
                      </items>

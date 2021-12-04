@@ -10,7 +10,9 @@ import java.util.EmptyStackException;
 import java.util.Map;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import java.util.List;
 
 
 /**
@@ -43,6 +45,8 @@ public class Calculator {
     
     private Variables variables;
     
+    private UserDefinedOperations userDefined;
+    
     /**
      * Costruisce un calcolatore dotato di StringParser e stack di numeri complessi
      * 
@@ -54,6 +58,7 @@ public class Calculator {
         commonOperations = new CommonOperations(stack).get();
         stackOperations = new StackOperations(stack).get();
         this.variables = variables;
+        this.userDefined = UserDefinedOperations.getInstance();
     }
     
     /**
@@ -106,6 +111,9 @@ public class Calculator {
                 commonOperations.get(input).execute();
             else if (stackOperations.containsKey(input))
                 stackOperations.get(input).execute();
+            else if (parser.isUserDefined(input)){
+                executeUserDefined(input);
+            }
             // CHANGE
             else{
                 char varOp = input.charAt(0);
@@ -124,9 +132,21 @@ public class Calculator {
                         variables.variableSubtract(stack, varName);
                     break;
                 }
-            }                  
+            }            
         } catch (EmptyStackException ex){
             throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }
     }    
+
+    private void executeUserDefined(String input) {
+        List<String> operations = userDefined.getListOfOperations(input);
+        Stack<ComplexNumber> tmp = stack;
+        try {
+            for (String op: operations)
+                this.elaborate(op);           
+        } catch (Exception ex){
+            stack = tmp;
+            throw ex;
+        }                
+    }
 }

@@ -6,10 +6,13 @@
 package it.unisa.diem.se.group5.calculator.complex;
 
 
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.util.Stack;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -17,13 +20,26 @@ import static org.junit.Assert.*;
  */
 public class CalculatorTest {
     
-    private Stack<ComplexNumber> complexNumberStack = new Stack<>();
-    private Variables var = new Variables();
-    private Calculator instance = new Calculator(complexNumberStack, var);
+    static private Stack<ComplexNumber> complexNumberStack = new Stack<>();
+    static private Variables var = new Variables();
+    static private UserDefinedOperations userDefined = UserDefinedOperations.getInstance();
+    static private Calculator instance = new Calculator(complexNumberStack, var);
     
     public CalculatorTest() {        
     }
-
+    
+    @BeforeClass
+    public static void setup(){
+        String input = "5";        
+        instance.elaborate(input);
+        
+        var.variableLoad(complexNumberStack, "a");
+        
+        userDefined.add(new UserDefinedOperation("addsub","+ 5 -"));
+        
+        complexNumberStack.pop();
+    }
+    
     /**
      * Test del metodo elaborate della classe Calculator.
      */
@@ -108,6 +124,20 @@ public class CalculatorTest {
         
         input = "0+j";        
         instance.elaborate(input);
+         
+        input = "6";        
+        instance.elaborate(input);
+        
+        input = "6";        
+        instance.elaborate(input);
+        
+        input = "addsub";
+        instance.elaborate(input);
+        
+        expResult = new ComplexNumber(-7,0);
+        result = complexNumberStack.pop();
+        complexNumberStack.push(result);
+        assertEquals(expResult, result);
     }
     
     /**

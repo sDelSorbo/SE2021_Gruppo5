@@ -27,6 +27,8 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.util.Stack;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
@@ -65,31 +67,42 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<UserDefinedOperation, String> nameClm;
     @FXML
-    private TableColumn<UserDefinedOperation, String> opsClm;    
+    private TableColumn<UserDefinedOperation, String> opsClm;      
+    @FXML
+    private ComboBox<String> comboVariable;
+    @FXML
+    private Label labelVariable;
+    
+    private boolean extended = false;
         
     private ObservableList<ComplexNumber> complexNumberStack;
     private Stack<ComplexNumber> stack = new Stack<>();
     private Calculator calculator;
     ObservableList<UserDefinedOperation> userOperationsObs;    
     UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();
-    Variables variables;
+    Variables variables;    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         variables = new Variables();
         calculator = new Calculator(stack, variables);
+        // Stack View
         complexNumberStack = FXCollections.observableArrayList();
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
         
         stackTab.setItems(complexNumberStack);    
         
+        //UserDefined Operation View
         userOperationsObs = FXCollections.observableArrayList();
         
         nameClm.setCellValueFactory(new PropertyValueFactory<>("name"));
         opsClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
         
         userOpTab.setItems(userOperationsObs);    
+        
+        //Variables View
+        comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
     }
 
     /**
@@ -119,6 +132,11 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR", ex.getMessage());
         }            
         converToObservable();
+        refresh();
+    }
+    
+    private void refresh() {
+        variableChange(null);
     }
     
     /**
@@ -148,6 +166,13 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.showAndWait().filter(response -> response == ButtonType.OK);
     }
+    
+    public void showGenericAlert(String type, String alertMessage,String headerText,String title) {
+        Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
+        alert.setHeaderText(headerText);
+        alert.setTitle(title);
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+    }
 
     /**
      * Nel sottomenù di "File" è presente un bottone per uscire
@@ -168,7 +193,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onHelp(ActionEvent event) {
-        showGenericAlert("INFORMATION", "Calculator v0.1");
+        showGenericAlert("INFORMATION", 
+                  "E' possibile inserire numeri complessi nel formato a+bj.\n"
+                + "Le operazioni supportate sui numeri complessi sono +, -, *, /, sqrt, +-.\n"         
+                + "'>var' per inserire nella variabile il valore nella cima dello stack.\n"
+                + "'<var' per inserire il valore nella variabile nella cima dello stack.\n"
+                + "'+var' per aggiungere il valore nella cima dello stack alla variabile.\n"
+                + "'-var' per sottrarre il valore nella cima dello stack alla variabile.\n"
+                + "Premendo il tasto Expand è possibile inserire operazioni programmabili."
+                ,"Manuale Complex Calculator v 0.2","Help");
     }
     
     /**
@@ -191,14 +224,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
-        String name = userDefName.getText();
+        String name = userDefName.getText().trim();
         String operations = userDefList.getText().trim();
         StringParser sp = new StringParser();
         
-        if (!sp.isOperation(name))
-            throw new MalformedUserDefinedOperationException("Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
-        if (!sp.validateOperations(operations)){
-            throw new MalformedUserDefinedOperationException("Le operazioni inserite non sono valide");
+        if (sp.isOperation(name)){
+            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
+            return;
+        }
+        if (!sp.validateOperations(operations)){ //Spostare in userDefined?
+            showGenericAlert("ERROR", "Le operazioni inserite non sono valide");
+            return;
         }
         
         UserDefinedOperation userDefOp = new UserDefinedOperation(name, operations);
@@ -206,8 +242,6 @@ public class FXMLDocumentController implements Initializable {
         userOperations.add(userDefOp);
         userOperationsObs.add(userDefOp);
     }
-    
-    private boolean extended = false;
     
     @FXML
     private void OnExtends(ActionEvent event) {
@@ -223,4 +257,18 @@ public class FXMLDocumentController implements Initializable {
             extended = true;
         }              
     }
+
+    @FXML
+    private void variableChange(ActionEvent event) {
+        ComplexNumber value;
+        try{
+            value = variables.getValue(comboVariable.getValue());
+        } catch (Exception e) {
+            labelVariable.setText("Empty");
+            return;
+        }
+        if (value == null) labelVariable.setText("Empty");
+        else labelVariable.setText(value.toString());
+    }
+
 }

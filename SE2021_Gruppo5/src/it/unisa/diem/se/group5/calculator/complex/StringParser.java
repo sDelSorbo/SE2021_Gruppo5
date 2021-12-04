@@ -48,11 +48,15 @@ public class StringParser {
             boolean check = false;
             boolean isStackOrCommonOperation = toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|");
             boolean isVariableOperation = toParse.matches("^[><+-][a-z]$");
-            boolean isUserDefinedOperation = toParse.matches(generateUserDefinedRegex());
+            boolean isUserDefinedOperation = isUserDefined(toParse);
             check =  check || isStackOrCommonOperation || isVariableOperation || isUserDefinedOperation;
             return check;
         }     
     }    
+    
+    public boolean isUserDefined(String toParse){
+        return toParse.matches(generateUserDefinedRegex());
+    }
     
     /* Non usa le regex
     private boolean isDefOp(String toCheck) {
@@ -73,12 +77,10 @@ public class StringParser {
     public boolean validateOperations(String toParse) {
         String[] st = toParse.split("\\s");
         for (String s: st){
-            String token = s;
-            if (!isOperation(token) || !isNumber(token)) //Aggiungere controllo per Numeri
+            if (!(isOperation(s) || isNumber(s))) 
                 return false;
         }    
-        return true;
-        
+        return true;        
     }
     
     /**
@@ -103,13 +105,13 @@ public class StringParser {
     *                 ad una delle operazioni
     */
     private String generateRegex(List<String> list){
-        String regex = "\"";
+        String regex = "";
         
         for (String op: list){
             regex = regex.concat("^"+op+"$|");
         }
-        
-        regex = regex.concat("\"");
+        regex = regex.substring(0, regex.length()-1);
+        regex = regex.concat("");
         
         return regex;
     }
@@ -148,8 +150,7 @@ public class StringParser {
         if (isNumber(toParse)){
             return extractRI(toParse)[0];
         }
-        throw new NotANumberException();              
-        
+        throw new NotANumberException();                      
     }
     
     /**

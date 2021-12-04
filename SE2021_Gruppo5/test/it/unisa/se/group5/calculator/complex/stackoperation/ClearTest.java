@@ -24,8 +24,7 @@ public class ClearTest {
     public void setUp() {
         stack = new Stack<>();
         op=new Clear(stack);
-    }
-    
+    }    
     
      /**
      * Test of execute method, of class Clear.
@@ -33,13 +32,13 @@ public class ClearTest {
     @Test
     public void testClear() {
         System.out.println("Clear");
-        ComplexNumber op1 = new ComplexNumber(3,10);
-        ComplexNumber op2 = new ComplexNumber(1,1);
+        ComplexNumber op1 = new ComplexNumber(3342,4210);
+        ComplexNumber op2 = new ComplexNumber(132,11213);
         ComplexNumber op3 = new ComplexNumber();
-        ComplexNumber op4 = new ComplexNumber(3);
-        ComplexNumber op5 = new ComplexNumber(3.15d,-10.55d);
-        ComplexNumber op6 = new ComplexNumber(2.30d,5.2d);
-        ComplexNumber op7 = new ComplexNumber(6.300032d,5.2d);
+        ComplexNumber op4 = new ComplexNumber(3.233);
+        ComplexNumber op5 = new ComplexNumber(3.1543d,-10.53425d);
+        ComplexNumber op6 = new ComplexNumber(455.42230d,543242.2d);
+        ComplexNumber op7 = new ComplexNumber(4737.42242d,453d);
         
         boolean expResult = true;
         

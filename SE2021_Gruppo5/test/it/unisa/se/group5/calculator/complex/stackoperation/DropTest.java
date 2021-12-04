@@ -33,23 +33,17 @@ public class DropTest {
     @Test
     public void testDrop() {
         System.out.println("Drop");
-        ComplexNumber op1 = new ComplexNumber(3,10);
-        ComplexNumber op2 = new ComplexNumber(1,1);
+        ComplexNumber op1 = new ComplexNumber(3.535d,1543.0d);
+        ComplexNumber op2 = new ComplexNumber(1332,12342);
         ComplexNumber op3 = new ComplexNumber();
-        ComplexNumber op4 = new ComplexNumber(3);
-        ComplexNumber op5 = new ComplexNumber(3.15d,-10.55d);
-        ComplexNumber op6 = new ComplexNumber(2.30d,5.2d);
-        ComplexNumber op7 = new ComplexNumber(6.300032d,5.2d);
+        ComplexNumber op4 = new ComplexNumber(3.2312d);
         
         stack.push(op1);
         stack.push(op2);
         stack.push(op3);
         stack.push(op4);
-        stack.push(op5);
-        stack.push(op6);
-        stack.push(op7);
         
-        ComplexNumber expResult = new ComplexNumber(2.30d,5.2d);
+        ComplexNumber expResult = op3;
         op.execute();
         ComplexNumber result = stack.peek();
        

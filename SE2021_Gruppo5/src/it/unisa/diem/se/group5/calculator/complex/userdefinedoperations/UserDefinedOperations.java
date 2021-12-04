@@ -45,6 +45,13 @@ public class UserDefinedOperations {
         currentOperations.remove(operation);
     }
     
+    public List<String> getListOfOperations(String input){
+        UserDefinedOperation tmp = new UserDefinedOperation(input, "");
+        int index = currentOperations.indexOf(tmp);
+        tmp = currentOperations.get(index);
+        
+        return tmp.getOperationsList();       
+    }
     
     //Remove check se la user defined operation è contenuta nelle liste delle user defined operations 
 

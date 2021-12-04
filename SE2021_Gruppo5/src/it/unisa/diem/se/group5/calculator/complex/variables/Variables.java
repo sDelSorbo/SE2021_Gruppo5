@@ -60,7 +60,7 @@ public class Variables {
      * @return il numero complesso associato alla chiave
      * @throws IllegalArgumentException se si passa una chiave non valida
      */
-    private ComplexNumber getValue(String var) throws IllegalArgumentException{
+    public ComplexNumber getValue(String var) throws IllegalArgumentException{
         if(!variablesMap.containsKey(var) || var == null ) {
             throw new IllegalArgumentException("Variabile non valida");
         }

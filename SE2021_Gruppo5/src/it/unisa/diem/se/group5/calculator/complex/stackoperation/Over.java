@@ -23,8 +23,7 @@ public class Over extends AbstractOnStackOperation{
     /**
      * Esegue il comando over aggiungendo in cima allo stack una copia del
      * penultimo elemento
-     *
-     * @param stack contenente i numeri complessi 
+     * 
      */
     @Override
     public void execute() {
