@@ -9,7 +9,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -52,7 +51,7 @@ public class VariablesTest {
       
         Map<String, ComplexNumber> expResult = new HashMap<>(); 
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
-            expResult.put(String.valueOf(alphabet), new ComplexNumber(0, 0));
+            expResult.put(String.valueOf(alphabet), null);
         }
          
         Map<String, ComplexNumber> result = v.getVariablesMap();
@@ -64,10 +63,9 @@ public class VariablesTest {
      */
     @Test
     public void testGetValue(){
+
         
-        Variables v = new Variables();
-        
-        ComplexNumber result = v.getValue("a");
+        ComplexNumber result = varia.getValue("a");
         assertTrue(result instanceof ComplexNumber);       
     }    
     
@@ -187,11 +185,11 @@ public class VariablesTest {
     public void testVariableAdding() {
         System.out.println("variableAdding");
         ComplexStack stack = new ComplexStack();
-        Variables varia=new Variables();
         stack.push(new ComplexNumber(3,7));
         String var = "a";
-        String expected = "3.0+7.0j";
+        String expected = "6.0+8.0j";
         Variables.variableAdding(stack, var);
+        
         assertEquals(expected,varia.getVariablesMap().get(var).toString());
     }
 
@@ -201,11 +199,13 @@ public class VariablesTest {
     @Test
     public void testVariableSubtraction() {
         System.out.println("variableSubtraction");
-        ComplexStack stack = null;
-        String var = "";
+        ComplexStack stack = new ComplexStack();
+        stack.push(new ComplexNumber(3,7));
+        String var = "a";
+        String expected = "-6.0j";
         Variables.variableSubtraction(stack, var);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertEquals(expected,varia.getVariablesMap().get(var).toString());
     }
 
     /**
@@ -214,12 +214,11 @@ public class VariablesTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Variables instance = new Variables();
-        String expResult = "";
-        String result = instance.toString();
+        String expResult = "\na 3.0+1.0j\nb 3.0+1.0j\nc 3.0+1.0j\nd\ne\nf\ng\nh\ni\nj\nk\nl\nm\nn\no\np\nq\nr\ns\nt\nu\nv\nw\nx\ny\nz";
+        String result = varia.toString();
+        System.out.println(varia.toString());
+        System.out.println(expResult);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
