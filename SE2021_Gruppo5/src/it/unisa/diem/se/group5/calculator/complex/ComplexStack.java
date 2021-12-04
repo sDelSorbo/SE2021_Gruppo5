@@ -46,7 +46,7 @@ public class ComplexStack implements Iterable<ComplexNumber>, StackInterface<Com
     /**
      * Costruttore privato per il pattern Singleton
      */
-    private ComplexStack(){   
+    ComplexStack(){   
         first = null;
         n = 0;
     };   

@@ -82,9 +82,9 @@ public class Variables {
      * @param var Variabile il cui valore deve essere salvato nello stack
      */
     static public void variableSaving(ComplexStack stack, String var){
-        if(variablesMap.get(var)!=null)
-            stack.push(variablesMap.get(var));
-        throw new NotAValidInputException();
+        if(variablesMap.get(var)==null)
+            throw new NotAValidInputException();
+        stack.push(variablesMap.get(var));
     }
     /**
      * Metodo statico per sommare il valore della variabile data con il valore del numero complesso

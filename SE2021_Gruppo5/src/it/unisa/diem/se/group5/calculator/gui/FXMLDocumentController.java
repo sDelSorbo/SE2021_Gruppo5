@@ -198,16 +198,6 @@ public class FXMLDocumentController implements Initializable {
         changeVariable();
     }
 
-    private void onSetPressed(ActionEvent event) {
-        //prova da cancellare usato solo per vedere se funziona
-        if(varia.getVariablesMap().containsValue(new ComplexNumber(10,5))){
-           varia.setVariable("a", new ComplexNumber(50000000,500000)); 
-           changeVariable();
-        }else{
-        varia.setVariable("a", new ComplexNumber(10,5));
-        changeVariable();
-        }
-    }
     
     private void changeVariable(){
         String item=boxVariables.getValue();
@@ -242,6 +232,8 @@ public class FXMLDocumentController implements Initializable {
         labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));
         }catch (NotAValidInputException e){
          showGenericAlert("ERROR","Select a variable to do subtraction", "Subtraction Failed","Error");
+        }catch (SizeStackException e){
+         showGenericAlert("ERROR","The stack is empty", "Assignement Failed","Error");
         }
     }
 
@@ -264,6 +256,9 @@ public class FXMLDocumentController implements Initializable {
         labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));       
         }catch (NotAValidInputException e){
          showGenericAlert("ERROR","Select a variable to do addition", "Addition Failed","Error");
+        }catch (SizeStackException e){
+         showGenericAlert("ERROR","The stack is empty", "The stack is empty","Error");
         }
     }
+    
 }
