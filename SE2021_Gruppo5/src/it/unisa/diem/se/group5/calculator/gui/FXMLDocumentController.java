@@ -67,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<UserDefinedOperation, String> nameClm;
     @FXML
-    private TableColumn<UserDefinedOperation, String> opsClm;      
+    private TableColumn<UserDefinedOperation, String> definitionClm;   
     @FXML
     private ComboBox<String> comboVariable;
     @FXML
@@ -81,6 +81,7 @@ public class FXMLDocumentController implements Initializable {
     ObservableList<UserDefinedOperation> userOperationsObs;    
     UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();
     Variables variables;    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,7 +98,7 @@ public class FXMLDocumentController implements Initializable {
         userOperationsObs = FXCollections.observableArrayList();
         
         nameClm.setCellValueFactory(new PropertyValueFactory<>("name"));
-        opsClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
+        definitionClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
         
         userOpTab.setItems(userOperationsObs);    
         
@@ -244,21 +245,6 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void OnExtends(ActionEvent event) {
-        Stage stage = (Stage) userDefAdd.getScene().getWindow();
-        
-        if (extended){
-            stage.setHeight(stage.getHeight() );
-            stage.setWidth(stage.getWidth() - 520);
-            extended = false;
-        } else {
-            stage.setHeight(stage.getHeight() );
-            stage.setWidth(stage.getWidth() + 520);
-            extended = true;
-        }              
-    }
-
-    @FXML
     private void variableChange(ActionEvent event) {
         ComplexNumber value;
         try{
@@ -269,6 +255,28 @@ public class FXMLDocumentController implements Initializable {
         }
         if (value == null) labelVariable.setText("Empty");
         else labelVariable.setText(value.toString());
+    }
+    
+    @FXML
+    private void OnExtend(ActionEvent event) {
+        Stage stage = (Stage) userDefAdd.getScene().getWindow();
+        
+        if (extended){
+            stage.setHeight(stage.getHeight() );
+            stage.setWidth(stage.getWidth() - 522);
+            extended = false;
+        } else {
+            stage.setHeight(stage.getHeight() );
+            stage.setWidth(stage.getWidth() + 522);
+            extended = true;
+        }  
+    }
+
+    @FXML
+    private void onOperation(ActionEvent event) {
+        Button eventCaller = (Button) event.getSource();
+        
+        System.out.println(eventCaller.getText());
     }
 
 }
