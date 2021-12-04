@@ -22,7 +22,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
+import it.unisa.diem.se.group5.calculator.complex.NotAValidInputException;
+import it.unisa.diem.se.group5.calculator.complex.SizeStackException;
 import it.unisa.diem.se.group5.calculator.complex.Variables;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -79,7 +82,6 @@ public class FXMLDocumentController implements Initializable {
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
         stackTab.setItems(complexNumberStack);
-        boxVariables.setValue("a");
        // listVariables.setAll((Collection<? extends String>) varia.getVariablesMap());
         for(Map.Entry entry: varia.getVariablesMap().entrySet())
         {
@@ -221,26 +223,47 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void onLoadingPressed(ActionEvent event) {
+        try{
         String item=boxVariables.getValue();
         Variables.variableLoading(stack, item);
         labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
+        } catch (NotAValidInputException e){
+         showGenericAlert("ERROR","Select a variable to do assignment", "Assignement Failed","Error");
+        } catch (SizeStackException e){
+         showGenericAlert("ERROR","The stack is empty", "Assignement Failed","Error");
+        }
     }
 
     @FXML
     private void onSubtractionPressed(ActionEvent event) {
+        try{
         String item=boxVariables.getValue();
-        Variables.variableSubtraction(stack, item);       
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));         
+        Variables.variableSubtraction(stack, item);
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));
+        }catch (NotAValidInputException e){
+         showGenericAlert("ERROR","Select a variable to do subtraction", "Subtraction Failed","Error");
+        }
     }
 
     @FXML
     private void onSavingPressed(ActionEvent event) {
+        try{
+        String item = boxVariables.getValue();
+        Variables.variableSaving(stack, item);
+        converToObservable();
+        }catch(NotAValidInputException e){
+         showGenericAlert("ERROR","Variable selected is empty", "Saving On Stack Failed","Error");
+        }
     }
 
     @FXML
     private void onAddingPressed(ActionEvent event) {
+        try{
         String item=boxVariables.getValue();
         Variables.variableAdding(stack, item);       
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));          
+        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));       
+        }catch (NotAValidInputException e){
+         showGenericAlert("ERROR","Select a variable to do addition", "Addition Failed","Error");
+        }
     }
 }

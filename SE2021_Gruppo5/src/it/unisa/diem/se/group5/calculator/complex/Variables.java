@@ -61,19 +61,54 @@ public class Variables {
         }
         return variablesMap.get(var);
     }
+    /**
+     * Metodo statico per caricare il numero complesso in cima allo stack in una variabile
+     * 
+     * @param stack Stack di numeri complessi
+     * @param var Variable nella quale caricare il valore 
+     */
     static public void variableLoading(ComplexStack stack, String var){
+        if(stack.isEmpty())
+               throw new SizeStackException();
+        if(var==null)
+            throw new NotAValidInputException();
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, n);
     }
+    /**
+     * Metodo statico per salvare il valore di una variabile in cima allo stack
+     * 
+     * @param stack Stack di numeri complessi
+     * @param var Variabile il cui valore deve essere salvato nello stack
+     */
     static public void variableSaving(ComplexStack stack, String var){
         if(variablesMap.get(var)!=null)
             stack.push(variablesMap.get(var));
+        throw new NotAValidInputException();
     }
+    /**
+     * Metodo statico per sommare il valore della variabile data con il valore del numero complesso
+     * in cima allo stack
+     * 
+     * @param stack Stack di numeri complessi
+     * @param var Variabile il cui valore deve essere sommato al numero complesso in cima allo stack
+     */
     static public void variableAdding(ComplexStack stack, String var){
+        if(var==null)
+           throw new NotAValidInputException();
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, ComplexOperations.add(n, variablesMap.get(var)));
     }
+    /**
+     * Metodo statico per sottrarrelal valore del numero complesso in cima allo stack al valore
+     * della variabile data
+     * 
+     * @param stack Stack di numeri complessi
+     * @param var Variabile il cui valore deve essere sottratto al numero complesso in cima allo stack
+     */
     static public void variableSubtraction(ComplexStack stack, String var){
+        if(var==null)
+           throw new NotAValidInputException();
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, ComplexOperations.sub(variablesMap.get(var), n));        
     }
