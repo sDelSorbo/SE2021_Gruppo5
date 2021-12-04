@@ -61,6 +61,7 @@ public class Variables {
         }
         return variablesMap.get(var);
     }
+    
     /**
      * Metodo statico per caricare il numero complesso in cima allo stack in una variabile
      * 
@@ -75,6 +76,7 @@ public class Variables {
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, n);
     }
+    
     /**
      * Metodo statico per salvare il valore di una variabile in cima allo stack
      * 
@@ -86,6 +88,7 @@ public class Variables {
             throw new NotAValidInputException();
         stack.push(variablesMap.get(var));
     }
+    
     /**
      * Metodo statico per sommare il valore della variabile data con il valore del numero complesso
      * in cima allo stack
@@ -99,6 +102,7 @@ public class Variables {
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, ComplexOperations.add(n, variablesMap.get(var)));
     }
+    
     /**
      * Metodo statico per sottrarrelal valore del numero complesso in cima allo stack al valore
      * della variabile data
@@ -112,6 +116,7 @@ public class Variables {
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, ComplexOperations.sub(variablesMap.get(var), n));        
     }
+    
     /**
      * Ritorna una stringa che rappresenta l' HashMap.
      * @return la sequenza di elementi visti come coppia chiave-valore contenuti nell'HashMap 
