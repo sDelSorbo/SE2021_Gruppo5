@@ -29,51 +29,6 @@ public class SqrtTest {
         op=new Sqrt(stack);
         
     }
-
-
-    /**
-     * Test of mod method, of class Sqrt.
-     */
-    @Test
-    public void testMod() {
-        System.out.println("mod");
-        ComplexNumber op1 = new ComplexNumber(2,-2);
-        ComplexNumber op2 = new ComplexNumber();
-        ComplexNumber op3 = new ComplexNumber(5);
-        ComplexNumber op4 = new ComplexNumber(3.77d,-1.1d);
-        ComplexNumber op5 = new ComplexNumber(-1.555d,1);
-        double expResult1 = (double) (2*Math.sqrt(2));
-        double expResult2 = 0;
-        double expResult3 = 5;
-        double expResult4 = 3.92720d;
-        double expResult5 = 1.84879d;
-        
-        stack.push(op1);
-        
-        ComplexNumber result1=stack.pop();
-        assertEquals(expResult1, result1);
-        
-        stack.push(op2);
-        op.execute();
-        ComplexNumber result2=stack.pop();
-        assertEquals(expResult2, result2);
-        
-        stack.push(op3);   
-        op.execute();
-        ComplexNumber result3=stack.pop();
-        assertEquals(expResult3, result3);
-        
-        stack.push(op4);     
-        op.execute();
-        ComplexNumber result4=stack.pop();
-        assertEquals(expResult4, result4);
-        
-        stack.push(op5);          
-        op.execute();
-        ComplexNumber result5=stack.pop();
-        assertEquals(expResult5, result5);
-    }
-
     /**
      * Test of execute method, of class Sqrt.
      */
