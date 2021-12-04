@@ -216,8 +216,6 @@ public class VariablesTest {
         System.out.println("toString");
         String expResult = "\na 3.0+1.0j\nb 3.0+1.0j\nc 3.0+1.0j\nd\ne\nf\ng\nh\ni\nj\nk\nl\nm\nn\no\np\nq\nr\ns\nt\nu\nv\nw\nx\ny\nz";
         String result = varia.toString();
-        System.out.println(varia.toString());
-        System.out.println(expResult);
         assertEquals(expResult, result);
     }
     
