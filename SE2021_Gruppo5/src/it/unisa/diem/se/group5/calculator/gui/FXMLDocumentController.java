@@ -195,13 +195,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onHelp(ActionEvent event) {
         showGenericAlert("INFORMATION", 
-                  "E' possibile inserire numeri complessi nel formato a+bj.\n"
-                + "Le operazioni supportate sui numeri complessi sono +, -, *, /, sqrt, +-.\n"         
-                + "'>var' per inserire nella variabile il valore nella cima dello stack.\n"
-                + "'<var' per inserire il valore nella variabile nella cima dello stack.\n"
-                + "'+var' per aggiungere il valore nella cima dello stack alla variabile.\n"
-                + "'-var' per sottrarre il valore nella cima dello stack alla variabile.\n"
-                + "Premendo il tasto Expand è possibile inserire operazioni programmabili."
+                  "• E' possibile inserire numeri complessi nel formato a+bj.\n"
+                + "• Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt, +-.\n"         
+                + "• '>var' per inserire nella variabile il valore nella cima dello \n   stack.\n"
+                + "• '<var' per inserire il valore nella variabile nella cima dello \n   stack.\n"
+                + "• '+var' per aggiungere il valore nella cima dello stack alla \n   variabile.\n"
+                + "• '-var' per sottrarre il valore nella cima dello stack alla \n    variabile.\n"
+                + "• Premendo il tasto Expand è possibile inserire operazioni\n   programmabili."
                 ,"Manuale Complex Calculator v 0.2","Help");
     }
     
