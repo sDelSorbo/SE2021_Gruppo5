@@ -65,19 +65,22 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="delBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onDeletePressed" prefHeight="51.0" prefWidth="99.0" text="Del" textAlignment="CENTER" GridPane.halignment="CENTER">
+                              <Button fx:id="delBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onDeletePressed" prefHeight="21.0" prefWidth="99.0" text="Del" textAlignment="CENTER" GridPane.halignment="CENTER">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="enterBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onEnterPressed" prefHeight="51.0" prefWidth="99.0" text="Enter" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                              <Button fx:id="enterBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onEnterPressed" prefHeight="0.0" prefWidth="99.0" text="Enter" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Button>
-                              <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="51.0" prefWidth="80.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <Label fx:id="labelVariable" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="140.0" text="Value" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" onAction="#OnExtend" prefHeight="51.0" prefWidth="99.0" text="Extend" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="35.0" prefWidth="99.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label fx:id="labelVariable" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="140.0" text="Value" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#OnExtend" prefHeight="44.0" prefWidth="99.0" text="Extend" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Button>
                               <Button mnemonicParsing="false" onAction="#onOperation" text="+" GridPane.rowIndex="2" />
                               <Button mnemonicParsing="false" onAction="#onOperation" text="-" GridPane.rowIndex="3" />
                            </children>
