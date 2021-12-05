@@ -18,10 +18,10 @@ public class UserDefinedOperation {
     private List<String> operationsList;
     
     public UserDefinedOperation(String name, String operations){
-        this.name = name;      
-        this.operationsString = operations;
+        this.name = name.toLowerCase();      
+        this.operationsString = operations.toLowerCase();
         this.operationsList = new ArrayList<>();
-        splitOperations(operations);
+        splitOperations(this.operationsString);
     }
 
     public String getName() {

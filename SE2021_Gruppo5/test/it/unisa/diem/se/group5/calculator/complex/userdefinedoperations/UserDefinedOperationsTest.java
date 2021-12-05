@@ -16,14 +16,14 @@ import static org.junit.Assert.*;
  */
 public class UserDefinedOperationsTest {
    
-    UserDefinedOperations userDefOp;
+    static UserDefinedOperations userDefOp;
     
     public UserDefinedOperationsTest() {
         
     }
     
     @BeforeClass
-    public void setUp() {
+    static public void setUp() {
         userDefOp = UserDefinedOperations.getInstance();
         
         UserDefinedOperation user1 = new UserDefinedOperation("addsub","+ -");

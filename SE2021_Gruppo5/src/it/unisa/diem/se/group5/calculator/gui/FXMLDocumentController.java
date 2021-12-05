@@ -5,84 +5,94 @@
 package it.unisa.diem.se.group5.calculator.gui;
 
 import it.unisa.diem.se.group5.calculator.complex.Calculator;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import java.net.URL;
+import java.util.Collections;
+import java.util.ResourceBundle;
 import java.util.Stack;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
  *
- * @author delso
+ * @author Marco
  */
 public class FXMLDocumentController implements Initializable {
-
-    @FXML
-    private TableView<ComplexNumber> stackTab;
-    @FXML
-    private TableColumn<ComplexNumber, String> numberClm;
-    @FXML
-    private Button delBtn;
+        
     @FXML
     private TextField inputText;
-    @FXML
-    private Button enterBtn;
-    @FXML
-    private MenuBar menuBar;
-    @FXML
-    private Menu File;
-    @FXML
-    private Menu Help;
     @FXML
     private TextField userDefName;
     @FXML
     private TextArea userDefList;
     @FXML
-    private Button userDefAdd;
-    @FXML
-    private TableView<UserDefinedOperation> userOpTab;
-    @FXML
     private TableColumn<UserDefinedOperation, String> nameClm;
     @FXML
     private TableColumn<UserDefinedOperation, String> definitionClm;   
     @FXML
+    private TableView<ComplexNumber> stackTab;
+    @FXML
+    private TableColumn<ComplexNumber, String> numberClm;
+    @FXML
     private ComboBox<String> comboVariable;
     @FXML
     private Label labelVariable;
-    
-    private boolean extended = false;
+    @FXML
+    private Button userDefAdd;
+    @FXML
+    private TableView<UserDefinedOperation> userOpTab;    
         
+    /**
+     *
+     */
+    private boolean extended = false;        
+    /**
+     *
+     */
     private ObservableList<ComplexNumber> complexNumberStack;
+    /**
+     *
+     */
     private Stack<ComplexNumber> stack = new Stack<>();
+    /**
+     *
+     */
     private Calculator calculator;
+    /**
+     *
+     */
     ObservableList<UserDefinedOperation> userOperationsObs;    
+    /**
+     *
+     */
     UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();
-    Variables variables;    
+    /**
+     * 
+     */
+    Variables variables;
     
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         variables = new Variables();
@@ -104,10 +114,12 @@ public class FXMLDocumentController implements Initializable {
         
         //Variables View
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
+        comboVariable.setValue("a");
+    
     }
 
     /**
-     * Quando si preme il pulsante DEL viene cancellato l'user input.
+     * Quando si preme il pulsante DEL viene ripulita la text area.
      *
      * @param event un evento che viene passato.
      */
@@ -117,25 +129,56 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Quando si preme il pulsante Enter viene passato l'input allo stackm.
+     * Quando è premuto il pulsante "=" la stringa nella text area viene elaborata.
      *
-     * @param event un evento che viene passato
+     * @param event un evento che viene passato.
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
-        String input = inputText.getText();       
+        String input = inputText.getText().toLowerCase();       
         inputFocus();
         compute(input);
     }
     
+    @FXML
+    private void onEnter(ActionEvent event) {
+        onEnterPressed(event);
+    }
+    
+        @FXML
+    private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
+        String name = userDefName.getText().trim().toLowerCase();
+        String operations = userDefList.getText().trim().toLowerCase();
+        StringParser sp = new StringParser();
+        
+        if (sp.isOperation(name)){
+            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
+            return;
+        }
+        if (!sp.validateOperations(operations)){ //Spostare in userDefined?
+            showGenericAlert("ERROR", "Le operazioni inserite non sono valide");
+            return;
+        }
+        
+        UserDefinedOperation userDefOp = new UserDefinedOperation(name, operations);
+        
+        userOperations.add(userDefOp);
+        userOperationsObs.add(userDefOp);
+    }
+    
+    
+    /**
+     * Esegue la computazione dell'istruzione in input.
+     * 
+     * @param input istruzione da computare
+     */
     public void compute(String input){
         try {
             calculator.elaborate(input);
         } catch (Exception ex) {
             showGenericAlert("ERROR", ex.getMessage());
         }             
-        converToObservable();
-              
+        converToObservable();              
         refresh();
     }
     
@@ -144,40 +187,83 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
+     * Esegue il clear e setta il text field in modo da aver sempre il focus .
+     */
+    private void inputFocus() {
+        inputText.requestFocus();
+        inputText.clear();
+    }
+    
+    /**
      * Converte lo stack in una lista osservabile.
      */
     private void converToObservable(){
         complexNumberStack.clear();
+        Stack<ComplexNumber> tmp = (Stack<ComplexNumber>) stack.clone();
+        Collections.reverse(tmp);
         
         int i = 0;
-        for (ComplexNumber cn: stack)
+        for (ComplexNumber cn: tmp)
             if (i <16){
                 complexNumberStack.add(cn);
                 i++;
             }           
             else break; 
+        Collections.reverse(complexNumberStack);
+        FXCollections.reverse(complexNumberStack);
     }
 
     /**
-     * Crea una alert personalizzato che mostra un messaggio a
-     * video.
+     * Crea una alert personalizzato che mostra un messaggio.
      *
-     * @param alertMessage errore che si vuole mostrare
-     * @param type rappresenta il tipo di alert
+     * @param alertMessage messaggio che si vuole mostrare
+     * @param type il tipo dell'alert da mostrare
      */
     public void showGenericAlert(String type, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.showAndWait().filter(response -> response == ButtonType.OK);
-        
     }
     
+    /**
+     * Crea una alert personalizzato che mostra un messaggio con header e titolo
+     * 
+     * @param type il tipo dell'alert da mostrare
+     * @param alertMessage messaggio che si vuole mostrare
+     * @param headerText header che si vuole mostrare
+     * @param title titolo dell'alert che si vuole mostrare
+     */
     public void showGenericAlert(String type, String alertMessage,String headerText,String title) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.setHeaderText(headerText);
         alert.setTitle(title);
         alert.showAndWait().filter(response -> response == ButtonType.OK);
     }
-
+    
+    @FXML
+    private void variableChange(ActionEvent event) {
+        ComplexNumber value;
+        try{
+            value = variables.getValue(comboVariable.getValue());
+        } catch (Exception e) {
+            labelVariable.setText("Empty");
+            return;
+        }
+        if (value == null) labelVariable.setText("Empty");
+        else labelVariable.setText(value.toString());
+    }
+        
+    @FXML
+    private void OnExtend(ActionEvent event) {
+        Stage stg = (Stage) stackTab.getScene().getWindow();
+        if (extended){                
+            stg.setWidth(stg.getWidth() - 455);
+            extended = false;
+        } else {                
+            stg.setWidth(stg.getWidth() + 455);
+            extended = true;
+        }   
+    }
+    
     /**
      * Nel sottomenù di "File" è presente un bottone per uscire
      * dall'applicazione.
@@ -196,7 +282,7 @@ public class FXMLDocumentController implements Initializable {
      * @param event un evento che viene passato
      */
     @FXML
-    private void onHelp(ActionEvent event) {
+    private void showHelp(ActionEvent event) {
         showGenericAlert("INFORMATION", 
                   "• E' possibile inserire numeri complessi nel formato a+bj.\n"
                 + "• Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt, +-.\n"         
@@ -206,84 +292,29 @@ public class FXMLDocumentController implements Initializable {
                 + "• '-var' per sottrarre il valore nella cima dello stack alla \n    variabile.\n"
                 + "• Premendo il tasto Expand è possibile inserire operazioni\n   programmabili."
                 ,"Manuale Complex Calculator v 0.2","Help");
-    }
-    
-    /**
-     * Cattura la pressione del tasto "Enter" per inserire i numeri della text field nello stack.
-     * 
-     * @param event un evento che viene passato
-     */
-    @FXML
-    private void onEnter(ActionEvent event) {
-        onEnterPressed(event);
-    }
-    
-    /**
-     * Esegue il clear e setta il text field in modo da aver sempre il focus .
-     */
-    private void inputFocus() {
-        inputText.requestFocus();
-        inputText.clear();
-    }
-
-    @FXML
-    private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
-        String name = userDefName.getText().trim();
-        String operations = userDefList.getText().trim();
-        StringParser sp = new StringParser();
-        
-        if (sp.isOperation(name)){
-            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
-            return;
-        }
-        if (!sp.validateOperations(operations)){ //Spostare in userDefined?
-            showGenericAlert("ERROR", "Le operazioni inserite non sono valide");
-            return;
-        }
-        
-        UserDefinedOperation userDefOp = new UserDefinedOperation(name, operations);
-        
-        userOperations.add(userDefOp);
-        userOperationsObs.add(userDefOp);
-    }
-    
-    @FXML
-    private void variableChange(ActionEvent event) {
-        ComplexNumber value;
-        try{
-            value = variables.getValue(comboVariable.getValue());
-        } catch (Exception e) {
-            labelVariable.setText("Empty");
-            return;
-        }
-        if (value == null) labelVariable.setText("Empty");
-        else labelVariable.setText(value.toString());
-    }
-    
-    @FXML
-    private void OnExtend(ActionEvent event) {
-        Stage stage = (Stage) userDefAdd.getScene().getWindow();
-        
-        if (extended){
-            stage.setHeight(stage.getHeight() );
-            stage.setWidth(stage.getWidth() - 522);
-            extended = false;
-        } else {
-            stage.setHeight(stage.getHeight() );
-            stage.setWidth(stage.getWidth() + 522);
-            extended = true;
-        }  
-    }
+    }   
 
     @FXML
     private void onOperation(ActionEvent event) {
-        Button eventCaller = (Button) event.getSource();
-        String command = eventCaller.getText();
-        /*
-        compute (eventCaller);
-        
-        */
-        System.out.println(command);
+        Button pressed = (Button) event.getSource();
+        String operation = pressed.getText();
+        // Modifica del testo dei bottoni con nome dell'operazione diversa 
+        // da quella mostrata
+        if (operation.equals("+/-")) operation = "+-";
+        if (operation.matches("^[><+-][x]$")) operation = operation.substring(0,1) + comboVariable.getValue();
+        compute(operation);        
     }
-
+    
+    @FXML
+    private void darkApplication(ActionEvent event) {
+        Parent parent = comboVariable.getScene().getRoot();
+        if (((MenuItem)event.getSource()).getText().equals("Dark Mode"))
+            ((MenuItem)event.getSource()).setText("Light Mode");
+        else ((MenuItem)event.getSource()).setText("Dark Mode");
+        String path="it/unisa/diem/se/group5/calculator/gui/darkmode.css";
+        if(!parent.getStylesheets().contains(path))
+            parent.getStylesheets().add(path);
+        else
+            parent.getStylesheets().remove(path);
+    }
 }

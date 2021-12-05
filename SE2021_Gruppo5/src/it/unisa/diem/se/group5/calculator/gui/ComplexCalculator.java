@@ -1,9 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
+ * ComplexCalculator
+ *
  */
 package it.unisa.diem.se.group5.calculator.gui;
-
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +19,11 @@ public class ComplexCalculator extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
         Scene scene = new Scene(root);
-        
         stage.setTitle("Complex Calculator");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-        stage.setResizable(false);
     }
 
     /**

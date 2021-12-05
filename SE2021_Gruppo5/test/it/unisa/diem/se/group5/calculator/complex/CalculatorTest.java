@@ -1,7 +1,7 @@
 /*
  * CalculatorTest
  *
- * Version 1.0m Modified 27/11 13.03
+ * Version 1.0m 
  */
 package it.unisa.diem.se.group5.calculator.complex;
 
