@@ -6,8 +6,13 @@
 package it.unisa.diem.se.group5.calculator.complex;
 
 
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import java.util.Stack;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -15,19 +20,39 @@ import static org.junit.Assert.*;
  */
 public class CalculatorTest {
     
-    private ComplexStack complexNumberStack = ComplexStack.getInstance();
-    private Calculator instance = new Calculator(complexNumberStack);
+    static private Stack<ComplexNumber> complexNumberStack = new Stack<>();
+    static private Variables var = new Variables();
+    static private UserDefinedOperations userDefined = UserDefinedOperations.getInstance();
+    static private Calculator instance = new Calculator(complexNumberStack, var);
     
     public CalculatorTest() {        
     }
-
+    
+    @BeforeClass
+    public static void setup(){
+        String input = "5";        
+        instance.elaborate(input);
+        
+        var.variableLoad(complexNumberStack, "a");
+        
+        userDefined.add(new UserDefinedOperation("addsub","+ 5 -"));
+        
+        complexNumberStack.pop();
+    }
+    
     /**
      * Test del metodo elaborate della classe Calculator.
      */
     @Test
-    public void testElaborate() {
+    public void testElaborate() {       
         
         String input = "5";        
+        instance.elaborate(input);
+        
+        input = "clear";        
+        instance.elaborate(input);
+        
+        input = "5";        
         instance.elaborate(input);
         
         input = "6";        
@@ -58,7 +83,7 @@ public class CalculatorTest {
         input = "/";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(2.04166688d,-2.04166688d);
+        expResult = new ComplexNumber(2.04166667d,-2.04166667d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -70,7 +95,7 @@ public class CalculatorTest {
         input = "*";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(20.4166688d,-20.4166688d);
+        expResult = new ComplexNumber(20.4166667d,-20.4166667d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -78,7 +103,7 @@ public class CalculatorTest {
         input = "sqrt";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(4.96438265d,-2.05631495d);
+        expResult = new ComplexNumber(4.96438287d,-2.05631472d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -86,7 +111,7 @@ public class CalculatorTest {
         input = "+-";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-4.96438265d,2.05631495d);
+        expResult = new ComplexNumber(-4.96438287d,+2.05631472d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -99,6 +124,20 @@ public class CalculatorTest {
         
         input = "0+j";        
         instance.elaborate(input);
+         
+        input = "6";        
+        instance.elaborate(input);
+        
+        input = "6";        
+        instance.elaborate(input);
+        
+        input = "addsub";
+        instance.elaborate(input);
+        
+        expResult = new ComplexNumber(-7,0);
+        result = complexNumberStack.pop();
+        complexNumberStack.push(result);
+        assertEquals(expResult, result);
     }
     
     /**
@@ -108,7 +147,7 @@ public class CalculatorTest {
     @Test(expected=NotEnoughOperandsException.class)
     public void testNotEnoughOperandsExceptionOnElaborate(){
         
-        String input = "6";        
+        String input = "-12.465443j";        
         instance.elaborate(input);
         
         input = "+";        
@@ -123,7 +162,12 @@ public class CalculatorTest {
     public void testNotAValidInputExceptionOnElaborate(){
         
         String input = "fuehufhuei";        
-        instance.elaborate(input);     
-    }
-    
+        instance.elaborate(input);
+        
+        input = "5.6464+j6567";        
+        instance.elaborate(input);
+        
+        input = "5,453";        
+        instance.elaborate(input);        
+    }    
 }

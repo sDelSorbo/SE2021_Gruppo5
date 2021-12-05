@@ -1,9 +1,8 @@
+/**
+ * ComplexNumberTest
+ */
 package it.unisa.diem.se.group5.calculator.complex;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,27 +12,8 @@ import static org.junit.Assert.*;
  */
 public class ComplexNumberTest {
     
-    public ComplexNumberTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
-     * Test of getReal method, of class ComplexNumber.
+     * Test del metodo getReal, della classe ComplexNumber.
      */
     @Test
     public void testGetReal() {
@@ -55,7 +35,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of setReal method, of class ComplexNumber.
+     * Test del metodo setReal, della classe ComplexNumber.
      */
     @Test
     public void testSetReal() {
@@ -66,7 +46,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of getImaginary method, of class ComplexNumber.
+     * Test del metodo getImaginary, della classe ComplexNumber.
      */
     @Test
     public void testGetImaginary() {
@@ -86,7 +66,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of setImaginary method, of class ComplexNumber.
+     * Test del metodo setImaginary, della classe ComplexNumber.
      */
     @Test
     public void testSetImaginary() {
@@ -97,7 +77,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of getComplex method, of class ComplexNumber.
+     * Test del metodo getComplex, della classe ComplexNumber.
      */
     @Test
     public void testGetComplex() {
@@ -105,7 +85,7 @@ public class ComplexNumberTest {
         ComplexNumber instance1 = new ComplexNumber();
         ComplexNumber instance2 = new ComplexNumber(-3.33d,-10);
         ComplexNumber instance3 = new ComplexNumber(3);
-        String expResult1 = "0";
+        String expResult1 = "0.0";
         String expResult2 = "-3.33-10.0j";
         String expResult3 = "3.0";
         String result1 = instance1.getComplex();
@@ -117,7 +97,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of setComplex method, of class ComplexNumber.
+     * Test del metodo setComplex, della classe ComplexNumber.
      */
     @Test
     public void testSetComplex() {
@@ -128,7 +108,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of toString method, of class ComplexNumber.
+     * Test del metodo toString, della classe ComplexNumber.
      */
     @Test
     public void testToString() {
@@ -138,7 +118,7 @@ public class ComplexNumberTest {
         ComplexNumber instance3 = new ComplexNumber(-2.324d,18.45678);
         ComplexNumber instance4 = new ComplexNumber(3);
         ComplexNumber instance5 = new ComplexNumber(0,-2.808890835d);
-        String expResult1 = "0";
+        String expResult1 = "0.0";
         String expResult2 = "3.123-10.777j";
         String expResult3 = "-2.324+18.45678j";
         String expResult4 = "3.0";
@@ -156,12 +136,12 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of equals method, of class ComplexNumber.
+     * Test del metodo equals, della classe ComplexNumber.
      */
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object obj1 = new ComplexNumber(0,0);;
+        Object obj1 = new ComplexNumber(0,0);
         Object obj2 = new ComplexNumber(3,10);
         Object obj3 = new ComplexNumber(3,0);
         ComplexNumber instance1 = new ComplexNumber();

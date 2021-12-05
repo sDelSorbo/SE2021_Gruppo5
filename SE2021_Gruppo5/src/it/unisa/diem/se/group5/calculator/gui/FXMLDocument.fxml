@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -13,92 +18,116 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="parent" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.se.group5.calculator.gui.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.se.group5.calculator.gui.FXMLDocumentController">
    <children>
-      <SplitPane dividerPositions="0.5" layoutX="55.0" layoutY="159.0" maxHeight="590.0" maxWidth="581.0" minHeight="590.0" minWidth="581.0" orientation="VERTICAL" prefHeight="590.0" prefWidth="581.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane maxHeight="159.0" maxWidth="581.0" minHeight="159.0" minWidth="581.0" prefHeight="159.0" prefWidth="581.0">
-               <children>
-                  <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="581.0">
-                    <menus>
-                      <Menu fx:id="File" mnemonicParsing="false" text="File">
-                        <items>
-                              <MenuItem mnemonicParsing="false" onAction="#darkApplication" text="Dark Mode" />
-                              <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Quit" />
-                              <MenuItem mnemonicParsing="false" onAction="#clearApplication" text="Clear" />
-                        </items>
-                      </Menu>
-                      <Menu fx:id="Help" mnemonicParsing="false" onAction="#onHelp" text="Help">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                        </items>
-                      </Menu>
-                    </menus>
-                  </MenuBar>
-                  <TextField fx:id="inputText" alignment="CENTER" layoutX="13.0" layoutY="43.0" onAction="#onEnter" prefHeight="93.0" prefWidth="556.0" promptText="a+bj">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </AnchorPane>
-          <AnchorPane maxHeight="423.0" maxWidth="579.0" minHeight="423.0" minWidth="579.0" prefHeight="423.0" prefWidth="579.0">
-               <children>
-                  <SplitPane dividerPositions="0.35528596187175043" layoutY="156.0" maxHeight="390.0" maxWidth="579.0" minHeight="390.0" minWidth="579.0" prefHeight="390.0" prefWidth="579.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <items>
-                      <AnchorPane maxHeight="421.0" maxWidth="197.0" minHeight="421.0" minWidth="197.0" prefHeight="421.0" prefWidth="197.0">
+      <VBox prefHeight="388.0" prefWidth="582.0">
+         <children>
+            <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="494.0">
+               <menus>
+                  <Menu fx:id="File" mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Quit" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="Help" mnemonicParsing="false" onAction="#onHelp" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <SplitPane dividerPositions="0.3775862068965517" prefHeight="453.0" prefWidth="582.0">
+               <items>
+                  <TableView fx:id="stackTab" editable="true" prefHeight="50.0" prefWidth="50.0">
+                     <columns>
+                        <TableColumn fx:id="numberClm" prefWidth="216.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Stack" />
+                     </columns>
+                  </TableView>
+                  <VBox prefHeight="426.0" prefWidth="319.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="inputText" alignment="CENTER" onAction="#onEnter" prefHeight="48.0" prefWidth="177.0" promptText="a+bj">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <GridPane alignment="CENTER" prefHeight="323.0" prefWidth="358.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <TableView fx:id="stackTab" editable="true" prefHeight="358.0" prefWidth="202.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <columns>
-                                  <TableColumn fx:id="numberClm" prefWidth="194.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Stack" />
-                                </columns>
+                              <Button fx:id="delBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onDeletePressed" prefHeight="21.0" prefWidth="99.0" text="Del" textAlignment="CENTER" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="enterBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onEnterPressed" prefHeight="0.0" prefWidth="99.0" text="Enter" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="35.0" prefWidth="99.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label fx:id="labelVariable" alignment="CENTER" contentDisplay="RIGHT" prefHeight="51.0" prefWidth="140.0" text="Value" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#OnExtend" prefHeight="44.0" prefWidth="99.0" text="Extend" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </items>
+            </SplitPane>
+         </children>
+      </VBox>
+      <TabPane layoutX="583.0" prefHeight="388.0" prefWidth="525.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Custom Operations">
+               <content>
+                  <SplitPane dividerPositions="0.3" prefHeight="314.0" prefWidth="525.0">
+                     <items>
+                        <VBox prefHeight="359.0" prefWidth="159.0" spacing="5.0">
+                           <children>
+                              <Label text="Name" />
+                              <TextField fx:id="userDefName" />
+                              <Label text="Operations" />
+                              <TextArea fx:id="userDefList" prefHeight="200.0" prefWidth="200.0" />
+                              <Button fx:id="userDefAdd" mnemonicParsing="false" onAction="#addUserDefinedOperation" text="Add" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <TableView fx:id="userOpTab" prefHeight="371.0" prefWidth="415.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TableColumn fx:id="nameClm" prefWidth="110.0" text="Name" />
+                                    <TableColumn fx:id="definitionClm" editable="false" prefWidth="304.0" text="Operations" />
+                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane maxHeight="421.0" maxWidth="374.0" minHeight="421.0" minWidth="374.0" prefHeight="421.0" prefWidth="317.0">
-                           <children>
-                              <Button fx:id="loadingButton" alignment="CENTER" layoutX="53.0" layoutY="94.0" mnemonicParsing="false" onAction="#onLoadingPressed" prefHeight="0.0" prefWidth="99.0" text="&gt;var" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="delBtn" alignment="CENTER" layoutX="38.0" layoutY="232.0" mnemonicParsing="false" onAction="#onDeletePressed" prefHeight="40.0" prefWidth="130.0" text="Delete" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="enterBtn" alignment="CENTER" layoutX="190.0" layoutY="232.0" mnemonicParsing="false" onAction="#onEnterPressed" prefHeight="40.0" prefWidth="130.0" text="Enter" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Button>
-                              <ComboBox fx:id="boxVariables" layoutX="54.0" layoutY="38.0" onAction="#onBoxAction" prefHeight="27.0" prefWidth="99.0" />
-                              <Label fx:id="labelVariables" alignment="CENTER" layoutX="165.0" layoutY="36.0" prefHeight="32.0" prefWidth="179.0" text="Value">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font></Label>
-                              <Button fx:id="subtractionButton" alignment="CENTER" layoutX="205.0" layoutY="160.0" mnemonicParsing="false" onAction="#onSubtractionPressed" prefHeight="5.0" prefWidth="99.0" text="-var" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="savingButton" alignment="CENTER" layoutX="205.0" layoutY="94.0" mnemonicParsing="false" onAction="#onSavingPressed" prefHeight="5.0" prefWidth="99.0" text="&lt;var" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="addingButton" alignment="CENTER" layoutX="53.0" layoutY="160.0" mnemonicParsing="false" onAction="#onAddingPressed" prefHeight="10.0" prefWidth="99.0" text="+var" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                    </items>
+                     </items>
                   </SplitPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

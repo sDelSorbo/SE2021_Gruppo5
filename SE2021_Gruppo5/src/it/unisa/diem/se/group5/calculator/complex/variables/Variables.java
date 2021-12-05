@@ -1,10 +1,15 @@
 /*
  * Variables
  */
-package it.unisa.diem.se.group5.calculator.complex;
+package it.unisa.diem.se.group5.calculator.complex.variables;
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Add;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Sub;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * Questa classe implementa un HashMap con 26 variabili 
@@ -44,7 +49,7 @@ public class Variables {
      */
     public void setVariable(String var, ComplexNumber num) throws IllegalArgumentException{
         if(!variablesMap.containsKey(var) || var == null || num == null) {
-            throw new IllegalArgumentException("Variable not valid!");
+            throw new IllegalArgumentException("Variabile not valida");
         }
         variablesMap.put(var, num);
     }
@@ -57,7 +62,7 @@ public class Variables {
      */
     public ComplexNumber getValue(String var) throws IllegalArgumentException{
         if(!variablesMap.containsKey(var) || var == null ) {
-            throw new IllegalArgumentException("Variable not valid!");
+            throw new IllegalArgumentException("Variabile non valida");
         }
         return variablesMap.get(var);
     }
@@ -68,11 +73,9 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variable nella quale caricare il valore 
      */
-    static public void variableLoading(ComplexStack stack, String var){
-        if(stack.isEmpty())
-               throw new SizeStackException();
+    public void variableLoad(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
         if(var==null)
-            throw new NotAValidInputException();
+            throw new NotSelectedVariableException();
         ComplexNumber n = stack.peek();
         variablesMap.replace(var, n);
     }
@@ -83,10 +86,13 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere salvato nello stack
      */
-    static public void variableSaving(ComplexStack stack, String var){
-        if(variablesMap.get(var)==null)
-            throw new NotAValidInputException();
+    public void variableSave(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
+        if(var==null)
+            throw new NotSelectedVariableException();
+        if(variablesMap.get(var) == null)
+            throw new NotSelectedVariableException("La variabile non contiene alcun valore");
         stack.push(variablesMap.get(var));
+        
     }
     
     /**
@@ -96,11 +102,20 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere sommato al numero complesso in cima allo stack
      */
-    static public void variableAdding(ComplexStack stack, String var){
+    public void variableAdd(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
         if(var==null)
-           throw new NotAValidInputException();
-        ComplexNumber n = stack.peek();
-        variablesMap.replace(var, ComplexOperations.add(n, variablesMap.get(var)));
+           throw new NotSelectedVariableException();
+        if(variablesMap.get(var) == null)
+            throw new NotSelectedVariableException("La variabile non contiene alcun valore.\nInizializzarla prima");
+        
+        Stack<ComplexNumber> tmp = new Stack<>();
+        tmp.push(stack.peek());
+        tmp.push(variablesMap.get(var));
+        
+        Operation add = new Add(tmp);
+        add.execute();
+        
+        variablesMap.replace(var, tmp.pop());
     }
     
     /**
@@ -110,11 +125,21 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere sottratto al numero complesso in cima allo stack
      */
-    static public void variableSubtraction(ComplexStack stack, String var){
+    public void variableSub(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
         if(var==null)
-           throw new NotAValidInputException();
-        ComplexNumber n = stack.peek();
-        variablesMap.replace(var, ComplexOperations.sub(variablesMap.get(var), n));        
+           throw new NotSelectedVariableException();
+        if(variablesMap.get(var) == null)
+            throw new NotSelectedVariableException("La variabile non contiene alcun valore.\nInizializzarla prima");
+        
+        Stack<ComplexNumber> tmp = new Stack<>();
+        tmp.push(variablesMap.get(var));
+        tmp.push(stack.peek());
+        
+        
+        Operation sub = new Sub(tmp);
+        sub.execute();
+        
+        variablesMap.replace(var, tmp.pop());        
     }
     
     /**

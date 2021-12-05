@@ -26,10 +26,12 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(double real, double imaginary) {
-        BigDecimal bdR = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
-        BigDecimal bdI = new BigDecimal(imaginary).setScale(8, RoundingMode.HALF_UP);
-        this.real = bdR.doubleValue();
-        this.imaginary = bdI.doubleValue();
+        BigDecimal bd = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
+        this.real = bd.doubleValue();
+        
+        BigDecimal bd2 = new BigDecimal(imaginary).setScale(8, RoundingMode.HALF_UP);
+        this.imaginary = bd2.doubleValue();
+        
         complex = this.toString();
     }
     /**
@@ -39,8 +41,8 @@ public class ComplexNumber {
     *  
     */
     public ComplexNumber(double real) {
-        BigDecimal bdR = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
-        this.real = bdR.doubleValue();        
+        BigDecimal bd = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
+        this.real = bd.doubleValue();
         imaginary = 0d;
         complex = this.toString();
     }
@@ -68,8 +70,8 @@ public class ComplexNumber {
     * @param real parametro che viene settato
     */
     public void setReal(double real) {
-        BigDecimal bdR = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
-        this.real = bdR.doubleValue();    
+        BigDecimal bd = new BigDecimal(real).setScale(8, RoundingMode.HALF_UP);
+        this.real = bd.doubleValue();
         this.setComplex();
     }
    /**
@@ -86,8 +88,8 @@ public class ComplexNumber {
     * @param imaginary parametro che viene settato
     */
     public void setImaginary(double imaginary) {
-        BigDecimal bdI = new BigDecimal(imaginary).setScale(8, RoundingMode.HALF_UP);
-        this.imaginary = bdI.doubleValue();
+        BigDecimal bd = new BigDecimal(imaginary).setScale(8, RoundingMode.HALF_UP);
+        this.imaginary = bd.doubleValue();
         this.setComplex();
     }
    /**
@@ -113,31 +115,28 @@ public class ComplexNumber {
         hash = 37 * hash + Objects.hashCode(this.imaginary);
         return hash;
     }   
-    
-    /**
-     * Metodo che verifica se due numeri complessi sono uguali
-     * @param obj oggetto che viene confrontato con il numero complesso
-     * @return ritorna true se i numeri complessisono uguali altrimenti false
-     */
-    @Override
-    public boolean equals(Object obj){       
-        if (this == obj)
-            return true;
 
-    
-        if (obj == null) 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass()) 
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         final ComplexNumber other = (ComplexNumber) obj;
-        if (Double.doubleToLongBits(this.real) != Double.doubleToLongBits(other.real)) {
+        if (!Objects.equals(this.real, other.real)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.imaginary) != Double.doubleToLongBits(other.imaginary)) {
+        if (!Objects.equals(this.imaginary, other.imaginary)) {
             return false;
         }
-        return true;     
-   }
+        return true;
+    }
+    
 
     /**
      * Metodo che restituisce la stringa rappresentativa del numero complesso
@@ -146,16 +145,24 @@ public class ComplexNumber {
      */
     @Override
     public String toString() {       
-        String sign = "";
-        if(imaginary>0)
-            sign ="+";
-        if(real==0 && imaginary == 0)
-            return String.valueOf(0);
-        if(imaginary==0)
-            return String.valueOf(real);
-        if(real==0)
-            return String.valueOf(imaginary) +"j";
-        return String.valueOf(real) + sign + String.valueOf(imaginary) + "j";
+        boolean secondElementPositive = true;
+        
+        if (this.imaginary < 0)
+            secondElementPositive = false;
+        
+        String realPart = (this.real == 0 ? "0.0" : real.toString());
+        
+        String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
+                
+        if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
+            imgPart = "";
+        }        
+        if (this.real == 0 && this.imaginary != 0){
+            realPart = "";
+        }
+        
+        return realPart+imgPart;
     }
+    
 }
 

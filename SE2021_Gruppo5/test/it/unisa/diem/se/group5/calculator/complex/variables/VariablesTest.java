@@ -1,10 +1,12 @@
 /*
  * VariablesTest
  */
-package it.unisa.diem.se.group5.calculator.complex;
+package it.unisa.diem.se.group5.calculator.complex.variables;
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -18,7 +20,7 @@ import org.junit.Test;
  * @author roberto
  */
 public class VariablesTest {
-    Variables varia;
+    Variables variables;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -31,10 +33,10 @@ public class VariablesTest {
 
     @Before
     public void setUp() throws Exception {
-        varia = new Variables();
-        varia.setVariable("a", new ComplexNumber(3,1));
-        varia.setVariable("b", new ComplexNumber(3,1));
-        varia.setVariable("c", new ComplexNumber(3,1));
+        variables = new Variables();
+        variables.setVariable("a", new ComplexNumber(3,1));
+        variables.setVariable("b", new ComplexNumber(3,1));
+        variables.setVariable("c", new ComplexNumber(3,1));
     }
 
     @After
@@ -65,7 +67,7 @@ public class VariablesTest {
     public void testGetValue(){
 
         
-        ComplexNumber result = varia.getValue("a");
+        ComplexNumber result = variables.getValue("a");
         assertTrue(result instanceof ComplexNumber);       
     }    
     
@@ -91,9 +93,9 @@ public class VariablesTest {
     @Test(expected=IllegalArgumentException.class)
     public void testIllegalArgumentExceptionOnSetVariable(){
          
-        Variables v = new Variables();
+        Variables variables = new Variables();
           
-        v.setVariable("A", new ComplexNumber(5));
+        variables.setVariable("A", new ComplexNumber(5));
          
      }
     
@@ -104,9 +106,9 @@ public class VariablesTest {
     @Test(expected=IllegalArgumentException.class)
     public void testIllegalArgumentExceptionOnSetVariableVarNull(){
          
-        Variables v = new Variables();
+        Variables variables = new Variables();
           
-        v.setVariable(null, new ComplexNumber(5));
+        variables.setVariable(null, new ComplexNumber(5));
          
      }
     
@@ -117,9 +119,9 @@ public class VariablesTest {
     @Test(expected=IllegalArgumentException.class)
     public void testIllegalArgumentExceptionOnSetVariableNumNull(){
          
-        Variables v = new Variables();
+        Variables variables = new Variables();
           
-        v.setVariable("a", null);
+        variables.setVariable("a", null);
          
      }
      
@@ -130,9 +132,9 @@ public class VariablesTest {
     @Test(expected=IllegalArgumentException.class)
     public void testIllegalArgumentExceptionOnGetValue(){
          
-        Variables v = new Variables();
+        Variables variables = new Variables();
           
-        ComplexNumber result = v.getValue("A");
+        ComplexNumber result = variables.getValue("A");
          
      }
      
@@ -143,9 +145,9 @@ public class VariablesTest {
     @Test(expected=IllegalArgumentException.class)
     public void testIllegalArgumentExceptionOnGetValueVarNull(){
          
-        Variables v = new Variables();
+        Variables variables = new Variables();
           
-        ComplexNumber result = v.getValue(null);
+        ComplexNumber result = variables.getValue(null);
          
      }
 
@@ -155,13 +157,13 @@ public class VariablesTest {
     @Test
     public void testVariableLoading() {
         System.out.println("variableLoading");
-        ComplexStack stack = new ComplexStack();
-        Variables varia=new Variables();
+        Stack<ComplexNumber> stack = new Stack<ComplexNumber>();
+        Variables variables=new Variables();
         stack.push(new ComplexNumber(3,7));
         String var = "a";
         String expected = "3.0+7.0j";
-        Variables.variableLoading(stack, var);
-        assertEquals(expected,varia.getVariablesMap().get(var).toString());
+        variables.variableLoad(stack, var);
+        assertEquals(expected,variables.getVariablesMap().get(var).toString());
         
     }
 
@@ -171,9 +173,9 @@ public class VariablesTest {
     @Test
     public void testVariableSaving() {
         System.out.println("variableSaving");
-        ComplexStack stack = new ComplexStack();
+        Stack<ComplexNumber> stack = new Stack<ComplexNumber>();
         String var = "a";
-        Variables.variableSaving(stack, var);
+        variables.variableSave(stack, var);
         String expected = "3.0+1.0j";
         assertEquals(expected,stack.peek().toString()); 
     }
@@ -184,13 +186,13 @@ public class VariablesTest {
     @Test
     public void testVariableAdding() {
         System.out.println("variableAdding");
-        ComplexStack stack = new ComplexStack();
+        Stack<ComplexNumber> stack = new Stack<ComplexNumber>();
         stack.push(new ComplexNumber(3,7));
         String var = "a";
         String expected = "6.0+8.0j";
-        Variables.variableAdding(stack, var);
+        variables.variableAdd(stack, var);
         
-        assertEquals(expected,varia.getVariablesMap().get(var).toString());
+        assertEquals(expected,variables.getVariablesMap().get(var).toString());
     }
 
     /**
@@ -199,24 +201,13 @@ public class VariablesTest {
     @Test
     public void testVariableSubtraction() {
         System.out.println("variableSubtraction");
-        ComplexStack stack = new ComplexStack();
+        Stack<ComplexNumber> stack = new Stack<>();
         stack.push(new ComplexNumber(3,7));
         String var = "a";
-        String expected = "-6.0j";
-        Variables.variableSubtraction(stack, var);
+        String expected = "+6.0j";
+        variables.variableSub(stack, var);
         
-        assertEquals(expected,varia.getVariablesMap().get(var).toString());
-    }
-
-    /**
-     * Test of toString method, of class Variables.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        String expResult = "\na 3.0+1.0j\nb 3.0+1.0j\nc 3.0+1.0j\nd\ne\nf\ng\nh\ni\nj\nk\nl\nm\nn\no\np\nq\nr\ns\nt\nu\nv\nw\nx\ny\nz";
-        String result = varia.toString();
-        assertEquals(expResult, result);
+        assertEquals(expected,variables.getVariablesMap().get(var).toString());
     }
     
 }

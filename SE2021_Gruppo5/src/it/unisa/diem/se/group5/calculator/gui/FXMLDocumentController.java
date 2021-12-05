@@ -21,17 +21,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
-import it.unisa.diem.se.group5.calculator.complex.ComplexStack;
-import it.unisa.diem.se.group5.calculator.complex.NotAValidInputException;
-import it.unisa.diem.se.group5.calculator.complex.SizeStackException;
-import it.unisa.diem.se.group5.calculator.complex.Variables;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
+import it.unisa.diem.se.group5.calculator.complex.StringParser;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import java.util.Stack;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 /**
  *
@@ -55,43 +56,54 @@ public class FXMLDocumentController implements Initializable {
     private Menu File;
     @FXML
     private Menu Help;
+    @FXML
+    private TextField userDefName;
+    @FXML
+    private TextArea userDefList;
+    @FXML
+    private Button userDefAdd;
+    @FXML
+    private TableView<UserDefinedOperation> userOpTab;
+    @FXML
+    private TableColumn<UserDefinedOperation, String> nameClm;
+    @FXML
+    private TableColumn<UserDefinedOperation, String> definitionClm;   
+    @FXML
+    private ComboBox<String> comboVariable;
+    @FXML
+    private Label labelVariable;
     
+    private boolean extended = false;
+        
     private ObservableList<ComplexNumber> complexNumberStack;
-    private ObservableList<String> listVariables;
-    private ComplexStack stack = ComplexStack.getInstance();
+    private Stack<ComplexNumber> stack = new Stack<>();
     private Calculator calculator;
-    private Variables varia;
-    @FXML
-    private ComboBox<String> boxVariables;
-    @FXML
-    private Label labelVariables;
-    @FXML
-    private Button loadingButton;
-    @FXML
-    private Button subtractionButton;
-    @FXML
-    private Button savingButton;
-    @FXML
-    private Button addingButton;
-    @FXML
-    private AnchorPane parent;
+    ObservableList<UserDefinedOperation> userOperationsObs;    
+    UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();
+    Variables variables;    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        calculator = new Calculator(stack);
-        varia=new Variables();
+        variables = new Variables();
+        calculator = new Calculator(stack, variables);
+        // Stack View
         complexNumberStack = FXCollections.observableArrayList();
-        listVariables = FXCollections.observableArrayList();
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
         stackTab.setSelectionModel(null);
-        stackTab.setItems(complexNumberStack);
-       // listVariables.setAll((Collection<? extends String>) varia.getVariablesMap());
-        for(Map.Entry entry: varia.getVariablesMap().entrySet())
-        {
-            Object items = entry.getKey();
-            boxVariables.getItems().add((String)items);
-        }
         
+        stackTab.setItems(complexNumberStack);    
+        
+        //UserDefined Operation View
+        userOperationsObs = FXCollections.observableArrayList();
+        
+        nameClm.setCellValueFactory(new PropertyValueFactory<>("name"));
+        definitionClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
+        
+        userOpTab.setItems(userOperationsObs);    
+        
+        //Variables View
+        comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
     }
 
     /**
@@ -111,16 +123,24 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
-        String input = inputText.getText();  
-        
+        String input = inputText.getText();       
         inputFocus();
-
+        compute(input);
+    }
+    
+    public void compute(String input){
         try {
             calculator.elaborate(input);
         } catch (Exception ex) {
-            showGenericAlert("ERROR", ex.getMessage(),null, "Error");
-        }            
+            showGenericAlert("ERROR", ex.getMessage());
+        }             
         converToObservable();
+              
+        refresh();
+    }
+    
+    private void refresh() {
+        variableChange(null);
     }
     
     /**
@@ -145,12 +165,17 @@ public class FXMLDocumentController implements Initializable {
      * @param alertMessage errore che si vuole mostrare
      * @param type rappresenta il tipo di alert
      */
+    public void showGenericAlert(String type, String alertMessage) {
+        Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+        
+    }
+    
     public void showGenericAlert(String type, String alertMessage,String headerText,String title) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.setHeaderText(headerText);
         alert.setTitle(title);
         alert.showAndWait().filter(response -> response == ButtonType.OK);
-        
     }
 
     /**
@@ -172,10 +197,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onHelp(ActionEvent event) {
-        showGenericAlert("INFORMATION", "'>var' to set the selected variable, with the value on the top of the stack\n"
-                + "'<var' to insert the value of the selected variable on the top of the stack\n"
-                + "'+var' to add the value on the top of the stack to the selected variable\n"
-                + "'-var' to subtract the value on the top of the stack to the selected variable ","Manual Complex Calculator v 0.2","Help");
+        showGenericAlert("INFORMATION", 
+                  "• E' possibile inserire numeri complessi nel formato a+bj.\n"
+                + "• Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt, +-.\n"         
+                + "• '>var' per inserire nella variabile il valore nella cima dello \n   stack.\n"
+                + "• '<var' per inserire il valore nella variabile nella cima dello \n   stack.\n"
+                + "• '+var' per aggiungere il valore nella cima dello stack alla \n   variabile.\n"
+                + "• '-var' per sottrarre il valore nella cima dello stack alla \n    variabile.\n"
+                + "• Premendo il tasto Expand è possibile inserire operazioni\n   programmabili."
+                ,"Manuale Complex Calculator v 0.2","Help");
     }
     
     /**
@@ -195,110 +225,65 @@ public class FXMLDocumentController implements Initializable {
         inputText.requestFocus();
         inputText.clear();
     }
-    /**
-     * Cambia la variabile visualizzata a video quando si esegue una scelta nel "choicebox".
-     * 
-     * @param event un evento che viene passato
-     */
-    @FXML
-    private void onBoxAction(ActionEvent event) {
-        changeVariable();
-    }
 
-    /**
-     * Mostra il valore corrispondente alla variabile scelta.
-     */
-    private void changeVariable(){
-        String item=boxVariables.getValue();
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
-    }
-
-    /**
-     * Esegue il clear dello stack e della TextField.
-     * 
-     * @param event un evento che viene passato
-     */
     @FXML
-    private void clearApplication(ActionEvent event) {
-        stack.clear();
-        complexNumberStack.clear();
-        inputFocus();
+    private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
+        String name = userDefName.getText().trim();
+        String operations = userDefList.getText().trim();
+        StringParser sp = new StringParser();
         
-    }
-    /**
-     * Inserisce il valore di una variabile sullo stack.
-     * 
-     * @param event un evento che viene passato
-     */
-    @FXML
-    private void onLoadingPressed(ActionEvent event) {
-        try{
-        String item=boxVariables.getValue();
-        Variables.variableLoading(stack, item);
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));   
-        } catch (NotAValidInputException e){
-         showGenericAlert("ERROR","Select a variable to do assignment", "Assignement Failed","Error");
-        } catch (SizeStackException e){
-         showGenericAlert("ERROR","The stack is empty", "Assignement Failed","Error");
+        if (sp.isOperation(name)){
+            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
+            return;
         }
-    }
-    /**
-     * Prende il primo valore dello stack e lo sottrae alla variabile selezionata.
-     * 
-     * @param event un evento che viene passato
-     */
-    @FXML
-    private void onSubtractionPressed(ActionEvent event) {
-        try{
-        String item=boxVariables.getValue();
-        Variables.variableSubtraction(stack, item);
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));
-        }catch (NotAValidInputException e){
-         showGenericAlert("ERROR","Select a variable to do subtraction", "Subtraction Failed","Error");
-        }catch (SizeStackException e){
-         showGenericAlert("ERROR","The stack is empty", "Assignement Failed","Error");
+        if (!sp.validateOperations(operations)){ //Spostare in userDefined?
+            showGenericAlert("ERROR", "Le operazioni inserite non sono valide");
+            return;
         }
-    }
-    /**
-     * Salva l'ultimo valore dello stack in una variabile.
-     * 
-     * @param event un evento che viene passato
-     */
-    @FXML
-    private void onSavingPressed(ActionEvent event) {
-        try{
-        String item = boxVariables.getValue();
-        Variables.variableSaving(stack, item);
-        converToObservable();
-        }catch(NotAValidInputException e){
-         showGenericAlert("ERROR","Variable selected is empty", "Saving On Stack Failed","Error");
-        }
-    }
-    /**
-     * Prende il primo valore dello stack e lo addizziona alla variabile selezionata.
-     * 
-     * @param event un evento che viene passato
-     */
-    @FXML
-    private void onAddingPressed(ActionEvent event) {
-        try{
-        String item=boxVariables.getValue();
-        Variables.variableAdding(stack, item);       
-        labelVariables.setText(String.valueOf(varia.getVariablesMap().get(item)));       
-        }catch (NotAValidInputException e){
-         showGenericAlert("ERROR","Select a variable to do addition", "Addition Failed","Error");
-        }catch (SizeStackException e){
-         showGenericAlert("ERROR","The stack is empty", "The stack is empty","Error");
-        }
-    }
-
-    @FXML
-    private void darkApplication(ActionEvent event) {
-        String path="it/unisa/diem/se/group5/calculator/gui/darkmode.css";
-        if(!parent.getStylesheets().contains(path))
-            parent.getStylesheets().add(path);
-        else
-            parent.getStylesheets().remove(path);
+        
+        UserDefinedOperation userDefOp = new UserDefinedOperation(name, operations);
+        
+        userOperations.add(userDefOp);
+        userOperationsObs.add(userDefOp);
     }
     
+    @FXML
+    private void variableChange(ActionEvent event) {
+        ComplexNumber value;
+        try{
+            value = variables.getValue(comboVariable.getValue());
+        } catch (Exception e) {
+            labelVariable.setText("Empty");
+            return;
+        }
+        if (value == null) labelVariable.setText("Empty");
+        else labelVariable.setText(value.toString());
+    }
+    
+    @FXML
+    private void OnExtend(ActionEvent event) {
+        Stage stage = (Stage) userDefAdd.getScene().getWindow();
+        
+        if (extended){
+            stage.setHeight(stage.getHeight() );
+            stage.setWidth(stage.getWidth() - 522);
+            extended = false;
+        } else {
+            stage.setHeight(stage.getHeight() );
+            stage.setWidth(stage.getWidth() + 522);
+            extended = true;
+        }  
+    }
+
+    @FXML
+    private void onOperation(ActionEvent event) {
+        Button eventCaller = (Button) event.getSource();
+        String command = eventCaller.getText();
+        /*
+        compute (eventCaller);
+        
+        */
+        System.out.println(command);
+    }
+
 }

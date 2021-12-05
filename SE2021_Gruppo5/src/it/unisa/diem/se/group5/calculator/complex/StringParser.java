@@ -7,6 +7,9 @@
 
 package it.unisa.diem.se.group5.calculator.complex;
 
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import java.util.List;
+
 /**
  * Questa classe implementa uno StringParser in grado di scansionare una stringa
  * andando a deterinare se si tratta di una operazione o un numero. Nel caso si
@@ -41,29 +44,74 @@ public class StringParser {
         
         if (toParse.length() <= 1)
             return toParse.matches("[*+/-]");       
-        else
-            return (toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|"));      
+        else{
+            boolean check = false;
+            boolean isStackOrCommonOperation = toParse.matches("^sqrt$|^\\+-$|^drop$|^dup$|^swap$|^clear$|^over$|");
+            boolean isVariableOperation = toParse.matches("^[><+-][a-z]$");
+            boolean isUserDefinedOperation = isUserDefined(toParse);
+            check =  check || isStackOrCommonOperation || isVariableOperation || isUserDefinedOperation;
+            return check;
+        }     
     }    
+    
+    public boolean isUserDefined(String toParse){
+        return toParse.matches(generateUserDefinedRegex());
+    }
+    
+    /* Non usa le regex
+    private boolean isDefOp(String toCheck) {
+        List<UserDefinedOperation> usrDefOps = userDefOps.getCurrentOperations();
+        for (UserDefinedOperation usr: usrDefOps){
+            if (toCheck.equals(usr.getName()))
+                return true;
+        }
+        return false; 
+    } 
+    */
+    
+    /**
+     * 
+     * @param toParse
+     * @return 
+     */
+    public boolean validateOperations(String toParse) {
+        String[] st = toParse.split("\\s");
+        for (String s: st){
+            if (!(isOperation(s) || isNumber(s))) 
+                return false;
+        }    
+        return true;        
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    private String generateUserDefinedRegex(){
+        List<String> usr = UserDefinedOperations.getInstance().getCurrentOperationsTokenized();
+        if (usr.isEmpty()) return "\\b\\B"; //L'espressione regolare è una contraddizione e corrisponde a ritornare falso;
+        String usrRegex;
+        usrRegex = generateRegex(usr); 
+        return usrRegex;
+    }
     
     /**
     * Genera una espressione regolare che controlla se una delle operazioni passate
     * come argomento è contenuta in una stringa 
     *
-    *  @param   args  una serie di operazioni da aggiungere all'esperessione regolare
+    *  @param   list  una serie di operazioni da aggiungere all'esperessione regolare
     * 
     *  @return        l'espressione regolare che verifica se una stringa corrisponde 
     *                 ad una delle operazioni
     */
-    private String generateRegex(String... args){
-        String regex = "\\A(";
+    private String generateRegex(List<String> list){
+        String regex = "";
         
-        for (String arg: args){
-            regex = regex.concat(arg+"|");
+        for (String op: list){
+            regex = regex.concat("^"+op+"$|");
         }
-        
         regex = regex.substring(0, regex.length()-1);
-        
-        regex = regex.concat(")");
+        regex = regex.concat("");
         
         return regex;
     }
@@ -84,7 +132,9 @@ public class StringParser {
             return false;
         }
         
-        return toParse.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
+        return toParse.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)"
+                + "(?:[eE][+-]?\\d+)?(?![jJ.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)"
+                + "(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
     
     /**
@@ -96,12 +146,11 @@ public class StringParser {
     *
     * @return        la parte reale 
     */
-    private double extractReal(String toParse) throws NotANumberException{        
+    private float extractReal(String toParse) throws NotANumberException{        
         if (isNumber(toParse)){
             return extractRI(toParse)[0];
         }
-        throw new NotANumberException();              
-        
+        throw new NotANumberException();                      
     }
     
     /**
@@ -114,7 +163,7 @@ public class StringParser {
     * @return        la parte immaginaria
     * @throws NotANumberException se la stringa non corrisponde ad un numero
     */
-    private double extractImaginary(String toParse) throws NotANumberException{
+    private float extractImaginary(String toParse) throws NotANumberException{
         if (isNumber(toParse)){
             return extractRI(toParse)[1];
         }
@@ -128,9 +177,9 @@ public class StringParser {
     *
     *  @return         una array in cui il primo elemento è la parte reale il secondo quella immaginaria
     */
-    private Double[] extractRI(String toParse){    
+    private Float[] extractRI(String toParse){    
         
-        Double realImaginary[] = new Double[2];
+        Float realImaginary[] = new Float[2];
             
         boolean firstElementPositive = true;  // Indicano se il primo e secondo 
         boolean secondElementPositive = true; // elemento sono positivi o meno
@@ -141,8 +190,8 @@ public class StringParser {
             secondElementPositive = false;
         
         if (toParse.matches("^[+-]j$|^j$")){
-            realImaginary[0] = 0d;
-            realImaginary[1] = Double.parseDouble((firstElementPositive ? "+" : "-") + "1");
+            realImaginary[0] = 0f;
+            realImaginary[1] = Float.parseFloat((firstElementPositive ? "+" : "-") + "1");
             return realImaginary;
         }
         
@@ -153,13 +202,13 @@ public class StringParser {
             }
         }
         
-        double realPart = 0;
-        double imgPart = 0;
+        float realPart = 0;
+        float imgPart = 0;
         
         if (split[0].contains("j")) //Assumiamo che l'input non sia vuoto
-            imgPart = Double.parseDouble((firstElementPositive ? "+" : "-") + split[0].substring(0,split[0].length() - 1));
+            imgPart = Float.parseFloat((firstElementPositive ? "+" : "-") + split[0].substring(0,split[0].length() - 1));
         else
-            realPart = Double.parseDouble((firstElementPositive ? "+" : "-") + split[0]);
+            realPart = Float.parseFloat((firstElementPositive ? "+" : "-") + split[0]);
         
         // Parsing della seconda parte della stringa se esiste, la secona condizione dopo l'and(&&)
         // protegge dall'unica condizione in cui l'algoritmo non è funzionante cioè quando si ha sola parte 
@@ -167,13 +216,13 @@ public class StringParser {
         if (split.length > 1 && !(split[split.length-2].equals(split[split.length-1]) && split.length == 2)) {
             if (split[1].contains("j")){
                 if (split[1].matches("^[+-]j$|^j$")){
-                    imgPart = Double.parseDouble((secondElementPositive ? "+" : "-") + "1.0");                    
+                    imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + "1.0");                    
                 }
                 else 
-                    imgPart = Double.parseDouble((secondElementPositive ? "+" : "-") + split[1].substring(0,split[1].length() - 1));
+                    imgPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1].substring(0,split[1].length() - 1));
             }
             else
-                realPart = Double.parseDouble((secondElementPositive ? "+" : "-") + split[1]);
+                realPart = Float.parseFloat((secondElementPositive ? "+" : "-") + split[1]);
         }
         
         realImaginary[0]= realPart;
@@ -190,8 +239,8 @@ public class StringParser {
     *  @return        il numero complesso associato 
     */
     public ComplexNumber parseComplexNumber(String toParse) throws NotANumberException {
-        double real = extractReal(toParse);
-        double imaginary = extractImaginary(toParse);
+        float real = extractReal(toParse);
+        float imaginary = extractImaginary(toParse);
         
         return new ComplexNumber(real,imaginary);
         
