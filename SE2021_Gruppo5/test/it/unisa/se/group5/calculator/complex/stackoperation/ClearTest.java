@@ -27,7 +27,7 @@ public class ClearTest {
     }    
     
      /**
-     * Test of execute method, of class Clear.
+     * Test del metodo execute, della classe Clear.
      */
     @Test
     public void testClear() {

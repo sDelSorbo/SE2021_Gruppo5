@@ -7,10 +7,7 @@ package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.EmptyStackException;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,11 +22,11 @@ public class SubTest {
     
     @Before
     public void setUp() {
-        stack = new Stack<ComplexNumber>();
+        stack = new Stack<>();
         op=new Sub(stack);
     }
     /**
-     * Test of execute method, of class Sub.
+     * Test del metodo execute, della classe Sub.
      */
     @Test
     public void testExecute() {
@@ -78,7 +75,7 @@ public class SubTest {
         assertEquals(expResult5, result5);
     }
     /**
-    * Test of EmptyStackException
+    * Test di EmptyStackException.
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackException() {

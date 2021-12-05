@@ -28,7 +28,7 @@ public class SwapTest {
     
     
      /**
-     * Test of execute method, of class Swap.
+     * Test del metodo execute, della classe Swap.
      */
     @Test
     public void testSwap() {

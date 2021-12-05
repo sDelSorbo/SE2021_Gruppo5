@@ -7,10 +7,7 @@ package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.EmptyStackException;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,13 +22,13 @@ public class DivTest {
     
     @Before
     public void setUp() {
-        stack = new Stack<ComplexNumber>();
+        stack = new Stack<>();
         op=new Div(stack);
     }
 
 
     /**
-     * Test of execute method, of class Div.
+     * Test del metodo execute, della classe Div.
      */
     @Test
     public void testExecute() {
@@ -80,7 +77,7 @@ public class DivTest {
         assertEquals(expResult5, result5);
     }
         /**
-     * Test of ArithmeticException
+     * Test di ArithmeticException.
      */
     @Test (expected = ArithmeticException.class)
     public void testArithmeticException() {
@@ -91,7 +88,7 @@ public class DivTest {
         op.execute();
     }
      /**
-     * Test of NullPointerException
+     * Test di NullPointerException.
      */
     @Test (expected = NullPointerException.class)
     public void testNullPointerException() {
@@ -102,7 +99,7 @@ public class DivTest {
         op.execute();
     }
     /**
-    * Test of EmptyStackException
+    * Test di EmptyStackException.
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackException() {

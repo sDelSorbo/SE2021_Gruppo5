@@ -6,10 +6,7 @@ package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,13 +21,13 @@ public class SignInvTest {
     
     @Before
     public void setUp() {
-        stack = new Stack<ComplexNumber>();
+        stack = new Stack<>();
         op=new SignInv(stack);
     }
 
 
     /**
-     * Test of execute method, of class SignInv.
+     * Test del metodo execute, della class SignInv.
      */
     @Test
     public void testExecute() {

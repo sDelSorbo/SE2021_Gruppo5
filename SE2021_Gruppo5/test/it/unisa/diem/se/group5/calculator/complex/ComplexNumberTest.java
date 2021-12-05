@@ -1,9 +1,8 @@
+/**
+ * ComplexNumberTest
+ */
 package it.unisa.diem.se.group5.calculator.complex;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,27 +12,8 @@ import static org.junit.Assert.*;
  */
 public class ComplexNumberTest {
     
-    public ComplexNumberTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
-     * Test of getReal method, of class ComplexNumber.
+     * Test del metodo getReal, della classe ComplexNumber.
      */
     @Test
     public void testGetReal() {
@@ -55,7 +35,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of setReal method, of class ComplexNumber.
+     * Test del metodo setReal, della classe ComplexNumber.
      */
     @Test
     public void testSetReal() {
@@ -66,7 +46,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of getImaginary method, of class ComplexNumber.
+     * Test del metodo getImaginary, della classe ComplexNumber.
      */
     @Test
     public void testGetImaginary() {
@@ -86,7 +66,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of setImaginary method, of class ComplexNumber.
+     * Test del metodo setImaginary, della classe ComplexNumber.
      */
     @Test
     public void testSetImaginary() {
@@ -97,7 +77,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of getComplex method, of class ComplexNumber.
+     * Test del metodo getComplex, della classe ComplexNumber.
      */
     @Test
     public void testGetComplex() {
@@ -117,7 +97,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of setComplex method, of class ComplexNumber.
+     * Test del metodo setComplex, della classe ComplexNumber.
      */
     @Test
     public void testSetComplex() {
@@ -128,7 +108,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of toString method, of class ComplexNumber.
+     * Test del metodo toString, della classe ComplexNumber.
      */
     @Test
     public void testToString() {
@@ -156,7 +136,7 @@ public class ComplexNumberTest {
     }
 
     /**
-     * Test of equals method, of class ComplexNumber.
+     * Test del metodo equals, della classe ComplexNumber.
      */
     @Test
     public void testEquals() {

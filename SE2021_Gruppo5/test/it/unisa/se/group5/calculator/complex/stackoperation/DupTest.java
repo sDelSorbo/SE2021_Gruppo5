@@ -28,7 +28,7 @@ public class DupTest {
     
     
     /**
-     * Test of execute method, of class Dup.
+     * Test del metodo execute, della classe Dup.
      */
     @Test
     public void testDup() {

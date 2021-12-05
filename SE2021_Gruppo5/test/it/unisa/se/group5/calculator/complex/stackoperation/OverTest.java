@@ -28,7 +28,7 @@ public class OverTest {
     
     
      /**
-     * Test of execute method, of class Over.
+     * Test del metodo execute, della classe Over.
      */
     @Test
     public void testOver() {

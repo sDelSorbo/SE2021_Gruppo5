@@ -28,7 +28,7 @@ public class DropTest {
     
     
      /**
-     * Test of execute method, of class Drop.
+     * Test del metodo execute, della classe Drop.
      */
     @Test
     public void testDrop() {

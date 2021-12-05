@@ -5,13 +5,9 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
-import it.unisa.diem.se.group5.calculator.complex.NotEnoughOperandsException;
 import java.util.EmptyStackException;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,12 +22,12 @@ public class AddTest {
     
     @Before
     public void setUp() {
-        stack = new Stack<ComplexNumber>();
+        stack = new Stack<>();
         op=new Add(stack);
     }
     
     /**
-     * Test of execute method, of class Add.
+     * Test del metodo execute, della classe Add.
      */
     @Test
     public void testExecute() {
@@ -90,7 +86,7 @@ public class AddTest {
     }
     
     /**
-    * Test of EmptyStackException
+    * Test di EmptyStackException.
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackException() {

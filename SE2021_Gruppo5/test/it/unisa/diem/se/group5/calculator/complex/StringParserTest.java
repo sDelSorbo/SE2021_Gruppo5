@@ -25,6 +25,9 @@ public class StringParserTest {
         
     }
     
+    /**
+     * Test del metodo isOperation, della classe StringParser.
+     */
     @Test
     public void testIsOperation() {
         // Seguono test con esito atteso positivo
@@ -104,7 +107,7 @@ public class StringParserTest {
    
     
     /**
-     * Test of isNumber method, of class StringParser.
+     * Test del metodo isNumber, della classe StringParser.
      */
     @Test
     public void testIsNumber() {
@@ -227,8 +230,11 @@ public class StringParserTest {
         
     }
     
+    /**
+     * Test del metodo parseComplexNumber, della classe StringParser.
+     */
     @Test
-    public void testPareseComplexNumber() {     
+    public void testParseComplexNumber() {     
         
         // Test 0 Zero reale e immaginario
         ComplexNumber expResult = new ComplexNumber(0);
