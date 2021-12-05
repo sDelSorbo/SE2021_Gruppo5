@@ -123,16 +123,19 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
-        String input = inputText.getText();  
-        
+        String input = inputText.getText();       
         inputFocus();
-
+        compute(input);
+    }
+    
+    public void compute(String input){
         try {
             calculator.elaborate(input);
         } catch (Exception ex) {
             showGenericAlert("ERROR", ex.getMessage());
-        }            
+        }             
         converToObservable();
+              
         refresh();
     }
     
@@ -153,7 +156,6 @@ public class FXMLDocumentController implements Initializable {
                 i++;
             }           
             else break; 
-        FXCollections.reverse(complexNumberStack);
     }
 
     /**
@@ -275,8 +277,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onOperation(ActionEvent event) {
         Button eventCaller = (Button) event.getSource();
+        String command = eventCaller.getText();
+        /*
+        compute (eventCaller);
         
-        System.out.println(eventCaller.getText());
+        */
+        System.out.println(command);
     }
 
 }

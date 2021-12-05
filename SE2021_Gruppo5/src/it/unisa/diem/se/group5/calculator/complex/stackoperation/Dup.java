@@ -22,7 +22,6 @@ public class Dup extends AbstractOnStackOperation{
     /**
      * Duplica il primo elemento di uno stack.
      * 
-     * @param stack di cui duplicare il primo elemento
      */
     @Override
     public void execute() {

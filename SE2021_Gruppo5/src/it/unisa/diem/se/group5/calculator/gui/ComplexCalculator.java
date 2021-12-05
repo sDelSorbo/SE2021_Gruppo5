@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author delso
  */
-public class SE2021_Gruppo5 extends Application {
+public class ComplexCalculator extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

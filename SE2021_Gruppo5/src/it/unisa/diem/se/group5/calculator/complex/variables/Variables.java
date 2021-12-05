@@ -47,7 +47,7 @@ public class Variables {
      * @param num numero complesso da settare
      * @throws IllegalArgumentException se si passa una chiave non valida
      */
-    private void setVariable(String var, ComplexNumber num) throws IllegalArgumentException{
+    public void setVariable(String var, ComplexNumber num) throws IllegalArgumentException{
         if(!variablesMap.containsKey(var) || var == null || num == null) {
             throw new IllegalArgumentException("Variabile not valida");
         }
@@ -125,7 +125,7 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere sottratto al numero complesso in cima allo stack
      */
-    public void variableSubtract(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
+    public void variableSub(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
         if(var==null)
            throw new NotSelectedVariableException();
         if(variablesMap.get(var) == null)

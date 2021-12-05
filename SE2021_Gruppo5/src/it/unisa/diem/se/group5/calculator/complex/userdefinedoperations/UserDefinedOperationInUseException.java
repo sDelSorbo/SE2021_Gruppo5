@@ -5,7 +5,8 @@
 package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
 /**
- *
+ * Eccezione lanciata in caso l'operazione user defined sia già utilizzata
+ * 
  * @author Marco
  */
 public class UserDefinedOperationInUseException extends RuntimeException{

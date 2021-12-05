@@ -23,7 +23,6 @@ public class Drop extends AbstractOnStackOperation{
     /**
      * Rimuove il primo elemento di uno stack.
      * 
-     * @param stack di cui eliminare il primo elemento
      */
     @Override
     public void execute() {

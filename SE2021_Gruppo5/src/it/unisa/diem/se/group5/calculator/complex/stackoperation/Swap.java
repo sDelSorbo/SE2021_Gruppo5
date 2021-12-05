@@ -23,7 +23,6 @@ public class Swap extends AbstractOnStackOperation{
      * Esegue il comando swap scambiando la posizione dell'ultimo e
      * penultimo elemento
      *
-     * @param stack contenente i numeri complessi 
      */
     @Override
     public void execute() {

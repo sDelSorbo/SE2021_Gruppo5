@@ -39,12 +39,24 @@ public class Calculator {
      */
     private String currentOp;
     
+    /**
+     * Contiene le operazioni di base
+     */
     private Map<String, Operation> commonOperations;
     
+    /**
+     * Contiene le operazioni sullo stack
+     */
     private Map<String, Operation> stackOperations;    
     
+    /**
+     * Contiene la lista delle variabli
+     */
     private Variables variables;
     
+    /**
+     * Contiene le operazioni definite dall'utente
+     */
     private UserDefinedOperations userDefined;
     
     /**
@@ -129,7 +141,7 @@ public class Calculator {
                         variables.variableAdd(stack, varName);
                     break;
                     case '-':
-                        variables.variableSubtract(stack, varName);
+                        variables.variableSub(stack, varName);
                     break;
                 }
             }            
@@ -137,13 +149,23 @@ public class Calculator {
             throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }
     }    
-
-    private void executeUserDefined(String input) {
+    
+    /**
+     * Esegue le operazioni definite dall'utente
+     * 
+     * @param input operazione definita dall'utente
+     * @throws RuntimeException in caso di errore nell'esecuzione delle istruzioni
+     */
+    private void executeUserDefined(String input) throws RuntimeException{
         List<String> operations = userDefined.getListOfOperations(input);
-        Stack<ComplexNumber> tmp = stack;
+        Stack<ComplexNumber> tmp = (Stack<ComplexNumber>) stack.clone();
+        
         try {
             for (String op: operations)
                 this.elaborate(op);           
+        } catch (NotEnoughOperandsException neoex) {            
+            stack = (Stack<ComplexNumber>) tmp.clone();
+            throw new NotEnoughOperandsException("Impossibile eseguire l'operazione " + input + ".\n" + neoex.getMessage());
         } catch (Exception ex){
             stack = tmp;
             throw ex;
