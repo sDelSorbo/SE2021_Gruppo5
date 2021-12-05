@@ -294,10 +294,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void darkApplication(ActionEvent event) {
-        if(!parent.getStylesheets().contains("darkmode.css"))
-            parent.getStylesheets().add("darkmode.css");
+        String path="it/unisa/diem/se/group5/calculator/gui/darkmode.css";
+        if(!parent.getStylesheets().contains(path))
+            parent.getStylesheets().add(path);
         else
-            parent.getStylesheets().remove("darkmode.css");
+            parent.getStylesheets().remove(path);
     }
     
 }
