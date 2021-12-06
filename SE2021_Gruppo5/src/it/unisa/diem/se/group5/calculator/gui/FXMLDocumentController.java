@@ -302,6 +302,10 @@ public class FXMLDocumentController implements Initializable {
         // da quella mostrata
         if (operation.equals("+/-")) operation = "+-";
         if (operation.matches("^[><+-][x]$")) operation = operation.substring(0,1) + comboVariable.getValue();
+        if (operation.matches("\\d|^.$")){
+            inputText.setText(inputText.getText() + operation);
+            return;
+        }
         compute(operation);        
     }
     
