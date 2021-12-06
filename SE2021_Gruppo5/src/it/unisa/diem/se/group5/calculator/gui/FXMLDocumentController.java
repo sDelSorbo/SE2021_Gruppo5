@@ -96,6 +96,14 @@ public class FXMLDocumentController implements Initializable {
     private Button userDefAdd1;
     @FXML
     private Button userDefAdd2;
+    @FXML
+    private MenuItem saveVariablesMenu;
+    @FXML
+    private MenuItem openVariablesMenu;
+    @FXML
+    private MenuItem saveOperationsMenu;
+    @FXML
+    private MenuItem openOperationsMenu;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -332,5 +340,21 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void modifyUserDefinedOperation(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveVariables(ActionEvent event) {
+    }
+
+    @FXML
+    private void openVariablesFile(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveOperations(ActionEvent event) {
+    }
+
+    @FXML
+    private void openOperationsFile(ActionEvent event) {
     }
 }

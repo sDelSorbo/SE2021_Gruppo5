@@ -24,10 +24,10 @@
         <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#showHelp" text="Save  Variables" />
-                  <MenuItem mnemonicParsing="false" onAction="#showHelp" text="Open  Variables File" />
-                  <MenuItem mnemonicParsing="false" onAction="#showHelp" text="Save  Operations" />
-                  <MenuItem mnemonicParsing="false" onAction="#showHelp" text="Open Operations File" />
+                  <MenuItem fx:id="saveVariablesMenu" mnemonicParsing="false" onAction="#saveVariables" text="Save  Variables" />
+                  <MenuItem fx:id="openVariablesMenu" mnemonicParsing="false" onAction="#openVariablesFile" text="Open  Variables File" />
+                  <MenuItem fx:id="saveOperationsMenu" mnemonicParsing="false" onAction="#saveOperations" text="Save  Operations" />
+                  <MenuItem fx:id="openOperationsMenu" mnemonicParsing="false" onAction="#openOperationsFile" text="Open Operations File" />
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Window">
