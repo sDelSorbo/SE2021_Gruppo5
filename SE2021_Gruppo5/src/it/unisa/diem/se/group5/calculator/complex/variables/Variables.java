@@ -132,8 +132,9 @@ public class Variables {
             throw new NotSelectedVariableException("La variabile non contiene alcun valore.\nInizializzarla prima");
         
         Stack<ComplexNumber> tmp = new Stack<>();
-        tmp.push(variablesMap.get(var));
         tmp.push(stack.peek());
+        tmp.push(variablesMap.get(var));
+        
         
         
         Operation sub = new Sub(tmp);
