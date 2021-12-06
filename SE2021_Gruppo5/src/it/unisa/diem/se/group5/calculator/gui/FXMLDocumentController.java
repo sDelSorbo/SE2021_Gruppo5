@@ -92,6 +92,10 @@ public class FXMLDocumentController implements Initializable {
      * 
      */
     Variables variables;
+    @FXML
+    private Button userDefAdd1;
+    @FXML
+    private Button userDefAdd2;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -302,7 +306,7 @@ public class FXMLDocumentController implements Initializable {
         // da quella mostrata
         if (operation.equals("+/-")) operation = "+-";
         if (operation.matches("^[><+-][x]$")) operation = operation.substring(0,1) + comboVariable.getValue();
-        if (operation.matches("\\d|^.$")){
+        if (operation.matches("\\w|[*/+-.]")){
             inputText.setText(inputText.getText() + operation);
             return;
         }
@@ -320,5 +324,13 @@ public class FXMLDocumentController implements Initializable {
             parent.getStylesheets().add(path);
         else
             parent.getStylesheets().remove(path);
+    }
+
+    @FXML
+    private void removeUserDefinedOperation(ActionEvent event) {
+    }
+
+    @FXML
+    private void modifyUserDefinedOperation(ActionEvent event) {
     }
 }
