@@ -11,10 +11,18 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.Malforme
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +41,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -104,6 +114,8 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem saveOperationsMenu;
     @FXML
     private MenuItem openOperationsMenu;
+    @FXML
+    private VBox rootPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -352,9 +364,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void saveOperations(ActionEvent event) {
+    FileChooser fc = new FileChooser();
+    fc.setTitle("Salva File Operazioni");
+    File filename= fc.showSaveDialog(rootPane.getScene().getWindow());
+     try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
+                dout.writeObject(userOperationsObs);
+            } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void openOperationsFile(ActionEvent event) {
+        
     }
 }
