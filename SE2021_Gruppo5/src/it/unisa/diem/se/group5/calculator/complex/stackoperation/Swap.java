@@ -8,6 +8,7 @@ import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import java.util.EmptyStackException;
 
 /**
  *
@@ -23,14 +24,19 @@ public class Swap extends AbstractOnStackOperation{
      * Esegue il comando swap scambiando la posizione dell'ultimo e
      * penultimo elemento
      *
-     * @param stack contenente i numeri complessi 
      */
     @Override
-    public void execute() {
+    public void execute(){
         ComplexNumber element1 = stack.pop();
+        
+        try{
         ComplexNumber element2 = stack.pop();
         stack.push(element1);
         stack.push(element2);
+        } catch (EmptyStackException ex) {
+            stack.push(element1);
+            throw ex;
+        }
         
     }
     
