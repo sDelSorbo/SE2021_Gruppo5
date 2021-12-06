@@ -191,6 +191,9 @@ public class FXMLDocumentController implements Initializable {
         
         userOperations.add(userDefOp);
         userOperationsObs.add(userDefOp);
+        userDefName.clear();
+        userDefList.clear();
+        
     }
     
     
@@ -357,13 +360,7 @@ public class FXMLDocumentController implements Initializable {
     private void modifyUserDefinedOperation(ActionEvent event) {
     }
 
-    @FXML
-    private void saveVariables(ActionEvent event) {
-    }
 
-    @FXML
-    private void openVariablesFile(ActionEvent event) {
-    }
 
     @FXML
     private void saveOperations(ActionEvent event) {
@@ -371,10 +368,7 @@ public class FXMLDocumentController implements Initializable {
     fc.setTitle("Save Operations");
     File filename= fc.showSaveDialog(rootPane.getScene().getWindow());
      try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
-              for(UserDefinedOperation e: userOperationsObs)  {
-                dout.writeChars(e.getName());
-                dout.writeChars(e.getOperationsString());
-              }
+             dout.writeObject(userOperationsObs);
             } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -387,20 +381,25 @@ public class FXMLDocumentController implements Initializable {
     FileChooser fc = new FileChooser();
     fc.setTitle("Open Operations File");
     File file= fc.showOpenDialog(rootPane.getScene().getWindow());
-                    System.out.println("nome ");
       try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
-            for(UserDefinedOperation e: userOperationsObs)  {
-                String name = din.readUTF();
-                System.out.println("nome " + name);
-                String ops = din.readUTF();
-                e = new UserDefinedOperation(name,ops);
-                userOperationsObs.add(e);
-              }
+            UserDefinedOperation operations =(UserDefinedOperation) din.readObject();
+            userOperationsObs.setAll(operations);
       } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
+    
+    @FXML
+    private void saveVariables(ActionEvent event) {
+    }
+    
+    @FXML
+    private void restoreVariables(ActionEvent event) {
+    }
+
 }

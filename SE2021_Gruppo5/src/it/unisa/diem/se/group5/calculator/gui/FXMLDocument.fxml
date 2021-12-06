@@ -25,7 +25,7 @@
             <Menu mnemonicParsing="false" text="File">
                <items>
                   <MenuItem fx:id="saveVariablesMenu" mnemonicParsing="false" onAction="#saveVariables" text="Save  Variables" />
-                  <MenuItem fx:id="openVariablesMenu" mnemonicParsing="false" onAction="#openVariablesFile" text="Open  Variables File" />
+                  <MenuItem fx:id="restoreVariablesMenu" mnemonicParsing="false" onAction="#restoreVariables" text="Restore Variables" />
                   <MenuItem fx:id="saveOperationsMenu" mnemonicParsing="false" onAction="#saveOperations" text="Save  Operations" />
                   <MenuItem fx:id="openOperationsMenu" mnemonicParsing="false" onAction="#openOperationsFile" text="Open Operations File" />
                </items>
