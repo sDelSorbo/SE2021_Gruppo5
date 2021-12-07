@@ -133,6 +133,14 @@ public class FXMLDocumentController implements Initializable {
         //Variables View
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
         comboVariable.setValue("a");
+        inputText.requestFocus();
+        
+        Platform.runLater(new Runnable() {
+        @Override
+        public void run() {
+            inputText.requestFocus();
+        }
+    });
     
     }
 
