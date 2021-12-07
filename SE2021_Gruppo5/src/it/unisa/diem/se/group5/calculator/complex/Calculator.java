@@ -138,12 +138,17 @@ public class Calculator {
         try {
             for (String op: operations)
                 this.elaborate(op);           
-        } catch (NotEnoughOperandsException neoex) {            
-            stack = (Stack<ComplexNumber>) tmp.clone();
+        } catch (NotEnoughOperandsException neoex) {
+            restore(tmp);
             throw new NotEnoughOperandsException("Impossibile eseguire l'operazione " + input + ".\n" + neoex.getMessage());
         } catch (Exception ex){
             stack = tmp;
             throw ex;
         }                
+    }
+    
+    private void restore(Stack<ComplexNumber> toRestore){
+        stack.clear();
+        stack.addAll(toRestore);
     }
 }

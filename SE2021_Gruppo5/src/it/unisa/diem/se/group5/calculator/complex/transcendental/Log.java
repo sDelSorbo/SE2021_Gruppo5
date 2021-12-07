@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
@@ -13,7 +14,7 @@ import java.util.Stack;
  * 
  * @author roberto
  */
-public class Log extends AbstractOnTranscendentStackOperation{
+public class Log extends AbstractOnStackOperation{
 
     public Log(Stack<ComplexNumber> stack) {
         super(stack);
@@ -35,16 +36,9 @@ public class Log extends AbstractOnTranscendentStackOperation{
         double real = op1.getReal();
         double img = op1.getImaginary();
         double arg = (Math.atan2(img, real));
-        
-        try{
-        
         ComplexNumber result = new ComplexNumber(Math.log(mod), arg);
         System.out.println(result);
         stack.push(result);
-        } catch (EmptyStackException ex) {
-            stack.push(op1);
-            throw ex;
-        }
     }
     
 }

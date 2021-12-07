@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
@@ -13,7 +14,7 @@ import java.util.Stack;
  * 
  * @author roberto
  */
-public class Mod extends AbstractOnTranscendentStackOperation{
+public class Mod extends AbstractOnStackOperation{
 
     public Mod(Stack<ComplexNumber> stack) {
         super(stack);
@@ -29,7 +30,7 @@ public class Mod extends AbstractOnTranscendentStackOperation{
         ComplexNumber op1 = stack.pop();
         
         if (op1.getReal() == 0 && op1.getImaginary() == 0)
-            return;
+            return; // return che?
         
         try{
             

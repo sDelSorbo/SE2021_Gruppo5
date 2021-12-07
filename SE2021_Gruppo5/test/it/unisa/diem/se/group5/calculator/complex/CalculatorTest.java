@@ -10,8 +10,11 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.util.Stack;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.BeforeClass;
 
 /**
@@ -33,13 +36,11 @@ public class CalculatorTest {
         String input = "5";        
         instance.elaborate(input);
         
-        //var.variableLoad(complexNumberStack, "a");
-        
         userDefined.add(new UserDefinedOperation("addsub","+ 5 -"));
         
         complexNumberStack.pop();
     }
-    
+
     /**
      * Test del metodo elaborate della classe Calculator.
      */

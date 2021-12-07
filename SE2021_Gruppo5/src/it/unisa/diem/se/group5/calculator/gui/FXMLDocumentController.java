@@ -132,16 +132,16 @@ public class FXMLDocumentController implements Initializable {
         
         //Variables View
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
-        comboVariable.setValue("a");
-        inputText.requestFocus();
-        
-        Platform.runLater(new Runnable() {
-        @Override
-        public void run() {
-            inputText.requestFocus();
-        }
-    });
+        comboVariable.setValue("a");  
+        clearAndFocus();
+    }
     
+    /**
+     * 
+     */
+    private void clearAndFocus(){
+        inputText.clear();
+        inputText.requestFocus();
     }
 
     /**
@@ -151,7 +151,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onDeletePressed(ActionEvent event) {
-        inputFocus();
+        clearAndFocus();
     }
 
     /**
@@ -161,14 +161,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void onEnterPressed(ActionEvent event) {
-        String input = inputText.getText().toLowerCase();       
-        inputFocus();
+        String input = inputText.getText().toLowerCase();
         compute(input);
+        clearAndFocus();
     }
     
     @FXML
     private void onEnter(ActionEvent event) {
         onEnterPressed(event);
+        clearAndFocus();
     }
     
     @FXML
@@ -211,14 +212,6 @@ public class FXMLDocumentController implements Initializable {
     
     private void refresh() {
         variableChange(null);
-    }
-    
-    /**
-     * Esegue il clear e setta il text field in modo da aver sempre il focus .
-     */
-    private void inputFocus() {
-        inputText.requestFocus();
-        inputText.clear();
     }
     
     /**
@@ -266,6 +259,10 @@ public class FXMLDocumentController implements Initializable {
         alert.showAndWait().filter(response -> response == ButtonType.OK);
     }
     
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void variableChange(ActionEvent event) {
         ComplexNumber value;
@@ -283,6 +280,10 @@ public class FXMLDocumentController implements Initializable {
         else labelVariable.setText(value.toString());
     }
         
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void OnExtend(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
@@ -324,7 +325,8 @@ public class FXMLDocumentController implements Initializable {
                 + "• Premendo il tasto Expand è possibile inserire operazioni\n   programmabili."
                 ,"Manuale Complex Calculator v 0.2","Help");
     }   
-
+  
+    
     @FXML
     private void onOperation(ActionEvent event) {
         Button pressed = (Button) event.getSource();
@@ -337,7 +339,8 @@ public class FXMLDocumentController implements Initializable {
             inputText.setText(inputText.getText() + operation);
             return;
         }
-        compute(operation);        
+        compute(operation);
+        inputText.requestFocus();
     }
     
     @FXML
@@ -377,9 +380,9 @@ public class FXMLDocumentController implements Initializable {
         fc.setTitle("Restore Operations");
         File file= fc.showOpenDialog(stg);
         try{
-         List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
-        userOperations.setCurrentOperations(operations);
-        userOperationsObs.addAll(userOperations.getCurrentOperations());
+            List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
+            userOperations.setCurrentOperations(operations);
+            userOperationsObs.addAll(userOperations.getCurrentOperations());
         }catch(Exception e){
             showGenericAlert("ERROR","Impossibile effettuare la restore delle operazioni definite dall'utente, "
                     + "file incompatibile o corrotto","File Incompatibile","Errore");
@@ -388,12 +391,10 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void saveVariables(ActionEvent event) {
-        return;
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
-        return;
     }
     
     @FXML
@@ -414,12 +415,13 @@ public class FXMLDocumentController implements Initializable {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
         String newOperations = event.getNewValue();
         try{
-            UserDefinedOperationValidator.validateOperations(newOperations); 
-            UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations);
+            if (UserDefinedOperationValidator.validateOperations(newOperations) && 
+                UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations))
+                
+                toModify.setOperationsString(newOperations);
         } catch (RuntimeException ex) {
             toModify.setOperationsString(toModify.getOperationsString());
             showGenericAlert("ERROR", ex.getMessage());
         } 
-        toModify.setOperationsString(newOperations);
     }
 }
