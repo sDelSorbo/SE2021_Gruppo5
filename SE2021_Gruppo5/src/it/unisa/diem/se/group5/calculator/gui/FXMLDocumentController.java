@@ -105,6 +105,7 @@ public class FXMLDocumentController implements Initializable {
      * 
      */
     Variables variables;
+    
     @FXML
     private Button userDefAdd1;
     @FXML
@@ -122,7 +123,7 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        variables = new Variables();
+        variables = Variables.getInstance();
         calculator = new Calculator(stack, variables);
         // Stack View
         complexNumberStack = FXCollections.observableArrayList();
@@ -269,8 +270,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void variableChange(ActionEvent event) {
         ComplexNumber value;
+        String selectedVariable = comboVariable.getValue();
+        
+        variables.setSelectedVar(selectedVariable);
+        
         try{
-            value = variables.getValue(comboVariable.getValue());
+            value = variables.getValue(selectedVariable);
         } catch (Exception e) {
             labelVariable.setText("Empty");
             return;
