@@ -53,6 +53,10 @@ public class UserDefinedOperations implements Serializable{
         
         return tmp.getOperationsList();       
     }
+
+    public void setCurrentOperations(List<UserDefinedOperation> operations) {
+        currentOperations = operations;
+    }
     
     //Remove check se la user defined operation è contenuta nelle liste delle user defined operations 
 

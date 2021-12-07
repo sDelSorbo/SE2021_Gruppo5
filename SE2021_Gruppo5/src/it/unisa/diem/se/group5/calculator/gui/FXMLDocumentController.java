@@ -24,6 +24,7 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import java.util.logging.Level;
@@ -374,16 +375,16 @@ public class FXMLDocumentController implements Initializable {
     private void saveOperations(ActionEvent event) {
         fc.setTitle("Save Operations");
         File filename= fc.showSaveDialog(userDefAdd.getScene().getWindow());
-        UserDefinedOperationsFile.save(userOperations, filename);
+        UserDefinedOperationsFile.save(userOperations.getCurrentOperations(), filename);
     }
 
     @FXML
     private void openOperationsFile(ActionEvent event) {
         fc.setTitle("Restore Operations");
         File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
-        UserDefinedOperations operations = UserDefinedOperationsFile.load(file);
-        for(UserDefinedOperation e: operations.getCurrentOperations())
-            userOperationsObs.add(e);
+        List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
+        userOperations.setCurrentOperations(operations);
+        userOperationsObs.addAll(userOperations.getCurrentOperations());
     }
     
     @FXML
