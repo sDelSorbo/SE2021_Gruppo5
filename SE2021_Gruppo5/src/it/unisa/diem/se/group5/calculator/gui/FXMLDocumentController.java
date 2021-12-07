@@ -114,13 +114,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private MenuItem saveOperationsMenu;
     @FXML
-    private MenuItem openOperationsMenu;
-    @FXML
     private MenuItem restoreVariablesMenu;
     @FXML
     private Button userDefRemove;
     @FXML
     private Button userDefModify;
+    @FXML
+    private MenuItem restoreOperationsMenu;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -376,6 +376,7 @@ public class FXMLDocumentController implements Initializable {
         UserDefinedOperationsFile.save(userOperations, filename);
     }
 
+    @FXML
     private void restoreOperations(ActionEvent event) {
         fc.setTitle("Restore Operations");
         File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
@@ -391,5 +392,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void restoreVariables(ActionEvent event) {
     }
+
 
 }
