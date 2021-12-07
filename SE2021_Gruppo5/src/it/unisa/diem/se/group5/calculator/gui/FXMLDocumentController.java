@@ -415,6 +415,7 @@ public class FXMLDocumentController implements Initializable {
         }
         variablesMap = variablesStack.pop();
         variables.setVariablesMap(variablesMap);
+
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
     }
     
