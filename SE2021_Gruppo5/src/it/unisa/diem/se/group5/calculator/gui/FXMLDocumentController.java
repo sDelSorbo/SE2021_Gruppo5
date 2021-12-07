@@ -183,11 +183,11 @@ public class FXMLDocumentController implements Initializable {
         StringParser sp = new StringParser();
         
         if (sp.isOperation(name)){
-            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome");
+            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome","Operazione Già Definita","Errore");
             return;
         }
         if (!sp.validateOperations(operations)){ //Spostare in userDefined?
-            showGenericAlert("ERROR", "Le operazioni inserite non sono valide");
+            showGenericAlert("ERROR", "Le operazioni inserite non sono valide, inserire esclusivamente le operazioni indicate dal manuale","Operazione Non Valida","Errore");
             return;
         }
         
@@ -384,7 +384,8 @@ public class FXMLDocumentController implements Initializable {
         userOperations.setCurrentOperations(operations);
         userOperationsObs.addAll(userOperations.getCurrentOperations());
         }catch(Exception e){
-            showGenericAlert("ERROR","Unable to restore the operations, error opening file or corrupted file","Incompatible File","Error");
+            showGenericAlert("ERROR","Impossibile effettuare la restore delle operazioni definite dall'utente, "
+                    + "file incompatibile o corrotto","File Incompatibile","Errore");
         }
     }
     
