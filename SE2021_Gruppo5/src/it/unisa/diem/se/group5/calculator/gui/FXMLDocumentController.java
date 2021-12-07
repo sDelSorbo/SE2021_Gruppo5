@@ -392,8 +392,4 @@ public class FXMLDocumentController implements Initializable {
     private void restoreVariables(ActionEvent event) {
     }
 
-    @FXML
-    private void openOperationsFile(ActionEvent event) {
-    }
-
 }
