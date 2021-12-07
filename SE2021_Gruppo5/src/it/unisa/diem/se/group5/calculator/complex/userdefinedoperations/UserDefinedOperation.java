@@ -4,6 +4,7 @@
  */
 package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @author Marco
  */
-public class UserDefinedOperation {
+public class UserDefinedOperation implements Serializable{
     private String name;
     private String operationsString;    
     private List<String> operationsList;
@@ -71,5 +72,5 @@ public class UserDefinedOperation {
         }
         return true;
     }
-
+    
 }
