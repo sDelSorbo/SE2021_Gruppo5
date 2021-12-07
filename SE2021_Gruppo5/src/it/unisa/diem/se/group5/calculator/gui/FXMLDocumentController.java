@@ -9,26 +9,16 @@ import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationValidator;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,7 +37,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -176,28 +165,23 @@ public class FXMLDocumentController implements Initializable {
         onEnterPressed(event);
     }
     
-        @FXML
+    @FXML
     private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
         String name = userDefName.getText().trim().toLowerCase();
         String operations = userDefList.getText().trim().toLowerCase();
-        StringParser sp = new StringParser();
+        UserDefinedOperation userDefOp = null;
         
-        if (sp.isOperation(name)){
-            showGenericAlert("ERROR", "Il nome dell'operazione è già utilizzato.\nScegliere un altro nome","Operazione Già Definita","Errore");
-            return;
-        }
-        if (!sp.validateOperations(operations)){ //Spostare in userDefined?
-            showGenericAlert("ERROR", "Le operazioni inserite non sono valide, inserire esclusivamente le operazioni indicate dal manuale","Operazione Non Valida","Errore");
-            return;
-        }
+        try{
+            if (UserDefinedOperationValidator.validateName(name) && UserDefinedOperationValidator.validateOperations(operations))
+                userDefOp = new UserDefinedOperation(name, operations);
         
-        UserDefinedOperation userDefOp = new UserDefinedOperation(name, operations);
-        
-        userOperations.add(userDefOp);
-        userOperationsObs.add(userDefOp);
-        userDefName.clear();
-        userDefList.clear();
-        
+            userOperations.add(userDefOp);
+            userOperationsObs.add(userDefOp);            
+            userDefName.clear();
+            userDefList.clear();
+        } catch (RuntimeException ex) {
+            showGenericAlert("ERROR", ex.getMessage());
+        }      
     }
     
     
@@ -266,7 +250,7 @@ public class FXMLDocumentController implements Initializable {
      * @param headerText header che si vuole mostrare
      * @param title titolo dell'alert che si vuole mostrare
      */
-    public void showGenericAlert(String type, String alertMessage,String headerText,String title) {
+    public void showGenericAlert(String type, String alertMessage, String headerText, String title) {
         Alert alert = new Alert(Alert.AlertType.valueOf(type), alertMessage);
         alert.setHeaderText(headerText);
         alert.setTitle(title);

@@ -1,12 +1,7 @@
-/**
- *
- * StringParser
- * 
- * Version 1.0
- */
-
 package it.unisa.diem.se.group5.calculator.complex;
 
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.NotANumberException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import java.util.List;
 

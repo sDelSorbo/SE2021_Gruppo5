@@ -67,7 +67,7 @@ public class UserDefinedOperations implements Serializable{
     public String getCurrentOperationsString() {
         String currentOp = "";
         for (UserDefinedOperation usr: currentOperations){
-            currentOp = usr.getName() + " ";
+            currentOp += usr.getName() + " ";
         }
         return currentOp;
     }
