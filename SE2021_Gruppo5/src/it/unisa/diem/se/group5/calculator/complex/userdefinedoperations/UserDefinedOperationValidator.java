@@ -25,7 +25,7 @@ public class UserDefinedOperationValidator {
     
     static public boolean validateOperations(String toValidate) throws MalformedUserDefinedOperationException{
         if (!parser.validateOperations(toValidate)) {
-            throw new MalformedUserDefinedOperationException("Le operazioni inserite non sono valide, inserire esclusivamente le operazioni indicate dal manuale");
+            throw new MalformedUserDefinedOperationException("Le istruzioni inserite non sono valide");
         }        
         return true;
     }
