@@ -178,10 +178,7 @@ public class FXMLDocumentController implements Initializable {
         UserDefinedOperation userDefOp = null;
         
         try{
-            if (UserDefinedOperationValidator.validateName(name) && 
-                    UserDefinedOperationValidator.validateOperations(operations) 
-                    && UserDefinedOperationValidator.checkCycle(name, operations));
-                   
+            if (UserDefinedOperationValidator.validateName(name) && UserDefinedOperationValidator.validateOperations(operations))
                 userDefOp = new UserDefinedOperation(name, operations);
         
             userOperations.add(userDefOp);
@@ -394,32 +391,5 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void restoreVariables(ActionEvent event) {
         return;
-    }
-    
-    @FXML
-    private void updateUserDefName(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
-        UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
-        String newName = event.getNewValue();
-        try{
-            if (UserDefinedOperationValidator.validateName(newName))
-                toModify.setName(newName);
-        } catch (RuntimeException ex) {            
-            toModify.setName(toModify.getName());
-            showGenericAlert("ERROR", ex.getMessage());
-        } 
-    }
-    
-    @FXML
-    private void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
-        UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
-        String newOperations = event.getNewValue();
-        try{
-            UserDefinedOperationValidator.validateOperations(newOperations); 
-            UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations);
-        } catch (RuntimeException ex) {
-            toModify.setOperationsString(toModify.getOperationsString());
-            showGenericAlert("ERROR", ex.getMessage());
-        } 
-        toModify.setOperationsString(newOperations);
     }
 }
