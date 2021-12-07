@@ -379,7 +379,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void openOperationsFile(ActionEvent event) {
-        FileChooser fc = new FileChooser();
         fc.setTitle("Restore Operations");
         File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
         UserDefinedOperations operations = UserDefinedOperationsFile.load(file);
