@@ -146,8 +146,8 @@
                   </VBox>
                   <TableView fx:id="userOpTab" editable="true" prefHeight="411.0" prefWidth="324.0">
                      <columns>
-                        <TableColumn fx:id="nameClm" prefWidth="95.0" resizable="false" text="Name" />
-                        <TableColumn fx:id="definitionClm" prefWidth="223.0" resizable="false" text="Definition" />
+                        <TableColumn fx:id="nameClm" onEditCommit="#updateUserDefName" prefWidth="95.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="definitionClm" onEditCommit="#updateUserDefDefinition" prefWidth="223.0" resizable="false" text="Definition" />
                      </columns>
                      <HBox.margin>
                         <Insets bottom="20.0" top="20.0" />
