@@ -6,7 +6,6 @@ package it.unisa.diem.se.group5.calculator.gui;
 
 import it.unisa.diem.se.group5.calculator.complex.Calculator;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
-import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationValidator;
@@ -45,30 +44,8 @@ import javafx.stage.Stage;
  * @author Marco
  */
 public class FXMLDocumentController implements Initializable {
-        
-    @FXML
-    private TextField inputText;
-    @FXML
-    private TextField userDefName;
-    @FXML
-    private TextArea userDefList;
-    @FXML
-    private TableColumn<UserDefinedOperation, String> nameClm;
-    @FXML
-    private TableColumn<UserDefinedOperation, String> definitionClm;   
-    @FXML
-    private TableView<ComplexNumber> stackTab;
-    @FXML
-    private TableColumn<ComplexNumber, String> numberClm;
-    @FXML
-    private ComboBox<String> comboVariable;
-    @FXML
-    private Label labelVariable;
-    @FXML
-    private Button userDefAdd;
-    @FXML
-    private TableView<UserDefinedOperation> userOpTab;    
-        
+    
+    
     /**
      *
      */
@@ -98,20 +75,39 @@ public class FXMLDocumentController implements Initializable {
      */
     private FileChooser fc = new FileChooser();
     
+    /**
+     * 
+     */
     Variables variables;
-    
+        
     @FXML
-    private MenuItem saveVariablesMenu;
+    private TextField inputText;
     @FXML
-    private MenuItem saveOperationsMenu;
+    private TextField userDefName;
     @FXML
-    private MenuItem restoreVariablesMenu;
+    private TextArea userDefList;
+    @FXML
+    private TableColumn<UserDefinedOperation, String> nameClm;
+    @FXML
+    private TableColumn<UserDefinedOperation, String> definitionClm;   
+    @FXML
+    private TableView<ComplexNumber> stackTab;
+    @FXML
+    private TableColumn<ComplexNumber, String> numberClm;
+    @FXML
+    private ComboBox<String> comboVariable;
+    @FXML
+    private Label labelVariable;
+    @FXML
+    private Button userDefAdd;
+    @FXML
+    private TableView<UserDefinedOperation> userOpTab;     
     @FXML
     private Button userDefRemove;
     @FXML
     private Button userDefModify;
-    @FXML
-    private MenuItem restoreOperationsMenu;
+    
+    private final Stage WINDOW = (Stage) inputText.getScene().getWindow();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -276,12 +272,11 @@ public class FXMLDocumentController implements Initializable {
         
     @FXML
     private void OnExtend(ActionEvent event) {
-        Stage stg = (Stage) stackTab.getScene().getWindow();
         if (extended){                
-            stg.setWidth(stg.getWidth() - 455);
+            WINDOW.setWidth(WINDOW.getWidth() - 455);
             extended = false;
         } else {                
-            stg.setWidth(stg.getWidth() + 455);
+            WINDOW.setWidth(WINDOW.getWidth() + 455);
             extended = true;
         }   
     }
@@ -355,14 +350,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void saveOperations(ActionEvent event) {
         fc.setTitle("Save Operations");
-        File filename= fc.showSaveDialog(userDefAdd.getScene().getWindow());
+        File filename= fc.showSaveDialog(WINDOW);
         UserDefinedOperationsFile.save(userOperations, filename);
     }
 
     @FXML
     private void restoreOperations(ActionEvent event) {
         fc.setTitle("Restore Operations");
-        File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
+        File file= fc.showOpenDialog(WINDOW);
         try{
          List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
         userOperations.setCurrentOperations(operations);
