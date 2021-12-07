@@ -15,7 +15,9 @@ import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.io.File;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.application.Platform;
@@ -80,6 +82,8 @@ public class FXMLDocumentController implements Initializable {
      * 
      */
     Variables variables;
+    
+    private Stack<Map<String,ComplexNumber>> variablesStack = new Stack<>();
         
     @FXML
     private TextField inputText;
@@ -391,10 +395,27 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void saveVariables(ActionEvent event) {
+        Map<String, ComplexNumber> variablesMap = new HashMap<>();
+        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
+            variablesMap.put(String.valueOf(alphabet), null);
+        }
+        for(String v: variablesMap.keySet()){
+            variablesMap.put(v, variables.getVariablesMap().get(v));
+        }
+        variablesStack.add(variablesMap);
+        System.out.println(variablesStack);
+        
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
+        Map<String, ComplexNumber> variablesMap = new HashMap<>();
+        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
+            variablesMap.put(String.valueOf(alphabet), null);
+        }
+        variablesMap = variablesStack.pop();
+        variables.setVariablesMap(variablesMap);
+        comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
     }
     
     @FXML
