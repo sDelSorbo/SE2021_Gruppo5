@@ -36,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -107,8 +108,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button userDefModify;
     
-    private final Stage WINDOW = (Stage) inputText.getScene().getWindow();
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         variables = Variables.getInstance();
@@ -123,8 +122,11 @@ public class FXMLDocumentController implements Initializable {
         //UserDefined Operation View
         userOperationsObs = FXCollections.observableArrayList();
         
-        nameClm.setCellValueFactory(new PropertyValueFactory<>("name"));
-        definitionClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
+        nameClm.setCellValueFactory(new PropertyValueFactory<UserDefinedOperation, String>("name"));
+        definitionClm.setCellValueFactory(new PropertyValueFactory<UserDefinedOperation, String>("operationsString"));
+        
+        nameClm.setCellFactory(TextFieldTableCell.forTableColumn());
+        definitionClm.setCellFactory(TextFieldTableCell.forTableColumn());
         
         userOpTab.setItems(userOperationsObs);    
         
@@ -272,11 +274,12 @@ public class FXMLDocumentController implements Initializable {
         
     @FXML
     private void OnExtend(ActionEvent event) {
+        Stage stg = (Stage) inputText.getScene().getWindow();
         if (extended){                
-            WINDOW.setWidth(WINDOW.getWidth() - 455);
+            stg.setWidth(stg.getWidth() - 455);
             extended = false;
         } else {                
-            WINDOW.setWidth(WINDOW.getWidth() + 455);
+            stg.setWidth(stg.getWidth() + 455);
             extended = true;
         }   
     }
@@ -341,23 +344,27 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void removeUserDefinedOperation(ActionEvent event) {
+        
     }
 
     @FXML
     private void modifyUserDefinedOperation(ActionEvent event) {
+        
     }
 
     @FXML
     private void saveOperations(ActionEvent event) {
+        Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Save Operations");
-        File filename= fc.showSaveDialog(WINDOW);
+        File filename= fc.showSaveDialog(stg);
         UserDefinedOperationsFile.save(userOperations, filename);
     }
 
     @FXML
     private void restoreOperations(ActionEvent event) {
+        Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Restore Operations");
-        File file= fc.showOpenDialog(WINDOW);
+        File file= fc.showOpenDialog(stg);
         try{
          List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
         userOperations.setCurrentOperations(operations);
@@ -370,11 +377,11 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void saveVariables(ActionEvent event) {
+        return;
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
+        return;
     }
-
-
 }

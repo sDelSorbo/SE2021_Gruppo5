@@ -28,6 +28,10 @@ public class UserDefinedOperation implements Serializable{
     public String getName() {
         return name;
     }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<String> getOperationsList() {
         return operationsList;
@@ -36,6 +40,13 @@ public class UserDefinedOperation implements Serializable{
     public String getOperationsString() {
         return operationsString;
     }
+    
+    public void setOperationsString(String operations) {
+        this.operationsString = operations;
+        this.operationsList.clear();
+        splitOperations(this.operationsString);
+        
+    }
         
     private void splitOperations(String operations){
         String[] splitted = operations.split("\\s");
@@ -43,11 +54,7 @@ public class UserDefinedOperation implements Serializable{
             this.operationsList.add(ops);
         }                
     }
-    /*
-    public void modify(List<String> operations){
-        this.operations = operations;        
-    }
-    //*/
+    
     @Override
     public int hashCode() {
         int hash = 5;
