@@ -26,9 +26,9 @@ import java.util.logging.Logger;
  */
 public class UserDefinedOperationsFile {
     
-    public static void save(List<UserDefinedOperation> userOperations, File filename){
+    public static void save(UserDefinedOperations userOperations, File filename){
         try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
-             dout.writeObject(userOperations);
+             dout.writeObject(userOperations.getCurrentOperations());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -50,14 +50,14 @@ public class UserDefinedOperationsFile {
     }
     public static void saveXML(UserDefinedOperations userOperations, File filename){
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)))) {
-             encoder.writeObject(userOperations);
+             encoder.writeObject(userOperations.getCurrentOperations());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-    public static UserDefinedOperations loadXML(File filename){
+    public static List<UserDefinedOperation> loadXML(File filename){
         try (XMLDecoder din = new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)))){
-            UserDefinedOperations operations = (UserDefinedOperations) din.readObject();
+            List<UserDefinedOperation> operations = (List<UserDefinedOperation>) din.readObject();
             return operations;
       } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);

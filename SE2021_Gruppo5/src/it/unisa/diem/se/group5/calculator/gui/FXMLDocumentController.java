@@ -110,19 +110,17 @@ public class FXMLDocumentController implements Initializable {
     Variables variables;
     
     @FXML
-    private Button userDefAdd1;
-    @FXML
-    private Button userDefAdd2;
-    @FXML
     private MenuItem saveVariablesMenu;
-    @FXML
-    private MenuItem openVariablesMenu;
     @FXML
     private MenuItem saveOperationsMenu;
     @FXML
     private MenuItem openOperationsMenu;
     @FXML
-    private VBox rootPane;
+    private MenuItem restoreVariablesMenu;
+    @FXML
+    private Button userDefRemove;
+    @FXML
+    private Button userDefModify;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -375,11 +373,10 @@ public class FXMLDocumentController implements Initializable {
     private void saveOperations(ActionEvent event) {
         fc.setTitle("Save Operations");
         File filename= fc.showSaveDialog(userDefAdd.getScene().getWindow());
-        UserDefinedOperationsFile.save(userOperations.getCurrentOperations(), filename);
+        UserDefinedOperationsFile.save(userOperations, filename);
     }
 
-    @FXML
-    private void openOperationsFile(ActionEvent event) {
+    private void restoreOperations(ActionEvent event) {
         fc.setTitle("Restore Operations");
         File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
         List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
@@ -393,6 +390,10 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void restoreVariables(ActionEvent event) {
+    }
+
+    @FXML
+    private void openOperationsFile(ActionEvent event) {
     }
 
 }
