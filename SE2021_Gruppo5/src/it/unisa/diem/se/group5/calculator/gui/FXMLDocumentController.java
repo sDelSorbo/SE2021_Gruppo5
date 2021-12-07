@@ -379,9 +379,13 @@ public class FXMLDocumentController implements Initializable {
     private void restoreOperations(ActionEvent event) {
         fc.setTitle("Restore Operations");
         File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
-        List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
+        try{
+         List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
         userOperations.setCurrentOperations(operations);
         userOperationsObs.addAll(userOperations.getCurrentOperations());
+        }catch(Exception e){
+            showGenericAlert("ERROR","Unable to restore the operations, error opening file or corrupted file","Incompatible File","Error");
+        }
     }
     
     @FXML
