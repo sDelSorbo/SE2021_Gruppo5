@@ -10,6 +10,7 @@ import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -367,13 +369,7 @@ public class FXMLDocumentController implements Initializable {
     FileChooser fc = new FileChooser();
     fc.setTitle("Save Operations");
     File filename= fc.showSaveDialog(rootPane.getScene().getWindow());
-     try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
-             dout.writeObject(userOperationsObs);
-            } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    UserDefinedOperationsFile.save(userOperations, filename);
     }
 
     @FXML
@@ -381,17 +377,10 @@ public class FXMLDocumentController implements Initializable {
     FileChooser fc = new FileChooser();
     fc.setTitle("Open Operations File");
     File file= fc.showOpenDialog(rootPane.getScene().getWindow());
-      try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
-            UserDefinedOperation operations =(UserDefinedOperation) din.readObject();
-            userOperationsObs.setAll(operations);
-      } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
+    UserDefinedOperations operations = UserDefinedOperationsFile.load(file);
+
+        for(UserDefinedOperation e: operations.getCurrentOperations())
+                userOperationsObs.add(e);
     }
     
     @FXML
