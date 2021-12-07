@@ -47,10 +47,10 @@
          <children>
             <TableView fx:id="stackTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="222.0">
                <columns>
-                  <TableColumn fx:id="numberClm" editable="false" maxWidth="220.0" minWidth="208.0" prefWidth="219.0" resizable="false" sortable="false" text="STACK" />
+                  <TableColumn fx:id="numberClm" editable="false" maxWidth="221.0" minWidth="208.0" prefWidth="221.0" resizable="false" sortable="false" text="STACK" />
                </columns>
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="5.0" />
+                  <Insets bottom="10.0" left="10.0" top="20.0" />
                </HBox.margin>
             </TableView>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="362.0" styleClass="div">
@@ -70,22 +70,20 @@
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonB" text="5" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonB" text="6" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="-" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="52.0" styleClass="buttonYlong" text="pow" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="exp" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="39.0" prefWidth="52.0" styleClass="buttonYlong" text="pow" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="exp" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonB" text="2" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonB" text="3" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="*" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="sin" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="cos" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="sin" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="cos" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="51.0" styleClass="buttonY" text="." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin></Button>
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="/" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="tan" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="52.0" styleClass="buttonY" text="inv" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="tan" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="dup" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="39.0" prefWidth="53.0" styleClass="buttonYlong" text="over" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#OnExtend" prefHeight="42.0" prefWidth="104.0" styleClass="buttonY" text="Extend" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <TextField fx:id="inputText" alignment="CENTER_RIGHT" onAction="#onEnter" prefHeight="45.0" prefWidth="259.0" styleClass="display" GridPane.columnIndex="1" GridPane.columnSpan="6">
                      <effect>
@@ -95,16 +93,18 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="35.0" prefWidth="59.0" styleClass="combo" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="35.0" prefWidth="54.0" styleClass="combo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Label fx:id="labelVariable" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="156.0" styleClass="display" text="Empty" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="51.0" styleClass="buttonB" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="&gt;x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="&lt;x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="+x" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="-x" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="39.0" prefWidth="56.0" styleClass="buttonYlong" text="swap" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="39.0" prefWidth="55.0" styleClass="buttonYlong" text="drop" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="j" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#invertTrascendental" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYlong" text="inv" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYSize" text="swap" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYSize" text="drop" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYSize" text="over" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="10.0" prefWidth="20.0" />
@@ -128,7 +128,7 @@
                   <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="447.0" spacing="10.0">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="466.0" spacing="10.0">
                <children>
                   <VBox prefHeight="396.0" prefWidth="124.0" spacing="10.0">
                      <children>
@@ -144,13 +144,13 @@
                         <Insets top="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <TableView fx:id="userOpTab" editable="true" prefHeight="411.0" prefWidth="324.0">
+                  <TableView fx:id="userOpTab" editable="true" prefHeight="519.0" prefWidth="316.0">
                      <columns>
-                        <TableColumn fx:id="nameClm" onEditCommit="#updateUserDefName" prefWidth="95.0" resizable="false" text="Name" />
-                        <TableColumn fx:id="definitionClm" onEditCommit="#updateUserDefDefinition" prefWidth="223.0" resizable="false" text="Definition" />
+                        <TableColumn fx:id="nameClm" onEditCommit="#updateUserDefName" prefWidth="97.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="definitionClm" onEditCommit="#updateUserDefDefinition" prefWidth="221.0" resizable="false" text="Definition" />
                      </columns>
                      <HBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
+                        <Insets bottom="10.0" top="20.0" />
                      </HBox.margin>
                   </TableView>
                </children>

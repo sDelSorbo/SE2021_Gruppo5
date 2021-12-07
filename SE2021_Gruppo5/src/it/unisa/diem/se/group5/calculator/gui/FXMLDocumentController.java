@@ -292,10 +292,10 @@ public class FXMLDocumentController implements Initializable {
     private void OnExtend(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         if (extended){                
-            stg.setWidth(stg.getWidth() - 455);
+            stg.setWidth(stg.getWidth() - 460);
             extended = false;
         } else {                
-            stg.setWidth(stg.getWidth() + 455);
+            stg.setWidth(stg.getWidth() + 460);
             extended = true;
         }   
     }
@@ -362,7 +362,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void removeUserDefinedOperation(ActionEvent event) {
-        
+        String name = userDefName.getText().toLowerCase();
+        UserDefinedOperation toRemove = new UserDefinedOperation(name , "");
+        try {
+            userOperations.remove(toRemove);
+            userOperationsObs.remove(toRemove);
+        } catch (Exception ex) {
+            showGenericAlert("ERROR",ex.getMessage());
+        }                    
     }
 
     @FXML
@@ -438,12 +445,17 @@ public class FXMLDocumentController implements Initializable {
         String newOperations = event.getNewValue();
         try{
             if (UserDefinedOperationValidator.validateOperations(newOperations) && 
-                UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations))
-                
+                UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations))                
                 toModify.setOperationsString(newOperations);
         } catch (RuntimeException ex) {
             toModify.setOperationsString(toModify.getOperationsString());
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }
+
+    @FXML
+    private void invertTrascendental(ActionEvent event) {
+        
+    }
+
 }

@@ -138,6 +138,39 @@
     -fx-font-size: 0.9em;    
 }
 
+.buttonYSize {
+    -fx-padding: 0 0 8 0;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #ffc42f 0%, #ffaf34 100%),
+        #ffaf34,
+        #ffd868,
+        radial-gradient(center 50% 50%, radius 100%, #ffd166, #ffd868);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 0.9em;    
+}
+
+.buttonYSize:hover{
+    -fx-padding: 0 0 8 0;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+}
+
+.buttonYSize:pressed{
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #aa4a1a 0%, #971319 100%),
+        #95472b,
+        #de6631,
+        radial-gradient(center 50% 50%, radius 100%, #e17645, #cc4424);
+    -fx-padding: 10 12 11 12;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
 .buttonYCust {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
@@ -167,14 +200,14 @@
     
 }*/
 
-buttonYCust:hover,.buttonY:hover,.buttonB:hover,.buttonYlong:hover,.buttonYCust:hover{
+buttonYCust:hover,.buttonY:hover,.buttonB:hover,.buttonYlong:hover,.buttonYCust:hover, .buttonYlonglong:hover{
     -fx-background-color: 
         linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
         #9d4024,
         #d86e3a,
         radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
 }
-buttonYCust:pressed,.buttonY:pressed,.buttonB:pressed,.buttonYlong:pressed,.buttonYCust:pressed{
+buttonYCust:pressed,.buttonY:pressed,.buttonB:pressed,.buttonYlong:pressed,.buttonYCust:pressed, .buttonYlonglong:pressed{
     -fx-background-color: 
         linear-gradient(from 0% 93% to 0% 100%, #aa4a1a 0%, #971319 100%),
         #95472b,
@@ -186,7 +219,8 @@ buttonYCust:pressed,.buttonY:pressed,.buttonB:pressed,.buttonYlong:pressed,.butt
 
 .table-view {
     -fx-background-color: linear-gradient(to bottom, #ffd166, #ffd868);
-    -fx-background-radius: 8;
+    -fx-background-radius: 8;    
+    -fx-text-background-color: black;
 }
 
 .table-view .column-header {
@@ -197,26 +231,17 @@ buttonYCust:pressed,.buttonY:pressed,.buttonB:pressed,.buttonYlong:pressed,.butt
 }
 
 .table-view .table-cell{
-    -fx-border-color: transparent;
+    -fx-border-color: rgba(0, 0, 0, 0);
     -fx-padding: 2 0 2 10px;
 }
 
-/*
-.table-row-cell: hover {
-    -fx-background-color: #eb9c23;
-    -fx-text-background-color: red;
-}
-*/
-
 .table-row-cell: odd{
     -fx-background-color: #93f9b911;
-    -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
 
 .table-row-cell: even{
     -fx-background-color: #1dbbdd11;
-    -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
 
@@ -226,3 +251,17 @@ buttonYCust:pressed,.buttonY:pressed,.buttonB:pressed,.buttonYlong:pressed,.butt
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color:  linear-gradient(to right, #ffd868, #ffd166);
 }
+
+.table-view .column-header-background .filler {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.table-view .column-header-background{
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.table-row-cell: hover {
+    -fx-background-color: #ff6633;
+    -fx-text-background-color: white;
+}
+

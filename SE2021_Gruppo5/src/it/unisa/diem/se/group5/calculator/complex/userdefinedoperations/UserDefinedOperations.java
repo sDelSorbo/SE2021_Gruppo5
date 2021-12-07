@@ -7,6 +7,7 @@ package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
@@ -34,8 +35,8 @@ public class UserDefinedOperations implements Serializable{
         currentOperations.add(operation);       
     }
     
-    public void remove(UserDefinedOperation operation) throws UserDefinedOperationInUseException{
-        String name = operation.getName();
+    public void remove(UserDefinedOperation toRemove) throws UserDefinedOperationInUseException, NoSuchElementException{
+        String name = toRemove.getName();
         for (UserDefinedOperation op: currentOperations){
             for (String subop: op.getOperationsList()){
                 if (subop.equals(name))
@@ -43,7 +44,11 @@ public class UserDefinedOperations implements Serializable{
                             + "Rimuovere le operazioni che la contengono e riprovare");
             }
         }
-        currentOperations.remove(operation);
+        if (currentOperations.contains(toRemove))
+            currentOperations.remove(toRemove);
+        else{
+            throw new NoSuchElementException("L'operazione non è presente. Impossibile rimuoverla");
+        }
     }
     
     public List<String> getListOfOperations(String input){
