@@ -107,6 +107,8 @@ public class FXMLDocumentController implements Initializable {
     /**
      * 
      */
+    private FileChooser fc = new FileChooser();
+    
     Variables variables;
     
     @FXML
@@ -365,9 +367,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void modifyUserDefinedOperation(ActionEvent event) {
     }
-
-    private FileChooser fc = new FileChooser();
-    
 
     @FXML
     private void saveOperations(ActionEvent event) {
