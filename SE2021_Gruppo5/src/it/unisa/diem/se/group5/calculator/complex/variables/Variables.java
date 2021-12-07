@@ -4,13 +4,8 @@
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Add;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Sub;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
-
 /**
  * Questa classe implementa un HashMap con 26 variabili 
  * che vanno dalla "a" alla "z" inizializzate a 0.
@@ -49,6 +44,13 @@ public class Variables {
      */
     public Map<String, ComplexNumber> getVariablesMap() {
         return variablesMap;
+    }
+    /**
+     * Setta la Map
+     * @param variablesMap 
+     */
+    public void setVariablesMap(Map<String, ComplexNumber> variablesMap) {
+        Variables.variablesMap = variablesMap;
     }
     
     /**
