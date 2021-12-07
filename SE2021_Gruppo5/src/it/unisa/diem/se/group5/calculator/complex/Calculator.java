@@ -12,6 +12,7 @@ import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import it.unisa.diem.se.group5.calculator.complex.variables.VariablesOperations;
 import java.util.List;
 
 
@@ -41,7 +42,9 @@ public class Calculator {
     
     private Map<String, Operation> commonOperations;
     
-    private Map<String, Operation> stackOperations;    
+    private Map<String, Operation> stackOperations;  
+    
+    private Map<String, Operation> variablesOperations;   
     
     private Variables variables;
     
@@ -57,6 +60,7 @@ public class Calculator {
         this.stack = stack;
         commonOperations = new CommonOperations(stack).get();
         stackOperations = new StackOperations(stack).get();
+        variablesOperations = new VariablesOperations(stack).get();
         this.variables = variables;
         this.userDefined = UserDefinedOperations.getInstance();
     }
@@ -114,25 +118,14 @@ public class Calculator {
             else if (parser.isUserDefined(input)){
                 executeUserDefined(input);
             }
-            // CHANGE
             else{
-                char varOp = input.charAt(0);
+                String varOp = String.valueOf(input.charAt(0));
                 String varName= input.substring(1);
-                switch(input.charAt(0)) {
-                    case '>':
-                        variables.variableLoad(stack, varName);
-                    break;
-                    case '<':
-                        variables.variableSave(stack, varName);
-                    break;
-                    case '+':
-                        variables.variableAdd(stack, varName);
-                    break;
-                    case '-':
-                        variables.variableSub(stack, varName);
-                    break;
+                
+                if (variablesOperations.containsKey(varOp))
+                    variablesOperations.get(varOp).execute();                
                 }
-            }            
+            
         } catch (EmptyStackException ex){
             throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }

@@ -18,6 +18,10 @@ import java.util.Stack;
  * @author roberto
  */
 public class Variables {
+    
+    private static Variables instance; 
+    
+    private String selectedVar = "";
     /**
      * Struttura dati Map che conterrà le 26 variabili.
      */
@@ -26,11 +30,17 @@ public class Variables {
     /**
      * Costruttore della classe Variables che inizializza le 26 variabili a 0.
      */
-    public Variables() {
+    private Variables() {
         variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
             variablesMap.put(String.valueOf(alphabet), null);
         }
+    }
+    
+    public static Variables getInstance(){
+        if (instance == null)
+            instance = new Variables();
+        return instance;
     }
     
     /**
@@ -73,28 +83,14 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variable nella quale caricare il valore 
      */
-    public void variableLoad(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
-        if(var==null)
-            throw new NotSelectedVariableException();
-        ComplexNumber n = stack.peek();
-        variablesMap.replace(var, n);
-    }
-    
+
     /**
      * Metodo statico per salvare il valore di una variabile in cima allo stack
      * 
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere salvato nello stack
      */
-    public void variableSave(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
-        if(var==null)
-            throw new NotSelectedVariableException();
-        if(variablesMap.get(var) == null)
-            throw new NotSelectedVariableException("La variabile non contiene alcun valore");
-        stack.push(variablesMap.get(var));
-        
-    }
-    
+
     /**
      * Metodo statico per sommare il valore della variabile data con il valore del numero complesso
      * in cima allo stack
@@ -102,22 +98,7 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere sommato al numero complesso in cima allo stack
      */
-    public void variableAdd(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
-        if(var==null)
-           throw new NotSelectedVariableException();
-        if(variablesMap.get(var) == null)
-            throw new NotSelectedVariableException("La variabile non contiene alcun valore.\nInizializzarla prima");
-        
-        Stack<ComplexNumber> tmp = new Stack<>();
-        tmp.push(stack.peek());
-        tmp.push(variablesMap.get(var));
-        
-        Operation add = new Add(tmp);
-        add.execute();
-        
-        variablesMap.replace(var, tmp.pop());
-    }
-    
+
     /**
      * Metodo statico per sottrarrelal valore del numero complesso in cima allo stack al valore
      * della variabile data
@@ -125,22 +106,13 @@ public class Variables {
      * @param stack Stack di numeri complessi
      * @param var Variabile il cui valore deve essere sottratto al numero complesso in cima allo stack
      */
-    public void variableSub(Stack<ComplexNumber> stack, String var) throws NotSelectedVariableException{
-        if(var==null)
-           throw new NotSelectedVariableException();
-        if(variablesMap.get(var) == null)
-            throw new NotSelectedVariableException("La variabile non contiene alcun valore.\nInizializzarla prima");
-        
-        Stack<ComplexNumber> tmp = new Stack<>();
-        tmp.push(stack.peek());
-        tmp.push(variablesMap.get(var));
-        
-        
-        
-        Operation sub = new Sub(tmp);
-        sub.execute();
-        
-        variablesMap.replace(var, tmp.pop());        
+    
+    public String getSelectedVar() {
+        return selectedVar;
+    }
+    
+    public void setSelectedVar(String var) {
+        this.selectedVar = var;
     }
     
     /**
