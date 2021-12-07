@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<VBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.se.group5.calculator.gui.FXMLDocumentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.se.group5.calculator.gui.FXMLDocumentController">
    <children>
       <MenuBar>
         <menus>
@@ -137,8 +137,8 @@
                         <Label text="Operations" />
                         <TextArea fx:id="userDefList" prefHeight="100.0" prefWidth="132.0" />
                         <Button fx:id="userDefAdd" mnemonicParsing="false" onAction="#addUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Add" />
-                        <Button fx:id="userDefAdd1" mnemonicParsing="false" onAction="#removeUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Remove" />
-                        <Button fx:id="userDefAdd2" mnemonicParsing="false" onAction="#modifyUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Modify" />
+                        <Button fx:id="userDefRemove" mnemonicParsing="false" onAction="#removeUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Remove" />
+                        <Button fx:id="userDefModify" mnemonicParsing="false" onAction="#modifyUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Modify" />
                      </children>
                      <HBox.margin>
                         <Insets top="20.0" />

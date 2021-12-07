@@ -367,25 +367,24 @@ public class FXMLDocumentController implements Initializable {
     private void modifyUserDefinedOperation(ActionEvent event) {
     }
 
-
+    private FileChooser fc = new FileChooser();
+    
 
     @FXML
     private void saveOperations(ActionEvent event) {
-    FileChooser fc = new FileChooser();
-    fc.setTitle("Save Operations");
-    File filename= fc.showSaveDialog(rootPane.getScene().getWindow());
-    UserDefinedOperationsFile.save(userOperations, filename);
+        fc.setTitle("Save Operations");
+        File filename= fc.showSaveDialog(userDefAdd.getScene().getWindow());
+        UserDefinedOperationsFile.save(userOperations, filename);
     }
 
     @FXML
     private void openOperationsFile(ActionEvent event) {
-    FileChooser fc = new FileChooser();
-    fc.setTitle("Open Operations File");
-    File file= fc.showOpenDialog(rootPane.getScene().getWindow());
-    UserDefinedOperations operations = UserDefinedOperationsFile.load(file);
-
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Restore Operations");
+        File file= fc.showOpenDialog(userDefAdd.getScene().getWindow());
+        UserDefinedOperations operations = UserDefinedOperationsFile.load(file);
         for(UserDefinedOperation e: operations.getCurrentOperations())
-                userOperationsObs.add(e);
+            userOperationsObs.add(e);
     }
     
     @FXML

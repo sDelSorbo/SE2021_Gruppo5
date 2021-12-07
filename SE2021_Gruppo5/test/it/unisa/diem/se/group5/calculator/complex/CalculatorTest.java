@@ -21,7 +21,7 @@ import org.junit.BeforeClass;
 public class CalculatorTest {
     
     static private Stack<ComplexNumber> complexNumberStack = new Stack<>();
-    static private Variables var = new Variables();
+    static private Variables var = Variables.getInstance();
     static private UserDefinedOperations userDefined = UserDefinedOperations.getInstance();
     static private Calculator instance = new Calculator(complexNumberStack, var);
     
@@ -33,7 +33,7 @@ public class CalculatorTest {
         String input = "5";        
         instance.elaborate(input);
         
-        var.variableLoad(complexNumberStack, "a");
+        //var.variableLoad(complexNumberStack, "a");
         
         userDefined.add(new UserDefinedOperation("addsub","+ 5 -"));
         
