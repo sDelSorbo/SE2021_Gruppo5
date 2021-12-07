@@ -10,6 +10,7 @@ import it.unisa.diem.se.group5.calculator.complex.StringParser;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.MalformedUserDefinedOperationException;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -192,6 +194,9 @@ public class FXMLDocumentController implements Initializable {
         
         userOperations.add(userDefOp);
         userOperationsObs.add(userDefOp);
+        userDefName.clear();
+        userDefList.clear();
+        
     }
     
     
@@ -362,29 +367,14 @@ public class FXMLDocumentController implements Initializable {
     private void modifyUserDefinedOperation(ActionEvent event) {
     }
 
-    @FXML
-    private void saveVariables(ActionEvent event) {
-    }
 
-    @FXML
-    private void openVariablesFile(ActionEvent event) {
-    }
 
     @FXML
     private void saveOperations(ActionEvent event) {
     FileChooser fc = new FileChooser();
     fc.setTitle("Save Operations");
     File filename= fc.showSaveDialog(rootPane.getScene().getWindow());
-     try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
-              for(UserDefinedOperation e: userOperationsObs)  {
-                dout.writeChars(e.getName());
-                dout.writeChars(e.getOperationsString());
-              }
-            } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    UserDefinedOperationsFile.save(userOperations, filename);
     }
 
     @FXML
@@ -392,20 +382,18 @@ public class FXMLDocumentController implements Initializable {
     FileChooser fc = new FileChooser();
     fc.setTitle("Open Operations File");
     File file= fc.showOpenDialog(rootPane.getScene().getWindow());
-                    System.out.println("nome ");
-      try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
-            for(UserDefinedOperation e: userOperationsObs)  {
-                String name = din.readUTF();
-                System.out.println("nome " + name);
-                String ops = din.readUTF();
-                e = new UserDefinedOperation(name,ops);
+    UserDefinedOperations operations = UserDefinedOperationsFile.load(file);
+
+        for(UserDefinedOperation e: operations.getCurrentOperations())
                 userOperationsObs.add(e);
-              }
-      } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
     }
+    
+    @FXML
+    private void saveVariables(ActionEvent event) {
+    }
+    
+    @FXML
+    private void restoreVariables(ActionEvent event) {
+    }
+
 }
