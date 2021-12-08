@@ -25,6 +25,11 @@ public class TrascendentalOperations {
         stackOperations.put("log", new Log(stack));
         stackOperations.put("mod", new Mod(stack));
         stackOperations.put("sin", new Sin(stack));
+        stackOperations.put("pow", new Pow(stack));
+        stackOperations.put("acos", new Acos(stack));
+        stackOperations.put("asin", new Asin(stack));
+        stackOperations.put("atan", new Atan(stack));
+        stackOperations.put("tan", new Tan(stack));
     }
     
     public Map<String,Operation> get(){

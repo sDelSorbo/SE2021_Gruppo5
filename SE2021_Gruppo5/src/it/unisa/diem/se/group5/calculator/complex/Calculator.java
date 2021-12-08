@@ -10,6 +10,7 @@ import java.util.EmptyStackException;
 import java.util.Map;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import it.unisa.diem.se.group5.calculator.complex.transcendental.TrascendentalOperations;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import it.unisa.diem.se.group5.calculator.complex.variables.VariablesOperations;
@@ -50,6 +51,8 @@ public class Calculator {
     
     private UserDefinedOperations userDefined;
     
+    private Map<String, Operation> trascendentalOperations;
+    
     /**
      * Costruisce un calcolatore dotato di StringParser e stack di numeri complessi
      * 
@@ -61,6 +64,7 @@ public class Calculator {
         commonOperations = new CommonOperations(stack).get();
         stackOperations = new StackOperations(stack).get();
         variablesOperations = new VariablesOperations(stack).get();
+        trascendentalOperations = new TrascendentalOperations(stack).get();
         this.variables = variables;
         this.userDefined = UserDefinedOperations.getInstance();
     }
@@ -115,6 +119,8 @@ public class Calculator {
                 commonOperations.get(input).execute();
             else if (stackOperations.containsKey(input))
                 stackOperations.get(input).execute();
+            else if (trascendentalOperations.containsKey(input))
+                trascendentalOperations.get(input).execute();
             else if (parser.isUserDefined(input)){
                 executeUserDefined(input);
             }

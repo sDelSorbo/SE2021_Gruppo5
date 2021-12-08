@@ -43,6 +43,9 @@ public class Pow extends AbstractOnStackOperation{
             op3.execute();
       
             ComplexNumber result = stack.pop();
+            
+            stack.push(result);
+            
         } catch (Exception ex) {
             stack.push(base);
             throw ex;
