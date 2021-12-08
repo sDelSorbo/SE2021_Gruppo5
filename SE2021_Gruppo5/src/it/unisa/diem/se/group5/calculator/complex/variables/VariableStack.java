@@ -14,26 +14,27 @@ import java.util.Stack;
  * @author gianpaolotobia
  */
 public class VariableStack {
+    private static Stack<Map<String,ComplexNumber>> variablesStack = new Stack<>();
+
+    public VariableStack() {
+    }
     
-    public static Stack<Map<String,ComplexNumber>> save(Stack<Map<String,ComplexNumber>> stack, Variables variables){
+    public static void save(Variables variables){
         Map<String, ComplexNumber> variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
             variablesMap.put(String.valueOf(alphabet), variables.getVariablesMap().get(String.valueOf(alphabet)));
         }
-      /* for(String v: variablesMap.keySet()){
-            variablesMap.put(v, variables.getVariablesMap().get(v));
-        }*/
-        stack.add(variablesMap);
-        return stack;
+        variablesStack.add(variablesMap);
     }
-    public static Map<String,ComplexNumber> restore(Stack<Map<String,ComplexNumber>> stack){
+    
+    public static Map<String,ComplexNumber> restore(){
         Map<String, ComplexNumber> variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
             variablesMap.put(String.valueOf(alphabet), null);
         }
-        if(stack.isEmpty())
+        if(variablesStack.isEmpty())
             throw new StackSizeException("Impossibile Effettuare La Restore","Lo stack è vuoto, nessuna variabile salvata in precedenza");
-        variablesMap = stack.pop();
+        variablesMap = variablesStack.pop();
         return variablesMap;
     }
 }

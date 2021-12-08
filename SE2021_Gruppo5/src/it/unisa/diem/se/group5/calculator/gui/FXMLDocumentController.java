@@ -403,21 +403,20 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void saveVariables(ActionEvent event) {
+    private void saveVariables(ActionEvent event) {  
         
-        variablesStack = VariableStack.save(variablesStack,variables);
-        System.out.println(variablesStack);
+        VariableStack.save(variables);
         
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
         try{
-        variables.setVariablesMap(VariableStack.restore(variablesStack));
+        variables.setVariablesMap(VariableStack.restore());
         }catch(StackSizeException e){
             showGenericAlert("ERROR",e.getMsg2(),e.getMessage(),"Errore");
         }
-        comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
+        variableChange(null);
     }
     
     @FXML
