@@ -147,7 +147,7 @@
                   <TableView fx:id="userOpTab" editable="true" prefHeight="519.0" prefWidth="316.0">
                      <columns>
                         <TableColumn fx:id="nameClm" onEditCommit="#updateUserDefName" prefWidth="97.0" resizable="false" text="Name" />
-                        <TableColumn fx:id="definitionClm" onEditCommit="#updateUserDefDefinition" prefWidth="221.0" resizable="false" text="Definition" />
+                        <TableColumn fx:id="definitionClm" onEditCommit="#updateUserDefDefinition" prefWidth="217.0" resizable="false" text="Definition" />
                      </columns>
                      <HBox.margin>
                         <Insets bottom="10.0" top="20.0" />

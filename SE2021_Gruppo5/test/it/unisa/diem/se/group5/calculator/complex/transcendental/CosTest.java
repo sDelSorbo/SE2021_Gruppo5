@@ -5,11 +5,9 @@
 package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,7 +18,7 @@ import static org.junit.Assert.*;
 public class CosTest {
     
   Stack<ComplexNumber> stack; 
-    TranscendentOperation op;
+  Operation op;
     
     
     @Before
@@ -35,7 +33,7 @@ public class CosTest {
      */
     @Test
     public void testExecute() {
-          System.out.println("Cos");
+        System.out.println("Cos");
         ComplexNumber op1 = new ComplexNumber(Math.PI/4,0);
         ComplexNumber op2 = new ComplexNumber(Math.PI/2,0);
         ComplexNumber op3 = new ComplexNumber(Math.PI,0);
