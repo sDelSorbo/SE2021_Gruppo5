@@ -30,11 +30,6 @@ public class VariableStack {
     public void save(Variables variables){
         Map<String, ComplexNumber> variablesMap = new HashMap<>(); 
         variablesMap.putAll(variables.getVariablesMap()); //Vedi se questo funziona uguale
-        /*
-        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
-            variablesMap.put(String.valueOf(alphabet), variables.getVariablesMap().get(String.valueOf(alphabet)));
-        }
-        */
         variablesStack.add(variablesMap);
     }
     
