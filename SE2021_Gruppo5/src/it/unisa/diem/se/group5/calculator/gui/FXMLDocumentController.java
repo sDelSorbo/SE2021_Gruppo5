@@ -401,17 +401,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void saveVariables(ActionEvent event) {
-        Map<String, ComplexNumber> variablesMap = new HashMap<>();
-        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
-            variablesMap.put(String.valueOf(alphabet), null);
-        }
-        for(String v: variablesMap.keySet()){
-            variablesMap.put(v, variables.getVariablesMap().get(v));
-        }
-        variablesStack.add(variablesMap);
-        System.out.println(variablesStack);
-        
+    private void saveVariables(ActionEvent event) {        
+        variablesStack = VariableStack.save(variablesStack,variables);
     }
     
     @FXML
