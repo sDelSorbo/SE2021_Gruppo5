@@ -411,14 +411,16 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void saveVariables(ActionEvent event) {          
-        VariableStack.save(variables);        
+    private void saveVariables(ActionEvent event) {  
+        VariableStack storageStack = new VariableStack();
+        storageStack.save(variables);
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
+        VariableStack storageStack = new VariableStack();
         try{
-        variables.setVariablesMap(VariableStack.restore());
+        variables.setVariablesMap(storageStack.restore());
         }catch(StackSizeException e){
             showGenericAlert("ERROR",e.getMsgHeader(),e.getMessage(),"Errore");
         }
