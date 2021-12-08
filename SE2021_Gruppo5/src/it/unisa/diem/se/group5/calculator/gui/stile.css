@@ -4,7 +4,12 @@
 }
 
 .root {
+    -fx-background-color: white;
+}
+
+.menu-bar{
     -fx-background-color: #fff3ce;
+    -fx-border-color: #ffe49b; 
 }
 
 .div {
@@ -18,14 +23,7 @@
 .labelVar{
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
     -fx-background-radius: 8;
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #ffc42f 0%, #ffaf34 100%),
-        #ffaf34,
-        #ffd868,
-        radial-gradient(center 50% 50%, radius 100%, #ffd166, #ffd868);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,1,1 );
-    -fx-font-weight: bold;
-    -fx-font-size: 1.1em; 
+    -fx-background-color: radial-gradient(center 50% 50%, radius 100%, #ffd166, #ffd868); 
 }
 
 .combo {

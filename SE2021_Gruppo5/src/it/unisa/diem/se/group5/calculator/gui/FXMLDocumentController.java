@@ -38,7 +38,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -380,20 +379,6 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void modifyUserDefinedOperation(ActionEvent event) {
-        String name = userDefName.getText().toLowerCase();
-        String operations = userDefList.getText().toLowerCase();
-        UserDefinedOperation toModify = new UserDefinedOperation(name , operations);
-        try {
-            userOperations.modify(toModify);
-            userOpTab.refresh();
-        } catch (Exception ex) {
-            showGenericAlert("ERROR",ex.getMessage());
-        }    
-        
-    }
-
-    @FXML
     private void saveOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Save Operations");
@@ -452,13 +437,24 @@ public class FXMLDocumentController implements Initializable {
     void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {        
         String name = userOpTab.getSelectionModel().getSelectedItem().getName();
         String operations = event.getNewValue();
+        modify(name, operations);
+    }    
+    
+    @FXML
+    private void modifyUserDefinedOperation(ActionEvent event) {
+        String name = userDefName.getText().toLowerCase();
+        String operations = userDefList.getText().toLowerCase();
+        modify(name, operations);    
+    }
+    
+    private void modify(String name, String operations) {
         UserDefinedOperation toModify = new UserDefinedOperation(name , operations);
         try {
             userOperations.modify(toModify);
-        } catch (RuntimeException ex) {
+            userOpTab.refresh();
+        } catch (Exception ex) {
             showGenericAlert("ERROR",ex.getMessage());
-        }
-        userOpTab.refresh();
+        }       
     }
 
     @FXML

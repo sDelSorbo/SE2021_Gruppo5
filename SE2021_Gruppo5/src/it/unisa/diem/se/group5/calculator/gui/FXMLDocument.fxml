@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -75,7 +76,7 @@
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonB" text="2" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonB" text="3" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="*" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Button fx:id="sinButton"  mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYSize" text="sin" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button fx:id="sinButton" mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYSize" text="sin" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button fx:id="cosButton" mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonYSize" text="cos" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="51.0" styleClass="buttonY" text="." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                      <GridPane.margin>
@@ -132,13 +133,28 @@
                <children>
                   <VBox prefHeight="396.0" prefWidth="124.0" spacing="10.0">
                      <children>
-                        <Label styleClass="labelOp" text="Name" />
+                        <Label prefHeight="29.0" prefWidth="135.0" styleClass="labelOp" text="Name">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
                         <TextField fx:id="userDefName" />
-                        <Label styleClass="labelOp" text="Operations" />
+                        <Label prefHeight="29.0" prefWidth="128.0" styleClass="labelOp" text="Operations">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
                         <TextArea fx:id="userDefList" prefHeight="100.0" prefWidth="132.0" />
-                        <Button fx:id="userDefAdd" mnemonicParsing="false" onAction="#addUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Add" />
-                        <Button fx:id="userDefRemove" mnemonicParsing="false" onAction="#removeUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Remove" />
-                        <Button fx:id="userDefModify" mnemonicParsing="false" onAction="#modifyUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Modify" />
+                        <Button fx:id="userDefAdd" alignment="CENTER" mnemonicParsing="false" onAction="#addUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Add">
+                           <VBox.margin>
+                              <Insets left="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="userDefRemove" alignment="CENTER" mnemonicParsing="false" onAction="#removeUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Remove">
+                           <VBox.margin>
+                              <Insets left="3.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="userDefModify" alignment="CENTER" mnemonicParsing="false" onAction="#modifyUserDefinedOperation" prefHeight="40.0" prefWidth="115.0" styleClass="buttonYCust" text="Modify">
+                           <VBox.margin>
+                              <Insets left="3.0" />
+                           </VBox.margin></Button>
                      </children>
                      <HBox.margin>
                         <Insets top="20.0" />
