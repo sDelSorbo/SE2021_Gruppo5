@@ -426,7 +426,6 @@ public class FXMLDocumentController implements Initializable {
         }
         variableChange(null);
     }
-    
     @FXML
     private void updateUserDefName(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
@@ -438,9 +437,8 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }
-    
     @FXML
-    private void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
+    void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
         String newOperations = event.getNewValue();
         try{
