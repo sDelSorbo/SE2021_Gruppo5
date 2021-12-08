@@ -84,7 +84,6 @@ public class FXMLDocumentController implements Initializable {
      */
     Variables variables;
     
-    private Stack<Map<String,ComplexNumber>> variablesStack = new Stack<>();
         
     @FXML
     private TextField inputText;
@@ -138,7 +137,9 @@ public class FXMLDocumentController implements Initializable {
         //Variables View
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
         comboVariable.setValue("a");  
-        clearAndFocus();
+        
+        //textfield fix
+        Platform.runLater(() -> {inputText.requestFocus(); });
     }
     
     /**
@@ -403,21 +404,20 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void saveVariables(ActionEvent event) {
+    private void saveVariables(ActionEvent event) {  
         
-        variablesStack = VariableStack.save(variablesStack,variables);
-        System.out.println(variablesStack);
+        VariableStack.save(variables);
         
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
         try{
-        variables.setVariablesMap(VariableStack.restore(variablesStack));
+        variables.setVariablesMap(VariableStack.restore());
         }catch(StackSizeException e){
-            showGenericAlert("ERROR",e.getMsg2(),e.getMessage(),"Errore");
+            showGenericAlert("ERROR",e.getMsgHeader(),e.getMessage(),"Errore");
         }
-        comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
+        variableChange(null);
     }
     
     @FXML

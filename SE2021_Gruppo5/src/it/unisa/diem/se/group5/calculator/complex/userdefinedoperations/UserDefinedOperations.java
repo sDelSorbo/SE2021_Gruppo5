@@ -62,7 +62,8 @@ public class UserDefinedOperations implements Serializable{
     }
 
     public void setCurrentOperations(ObservableList<UserDefinedOperation> operations) {
-        currentOperations = operations;
+        currentOperations.clear();
+        currentOperations.addAll(operations);
     }
     
     //Remove check se la user defined operation è contenuta nelle liste delle user defined operations 
