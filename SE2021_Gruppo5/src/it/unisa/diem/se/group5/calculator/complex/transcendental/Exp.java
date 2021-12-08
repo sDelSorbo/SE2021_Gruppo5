@@ -10,7 +10,7 @@ import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
- * Questa classe implementa un'operazione di esponenziale di un ComplexNumber.
+ * Questa classe implementa l'esponenziale di un ComplexNumber.
  * 
  * @author roberto
  */

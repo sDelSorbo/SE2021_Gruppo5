@@ -26,7 +26,7 @@ public class TanTest {
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op=new Tan(stack);
+        op = new Tan(stack);
         
     }
     
@@ -34,15 +34,14 @@ public class TanTest {
     /*
      * Test of execute method, of class Tan.
      */
-
     @Test
     public void testExecute() {
         System.out.println("Tan");
-        ComplexNumber op1 = new ComplexNumber(5,5);
+        ComplexNumber op1 = new ComplexNumber(0.563,1.453);
         ComplexNumber op2 = new ComplexNumber(1,2);
         ComplexNumber op3 = new ComplexNumber(-1,-1);
         ComplexNumber op4 = new ComplexNumber(1,-1);
-        ComplexNumber expResult = new ComplexNumber(-0.00004940,1.000076189);
+        ComplexNumber expResult = new ComplexNumber(0.09403715d,0.94957922d);
         ComplexNumber expResult1 = new ComplexNumber(0.03381283,1.01479361);
         ComplexNumber expResult2 = new ComplexNumber(-0.27175259,-1.08392332);
         ComplexNumber expResult3 = new ComplexNumber(0.27175259,-1.08392332);
