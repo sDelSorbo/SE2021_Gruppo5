@@ -29,18 +29,23 @@ public class Pow extends AbstractOnStackOperation{
     public void execute() throws EmptyStackException {
         ComplexNumber c = stack.pop();
         ComplexNumber c1 = stack.pop();
-        double exp=c.getReal();
        
-        Operation op;
-        op = new Mul(stack);
-        stack.push(c1);
+        Operation op1, op2, op3;
+        op1 = new Mul(stack);
+        op2 = new Log(stack);
+        op3 = new Exp(stack);
         
-        for(int i=1; i<exp; i++){
-             stack.push(c1);
-             op.execute();
-        }
+        stack.push(c);
+        op2.execute();
+        stack.push(c1);
+        op1.execute();
+        op3.execute();
+        
+        ComplexNumber result = stack.pop();
+        System.out.println(result);
     }
     
 }
 
 
+ 

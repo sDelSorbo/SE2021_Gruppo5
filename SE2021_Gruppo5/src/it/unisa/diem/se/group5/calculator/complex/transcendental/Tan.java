@@ -44,12 +44,6 @@ public class Tan extends AbstractOnStackOperation{
         stack.push(sin);
         stack.push(cos);
         op.execute();
-        
-        //verificare
-        ComplexNumber tan = stack.pop();
-        stack.push(tan);
-      
-          
     }
     
 }
