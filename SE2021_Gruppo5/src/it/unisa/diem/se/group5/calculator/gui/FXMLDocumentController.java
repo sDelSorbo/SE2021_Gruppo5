@@ -360,7 +360,7 @@ public class FXMLDocumentController implements Initializable {
         if (((MenuItem)event.getSource()).getText().equals("Dark Mode"))
             ((MenuItem)event.getSource()).setText("Light Mode");
         else ((MenuItem)event.getSource()).setText("Dark Mode");
-        String path="it/unisa/diem/se/group5/calculator/gui/darkmode.css";
+        String path="it/unisa/diem/se/group5/calculator/gui/resource/darkmode.css";
         if(!parent.getStylesheets().contains(path))
             parent.getStylesheets().add(path);
         else
