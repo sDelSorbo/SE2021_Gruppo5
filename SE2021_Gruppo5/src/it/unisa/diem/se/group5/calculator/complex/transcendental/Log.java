@@ -37,7 +37,6 @@ public class Log extends AbstractOnStackOperation{
         double img = op1.getImaginary();
         double arg = (Math.atan2(img, real));
         ComplexNumber result = new ComplexNumber(Math.log(mod), arg);
-        System.out.println(result);
         stack.push(result);
     }
     
