@@ -30,7 +30,7 @@ public class Sub extends AbstractOnStackOperation {
         ComplexNumber op1 = stack.pop();
         try{
             ComplexNumber op2 = stack.pop();        
-            ComplexNumber result = new ComplexNumber(op1.getReal() - op2.getReal(), op1.getImaginary() - op2.getImaginary());
+            ComplexNumber result = new ComplexNumber(op2.getReal() - op1.getReal(), op2.getImaginary() - op1.getImaginary());
             stack.push(result);
         } catch (EmptyStackException ex) {
             stack.push(op1);

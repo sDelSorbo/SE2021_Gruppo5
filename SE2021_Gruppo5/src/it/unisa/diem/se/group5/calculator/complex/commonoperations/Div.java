@@ -24,7 +24,7 @@ public class Div extends AbstractOnStackOperation {
         if (op.getReal()!=0 || op.getImaginary()!=0) {
             return  Math.sqrt(op.getReal()*op.getReal() + op.getImaginary()*op.getImaginary());
         } else {
-            return 0f;
+            return 0d;
         }
     }
     /**
@@ -39,8 +39,8 @@ public class Div extends AbstractOnStackOperation {
             ComplexNumber op2 = stack.pop(); 
             if(op2.equals(new ComplexNumber()))
                 throw new ArithmeticException("Stai cercando di eseguire una divisione per 0");            
-            double den =  Math.pow(mod(op2),2);
-            ComplexNumber result = new ComplexNumber((op1.getReal()*op2.getReal() + op1.getImaginary()* op2.getImaginary())/den,(op1.getImaginary()*op2.getReal()-op1.getReal()*op2.getImaginary())/den);
+            double den =  Math.pow(mod(op1),2);
+            ComplexNumber result = new ComplexNumber((op2.getReal()*op1.getReal() + op2.getImaginary()* op1.getImaginary())/den,(op2.getImaginary()*op1.getReal()-op2.getReal()*op1.getImaginary())/den);
             stack.push(result);
         } catch (EmptyStackException ex) {
             stack.push(op1);
