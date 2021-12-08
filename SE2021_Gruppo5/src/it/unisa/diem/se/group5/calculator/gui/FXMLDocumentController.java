@@ -395,7 +395,7 @@ public class FXMLDocumentController implements Initializable {
             List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
             userOperations.setCurrentOperations(operations);
             userOperationsObs.addAll(userOperations.getCurrentOperations());
-        }catch(Exception e){
+        }catch(StackSizeException e){
             showGenericAlert("ERROR","Impossibile effettuare la restore delle operazioni definite dall'utente, "
                     + "file incompatibile o corrotto","File Incompatibile","Errore");
         }
@@ -413,7 +413,7 @@ public class FXMLDocumentController implements Initializable {
         try{
         variables.setVariablesMap(VariableStack.restore());
         }catch(StackSizeException e){
-            showGenericAlert("ERROR",e.getMsg2(),e.getMessage(),"Errore");
+            showGenericAlert("ERROR",e.getMsgHeader(),e.getMessage(),"Errore");
         }
         variableChange(null);
     }

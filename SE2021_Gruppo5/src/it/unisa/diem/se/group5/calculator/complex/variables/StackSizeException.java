@@ -10,7 +10,7 @@ package it.unisa.diem.se.group5.calculator.complex.variables;
  */
 public class StackSizeException extends RuntimeException{
 
-    private String msg2;
+    private String msgHeader;
 
     /**
      * Creates a new instance of <code>StackSizeException</code> without detail
@@ -25,11 +25,11 @@ public class StackSizeException extends RuntimeException{
      *
      * @param msg the detail message.
      */
-    public StackSizeException(String msg1,String msg2) {
+    public StackSizeException(String msg1,String msgHeader) {
         super(msg1);
-        this.msg2 = msg2;
+        this.msgHeader = msgHeader;
     }
-public String getMsg2(){
-    return msg2;
+public String getMsgHeader(){
+    return msgHeader;
 }
 }
