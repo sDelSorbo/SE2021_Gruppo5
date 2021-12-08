@@ -93,7 +93,7 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="35.0" prefWidth="80.0" styleClass="combo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ComboBox fx:id="comboVariable" onAction="#variableChange" prefHeight="35.0" prefWidth="46.0" styleClass="combo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Label fx:id="labelVariable" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="156.0" styleClass="display" text="Empty" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="51.0" styleClass="buttonB" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#onOperation" prefHeight="37.0" prefWidth="50.0" styleClass="buttonY" text="&gt;x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
