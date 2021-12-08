@@ -9,17 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author Marco
  */
 public class UserDefinedOperations implements Serializable{
-    private List<UserDefinedOperation> currentOperations;
+    private ObservableList<UserDefinedOperation> currentOperations;
     private static UserDefinedOperations instance= null;
     
     private UserDefinedOperations(){
-        currentOperations = new ArrayList<>();
+        currentOperations = FXCollections.observableArrayList();
     }
     
     public static UserDefinedOperations getInstance(){
@@ -59,13 +61,13 @@ public class UserDefinedOperations implements Serializable{
         return tmp.getOperationsList();       
     }
 
-    public void setCurrentOperations(List<UserDefinedOperation> operations) {
+    public void setCurrentOperations(ObservableList<UserDefinedOperation> operations) {
         currentOperations = operations;
     }
     
     //Remove check se la user defined operation è contenuta nelle liste delle user defined operations 
 
-    public List<UserDefinedOperation> getCurrentOperations() {
+    public ObservableList<UserDefinedOperation> getCurrentOperations() {
         return currentOperations;
     }
     

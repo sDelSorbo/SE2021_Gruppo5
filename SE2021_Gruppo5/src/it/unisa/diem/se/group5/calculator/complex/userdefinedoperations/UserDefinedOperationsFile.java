@@ -16,9 +16,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -26,27 +29,35 @@ import java.util.logging.Logger;
  */
 public class UserDefinedOperationsFile {
     
-    public static void save(UserDefinedOperations userOperations, File filename){
+    UserDefinedOperations userOperations;
+
+    public UserDefinedOperationsFile() {
+        userOperations = UserDefinedOperations.getInstance();
+    }
+    
+    public void save(File filename) throws RuntimeException{
+        // ObservableList non è serailizzabile
+        List<UserDefinedOperation> toSave =  new ArrayList<>(userOperations.getCurrentOperations());
+        
         try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
-             dout.writeObject(userOperations.getCurrentOperations());
+             dout.writeObject(toSave);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Impossibile salvare il file");
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Impossibile salvare il file");
         }
     }
-    public static List<UserDefinedOperation> load(File filename){
+    public void restore(File filename) throws RuntimeException{
         try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)))){
-            List<UserDefinedOperation> operations = (List<UserDefinedOperation>) din.readObject();
-            return operations;
+            ArrayList<UserDefinedOperation> toRestore = (ArrayList<UserDefinedOperation>) din.readObject();
+            ObservableList<UserDefinedOperation> toRestoreObservable = FXCollections.observableArrayList(toRestore);
+            userOperations.setCurrentOperations(toRestoreObservable);
       } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("File da ripristinare non trovato");
+        } catch (Exception ex) {
+            throw new RuntimeException("Impossibile Ripristinare il file");
         }
-        return null;
+        
     }
     public static void saveXML(UserDefinedOperations userOperations, File filename){
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)))) {

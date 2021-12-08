@@ -17,7 +17,6 @@ import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.io.File;
 import java.net.URL;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -126,7 +125,7 @@ public class FXMLDocumentController implements Initializable {
         stackTab.setItems(complexNumberStack);    
         
         //UserDefined Operation View
-        userOperationsObs = FXCollections.observableArrayList();
+        userOperationsObs = userOperations.getCurrentOperations();
         
         nameClm.setCellValueFactory(new PropertyValueFactory<UserDefinedOperation, String>("name"));
         definitionClm.setCellValueFactory(new PropertyValueFactory<UserDefinedOperation, String>("operationsString"));
@@ -191,8 +190,7 @@ public class FXMLDocumentController implements Initializable {
                    
                 userDefOp = new UserDefinedOperation(name, operations);
         
-            userOperations.add(userDefOp);
-            userOperationsObs.add(userDefOp);            
+            userOperations.add(userDefOp);            
             userDefName.clear();
             userDefList.clear();
         } catch (RuntimeException ex) {
@@ -368,7 +366,6 @@ public class FXMLDocumentController implements Initializable {
         UserDefinedOperation toRemove = new UserDefinedOperation(name , "");
         try {
             userOperations.remove(toRemove);
-            userOperationsObs.remove(toRemove);
         } catch (Exception ex) {
             showGenericAlert("ERROR",ex.getMessage());
         }                    
@@ -384,21 +381,24 @@ public class FXMLDocumentController implements Initializable {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Save Operations");
         File filename= fc.showSaveDialog(stg);
-        UserDefinedOperationsFile.save(userOperations, filename);
+        UserDefinedOperationsFile userFile = new UserDefinedOperationsFile();
+        try{
+            userFile.save(filename);
+        }catch(RuntimeException ex){
+            showGenericAlert("ERROR",ex.getMessage());
+        }
     }
 
     @FXML
     private void restoreOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Restore Operations");
-        File file= fc.showOpenDialog(stg);
+        File filename = fc.showOpenDialog(stg);
+        UserDefinedOperationsFile userFile = new UserDefinedOperationsFile();        
         try{
-            List<UserDefinedOperation> operations = (List<UserDefinedOperation>) UserDefinedOperationsFile.load(file);
-            userOperations.setCurrentOperations(operations);
-            userOperationsObs.addAll(userOperations.getCurrentOperations());
-        }catch(Exception e){
-            showGenericAlert("ERROR","Impossibile effettuare la restore delle operazioni definite dall'utente, "
-                    + "file incompatibile o corrotto","File Incompatibile","Errore");
+            userFile.restore(filename);
+        }catch(RuntimeException ex){
+            showGenericAlert("ERROR",ex.getMessage());
         }
     }
     
