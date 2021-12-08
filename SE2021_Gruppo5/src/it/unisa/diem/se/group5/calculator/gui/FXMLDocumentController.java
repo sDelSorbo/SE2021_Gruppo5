@@ -85,7 +85,6 @@ public class FXMLDocumentController implements Initializable {
      */
     Variables variables;
     
-    private Stack<Map<String,ComplexNumber>> variablesStack = new Stack<>();
         
     @FXML
     private TextField inputText;
