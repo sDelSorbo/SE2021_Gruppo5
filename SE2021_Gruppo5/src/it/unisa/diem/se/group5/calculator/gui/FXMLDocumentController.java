@@ -11,6 +11,8 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationValidator;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
+import it.unisa.diem.se.group5.calculator.complex.variables.StackSizeException;
+import it.unisa.diem.se.group5.calculator.complex.variables.VariableStack;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.io.File;
 import java.net.URL;
@@ -402,27 +404,19 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void saveVariables(ActionEvent event) {
-        Map<String, ComplexNumber> variablesMap = new HashMap<>();
-        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
-            variablesMap.put(String.valueOf(alphabet), null);
-        }
-        for(String v: variablesMap.keySet()){
-            variablesMap.put(v, variables.getVariablesMap().get(v));
-        }
-        variablesStack.add(variablesMap);
+        
+        variablesStack = VariableStack.save(variablesStack,variables);
         System.out.println(variablesStack);
         
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
-        Map<String, ComplexNumber> variablesMap = new HashMap<>();
-        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
-            variablesMap.put(String.valueOf(alphabet), null);
+        try{
+        variables.setVariablesMap(VariableStack.restore(variablesStack));
+        }catch(StackSizeException e){
+            showGenericAlert("ERROR",e.getMsg2(),e.getMessage(),"Errore");
         }
-        variablesMap = variablesStack.pop();
-        variables.setVariablesMap(variablesMap);
-
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
     }
     
