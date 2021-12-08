@@ -450,11 +450,11 @@ public class FXMLDocumentController implements Initializable {
     private void modify(String name, String operations) {
         UserDefinedOperation toModify = new UserDefinedOperation(name , operations);
         try {
-            userOperations.modify(toModify);
-            userOpTab.refresh();
+            userOperations.modify(toModify);            
         } catch (Exception ex) {
             showGenericAlert("ERROR",ex.getMessage());
-        }       
+        }    
+        userOpTab.refresh();
     }
 
     @FXML
