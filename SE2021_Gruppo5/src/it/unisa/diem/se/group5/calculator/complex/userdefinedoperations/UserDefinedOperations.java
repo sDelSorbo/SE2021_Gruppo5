@@ -39,26 +39,50 @@ public class UserDefinedOperations implements Serializable{
     
     public void remove(UserDefinedOperation toRemove) throws UserDefinedOperationInUseException, NoSuchElementException{
         String name = toRemove.getName();
-        for (UserDefinedOperation op: currentOperations){
-            for (String subop: op.getOperationsList()){
-                if (subop.equals(name))
-                    throw new UserDefinedOperationInUseException ("Questa operazione è parte della definizione di altre operazioni."
-                            + "Rimuovere le operazioni che la contengono e riprovare");
-            }
-        }
-        if (currentOperations.contains(toRemove))
+        if (currentOperations.contains(toRemove)){
+            for (UserDefinedOperation op: currentOperations){
+                for (String subop: op.getOperationsList()){
+                    if (subop.equals(name))
+                        throw new UserDefinedOperationInUseException ("Questa operazione è parte della definizione di altre operazioni."
+                                + "Rimuovere le operazioni che la contengono e riprovare");
+                }
+            }        
             currentOperations.remove(toRemove);
+        }
         else{
             throw new NoSuchElementException("L'operazione non è presente. Impossibile rimuoverla");
         }
     }
     
     //RIVEDERE
-    public void modify (UserDefinedOperation toModify) throws UserDefinedOperationInUseException, NoSuchElementException {
+    public void modify (UserDefinedOperation toModify) throws NoSuchElementException, MalformedUserDefinedOperationException {
+        if (currentOperations.contains(toModify)){
+            // Validate new Operations
+            UserDefinedOperationValidator.validateOperations(toModify.getOperationsString());
+            UserDefinedOperationValidator.checkRecursive(toModify.getName(), toModify.getOperationsString());
+
+            // Check se si crea una ricorsione tra le due operazioni
+            UserDefinedOperationValidator.checkCycle(toModify.getName(), toModify.getOperationsList());
+        
+        
+            int index = currentOperations.indexOf(toModify);
+            currentOperations.get(index).setOperationsString(toModify.getOperationsString());
+        } else {
+            throw new NoSuchElementException("L'operazione non è presente. Impossibile modificarla");
+        }
+            
+        
+            
+        
+        
+        
+        
+        
+        
         boolean check = false;
         if (currentOperations.contains(toModify)) {            
             check =UserDefinedOperationValidator.validateOperations(toModify.getOperationsString()) && 
-                UserDefinedOperationValidator.checkCycle(toModify.getName(), toModify.getOperationsString());
+                UserDefinedOperationValidator.checkRecursive(toModify.getName(), toModify.getOperationsString());
             for (String op :toModify.getOperationsList())
                 if (currentOperations.contains(op)){
                     UserDefinedOperation toCheck = currentOperations.get(currentOperations.indexOf(op));

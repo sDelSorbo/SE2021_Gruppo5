@@ -5,6 +5,8 @@
 package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
 import it.unisa.diem.se.group5.calculator.complex.StringParser;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -12,6 +14,7 @@ import it.unisa.diem.se.group5.calculator.complex.StringParser;
  */
 public class UserDefinedOperationValidator {
     
+    static private UserDefinedOperations userDefOps = UserDefinedOperations.getInstance();
     static private StringParser parser = new StringParser();
     
     static public boolean validateName(String toValidate) throws MalformedUserDefinedOperationException{
@@ -30,11 +33,29 @@ public class UserDefinedOperationValidator {
         return true;
     }
             
-    static public boolean checkCycle(String toValidateName, String toValidateOp) throws MalformedUserDefinedOperationException{
+    static public boolean checkRecursive(String toValidateName, String toValidateOp) throws MalformedUserDefinedOperationException{
         if (toValidateOp.contains(toValidateName)) {
             throw new MalformedUserDefinedOperationException("L'operazione non può contenere sè stessa nella sua definizione");
         }        
         return true;
+    }
+    
+    static public boolean checkCycle(String toValidateName, List<String> toValidateOps) throws MalformedUserDefinedOperationException{
+        ObservableList<UserDefinedOperation> userList = userDefOps.getCurrentOperations();
+        UserDefinedOperation toCheck;
+        
+        for (String op : toValidateOps){
+            toCheck = new UserDefinedOperation(op," ");
+            if (userList.contains(toCheck)){
+                int index = userList.indexOf(toCheck);
+                toCheck = userList.get(index);
+                for (String subop :toCheck.getOperationsList()){
+                    if (subop.equals(toValidateName))
+                        throw new MalformedUserDefinedOperationException ("Impossibile modificare l'operazione. Si sta cercando di creare un ciclo");
+                }
+            }
+        }
+        return true;               
     }
     
 }

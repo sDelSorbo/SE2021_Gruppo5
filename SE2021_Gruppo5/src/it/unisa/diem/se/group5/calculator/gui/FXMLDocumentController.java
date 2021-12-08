@@ -17,8 +17,6 @@ import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import java.io.File;
 import java.net.URL;
 import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.application.Platform;
@@ -40,6 +38,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -49,7 +48,7 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
     
-    
+    private boolean inverted = false; 
     /**
      *
      */
@@ -111,6 +110,14 @@ public class FXMLDocumentController implements Initializable {
     private Button userDefRemove;
     @FXML
     private Button userDefModify;
+    @FXML
+    private Button sinButton;
+    @FXML
+    private Button expButton;
+    @FXML
+    private Button cosButton;
+    @FXML
+    private Button tanButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -187,7 +194,7 @@ public class FXMLDocumentController implements Initializable {
         try{
             if (UserDefinedOperationValidator.validateName(name) && 
                     UserDefinedOperationValidator.validateOperations(operations) 
-                    && UserDefinedOperationValidator.checkCycle(name, operations));
+                    && UserDefinedOperationValidator.checkRecursive(name, operations));
                    
                 userDefOp = new UserDefinedOperation(name, operations);
         
@@ -374,10 +381,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void modifyUserDefinedOperation(ActionEvent event) {
-        String name = userDefList.getText().toLowerCase();
-        UserDefinedOperation toModify = new UserDefinedOperation(name , "");
+        String name = userDefName.getText().toLowerCase();
+        String operations = userDefList.getText().toLowerCase();
+        UserDefinedOperation toModify = new UserDefinedOperation(name , operations);
         try {
             userOperations.modify(toModify);
+            userOpTab.refresh();
         } catch (Exception ex) {
             showGenericAlert("ERROR",ex.getMessage());
         }    
@@ -426,6 +435,7 @@ public class FXMLDocumentController implements Initializable {
         }
         variableChange(null);
     }
+    
     @FXML
     private void updateUserDefName(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
@@ -437,21 +447,35 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }
+    
     @FXML
-    void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
-        UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
-        String newOperations = event.getNewValue();
-        try{
-            if (UserDefinedOperationValidator.validateOperations(newOperations) && 
-                UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations))                
-                toModify.setOperationsString(newOperations);
+    void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {        
+        String name = userOpTab.getSelectionModel().getSelectedItem().getName();
+        String operations = event.getNewValue();
+        UserDefinedOperation toModify = new UserDefinedOperation(name , operations);
+        try {
+            userOperations.modify(toModify);
         } catch (RuntimeException ex) {
-            showGenericAlert("ERROR", ex.getMessage());
-        } 
+            showGenericAlert("ERROR",ex.getMessage());
+        }
+        userOpTab.refresh();
     }
 
     @FXML
     private void invertTrascendental(ActionEvent event) {
+        if (inverted){
+            expButton.setText("exp");
+            sinButton.setText("sin");
+            cosButton.setText("cos");
+            tanButton.setText("tan");
+            inverted = false;
+        } else {            
+            expButton.setText("log");
+            sinButton.setText("asin");
+            cosButton.setText("acos");
+            tanButton.setText("atan");
+            inverted = true;
+        }
         
     }
 

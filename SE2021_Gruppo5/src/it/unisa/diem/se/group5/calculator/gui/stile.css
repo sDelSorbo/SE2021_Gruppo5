@@ -4,6 +4,7 @@
 }
 
 .root {
+    -fx-background-color: #fff3ce;
 }
 
 .div {
@@ -59,6 +60,7 @@
 }
 
 .display {
+    -fx-padding: 0 10 0 0;
     -fx-font-family: 'Digital-7';
     text-align: right;
     -fx-text-alignment: right;
@@ -69,7 +71,7 @@
     width: 85%;
     -fx-background-color:
         radial-gradient(focus-angle 45deg, focus-distance 100%, center 50% 50%, radius 100%, #becd94, #6b785d);            
-    -fx-effect: innershadow( one-pass-box , rgba(0,0,0,0.55) , 10,0,2,4 );    
+    -fx-effect: innershadow( one-pass-box , rgba(0,0,0,0.55) , 10,0,2,4 );   
     
     -fx-border-width: 1px;
     -fx-border-style: solid;
@@ -78,22 +80,16 @@
     -fx-background-radius: 10px;
 }
 
-.minidisplay {
-    -fx-font-family: 'Digital-7';
-    -fx-font-size: 2em;
-    min-height: 1.2em;
-    margin-left: 0.5em;    
-    display: table;
-    width: 85%;
-    -fx-background-color:
-        radial-gradient(focus-angle 45deg, focus-distance 100%, center 50% 50%, radius 100%, #becd94, #6b785d);            
-    -fx-effect: innershadow( one-pass-box , rgba(0,0,0,0.55) , 10,0,2,4 );    
-    
-    -fx-border-width: 1px;
-    -fx-border-style: solid;
-    -fx-border-color: #003d11;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+.labelOp {
+    -fx-padding: 5 5 5 5;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #ffc42f 0%, #ffaf34 100%),
+        #ffaf34,
+        #ffd868,
+        radial-gradient(center 50% 50%, radius 100%, #ffd166, #ffd868);
+    -fx-border-color: #ffaf34;
+    -fx-border-radius: 8;
 }
 
 .buttonB {
@@ -107,7 +103,7 @@
         radial-gradient(center 50% 50%, radius 100%, #26547c , #264b88);
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
     -fx-font-weight: bold;
-    -fx-font-size: 1.1em;    
+    -fx-font-size: 1.1em;
 }
 
 .buttonY {
@@ -184,21 +180,6 @@
     -fx-font-weight: bold;
     -fx-font-size: 0.9em;    
 }
-/*
-.clalcbutton {
-    -fx-padding: 8 15 15 15;
-    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
-    -fx-background-radius: 8;
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #919191 0%, #787573 100%),
-        #918b89,
-        #d6cec9,
-        radial-gradient(center 50% 50%, radius 100%, #d6cec9, #bfb9b8);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
-    -fx-font-weight: bold;
-    -fx-font-size: 1.1em;
-    
-}*/
 
 buttonYCust:hover,.buttonY:hover,.buttonB:hover,.buttonYlong:hover,.buttonYCust:hover, .buttonYlonglong:hover{
     -fx-background-color: 
@@ -207,6 +188,7 @@ buttonYCust:hover,.buttonY:hover,.buttonB:hover,.buttonYlong:hover,.buttonYCust:
         #d86e3a,
         radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
 }
+
 buttonYCust:pressed,.buttonY:pressed,.buttonB:pressed,.buttonYlong:pressed,.buttonYCust:pressed, .buttonYlonglong:pressed{
     -fx-background-color: 
         linear-gradient(from 0% 93% to 0% 100%, #aa4a1a 0%, #971319 100%),
