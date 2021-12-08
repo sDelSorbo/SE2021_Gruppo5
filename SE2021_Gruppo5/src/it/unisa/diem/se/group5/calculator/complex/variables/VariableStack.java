@@ -14,12 +14,20 @@ import java.util.Stack;
  * @author gianpaolotobia
  */
 public class VariableStack {
-    private static Stack<Map<String,ComplexNumber>> variablesStack = new Stack<>();
-
+    private  Stack<Map<String,ComplexNumber>> variablesStack ;
+    private static Stack<Map<String,ComplexNumber>> instance= null;
+    
     public VariableStack() {
+       variablesStack = VariableStack.getInstance();
     }
     
-    public static void save(Variables variables){
+    public static Stack<Map<String,ComplexNumber>> getInstance(){
+        if (instance == null)
+            instance = new Stack<>();
+        return instance;
+    }
+    
+    public  void save(Variables variables){
         Map<String, ComplexNumber> variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
             variablesMap.put(String.valueOf(alphabet), variables.getVariablesMap().get(String.valueOf(alphabet)));
@@ -27,7 +35,7 @@ public class VariableStack {
         variablesStack.add(variablesMap);
     }
     
-    public static Map<String,ComplexNumber> restore(){
+    public  Map<String,ComplexNumber> restore(){
         Map<String, ComplexNumber> variablesMap = new HashMap<>();
         for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
             variablesMap.put(String.valueOf(alphabet), null);
