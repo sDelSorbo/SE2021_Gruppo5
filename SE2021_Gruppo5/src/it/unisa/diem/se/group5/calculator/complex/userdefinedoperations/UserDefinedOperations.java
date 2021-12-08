@@ -53,6 +53,26 @@ public class UserDefinedOperations implements Serializable{
         }
     }
     
+    //RIVEDERE
+    public void modify (UserDefinedOperation toModify) throws UserDefinedOperationInUseException, NoSuchElementException {
+        boolean check = false;
+        if (currentOperations.contains(toModify)) {            
+            check =UserDefinedOperationValidator.validateOperations(toModify.getOperationsString()) && 
+                UserDefinedOperationValidator.checkCycle(toModify.getName(), toModify.getOperationsString());
+            for (String op :toModify.getOperationsList())
+                if (currentOperations.contains(op)){
+                    UserDefinedOperation toCheck = currentOperations.get(currentOperations.indexOf(op));
+                    toCheck.getOperationsList().contains(toModify.getName());
+                    check = false;
+                }
+        }
+        if (!check) {
+            throw new MalformedUserDefinedOperationException("Impossibile modificare l'operazione");
+        } else {
+        }
+    }
+ 
+    
     public List<String> getListOfOperations(String input){
         UserDefinedOperation tmp = new UserDefinedOperation(input, "");
         int index = currentOperations.indexOf(tmp);
@@ -65,8 +85,7 @@ public class UserDefinedOperations implements Serializable{
         currentOperations.clear();
         currentOperations.addAll(operations);
     }
-    
-    //Remove check se la user defined operation è contenuta nelle liste delle user defined operations 
+
 
     public ObservableList<UserDefinedOperation> getCurrentOperations() {
         return currentOperations;

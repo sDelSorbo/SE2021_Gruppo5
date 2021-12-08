@@ -374,6 +374,13 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void modifyUserDefinedOperation(ActionEvent event) {
+        String name = userDefList.getText().toLowerCase();
+        UserDefinedOperation toModify = new UserDefinedOperation(name , "");
+        try {
+            userOperations.modify(toModify);
+        } catch (Exception ex) {
+            showGenericAlert("ERROR",ex.getMessage());
+        }    
         
     }
 
@@ -404,10 +411,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void saveVariables(ActionEvent event) {  
-        
-        VariableStack.save(variables);
-        
+    private void saveVariables(ActionEvent event) {          
+        VariableStack.save(variables);        
     }
     
     @FXML
