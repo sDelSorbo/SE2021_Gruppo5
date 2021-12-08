@@ -428,7 +428,6 @@ public class FXMLDocumentController implements Initializable {
             if (UserDefinedOperationValidator.validateName(newName))
                 toModify.setName(newName);
         } catch (RuntimeException ex) {            
-            toModify.setName(toModify.getName());
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }
@@ -442,7 +441,6 @@ public class FXMLDocumentController implements Initializable {
                 UserDefinedOperationValidator.checkCycle(toModify.getName(), newOperations))                
                 toModify.setOperationsString(newOperations);
         } catch (RuntimeException ex) {
-            toModify.setOperationsString(toModify.getOperationsString());
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }

@@ -5,11 +5,9 @@
 package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,7 +18,7 @@ import static org.junit.Assert.*;
 public class ExpTest {
     
     Stack<ComplexNumber> stack; 
-    TranscendentOperation op;
+    Operation op;
     
     
     @Before
@@ -36,7 +34,7 @@ public class ExpTest {
      */
     @Test
     public void testExecute() {
-         System.out.println("Exp");
+        System.out.println("Exp");
         ComplexNumber op1 = new ComplexNumber(8,0);
         ComplexNumber op2 = new ComplexNumber(18,0);
         ComplexNumber op3 = new ComplexNumber(32,32);
