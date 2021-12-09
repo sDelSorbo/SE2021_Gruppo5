@@ -4,18 +4,24 @@
  */
 package it.unisa.diem.se.group5.calculator.strategy;
 
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+
 /**
  *
  * @author Marco
  */
 public class SaverRestorer {
-    
+    UserDefinedOperations userOperations;
+
+    public SaverRestorer() {
+        userOperations = UserDefinedOperations.getInstance();
+    }
     public void save (Strategy strategy){
-        return;
+        strategy.save(userOperations);
     }
     
     public void restore (Strategy strategy){
-        return;
+        strategy.restore(userOperations);
     }
     
 }

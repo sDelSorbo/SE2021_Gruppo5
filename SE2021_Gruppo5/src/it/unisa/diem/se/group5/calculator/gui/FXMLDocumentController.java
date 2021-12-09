@@ -14,6 +14,9 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.variables.StackSizeException;
 import it.unisa.diem.se.group5.calculator.complex.variables.VariableStack;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import it.unisa.diem.se.group5.calculator.strategy.CSVSaveRestorer;
+import it.unisa.diem.se.group5.calculator.strategy.SaverRestorer;
+import it.unisa.diem.se.group5.calculator.strategy.Strategy;
 import java.io.File;
 import java.net.URL;
 import java.util.Collections;
@@ -117,6 +120,13 @@ public class FXMLDocumentController implements Initializable {
     private Button cosButton;
     @FXML
     private Button tanButton;
+    
+    private static Strategy strategy;
+    
+    
+    private static SaverRestorer saverRestorer = new SaverRestorer();
+    @FXML
+    private MenuItem saveOperationsCSV;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -378,7 +388,6 @@ public class FXMLDocumentController implements Initializable {
         }                    
     }
 
-    @FXML
     private void saveOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Save Operations");
@@ -392,7 +401,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
     private void restoreOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Restore Operations");
@@ -421,7 +429,6 @@ public class FXMLDocumentController implements Initializable {
         }
         variableChange(null);
     }
-    
     @FXML
     private void updateUserDefName(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
@@ -433,7 +440,6 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }
-    
     @FXML
     void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {        
         String name = userOpTab.getSelectionModel().getSelectedItem().getName();
@@ -475,5 +481,32 @@ public class FXMLDocumentController implements Initializable {
         }
         
     }
+
+    @FXML
+    private void importOperationsCSV(ActionEvent event) {
+    }
+
+    @FXML
+    private void importOperationSerial(ActionEvent event) {
+    }
+
+    @FXML
+    private void exportOperationsCSV(ActionEvent event) {
+        Stage stg = (Stage) inputText.getScene().getWindow();
+        fc.setTitle("Save Operations");
+        fc.setInitialFileName("Untitled.csv");
+        File filename= fc.showSaveDialog(stg);
+        if(strategy==null){
+            strategy = new CSVSaveRestorer(filename);
+        } 
+        saverRestorer.save(strategy);
+    }
+
+    @FXML
+    private void exportOperationSerial(ActionEvent event) {
+    }
+
+
+
 
 }

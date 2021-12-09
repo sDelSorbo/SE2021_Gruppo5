@@ -27,8 +27,18 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#saveVariables" text="Save  Variables" />
                   <MenuItem mnemonicParsing="false" onAction="#restoreVariables" text="Restore Variables" />
-                  <MenuItem mnemonicParsing="false" onAction="#saveOperations" text="Save  Operations" />
-                  <MenuItem mnemonicParsing="false" onAction="#restoreOperations" text="Restore Operations" />
+                  <Menu mnemonicParsing="false" text="Import Operations">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#importOperationsCSV" text="Import from CSV.." />
+                        <MenuItem mnemonicParsing="false" onAction="#importOperationSerial" text="Import .." />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Export Operations">
+                    <items>
+                        <MenuItem fx:id="saveOperationsCSV" mnemonicParsing="false" onAction="#exportOperationsCSV" text="Export to CSV.." />
+                        <MenuItem mnemonicParsing="false" onAction="#exportOperationSerial" text="Export.." />
+                    </items>
+                  </Menu>
               <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Exit" />
                </items>
             </Menu>

@@ -4,7 +4,7 @@
  */
 package it.unisa.diem.se.group5.calculator.strategy;
 
-import java.util.Collection;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 
 /**
  *
@@ -12,8 +12,8 @@ import java.util.Collection;
  */
 public interface Strategy {
     
-    boolean save(Collection toSave);
+    boolean save(UserDefinedOperations toSave);
     
-    boolean restore(Collection toRestore);
+    boolean restore(UserDefinedOperations toRestore);
     
 }
