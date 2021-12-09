@@ -29,8 +29,8 @@ public class Log extends AbstractOnStackOperation{
     public void execute() throws EmptyStackException {
         ComplexNumber op1 = stack.pop();
         
-        double realSquare = op1.getReal()*op1.getReal();
-        double imgSquare = op1.getImaginary()*op1.getImaginary();
+        double realSquare = op1.getReal() * op1.getReal();
+        double imgSquare = op1.getImaginary() * op1.getImaginary();
         double mod = (Math.sqrt(realSquare + imgSquare));
         
         double real = op1.getReal();

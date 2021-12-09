@@ -32,8 +32,8 @@ public class Mod extends AbstractOnStackOperation{
         if (op1.getReal() == 0 && op1.getImaginary() == 0)
             return;        
         
-        double realSquare = op1.getReal()*op1.getReal();
-        double imgSquare = op1.getImaginary()*op1.getImaginary();
+        double realSquare = op1.getReal() * op1.getReal();
+        double imgSquare = op1.getImaginary() * op1.getImaginary();
         ComplexNumber result = new ComplexNumber(Math.sqrt(realSquare + imgSquare));
         stack.push(result);
     }

@@ -25,6 +25,7 @@ public class Atan extends AbstractOnStackOperation{
     
     /**
      * Calcola l'arcotangente di un ComplexNumber prelevato dalla cima dello stack.
+     * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
     public void execute() throws EmptyStackException {
@@ -32,7 +33,7 @@ public class Atan extends AbstractOnStackOperation{
       
         ComplexNumber ImaginaryOneInv = new ComplexNumber(0, -1);
         ComplexNumber One = new ComplexNumber(1, 0);
-        ComplexNumber num = new ComplexNumber(c.getReal(),c.getImaginary() -1.0);
+        ComplexNumber num = new ComplexNumber(c.getReal(), c.getImaginary() -1.0);
         ComplexNumber den = new ComplexNumber( -c.getReal(), -c.getImaginary()-1.0);
         ComplexNumber two = new ComplexNumber(2.0, 0.0);
         

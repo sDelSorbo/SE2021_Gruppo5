@@ -27,14 +27,16 @@ public class Acos extends AbstractOnStackOperation{
     
     /**
      * Calcola l'arcocoseno di un ComplexNumber prelevato dalla cima dello stack.
+     * Formula : (-ImaginaryOne) * Log(value + ImaginaryOne*Sqrt(One - value * value)))
+     * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
     public void execute() throws EmptyStackException {
         ComplexNumber c = stack.pop();
         
-        ComplexNumber ImaginaryOne = new ComplexNumber(0, 1);
-        ComplexNumber ImaginaryOneInv = new ComplexNumber(0, -1);
-        ComplexNumber One = new ComplexNumber(1, 0);
+        ComplexNumber imaginaryOne = new ComplexNumber(0, 1);
+        ComplexNumber imaginaryOneInv = new ComplexNumber(0, -1);
+        ComplexNumber one = new ComplexNumber(1, 0);
         
         Operation op, op1, op2, op3, op4;
         op = new Log(stack);
@@ -43,22 +45,20 @@ public class Acos extends AbstractOnStackOperation{
         op3 = new Add(stack);
         op4 = new Sub(stack);
        
-        stack.push(One);
+        stack.push(one);
         stack.push(c);
         stack.push(c);
         op2.execute();
         op4.execute();
         op1.execute(); 
-        stack.push(ImaginaryOne);
+        stack.push(imaginaryOne);
         op2.execute();
         stack.push(c);
         op3.execute();
         op.execute();
-        stack.push(ImaginaryOneInv);
+        stack.push(imaginaryOneInv);
         op2.execute();
           
     }
     
 }
-
-//(-ImaginaryOne) * Log(value + ImaginaryOne*Sqrt(One - value * value)))

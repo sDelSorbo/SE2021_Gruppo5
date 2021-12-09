@@ -30,7 +30,9 @@ public class Pow extends AbstractOnStackOperation{
         ComplexNumber base = stack.pop();
         try {
             ComplexNumber exp = stack.pop();
-
+            
+            if((exp.getReal() != 0 && exp.getImaginary() != 0) ||(exp.getReal() == 0 && exp.getImaginary() != 0)){
+                
             Operation op1, op2, op3;
             op1 = new Mul(stack);
             op2 = new Log(stack);
@@ -41,11 +43,21 @@ public class Pow extends AbstractOnStackOperation{
             stack.push(exp);
             op1.execute();
             op3.execute();
+            
+            }else if(exp.getReal() != 0 && exp.getImaginary() == 0){
+                
+                double esponente = exp.getReal();
+                
+                stack.push(base);
+                for(int i = 1; i < esponente; i++){
+                    stack.push(base);
+                    Operation op1;
+                    op1 = new Mul(stack);
+                    op1.execute();
+                }
+                
+            }
       
-            ComplexNumber result = stack.pop();
-            
-            stack.push(result);
-            
         } catch (Exception ex) {
             stack.push(base);
             throw ex;

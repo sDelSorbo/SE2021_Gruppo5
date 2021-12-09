@@ -26,6 +26,8 @@ public class Tan extends AbstractOnStackOperation{
     
     /**
      * Calcola la tantente di un ComplexNumber prelevato dalla cima dello stack.
+     * 
+     * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
     public void execute() throws EmptyStackException {
