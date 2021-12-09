@@ -510,7 +510,8 @@ public class FXMLDocumentController implements Initializable {
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showOpenDialog(stg);
         if(strategy==null){
-            strategy = new CSVSaveRestore(filename);
+            strategy = new CSVSaveRestore();
+            ((CSVSaveRestore)strategy).setPath(filename);
         } 
         saverRestorer.restore(strategy);
     }
@@ -522,7 +523,8 @@ public class FXMLDocumentController implements Initializable {
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showOpenDialog(stg);
         if(strategy==null){
-            //strategy = new SerialSaveRestore(filename);
+            strategy = new SerialSaveRestore();
+            ((SerialSaveRestore)strategy).setPath(filename);
         } 
         saverRestorer.restore(strategy);
     }
@@ -534,7 +536,8 @@ public class FXMLDocumentController implements Initializable {
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showSaveDialog(stg);
         if(strategy==null){
-            strategy = new CSVSaveRestore(filename);
+             strategy = new CSVSaveRestore();
+             ((CSVSaveRestore)strategy).setPath(filename);
         } 
         saverRestorer.save(strategy);
     }
@@ -543,9 +546,12 @@ public class FXMLDocumentController implements Initializable {
     private void exportOperationSerial(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Export Operations");
+        fc.setInitialFileName("Untitled.dat");
         File filename= fc.showSaveDialog(stg);
         if(strategy==null){
-            //strategy = new SerialSaveRestore(filename);
+            
+            strategy = new SerialSaveRestore();
+            ((SerialSaveRestore)strategy).setPath(filename);
         } 
         saverRestorer.save(strategy);
     }
