@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -85,7 +86,11 @@ public class FXMLDocumentController implements Initializable {
     /**
      * 
      */
-    Variables variables;
+    Variables variables;   
+    
+    private static Strategy strategy;
+    private static SaverRestorer saverRestorer = new SaverRestorer();
+    
     
         
     @FXML
@@ -122,11 +127,6 @@ public class FXMLDocumentController implements Initializable {
     private Button cosButton;
     @FXML
     private Button tanButton;
-    
-    private static Strategy strategy;
-    
-    
-    private static SaverRestorer saverRestorer = new SaverRestorer();
     @FXML
     private MenuItem exportToCsvMenu;
     @FXML
@@ -136,6 +136,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         variables = Variables.getInstance();
         calculator = new Calculator(stack, variables);
+        
         // Stack View
         complexNumberStack = FXCollections.observableArrayList();
         numberClm.setCellValueFactory(new PropertyValueFactory<>("complex")); 
@@ -152,22 +153,24 @@ public class FXMLDocumentController implements Initializable {
         nameClm.setCellFactory(TextFieldTableCell.forTableColumn());
         definitionClm.setCellFactory(TextFieldTableCell.forTableColumn());
         
-        userOpTab.setItems(userOperationsObs);    
+        userOpTab.setItems(userOperationsObs);
         
-        SimpleListProperty<UserDefinedOperation> list = new SimpleListProperty<>(userOperationsObs);
-        
-        exportToCsvMenu.disableProperty().bind(list.emptyProperty());
-        exportMenu.disableProperty().bind(list.emptyProperty());
-        userDefRemove.disableProperty().bind(list.emptyProperty());
-        userDefModify.disableProperty().bind(list.emptyProperty());
-        
-        userDefList.disableProperty().bind(userDefName.textProperty().isEmpty());
         //Variables View
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
         comboVariable.setValue("a");  
         
-        //textfield fix
-        Platform.runLater(() -> {inputText.requestFocus(); });
+        //Textfield Fix
+        Platform.runLater(() -> {inputText.requestFocus(); });           
+        
+        //Bindings
+        SimpleListProperty<UserDefinedOperation> userDefListProp = new SimpleListProperty<>(userOperationsObs);
+        
+        exportToCsvMenu.disableProperty().bind(userDefListProp.emptyProperty());
+        exportMenu.disableProperty().bind(userDefListProp.emptyProperty());
+        
+        userDefRemove.disableProperty().bind(userDefListProp.emptyProperty().or(userDefName.textProperty().isEmpty()));
+        userDefModify.disableProperty().bind(userDefListProp.emptyProperty().or(userDefName.textProperty().isEmpty()));        
+        userDefList.disableProperty().bind(userDefName.textProperty().isEmpty());
         
     }
     
@@ -207,6 +210,7 @@ public class FXMLDocumentController implements Initializable {
         clearAndFocus();
     }
     
+    //Aggiustare
     @FXML
     private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
         String name = userDefName.getText().trim().toLowerCase();
@@ -402,6 +406,7 @@ public class FXMLDocumentController implements Initializable {
         userDefName.clear();
     }
 
+    /*
     private void saveOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Save Operations");
@@ -413,7 +418,7 @@ public class FXMLDocumentController implements Initializable {
         }catch(RuntimeException ex){
             showGenericAlert("ERROR",ex.getMessage());
         }
-    }
+    }*/
 
     private void restoreOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
@@ -443,6 +448,7 @@ public class FXMLDocumentController implements Initializable {
         }
         variableChange(null);
     }
+    
     @FXML
     private void updateUserDefName(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
@@ -454,6 +460,7 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR", ex.getMessage());
         } 
     }
+    
     @FXML
     void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {        
         String name = userOpTab.getSelectionModel().getSelectedItem().getName();

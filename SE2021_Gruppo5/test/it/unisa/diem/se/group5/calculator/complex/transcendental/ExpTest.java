@@ -23,15 +23,12 @@ public class ExpTest {
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op=new Exp(stack);
-        
+        op=new Exp(stack);        
     }
-    
-    
+        
     /**
      * Test of execute method, of class Cos.
-     */
- 
+     */ 
     @Test
     public void testExecute() {
         System.out.println("Exp");

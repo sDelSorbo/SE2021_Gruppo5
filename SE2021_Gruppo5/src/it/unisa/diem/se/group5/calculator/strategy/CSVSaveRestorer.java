@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.strategy;
 
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationValidator;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
 import java.io.DataInputStream;
@@ -69,8 +70,13 @@ public class CSVSaveRestorer implements Strategy{
             while(scan.hasNext()){
                 String operationName = scan.next();
                 String operations = scan.next();
-                UserDefinedOperation u = new UserDefinedOperation(operationName,operations);
-                toRestore.add(u);
+                if (UserDefinedOperationValidator.validateOperations(operations)
+                        && UserDefinedOperationValidator.checkRecursive(operationName, operations)){
+                    UserDefinedOperation u = new UserDefinedOperation(operationName,operations);
+                    toRestore.add(u);  
+                }
+                
+                // Questo non va meglio fuori dal while?
                 userOperations.setCurrentOperations(toRestore);
             }
         } catch (FileNotFoundException ex){

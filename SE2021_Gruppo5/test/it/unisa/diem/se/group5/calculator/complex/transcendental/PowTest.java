@@ -37,15 +37,15 @@ public class PowTest {
     public void testExecute() {
         System.out.println("Pow");
         ComplexNumber exp1 = new ComplexNumber(5,-7);
-        ComplexNumber op1 = new ComplexNumber(4,0);
+        ComplexNumber base1 = new ComplexNumber(4,0);
         ComplexNumber exp2 = new ComplexNumber(1,1);
-        ComplexNumber op2 = new ComplexNumber(2,0);
+        ComplexNumber base2 = new ComplexNumber(2,0);
         ComplexNumber exp3 = new ComplexNumber(11,2);
-        ComplexNumber op3 = new ComplexNumber(3,3);
+        ComplexNumber base3 = new ComplexNumber(3,3);
         ComplexNumber exp4 = new ComplexNumber(3,0);
-        ComplexNumber op4 = new ComplexNumber(11,0);
+        ComplexNumber base4 = new ComplexNumber(11,0);
         ComplexNumber exp5 = new ComplexNumber(2,0);
-        ComplexNumber op5 = new ComplexNumber(7,0);
+        ComplexNumber base5 = new ComplexNumber(7,0);
 
         
         ComplexNumber expResult1 = new ComplexNumber(-984.32353729,282.28206142);
@@ -55,31 +55,31 @@ public class PowTest {
         ComplexNumber expResult5 = new ComplexNumber(49.00000000,0);
 
         stack.push(exp1);
-        stack.push(op1);
+        stack.push(base1);
         op.execute();
         ComplexNumber result1=stack.pop();
         assertEquals(expResult1, result1);
         
         stack.push(exp2);
-        stack.push(op2);
+        stack.push(base2);
         op.execute();
         ComplexNumber result2=stack.pop();
         assertEquals(expResult2, result2);
         
         stack.push(exp3);
-        stack.push(op3);
+        stack.push(base3);
         op.execute();
         ComplexNumber result3=stack.pop();
         assertEquals(expResult3, result3);
         
         stack.push(exp4);
-        stack.push(op4);
+        stack.push(base4);
         op.execute();
         ComplexNumber result4=stack.pop();
         assertEquals(expResult4, result4);
         
         stack.push(exp5);
-        stack.push(op5);
+        stack.push(base5);
         op.execute();
         ComplexNumber result5=stack.pop();
         assertEquals(expResult5, result5);
