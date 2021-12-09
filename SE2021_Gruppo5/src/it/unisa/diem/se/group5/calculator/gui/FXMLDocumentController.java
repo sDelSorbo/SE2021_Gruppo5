@@ -382,6 +382,7 @@ public class FXMLDocumentController implements Initializable {
     private void saveOperations(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Save Operations");
+        fc.setInitialFileName("Untitled.csv");
         File filename= fc.showSaveDialog(stg);
         UserDefinedOperationsFile userFile = new UserDefinedOperationsFile();
         try{

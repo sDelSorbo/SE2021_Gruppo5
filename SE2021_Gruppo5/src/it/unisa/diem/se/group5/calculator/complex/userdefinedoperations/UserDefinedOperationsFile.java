@@ -4,11 +4,10 @@
  */
 package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
-import it.unisa.diem.se.group5.calculator.gui.FXMLDocumentController;
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +17,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -36,7 +37,7 @@ public class UserDefinedOperationsFile {
     }
     
     public void save(File filename) throws RuntimeException{
-        // ObservableList non è serailizzabile
+
         List<UserDefinedOperation> toSave =  new ArrayList<>(userOperations.getCurrentOperations());
         
         try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
@@ -48,31 +49,53 @@ public class UserDefinedOperationsFile {
         }
     }
     public void restore(File filename) throws RuntimeException{
+        
         try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)))){
             ArrayList<UserDefinedOperation> toRestore = (ArrayList<UserDefinedOperation>) din.readObject();
             ObservableList<UserDefinedOperation> toRestoreObservable = FXCollections.observableArrayList(toRestore);
             userOperations.setCurrentOperations(toRestoreObservable);
-      } catch (FileNotFoundException ex) {
+       }catch (FileNotFoundException ex) {
             throw new RuntimeException("File da ripristinare non trovato");
-        } catch (Exception ex) {
+       }catch (Exception ex) {
             throw new RuntimeException("Impossibile Ripristinare il file");
         }
         
     }
-    public static void saveXML(UserDefinedOperations userOperations, File filename){
-        try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)))) {
-             encoder.writeObject(userOperations.getCurrentOperations());
+    
+    public void saveCSV(File filename){
+       List<UserDefinedOperation> toSave =  new ArrayList<>(userOperations.getCurrentOperations());
+        try(DataOutputStream dout= new DataOutputStream(new FileOutputStream(filename))){
+            for(UserDefinedOperation e: toSave){
+                dout.writeChars(e.getName());
+                dout.writeChars(";");
+                dout.writeChars(e.getOperationsString());
+                dout.writeChars("\n");
+            }
+            
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            throw new RuntimeException("Impossibile salvare il file CSV");
+        } catch (IOException ex) {
+            throw new RuntimeException("Impossibile salvare il file CSV");
+        }
     }
-    public static List<UserDefinedOperation> loadXML(File filename){
-        try (XMLDecoder din = new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)))){
-            List<UserDefinedOperation> operations = (List<UserDefinedOperation>) din.readObject();
-            return operations;
-      } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+    public void restoreCSV(File filename){
+        
+        ObservableList<UserDefinedOperation> toRestore =  FXCollections.observableArrayList();
+        try(DataInputStream din = new DataInputStream(new FileInputStream(filename))){
+            Scanner scan = new Scanner(din);
+            scan.useLocale(Locale.US);
+            scan.useDelimiter(";|\\n");
+            while(scan.hasNext()){
+                String operationName = scan.next();
+                String operations = scan.next();
+                UserDefinedOperation u = new UserDefinedOperation(operationName,operations);
+                toRestore.add(u);
+                userOperations.setCurrentOperations(toRestore);
+            }
+        } catch (FileNotFoundException ex){
+            throw new RuntimeException("File CSV da ripristinare non trovato");
+        } catch (IOException ex) {
+            Logger.getLogger(UserDefinedOperationsFile.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        return null;
     }
 }
