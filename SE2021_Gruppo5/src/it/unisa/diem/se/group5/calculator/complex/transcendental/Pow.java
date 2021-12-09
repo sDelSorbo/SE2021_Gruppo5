@@ -26,40 +26,30 @@ public class Pow extends AbstractOnStackOperation{
      * Calcola la potenza di un ComplexNumber prelevato dalla cima dello stack.
      */
     @Override
-    public void execute() throws EmptyStackException {
-        ComplexNumber base = stack.pop();
-        try {
-            ComplexNumber exp = stack.pop();
-            
-            if((exp.getReal() != 0 && exp.getImaginary() != 0) ||(exp.getReal() == 0 && exp.getImaginary() != 0)){
-                
-            Operation op1, op2, op3;
-            op1 = new Mul(stack);
-            op2 = new Log(stack);
-            op3 = new Exp(stack);
+    public void execute() throws EmptyStackException{
+        ComplexNumber exponent = stack.pop();
+        if (exponent.getImaginary() != 0) {
+            throw new RuntimeException ("L'esponente deve essere puramente reale");
+        }        
+        try{
+            ComplexNumber base = stack.pop();
 
-            stack.push(base);
-            op2.execute();
-            stack.push(exp);
-            op1.execute();
-            op3.execute();
-            
-            }else if(exp.getReal() != 0 && exp.getImaginary() == 0){
-                
-                double esponente = exp.getReal();
-                
-                stack.push(base);
-                for(int i = 1; i < esponente; i++){
-                    stack.push(base);
-                    Operation op1;
-                    op1 = new Mul(stack);
-                    op1.execute();
-                }
-                
-            }
-      
-        } catch (Exception ex) {
-            stack.push(base);
+            double power = exponent.getReal();
+            double baseR = base.getReal();
+            double baseI = base.getImaginary();
+
+            double modulus = Math.sqrt(baseR*baseR + baseI*baseI);
+            double arg = Math.atan2(baseI, baseR);
+            double log_re = Math.log(modulus);
+            double log_im = arg;
+            double x_log_re = power * log_re;
+            double x_log_im = power * log_im;
+            double modulus_ans = Math.exp(x_log_re);
+
+            ComplexNumber result = new ComplexNumber(modulus_ans*Math.cos(x_log_im), modulus_ans*Math.sin(x_log_im));
+            stack.push(result);
+        } catch (EmptyStackException ex) {
+            stack.push(exponent);
             throw ex;
         }
     }
