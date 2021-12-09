@@ -5,6 +5,7 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,55 +37,88 @@ public class PowTest {
     @Test
     public void testExecute() {
         System.out.println("Pow");
-        ComplexNumber exp1 = new ComplexNumber(5,-7);
+        ComplexNumber result;
+        
+        ComplexNumber exp1 = new ComplexNumber();
         ComplexNumber base1 = new ComplexNumber(4,0);
-        ComplexNumber exp2 = new ComplexNumber(1,1);
-        ComplexNumber base2 = new ComplexNumber(2,0);
-        ComplexNumber exp3 = new ComplexNumber(11,2);
-        ComplexNumber base3 = new ComplexNumber(3,3);
-        ComplexNumber exp4 = new ComplexNumber(3,0);
-        ComplexNumber base4 = new ComplexNumber(11,0);
+        ComplexNumber exp2 = new ComplexNumber(1);
+        ComplexNumber base2 = new ComplexNumber(2.4543d,7.543d);
+        ComplexNumber exp3 = new ComplexNumber(5,0);
+        ComplexNumber base3 = new ComplexNumber(3.5d,7.453d);
+        ComplexNumber exp4 = new ComplexNumber(4,0);
+        ComplexNumber base4 = new ComplexNumber(0,-5.42d);
         ComplexNumber exp5 = new ComplexNumber(2,0);
-        ComplexNumber base5 = new ComplexNumber(7,0);
+        ComplexNumber base5 = new ComplexNumber(-11.3242d,-234);
+        ComplexNumber exp6 = new ComplexNumber(2,0);
+        ComplexNumber base6 = new ComplexNumber();
 
         
-        ComplexNumber expResult1 = new ComplexNumber(-984.32353729,282.28206142);
-        ComplexNumber expResult2 = new ComplexNumber(1.5384778,1.27792255);
-        ComplexNumber expResult3 = new ComplexNumber(848480.59138806,-1434353.72490876);
-        ComplexNumber expResult4 = new ComplexNumber(1331.00000000,0);
-        ComplexNumber expResult5 = new ComplexNumber(49.00000000,0);
-
-        stack.push(exp1);
+        ComplexNumber expResult1 = new ComplexNumber(1);
+        ComplexNumber expResult2 = new ComplexNumber(2.4543d,7.543d);
+        ComplexNumber expResult3 = new ComplexNumber(30705.47037582d,-22125.93108686d);
+        ComplexNumber expResult4 = new ComplexNumber(862.97287696d,0);
+        ComplexNumber expResult5 = new ComplexNumber(-54627.76249436d, +5299.7256d);
+        ComplexNumber expResult6 = new ComplexNumber();
+        
         stack.push(base1);
+        stack.push(exp1);        
         op.execute();
-        ComplexNumber result1=stack.pop();
-        assertEquals(expResult1, result1);
+        result = stack.pop();
+        assertEquals(expResult1, result);
         
-        stack.push(exp2);
         stack.push(base2);
+        stack.push(exp2);        
         op.execute();
-        ComplexNumber result2=stack.pop();
-        assertEquals(expResult2, result2);
+        result = stack.pop();
+        assertEquals(expResult2, result);
         
-        stack.push(exp3);
         stack.push(base3);
+        stack.push(exp3);        
         op.execute();
-        ComplexNumber result3=stack.pop();
-        assertEquals(expResult3, result3);
+        result = stack.pop();
+        assertEquals(expResult3, result);
         
-        stack.push(exp4);
         stack.push(base4);
+        stack.push(exp4);        
         op.execute();
-        ComplexNumber result4=stack.pop();
-        assertEquals(expResult4, result4);
+        result = stack.pop();
+        assertEquals(expResult4, result);
         
-        stack.push(exp5);
         stack.push(base5);
+        stack.push(exp5);        
         op.execute();
-        ComplexNumber result5=stack.pop();
-        assertEquals(expResult5, result5);
+        result = stack.pop();
+        assertEquals(expResult5, result);   
         
-     
+        stack.push(base6);
+        stack.push(exp6);        
+        op.execute();
+        result = stack.pop();
+        assertEquals(expResult6, result); 
+    }
+    
+    /**
+     * Test of execute method, of class Pow.
+     */
+    @Test (expected = ExponentShouldBeRealException.class)
+    public void testExponentShouldBeRealExceptionOnExecute (){
+        System.out.println("ExponentShouldBeRealException On Pow");
+        ComplexNumber exp1 = new ComplexNumber(3,5.32);
+        ComplexNumber base1 = new ComplexNumber(4,0);
+
+        stack.push(base1);
+        stack.push(exp1);
+        op.execute();
+    }
+    
+    /**
+     * Test of execute method, of class Pow.
+    */
+    @Test (expected = EmptyStackException.class)
+    public void testEmptyStackExceptionOnExecute (){
+        System.out.println("EmptyStackException On Pow");
+        
+        op.execute();
     }
     
 }

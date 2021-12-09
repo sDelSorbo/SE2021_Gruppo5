@@ -6,8 +6,6 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Mul;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
@@ -23,13 +21,14 @@ public class Pow extends AbstractOnStackOperation{
     }
     
     /**
-     * Calcola la potenza di un ComplexNumber prelevato dalla cima dello stack.
+     * Calcola la potenza, prelevata dalla cima dello stack, di un ComplexNumber 
+     * prelevato dallo stack come secondo elemento.
      */
     @Override
-    public void execute() throws EmptyStackException{
+    public void execute() throws EmptyStackException, ExponentShouldBeRealException{
         ComplexNumber exponent = stack.pop();
         if (exponent.getImaginary() != 0) {
-            throw new RuntimeException ("L'esponente deve essere puramente reale");
+            throw new ExponentShouldBeRealException ("Per eseguire la potenza l'esponente deve essere puramente reale.");
         }        
         try{
             ComplexNumber base = stack.pop();
