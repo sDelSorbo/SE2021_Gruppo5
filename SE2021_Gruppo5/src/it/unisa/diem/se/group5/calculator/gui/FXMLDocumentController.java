@@ -546,6 +546,7 @@ public class FXMLDocumentController implements Initializable {
     private void exportOperationSerial(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fc.setTitle("Export Operations");
+        fc.setInitialFileName("Untitled.dat");
         File filename= fc.showSaveDialog(stg);
         if(strategy==null){
             
