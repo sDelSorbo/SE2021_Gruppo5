@@ -16,6 +16,7 @@ import it.unisa.diem.se.group5.calculator.complex.variables.VariableStack;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import it.unisa.diem.se.group5.calculator.strategy.CSVSaveRestorer;
 import it.unisa.diem.se.group5.calculator.strategy.SaverRestorer;
+import it.unisa.diem.se.group5.calculator.strategy.SerialSaverRestorer;
 import it.unisa.diem.se.group5.calculator.strategy.Strategy;
 import java.io.File;
 import java.net.URL;
@@ -156,6 +157,7 @@ public class FXMLDocumentController implements Initializable {
         
         //textfield fix
         Platform.runLater(() -> {inputText.requestFocus(); });
+        
     }
     
     /**
@@ -484,16 +486,33 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void importOperationsCSV(ActionEvent event) {
+        
+        Stage stg = (Stage) inputText.getScene().getWindow();
+        fc.setTitle("Export Operations To CSV");
+        fc.setInitialFileName("Untitled.csv");
+        File filename= fc.showOpenDialog(stg);
+        if(strategy==null){
+            strategy = new CSVSaveRestorer(filename);
+        } 
+        saverRestorer.restore(strategy);
     }
 
     @FXML
     private void importOperationSerial(ActionEvent event) {
+        Stage stg = (Stage) inputText.getScene().getWindow();
+        fc.setTitle("Export Operations To CSV");
+        fc.setInitialFileName("Untitled.csv");
+        File filename= fc.showOpenDialog(stg);
+        if(strategy==null){
+            strategy = new SerialSaverRestorer(filename);
+        } 
+        saverRestorer.restore(strategy);
     }
 
     @FXML
     private void exportOperationsCSV(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
-        fc.setTitle("Save Operations");
+        fc.setTitle("Export Operations To CSV");
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showSaveDialog(stg);
         if(strategy==null){
@@ -504,6 +523,13 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void exportOperationSerial(ActionEvent event) {
+        Stage stg = (Stage) inputText.getScene().getWindow();
+        fc.setTitle("Export Operations");
+        File filename= fc.showSaveDialog(stg);
+        if(strategy==null){
+            strategy = new SerialSaverRestorer(filename);
+        } 
+        saverRestorer.save(strategy);
     }
 
 
