@@ -1,5 +1,4 @@
 /**
- *
  * NotANumberException
  * 
  * Version 1.0

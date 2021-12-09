@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
+ * Classe che descrive una Operazione Definita dall'utente che 
+ * 
  * @author Marco
  */
 public class UserDefinedOperation implements Serializable{

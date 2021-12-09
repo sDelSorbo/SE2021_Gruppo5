@@ -7,7 +7,6 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.Stack;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 
 /**
  * Questa classe implementa un'operazione di drop di uno stack.
@@ -23,7 +22,6 @@ public class Drop extends AbstractOnStackOperation{
     /**
      * Rimuove il primo elemento di uno stack.
      * 
-     * @param stack di cui eliminare il primo elemento
      */
     @Override
     public void execute() {

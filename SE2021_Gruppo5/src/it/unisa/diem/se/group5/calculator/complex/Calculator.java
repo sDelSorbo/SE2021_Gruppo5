@@ -37,20 +37,38 @@ public class Calculator {
     private Stack<ComplexNumber> stack;
     
     /**
-     * Contiene l'operando corrente
+     * Contiene l'operando corrente in esecuzione.
      */
     private String currentOp;
     
+    /**
+     * Mappa contente l'associazione tra i simboli e le operazioni sullo stack.
+     */
     private Map<String, Operation> commonOperations;
     
+    /**
+     * Mappa contente l'associazione tra i simboli e le operazioni sullo stack.
+     */
     private Map<String, Operation> stackOperations;  
     
+    /**
+     * Mappa contente l'associazione tra i simboli e le operazioni sulle variabili.
+     */
     private Map<String, Operation> variablesOperations;   
     
+    /**
+     * Variabili dalla a alla z.
+     */
     private Variables variables;
     
+    /**
+     * Operazioni definite dal'utente.
+     */
     private UserDefinedOperations userDefined;
     
+    /**
+     * Mappa contenente l'associazione gra simbolo e operazioni trascendenti.
+     */
     private Map<String, Operation> trascendentalOperations;
     
     /**
@@ -135,7 +153,13 @@ public class Calculator {
             throw new NotEnoughOperandsException("Operandi insufficienti per eseguire l'operazione \"" + currentOp + "\".");
         }
     }    
-
+    
+    /**
+     * Esegue una operazione definita dall'utente.
+     * 
+     * @param input l'operazione definita dall'utente
+     * @throws RuntimeException nel caso in cui l'operazione non sia eseguibile 
+     */
     private void executeUserDefined(String input) throws RuntimeException{
         List<String> operations = userDefined.getListOfOperations(input);
         Stack<ComplexNumber> tmp = (Stack<ComplexNumber>) stack.clone();
@@ -152,6 +176,11 @@ public class Calculator {
         }                
     }
     
+    /**
+     * Ripristina lo stack in caso di errore
+     * 
+     * @param toRestore condizione dello stack da ripristinare
+     */
     private void restore(Stack<ComplexNumber> toRestore){
         stack.clear();
         stack.addAll(toRestore);

@@ -1,10 +1,10 @@
-
-package it.unisa.diem.se.group5.calculator.complex;
 /**
  * ComplexNumber
  * 
  * Version 1.0m
  */
+package it.unisa.diem.se.group5.calculator.complex;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -15,9 +15,23 @@ import java.util.Objects;
  * @author gianpaolotobia
  */
 public class ComplexNumber {
-    private Double real; //Parte reale del numero complesso
-    private Double imaginary; //Parte immaginaria del numero complesso
-    private String complex; //Stringa contenente il numero complesso con parte reale e parte immaginaria
+    
+    /**
+     * Parte reale del numero complesso
+     */
+    private Double real; 
+    
+    /**
+     * Parte immaginaria del numero complesso
+     */
+    private Double imaginary; 
+    
+    /**
+     * Stringa contenente il numero complesso con parte reale e parte immaginaria
+    
+     */
+    private String complex; 
+    
     /**
     * Costruisce un numero complesso, definendo sia la parte reale che la parte immaginaria
     *
@@ -34,6 +48,7 @@ public class ComplexNumber {
         
         complex = this.toString();
     }
+    
     /**
     * Costruisce un numero complesso, costituito unicamente dalla parte reale
     *
@@ -56,6 +71,7 @@ public class ComplexNumber {
         imaginary = 0d;
         complex = this.toString();
     }
+    
     /**
     * Restituisce la parte reale del numero complesso
     * 
@@ -64,7 +80,8 @@ public class ComplexNumber {
     public double getReal() {
         return real;
     }
-   /**
+    
+    /**
     * Setta la parte reale del numero complesso 
     * 
     * @param real parametro che viene settato
@@ -74,7 +91,8 @@ public class ComplexNumber {
         this.real = bd.doubleValue();
         this.setComplex();
     }
-   /**
+    
+    /**
     * Restituisce la parte immaginaria del numero complesso
     * 
     * @return ritorna la parte immaginaria del numero complesso
@@ -82,6 +100,7 @@ public class ComplexNumber {
     public double getImaginary() {
         return imaginary;
     }
+    
     /**
     * Setta la parte immaginaria del numero complesso 
     * 
@@ -92,7 +111,8 @@ public class ComplexNumber {
         this.imaginary = bd.doubleValue();
         this.setComplex();
     }
-   /**
+    
+    /**
     * Restituisce la stringa rappresentativa del numero complesso
     * 
     * @return ritorna la stringa che rappresenta l'intero numero complesso
@@ -100,6 +120,7 @@ public class ComplexNumber {
     public String getComplex() {
         return complex;
     }
+        
     /**
     * Setta la stringa che rappresenta il numero complesso
     *
@@ -137,12 +158,6 @@ public class ComplexNumber {
         return true;
     }
     
-
-    /**
-     * Metodo che restituisce la stringa rappresentativa del numero complesso
-     * 
-     * @return ritorna la stringa del numero complesso in rappresentazione cartesiana
-     */
     @Override
     public String toString() {       
         boolean secondElementPositive = true;

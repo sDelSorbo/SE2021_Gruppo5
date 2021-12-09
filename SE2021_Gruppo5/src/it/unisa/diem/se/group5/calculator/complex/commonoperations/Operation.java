@@ -11,7 +11,7 @@ package it.unisa.diem.se.group5.calculator.complex.commonoperations;
  * @author Marco
  */
 public interface Operation {
-    
+ 
     public void execute ();
     
 }

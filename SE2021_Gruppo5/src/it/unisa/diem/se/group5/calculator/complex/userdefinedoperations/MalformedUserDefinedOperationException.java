@@ -5,7 +5,9 @@
 package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
 /**
- *
+ * Eccezione utilizzata nel caso in cui una operazione definita dall'utente sia
+ * definita in maniera sbagliata
+ * 
  * @author Marco
  */
 public class MalformedUserDefinedOperationException extends RuntimeException{

@@ -1,3 +1,6 @@
+/**
+ * StringParser
+ */
 package it.unisa.diem.se.group5.calculator.complex;
 
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
@@ -49,6 +52,12 @@ public class StringParser {
         }     
     }    
     
+    /**
+     * Testa se la stringa èun'operazione definita dall'utente
+     * 
+     * @param toParse operazione da testare
+     * @return <code>true</code> se l'operazione è definita dall'utente
+     */
     public boolean isUserDefined(String toParse){
         return toParse.matches(generateUserDefinedRegex());
     }
@@ -65,11 +74,12 @@ public class StringParser {
     */
     
     /**
+     * Testa se le operaioni di una lista di istruzioni sono corrette
      * 
-     * @param toParse
-     * @return 
+     * @param toParse serie di operazioni da validare
+     * @return <code>true</code> se le operazioni sono corrette
      */
-    public boolean validateOperations(String toParse) {
+    public boolean validateInstruction(String toParse) {
         String[] st = toParse.split("\\s");
         for (String s: st){
             if (!(isOperation(s) || isNumber(s))) 
@@ -79,8 +89,11 @@ public class StringParser {
     }
     
     /**
-     * 
-     * @return 
+     * Genere una espressione regolare che verifica se le operazioni definite dall'utenteù
+     * sono contenute in una stringa nel formato:
+     * \b
+     * <code/> "^userDefinedOperation1$| ... ^userdefinedOperationN$| </code>
+     * @return l' espressione regolare 
      */
     private String generateUserDefinedRegex(){
         List<String> usr = UserDefinedOperations.getInstance().getCurrentOperationsTokenized();
