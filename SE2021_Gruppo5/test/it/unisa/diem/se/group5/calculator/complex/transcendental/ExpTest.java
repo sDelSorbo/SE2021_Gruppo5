@@ -32,17 +32,18 @@ public class ExpTest {
     /**
      * Test of execute method, of class Cos.
      */
+ 
     @Test
     public void testExecute() {
         System.out.println("Exp");
         ComplexNumber op1 = new ComplexNumber(8,0);
-        ComplexNumber op2 = new ComplexNumber(18,0);
-        ComplexNumber op3 = new ComplexNumber(32,32);
+        ComplexNumber op2 = new ComplexNumber(2,2);
+        ComplexNumber op3 = new ComplexNumber(6,-6);
         ComplexNumber op4 = new ComplexNumber(Math.PI/6,0);
         ComplexNumber expResult = new ComplexNumber(2980.95798704,0);
-        ComplexNumber expResult1 = new ComplexNumber((double) Math.round(676 * 100000000) / 100000000,0);
-        ComplexNumber expResult2 = new ComplexNumber((double) Math.round(2980.95798704 * 100000000) / 100000000,0);
-        ComplexNumber expResult3 = new ComplexNumber((double) Math.round(Math.sqrt(3)/2 * 100000000) / 100000000,0);
+        ComplexNumber expResult1 = new ComplexNumber(-3.07493232,6.7188497);
+        ComplexNumber expResult2 = new ComplexNumber(387.36034029 ,112.72425732);
+        ComplexNumber expResult3 = new ComplexNumber(1.6880918,0);
           
         stack.push(op1);
         op.execute();

@@ -41,7 +41,7 @@ public class TanTest {
         ComplexNumber op2 = new ComplexNumber(1,2);
         ComplexNumber op3 = new ComplexNumber(-1,-1);
         ComplexNumber op4 = new ComplexNumber(1,-1);
-        ComplexNumber expResult = new ComplexNumber(0.09403715d,0.94957922d);
+        ComplexNumber expResult = new ComplexNumber(0.09403715,0.94947922);
         ComplexNumber expResult1 = new ComplexNumber(0.03381283,1.01479361);
         ComplexNumber expResult2 = new ComplexNumber(-0.27175259,-1.08392332);
         ComplexNumber expResult3 = new ComplexNumber(0.27175259,-1.08392332);

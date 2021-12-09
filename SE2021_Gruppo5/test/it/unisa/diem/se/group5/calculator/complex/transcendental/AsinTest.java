@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
+ * AsinTest
  */
 package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
@@ -34,13 +33,39 @@ public class AsinTest {
     /**
      * Test of execute method, of class Asin.
      */
+
+
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        Asin instance = null;
-        instance.execute();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Asin");
+        ComplexNumber op1 = new ComplexNumber(5d,5d);
+        ComplexNumber op2 = new ComplexNumber(9,-7);
+        ComplexNumber op3 = new ComplexNumber(-1,-1);
+        ComplexNumber op4 = new ComplexNumber(1,-1);
+        ComplexNumber expResult = new ComplexNumber(0.78039936d,2.64919619d);
+        ComplexNumber expResult1 = new ComplexNumber(0.90788662,-3.12644592);
+        ComplexNumber expResult2 = new ComplexNumber(-0.66623943,-1.06127507);
+        ComplexNumber expResult3 = new ComplexNumber(0.66623943,-1.06127507);
+          
+        stack.push(op1);
+        op.execute();
+        ComplexNumber result1=stack.pop();
+        assertEquals(expResult, result1);
+        
+        stack.push(op2);
+        op.execute();
+        ComplexNumber result2=stack.pop();
+        assertEquals(expResult1, result2);
+        
+        stack.push(op3);
+        op.execute();
+        ComplexNumber result3=stack.pop();
+        assertEquals(expResult2, result3);
+        
+        stack.push(op4);
+        op.execute();
+        ComplexNumber result4=stack.pop();
+        assertEquals(expResult3, result4);
     }
     
 }

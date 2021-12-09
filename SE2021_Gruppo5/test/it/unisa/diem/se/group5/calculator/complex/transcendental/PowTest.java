@@ -36,20 +36,20 @@ public class PowTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("Cos");
+        System.out.println("Pow");
         ComplexNumber op1 = new ComplexNumber(5,-7);
         ComplexNumber exp = new ComplexNumber(4,0);
         ComplexNumber op2 = new ComplexNumber(1,1);
         ComplexNumber exp1 = new ComplexNumber(2,0);
-        ComplexNumber op3 = new ComplexNumber(-21,2);
+        ComplexNumber op3 = new ComplexNumber(11,2);
         ComplexNumber exp2 = new ComplexNumber(3,3);
 
         
-        ComplexNumber expResult1 = new ComplexNumber(-4324,3360);
-        ComplexNumber expResult2 = new ComplexNumber(0,2);
-        ComplexNumber expResult3 = new ComplexNumber(-9009,2638);
+        ComplexNumber expResult1 = new ComplexNumber(-984.32353729,282.28206142);
+        ComplexNumber expResult2 = new ComplexNumber(1.5384778,1.27792255);
+        ComplexNumber expResult3 = new ComplexNumber(848480.59138806,-1434353.72490876);
 
-          
+         
         stack.push(op1);
         stack.push(exp);
         op.execute();

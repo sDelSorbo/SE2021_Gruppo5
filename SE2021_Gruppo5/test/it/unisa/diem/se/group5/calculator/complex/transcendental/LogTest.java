@@ -33,7 +33,7 @@ public class LogTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("Mod");
+        System.out.println("Log");
         ComplexNumber op1 = new ComplexNumber(2,0);
         ComplexNumber op2 = new ComplexNumber(10,10);
         ComplexNumber op3 = new ComplexNumber(-10,-10);
