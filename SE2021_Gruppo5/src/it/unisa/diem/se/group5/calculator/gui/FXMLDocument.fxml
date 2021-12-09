@@ -35,8 +35,8 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Export Operations">
                     <items>
-                        <MenuItem fx:id="saveOperationsCSV" mnemonicParsing="false" onAction="#exportOperationsCSV" text="Export to CSV.." />
-                        <MenuItem mnemonicParsing="false" onAction="#exportOperationSerial" text="Export.." />
+                        <MenuItem fx:id="exportToCsvMenu" mnemonicParsing="false" onAction="#exportOperationsCSV" text="Export to CSV.." />
+                        <MenuItem fx:id="exportMenu" mnemonicParsing="false" onAction="#exportOperationSerial" text="Export.." />
                     </items>
                   </Menu>
               <MenuItem mnemonicParsing="false" onAction="#quitApplication" text="Exit" />

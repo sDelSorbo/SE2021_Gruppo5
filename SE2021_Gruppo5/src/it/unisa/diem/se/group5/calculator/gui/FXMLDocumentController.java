@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -127,7 +128,9 @@ public class FXMLDocumentController implements Initializable {
     
     private static SaverRestorer saverRestorer = new SaverRestorer();
     @FXML
-    private MenuItem saveOperationsCSV;
+    private MenuItem exportToCsvMenu;
+    @FXML
+    private MenuItem exportMenu;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -151,6 +154,14 @@ public class FXMLDocumentController implements Initializable {
         
         userOpTab.setItems(userOperationsObs);    
         
+        SimpleListProperty<UserDefinedOperation> list = new SimpleListProperty<>(userOperationsObs);
+        
+        exportToCsvMenu.disableProperty().bind(list.emptyProperty());
+        exportMenu.disableProperty().bind(list.emptyProperty());
+        userDefRemove.disableProperty().bind(list.emptyProperty());
+        userDefModify.disableProperty().bind(list.emptyProperty());
+        
+        userDefList.disableProperty().bind(userDefName.textProperty().isEmpty());
         //Variables View
         comboVariable.setItems(FXCollections.observableArrayList(variables.getVariablesMap().keySet()));
         comboVariable.setValue("a");  
@@ -387,7 +398,8 @@ public class FXMLDocumentController implements Initializable {
             userOperations.remove(toRemove);
         } catch (Exception ex) {
             showGenericAlert("ERROR",ex.getMessage());
-        }                    
+        }
+        userDefName.clear();
     }
 
     private void saveOperations(ActionEvent event) {
@@ -531,6 +543,7 @@ public class FXMLDocumentController implements Initializable {
         } 
         saverRestorer.save(strategy);
     }
+
 
 
 
