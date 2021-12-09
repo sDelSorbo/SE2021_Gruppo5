@@ -24,6 +24,8 @@ public class UserDefinedOperation implements Serializable{
         this.operationsList = new ArrayList<>();
         splitOperations(this.operationsString);
     }
+    public UserDefinedOperation(){
+    }
 
     public String getName() {
         return name;
@@ -36,6 +38,10 @@ public class UserDefinedOperation implements Serializable{
     public List<String> getOperationsList() {
         return operationsList;
     }    
+
+    public void setOperationsList(List<String> operationsList) {
+        this.operationsList = operationsList;
+    }
 
     public String getOperationsString() {
         return operationsString;
