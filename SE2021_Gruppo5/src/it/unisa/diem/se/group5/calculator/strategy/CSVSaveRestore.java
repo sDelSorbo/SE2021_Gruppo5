@@ -29,11 +29,11 @@ import javafx.collections.ObservableList;
  *
  * @author Marco
  */
-public class CSVSaveRestorer implements Strategy{
+public class CSVSaveRestore implements Strategy{
     
     private File path;
 
-    public CSVSaveRestorer(File path) {
+    public CSVSaveRestore(File path) {
         this.path = path;
     }
     

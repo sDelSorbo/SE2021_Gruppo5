@@ -14,9 +14,9 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.variables.StackSizeException;
 import it.unisa.diem.se.group5.calculator.complex.variables.VariableStack;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
-import it.unisa.diem.se.group5.calculator.strategy.CSVSaveRestorer;
+import it.unisa.diem.se.group5.calculator.strategy.CSVSaveRestore;
 import it.unisa.diem.se.group5.calculator.strategy.SaverRestorer;
-import it.unisa.diem.se.group5.calculator.strategy.SerialSaverRestorer;
+import it.unisa.diem.se.group5.calculator.strategy.SerialSaveRestore;
 import it.unisa.diem.se.group5.calculator.strategy.Strategy;
 import java.io.File;
 import java.net.URL;
@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -511,7 +510,7 @@ public class FXMLDocumentController implements Initializable {
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showOpenDialog(stg);
         if(strategy==null){
-            strategy = new CSVSaveRestorer(filename);
+            strategy = new CSVSaveRestore(filename);
         } 
         saverRestorer.restore(strategy);
     }
@@ -523,7 +522,7 @@ public class FXMLDocumentController implements Initializable {
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showOpenDialog(stg);
         if(strategy==null){
-            strategy = new SerialSaverRestorer(filename);
+            strategy = new SerialSaveRestore(filename);
         } 
         saverRestorer.restore(strategy);
     }
@@ -535,7 +534,7 @@ public class FXMLDocumentController implements Initializable {
         fc.setInitialFileName("Untitled.csv");
         File filename= fc.showSaveDialog(stg);
         if(strategy==null){
-            strategy = new CSVSaveRestorer(filename);
+            strategy = new CSVSaveRestore(filename);
         } 
         saverRestorer.save(strategy);
     }
@@ -546,7 +545,7 @@ public class FXMLDocumentController implements Initializable {
         fc.setTitle("Export Operations");
         File filename= fc.showSaveDialog(stg);
         if(strategy==null){
-            strategy = new SerialSaverRestorer(filename);
+            strategy = new SerialSaveRestore(filename);
         } 
         saverRestorer.save(strategy);
     }
