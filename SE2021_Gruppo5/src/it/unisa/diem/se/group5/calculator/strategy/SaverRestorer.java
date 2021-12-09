@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.strategy;
 
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
+import java.io.File;
 
 /**
  *
@@ -18,6 +19,8 @@ public class SaverRestorer {
     }
     public void save (Strategy strategy){
         strategy.save(userOperations);
+        
+        
     }
     
     public void restore (Strategy strategy){

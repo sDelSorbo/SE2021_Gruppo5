@@ -33,8 +33,7 @@ public class CSVSaveRestore implements Strategy{
     
     private File path;
 
-    public CSVSaveRestore(File path) {
-        this.path = path;
+    public CSVSaveRestore() {
     }
     
     public void setPath(File path) {
