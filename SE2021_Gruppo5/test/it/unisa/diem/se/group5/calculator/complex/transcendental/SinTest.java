@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author delso
+ * @author roberto
  */
 public class SinTest {
     
@@ -28,7 +28,7 @@ public class SinTest {
     }
     
     /**
-     * Test of execute method, of class Cos.
+     * Test del metodo execute, della classe Sin.
      */
     @Test
     public void testExecute() {

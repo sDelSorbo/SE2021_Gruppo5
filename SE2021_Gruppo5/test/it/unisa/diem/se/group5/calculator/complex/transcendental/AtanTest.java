@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author roberto
+ * @author delso
  */
 public class AtanTest {
    Stack<ComplexNumber> stack; 

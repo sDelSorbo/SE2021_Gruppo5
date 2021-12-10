@@ -7,10 +7,7 @@ import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.EmptyStackException;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,7 +29,7 @@ public class PowTest {
     }
 
     /**
-     * Test of execute method, of class Pow.
+     * Test del metodo execute, della classe Pow.
      */
     @Test
     public void testExecute() {

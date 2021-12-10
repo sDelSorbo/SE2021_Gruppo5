@@ -6,10 +6,7 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,7 +28,7 @@ public class AsinTest {
     }
 
     /**
-     * Test of execute method, of class Asin.
+     * Test del metodo execute, della classe Asin.
      */
 
 
