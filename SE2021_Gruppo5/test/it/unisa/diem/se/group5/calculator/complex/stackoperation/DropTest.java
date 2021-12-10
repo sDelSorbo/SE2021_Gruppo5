@@ -5,7 +5,6 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
-import it.unisa.diem.se.group5.calculator.complex.stackoperation.Drop;
 import java.util.Stack;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;

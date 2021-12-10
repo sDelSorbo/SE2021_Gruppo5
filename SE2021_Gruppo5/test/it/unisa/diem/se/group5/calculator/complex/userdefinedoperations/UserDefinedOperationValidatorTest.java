@@ -1,98 +1,158 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
+ * UserDefinedOperationValidatorTest
+ * 
  */
 package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
+import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
  * @author Marco
  */
 public class UserDefinedOperationValidatorTest {
-    
+        
+    private static UserDefinedOperations userDefOps;
+            
     public UserDefinedOperationValidatorTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        userDefOps = UserDefinedOperations.getInstance();
+        userDefOps.add(new UserDefinedOperation("add", "+"));
+        userDefOps.add(new UserDefinedOperation("sub", "-"));
+        userDefOps.add(new UserDefinedOperation("addsub", "add -"));
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
-     * Test of validateName method, of class UserDefinedOperationValidator.
+     * Test di validateName, della classe UserDefinedOperationValidator.
      */
     @Test
     public void testValidateName() {
         System.out.println("validateName");
-        String toValidate = "";
-        boolean expResult = false;
+        String toValidate = "  operazione  ";
+        boolean expResult = true;
         boolean result = UserDefinedOperationValidator.validateName(toValidate);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        toValidate = "opErAZIONE";
+        expResult = false;
+        result = UserDefinedOperationValidator.validateName(toValidate);
+        assertEquals(expResult, result);
+        
+        toValidate = "oeprazione3!?";
+        expResult = false;
+        result = UserDefinedOperationValidator.validateName(toValidate);
+        assertEquals(expResult, result);
+        
+        
     }
+    
+    /**
+     * Test di validateName, della classe UserDefinedOperationValidator.
+     */
+    @Test(expected = MalformedUserDefinedOperationException.class)
+    public void testMalformedUserDefinedOperationOnValidateName() {
+        System.out.println("MalformedUserDefinedOperationOnValidateName");
+        String toValidate = "save";
+        boolean expResult = true;
+        boolean result = UserDefinedOperationValidator.validateName(toValidate);
+        assertEquals(expResult, result);
+    }
+    
+    
+    
 
     /**
-     * Test of validateOperations method, of class UserDefinedOperationValidator.
+     * Test di validateoperations, della classe UserDefinedOperationValidator.
      */
     @Test
     public void testValidateOperations() {
         System.out.println("validateOperations");
-        String toValidate = "";
-        boolean expResult = false;
-        boolean result = UserDefinedOperationValidator.validateOperations(toValidate);
+        String toValidate = "+ - 3.43+6j";
+        boolean expResult = true;
+        boolean result = UserDefinedOperationValidator.validateName(toValidate);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        toValidate = " 3 drop 4 5 >a save dup";
+        expResult = true;
+        result = UserDefinedOperationValidator.validateName(toValidate);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test di validateOperations, della classe UserDefinedOperationValidator.
+     */
+    @Test(expected = MalformedUserDefinedOperationException.class)
+    public void testMalformedUserDefinedOperationExceptionOnValidateOperations() {
+        System.out.println("validateOperations");
+        String toValidate = "saved";
+        boolean expResult = true;
+        boolean result = UserDefinedOperationValidator.validateName(toValidate);
+        assertEquals(expResult, result);
+        
+        toValidate = "6452j+";
+        expResult = true;
+        result = UserDefinedOperationValidator.validateName(toValidate);
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of checkRecursive method, of class UserDefinedOperationValidator.
+     * Test di CheckRecursive, della classe UserDefinedOperationValidator.
      */
     @Test
     public void testCheckRecursive() {
         System.out.println("checkRecursive");
-        String toValidateName = "";
-        String toValidateOp = "";
-        boolean expResult = false;
+        String toValidateName = "sqrt2";
+        String toValidateOp = "sqrt sqrt";
+        boolean expResult = true;
         boolean result = UserDefinedOperationValidator.checkRecursive(toValidateName, toValidateOp);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
+    
     /**
-     * Test of checkCycle method, of class UserDefinedOperationValidator.
+     * Test di CheckRecursive, della classe UserDefinedOperationValidator.
+     */
+    @Test(expected = MalformedUserDefinedOperationException.class)
+    public void testMalformedUserDefinedOperationExceptionOnCheckRecursive() {
+        System.out.println("MalformedUserDefinedOperationExceptionOnCheckRecursive");
+        String toValidateName = "add2";
+        String toValidateOp = "add add2";
+        boolean result = UserDefinedOperationValidator.checkRecursive(toValidateName, toValidateOp);
+    }
+    
+    /**
+     * Test di CheckCycle, della classe UserDefinedOperationValidator.
      */
     @Test
     public void testCheckCycle() {
         System.out.println("checkCycle");
-        String toValidateName = "";
-        List<String> toValidateOps = null;
+        String toValidateName = "subadd";
+        List<String> toValidateOps = new ArrayList<>();
+        toValidateOps.add("sub");
+        toValidateOps.add("add");
         boolean expResult = false;
-        boolean result = UserDefinedOperationValidator.checkCycle(toValidateName, toValidateOps);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean result = UserDefinedOperationValidator.checkCycle("toValidateName", toValidateOps);
+    }
+
+
+    /**
+     * Test di CheckCycle, della classe UserDefinedOperationValidator.
+     */
+    @Test(expected = MalformedUserDefinedOperationException.class)
+    public void testMalformedUserDefinedOperationExceptionOnCheckCycle() {
+        System.out.println("MalformedUserDefinedOperationExceptionOnCheckCycle");
+        String toValidateName = "add";
+        List<String> toValidateOps = new ArrayList<>();
+        toValidateOps.add("addsub");
+        toValidateOps.add("+");
+        boolean expResult = false;
+        boolean result = UserDefinedOperationValidator.checkCycle("toValidateName", toValidateOps);
     }
     
 }

@@ -10,7 +10,6 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.Malforme
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationValidator;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
-import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import it.unisa.diem.se.group5.calculator.strategy.CSVSaveRestore;
 import it.unisa.diem.se.group5.calculator.strategy.SaverRestorer;
@@ -426,32 +425,6 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert("ERROR",ex.getMessage());
         }
         userDefName.clear();
-    }
-
-    /*
-    private void saveOperations(ActionEvent event) {
-        Stage stg = (Stage) inputText.getScene().getWindow();
-        fileChooser.setTitle("Save Operations");
-        fileChooser.setInitialFileName("Untitled.csv");
-        File filename= fileChooser.showSaveDialog(stg);
-        UserDefinedOperationsFile userFile = new UserDefinedOperationsFile();
-        try{
-            userFile.save(filename);
-        }catch(RuntimeException ex){
-            showGenericAlert("ERROR",ex.getMessage());
-        }
-    }*/
-
-    private void restoreOperations(ActionEvent event) {
-        Stage stg = (Stage) inputText.getScene().getWindow();
-        fileChooser.setTitle("Restore Operations");
-        File filename = fileChooser.showOpenDialog(stg);
-        UserDefinedOperationsFile userFile = new UserDefinedOperationsFile();        
-        try{
-            userFile.restore(filename);
-        }catch(RuntimeException ex){
-            showGenericAlert("ERROR",ex.getMessage());
-        }
     }
     
     @FXML
