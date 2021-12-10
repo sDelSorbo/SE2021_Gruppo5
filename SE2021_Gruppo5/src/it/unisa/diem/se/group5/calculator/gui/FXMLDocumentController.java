@@ -416,6 +416,17 @@ public class FXMLDocumentController implements Initializable {
     private void removeUserDefinedOperation(ActionEvent event) {
         String name = userDefName.getText().toLowerCase();
         UserDefinedOperation toRemove = new UserDefinedOperation(name , "");
+        remove (toRemove);
+    }
+    
+    
+    @FXML
+    private void removeUserDefinedOperatioContext(ActionEvent event) {
+        UserDefinedOperation toRemove = userOpTab.getSelectionModel().getSelectedItem();
+        remove (toRemove);
+    }
+
+    private void remove(UserDefinedOperation toRemove){
         try {
             userOperations.remove(toRemove);
         } catch (Exception ex) {
@@ -477,6 +488,7 @@ public class FXMLDocumentController implements Initializable {
         } catch (RuntimeException ex) {            
             showGenericAlert("ERROR", ex.getMessage());
         } 
+        userOpTab.refresh();
     }
     
     @FXML
@@ -596,4 +608,5 @@ public class FXMLDocumentController implements Initializable {
             showGenericAlert ("ERROR",ex.getMessage());
         } 
     }
+
 }

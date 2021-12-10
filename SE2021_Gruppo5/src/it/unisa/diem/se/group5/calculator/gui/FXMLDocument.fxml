@@ -178,6 +178,13 @@
                      <HBox.margin>
                         <Insets bottom="10.0" top="20.0" />
                      </HBox.margin>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#removeUserDefinedOperatioContext" text="Remove" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
                   </TableView>
                </children>
                <HBox.margin>
