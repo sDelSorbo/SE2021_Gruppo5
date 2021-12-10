@@ -35,7 +35,7 @@ public class SerialSaveRestore implements Strategy{
     @Override
     public boolean save(UserDefinedOperations userOperations) {
         List<UserDefinedOperation> toSave =  new ArrayList<>(userOperations.getCurrentOperations());
-        
+        if(path!=null){
         try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(path)))) {
              dout.writeObject(toSave);
         } catch (FileNotFoundException ex) {
@@ -43,12 +43,14 @@ public class SerialSaveRestore implements Strategy{
         } catch (IOException ex) {
             throw new RuntimeException("Impossibile salvare il file");
         }
+        }
         return false;
         
     }
 
     @Override
     public boolean restore(UserDefinedOperations userOperations) {
+        if(path!=null){
         try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(path)))){
             ArrayList<UserDefinedOperation> toRestore = (ArrayList<UserDefinedOperation>) din.readObject();
             ObservableList<UserDefinedOperation> toRestoreObservable = FXCollections.observableArrayList(toRestore);
@@ -57,6 +59,7 @@ public class SerialSaveRestore implements Strategy{
             throw new RuntimeException("File da ripristinare non trovato");
        }catch (Exception ex) {
             throw new RuntimeException("Impossibile Ripristinare il file");
+        }
         }
         return false;
     }
