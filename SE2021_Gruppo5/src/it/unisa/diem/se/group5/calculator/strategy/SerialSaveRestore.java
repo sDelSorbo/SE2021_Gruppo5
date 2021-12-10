@@ -21,19 +21,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
- * @author Marco
+ * Classe che permette di salvare su File in maniera serializzata le operazioni definite dall'utente
+ * @author Gianpaolo
  */
 public class SerialSaveRestore implements Strategy{
     
     File path;
-    
+    /**
+     * Metodo che permette di settare il file su cui effettuare le operazioni di save e restore
+     * @param path 
+     */
     public void setPath(File path) {
         this.path = path;
     }
-
+    /**
+     * Metodo implementato dall'interfaccia Strategy che permette di salvare su file
+     * @param userOperations Parametro che rappresenta le operazioni da salvare
+     */
     @Override
-    public boolean save(UserDefinedOperations userOperations) {
+    public void save(UserDefinedOperations userOperations) {
         List<UserDefinedOperation> toSave =  new ArrayList<>(userOperations.getCurrentOperations());
         if(path!=null){
         try (ObjectOutputStream dout = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(path)))) {
@@ -44,12 +50,14 @@ public class SerialSaveRestore implements Strategy{
             throw new RuntimeException("Impossibile salvare il file");
         }
         }
-        return false;
         
     }
-
+    /**
+     * Metodo implementato dall'interfaccia Strategy che permette di caricare da file
+     * @param userOperations Parametro che rappresenta le operazioni da caricare
+     */
     @Override
-    public boolean restore(UserDefinedOperations userOperations) {
+    public void restore(UserDefinedOperations userOperations) {
         if(path!=null){
         try (ObjectInputStream din = new ObjectInputStream(new BufferedInputStream(new FileInputStream(path)))){
             ArrayList<UserDefinedOperation> toRestore = (ArrayList<UserDefinedOperation>) din.readObject();
@@ -61,6 +69,5 @@ public class SerialSaveRestore implements Strategy{
             throw new RuntimeException("Impossibile Ripristinare il file");
         }
         }
-        return false;
     }
 }

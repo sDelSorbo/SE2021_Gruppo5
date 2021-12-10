@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package it.unisa.diem.se.group5.calculator.strategy;
 
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
-import java.io.File;
 
 /**
- *
+ * Classe che gestisce la save e la restore delle operazioni
  * @author Marco
  */
 public class SaverRestorer {
@@ -17,12 +13,18 @@ public class SaverRestorer {
     public SaverRestorer() {
         userOperations = UserDefinedOperations.getInstance();
     }
+    /**
+     * Metodo che permette di effettuare la save su file delle operazioni
+     * @param strategy 
+     */
     public void save (Strategy strategy){
         strategy.save(userOperations);
         
-        
     }
-    
+    /**
+     * Metodo che permette di effettuare la restore da file delle operazioni
+     * @param strategy 
+     */
     public void restore (Strategy strategy){
         strategy.restore(userOperations);
     }
