@@ -362,19 +362,19 @@ public class StringParserTest {
     }
 
     /**
-     * Test of validateInstruction method, of class StringParser.
+     * Test of validateInstructions method, of class StringParser.
      */
     @Test
     public void testValidateOperations() {
         System.out.println("validateOperations");
         String toParse = "+ - + - addsub";
         boolean expResult = true;
-        boolean result = spr.validateInstruction(toParse);
+        boolean result = spr.validateInstructions(toParse);
         assertEquals(expResult, result);
         
         toParse = "+ - + - ihui";
         expResult = false;
-        result = spr.validateInstruction(toParse);
+        result = spr.validateInstructions(toParse);
         assertEquals(expResult, result);
     }
     
