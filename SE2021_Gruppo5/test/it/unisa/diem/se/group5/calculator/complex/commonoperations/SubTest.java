@@ -38,11 +38,11 @@ public class SubTest {
         ComplexNumber op5 = new ComplexNumber(3.72d,-10.88d);
         ComplexNumber op6 = new ComplexNumber(2.371d,5.233d);
         
-        ComplexNumber expResult1 = new ComplexNumber(7,-1);
-        ComplexNumber expResult2 = new ComplexNumber(-1);
-        ComplexNumber expResult3 = new ComplexNumber(1.349d,-16.113d);
-        ComplexNumber expResult4 = new ComplexNumber(-7.371d,-0.233d);
-        ComplexNumber expResult5 = new ComplexNumber(-3.72d,+10.88d); 
+        ComplexNumber expResult1 = new ComplexNumber(-7,1);
+        ComplexNumber expResult2 = new ComplexNumber(1);
+        ComplexNumber expResult3 = new ComplexNumber(-1.349d,16.113d);
+        ComplexNumber expResult4 = new ComplexNumber(7.371d,0.233d);
+        ComplexNumber expResult5 = new ComplexNumber(3.72d,-10.88d); 
         
         stack.push(op2);
         stack.push(op1);

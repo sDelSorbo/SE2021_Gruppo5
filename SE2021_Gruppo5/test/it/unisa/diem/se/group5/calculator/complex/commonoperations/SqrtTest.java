@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,6 +69,13 @@ public class SqrtTest {
         op.execute();
         ComplexNumber result5=stack.pop();
         assertEquals(expResult5, result5);
+    }
+    /**
+    * Test di EmptyStackException.
+    */
+    @Test (expected = EmptyStackException.class)
+    public void testEmptyStackException() {     
+        op.execute();
     }
     
 }

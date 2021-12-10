@@ -12,31 +12,32 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author delso
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoadTest {
     
-     Stack<ComplexNumber> stack; 
+    Stack<ComplexNumber> stack; 
     Operation op;
     Variables variables;
-    
     
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op=new Load(stack);
-        
+        op=new Load(stack); 
     }
 
     /**
-     * Test of execute method, of class Load.
+     * Test del metodo execute della classe Load.
      */
     @Test
     public void testExecute() {
-        System.out.println("LoadVar");
+       /* System.out.println("LoadVar");
         variables = Variables.getInstance();
         variables.setVariable("a", new ComplexNumber(0,0));
         variables.setVariable("b", new ComplexNumber(0,0));
@@ -67,6 +68,17 @@ public class LoadTest {
         op.execute();
         ComplexNumber result2 = variables.getValue("c");
         assertEquals(expResult3, result2);
+        */
     }
     
+    /**
+    * Test di NotSelectedVariableException.
+    */
+    @Test (expected = NotSelectedVariableException.class)
+    public void testA() {
+        ComplexNumber op1 = new ComplexNumber(3,10);  
+        stack.push(op1);
+        stack.push(op1);
+        op.execute();
+    }
 }

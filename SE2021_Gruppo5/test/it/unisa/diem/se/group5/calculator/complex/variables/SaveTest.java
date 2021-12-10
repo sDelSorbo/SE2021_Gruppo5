@@ -12,11 +12,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author delso
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SaveTest {
     
     Stack<ComplexNumber> stack; 
@@ -31,7 +34,7 @@ public class SaveTest {
         
     }
     /**
-     * Test of execute method, of class Save.
+     * Test del metodo execute della classe Save.
      */
     @Test
     public void testExecute() {
@@ -63,5 +66,16 @@ public class SaveTest {
         ComplexNumber result2 = variables.getValue("c");
         assertEquals(expResult3, result2);
     }
+    
+   /**
+    * Test di NotSelectedVariableException.
+    */
+    @Test (expected = NotSelectedVariableException.class)
+    public void testA() {
+        ComplexNumber op1 = new ComplexNumber(3,10);  
+        stack.push(op1);
+        stack.push(op1);
+        op.execute();
+    }    
     
 }

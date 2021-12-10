@@ -9,16 +9,20 @@ import java.util.Stack;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author delso
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddTest {  
     
     Stack<ComplexNumber> stack; 
     Operation op;
     Variables variables;
+    
     
     
     @Before
@@ -27,9 +31,11 @@ public class AddTest {
         op = new Add(stack);        
     }
 
+
     /**
-     * Test of execute method, of class Add.
+     * Test del metodo execute della classe Add.
      */
+    
     @Test
     public void testExecute() {
         System.out.println("AddVar");
@@ -64,6 +70,20 @@ public class AddTest {
         op.execute();      
         ComplexNumber result2 = variables.getValue("c");
         assertEquals(expResult3, result2);
+
     }
+    /**
+    * Test di EmptyStackException.
+    */
+    @Test (expected = NotSelectedVariableException.class)
+    public void testA() {
+        ComplexNumber op1 = new ComplexNumber(3,10);  
+        stack.push(op1);
+        stack.push(op1);
+        op.execute();
+    }
+ 
+    
+    
     
 }
