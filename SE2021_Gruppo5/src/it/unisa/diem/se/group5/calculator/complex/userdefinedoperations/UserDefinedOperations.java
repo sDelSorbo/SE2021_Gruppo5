@@ -20,7 +20,7 @@ public class UserDefinedOperations implements Serializable{
     private ObservableList<UserDefinedOperation> currentOperations;
     private static UserDefinedOperations instance= null;
     
-    private UserDefinedOperations(){
+    public UserDefinedOperations(){
         currentOperations = FXCollections.observableArrayList();
     }
     

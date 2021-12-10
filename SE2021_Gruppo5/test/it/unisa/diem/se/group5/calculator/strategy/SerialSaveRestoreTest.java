@@ -1,11 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
+
 package it.unisa.diem.se.group5.calculator.strategy;
 
+import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperation;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import java.io.File;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,8 +47,6 @@ public class SerialSaveRestoreTest {
         File path = null;
         SerialSaveRestore instance = new SerialSaveRestore();
         instance.setPath(path);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,13 +55,23 @@ public class SerialSaveRestoreTest {
     @Test
     public void testSave() {
         System.out.println("save");
-        UserDefinedOperations userOperations = null;
-        SerialSaveRestore instance = new SerialSaveRestore();
-        boolean expResult = false;
-        boolean result = instance.save(userOperations);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        File file;
+        file = new File("test.txt");
+        UserDefinedOperations userOperations = UserDefinedOperations.getInstance();
+        UserDefinedOperations restoredOperations = UserDefinedOperations.getInstance();
+        ObservableList<UserDefinedOperation> listToSave =  FXCollections.observableArrayList();
+
+        UserDefinedOperation op = new UserDefinedOperation("sub","- -");
+        listToSave.add(op);
+        userOperations.setCurrentOperations(listToSave);
+        CSVSaveRestore instance = new CSVSaveRestore();
+        instance.setPath(file);
+        instance.save(userOperations);
+        instance.restore(restoredOperations);
+        
+        assertEquals(userOperations.getCurrentOperations().get(0).getName(),restoredOperations.getCurrentOperations().get(0).getName());
+        assertEquals(userOperations.getCurrentOperations().get(0).getOperationsString(),restoredOperations.getCurrentOperations().get(0).getOperationsString());
+
     }
 
     /**
@@ -72,13 +80,23 @@ public class SerialSaveRestoreTest {
     @Test
     public void testRestore() {
         System.out.println("restore");
-        UserDefinedOperations userOperations = null;
-        SerialSaveRestore instance = new SerialSaveRestore();
-        boolean expResult = false;
-        boolean result = instance.restore(userOperations);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        File file;
+        file = new File("test.txt");
+        UserDefinedOperations userOperations = UserDefinedOperations.getInstance();
+        UserDefinedOperations restoredOperations = UserDefinedOperations.getInstance();
+        ObservableList<UserDefinedOperation> listToSave =  FXCollections.observableArrayList();
+
+        UserDefinedOperation op = new UserDefinedOperation("sub","- -");
+        listToSave.add(op);
+        userOperations.setCurrentOperations(listToSave);
+        CSVSaveRestore instance = new CSVSaveRestore();
+        instance.setPath(file);
+        instance.save(userOperations);
+        instance.restore(restoredOperations);
+        
+        assertEquals(userOperations.getCurrentOperations().get(0).getName(),restoredOperations.getCurrentOperations().get(0).getName());
+        assertEquals(userOperations.getCurrentOperations().get(0).getOperationsString(),restoredOperations.getCurrentOperations().get(0).getOperationsString());
+
     }
     
 }
