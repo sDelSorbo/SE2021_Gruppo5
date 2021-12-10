@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -44,15 +43,14 @@ public class CSVSaveRestore implements Strategy{
        List<UserDefinedOperation> toSave =  new ArrayList<>(userOperations.getCurrentOperations());
         try(DataOutputStream dout= new DataOutputStream(new FileOutputStream(path))){
             for(UserDefinedOperation e: toSave){
-                dout.writeChars(e.getName());
-                dout.writeChars(";");
-                dout.writeChars(e.getOperationsString());
-                dout.writeChars("\n");
-            }
-            
+                dout.writeUTF(e.getName());
+                dout.writeUTF(";");
+                dout.writeUTF(e.getOperationsString());
+                dout.writeUTF("\n");
+            }            
         } catch (FileNotFoundException ex) {
             throw new RuntimeException("Impossibile salvare il file CSV");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             throw new RuntimeException("Impossibile salvare il file CSV");
         }
         return true;
@@ -73,13 +71,11 @@ public class CSVSaveRestore implements Strategy{
                     UserDefinedOperation u = new UserDefinedOperation(operationName,operations);
                     toRestore.add(u);  
                 }
-                
-                // Questo non va meglio fuori dal while?
-                userOperations.setCurrentOperations(toRestore);
             }
+            userOperations.setCurrentOperations(toRestore);
         } catch (FileNotFoundException ex){
             throw new RuntimeException("File CSV da ripristinare non trovato");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(UserDefinedOperationsFile.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return false;
