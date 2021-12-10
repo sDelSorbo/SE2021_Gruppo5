@@ -1,14 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Exception.java to edit this template
+ * EmptyVariableStackException
+ * 
  */
-package it.unisa.diem.se.group5.calculator.complex.variables;
+package it.unisa.diem.se.group5.calculator.complex.variablestack;
 
 /**
  *
  * @author gianpaolotobia
  */
-public class StackSizeException extends RuntimeException{
+public class EmptyVariableStackException extends RuntimeException{
 
     private String msgHeader;
 
@@ -16,7 +16,7 @@ public class StackSizeException extends RuntimeException{
      * Creates a new instance of <code>StackSizeException</code> without detail
      * message.
      */
-    public StackSizeException() {
+    public EmptyVariableStackException() {
     }
 
     /**
@@ -25,7 +25,7 @@ public class StackSizeException extends RuntimeException{
      *
      * @param msg the detail message.
      */
-    public StackSizeException(String msg1,String msgHeader) {
+    public EmptyVariableStackException(String msg1,String msgHeader) {
         super(msg1);
         this.msgHeader = msgHeader;
     }

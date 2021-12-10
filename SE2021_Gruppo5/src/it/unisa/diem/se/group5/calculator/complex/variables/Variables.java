@@ -14,9 +14,16 @@ import java.util.Map;
  */
 public class Variables {
     
+    /**
+     * Instanza della classe
+     */
     private static Variables instance; 
     
+    /**
+     * Variabile selezionata in questo momento;
+     */
     private String selectedVar = "";
+    
     /**
      * Struttura dati Map che conterrà le 26 variabili.
      */
@@ -45,6 +52,7 @@ public class Variables {
     public Map<String, ComplexNumber> getVariablesMap() {
         return variablesMap;
     }
+    
     /**
      * Setta la Map
      * @param variablesMap 

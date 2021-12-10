@@ -23,8 +23,7 @@ public class AsinTest {
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op=new Asin(stack);
-        
+        op=new Asin(stack);        
     }
 
     /**

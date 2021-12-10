@@ -21,8 +21,6 @@ public class Save extends AbstractOnVariableOperation {
     /**
      * Metodo statico per caricare il numero complesso in cima allo stack in una variabile
      * 
-     * @param stack Stack di numeri complessi
-     * @param var Variable nella quale caricare il valore 
      */
     @Override
     public void execute() {

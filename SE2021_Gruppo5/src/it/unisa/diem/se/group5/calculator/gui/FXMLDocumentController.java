@@ -1,6 +1,6 @@
 /*
  * FXMLDocumentController
- * SE MI VEDI HAI PULLATO
+ *
  */
 package it.unisa.diem.se.group5.calculator.gui;
 
@@ -11,8 +11,6 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationValidator;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperationsFile;
-import it.unisa.diem.se.group5.calculator.complex.variables.StackSizeException;
-import it.unisa.diem.se.group5.calculator.complex.variables.VariableStack;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import it.unisa.diem.se.group5.calculator.strategy.CSVSaveRestore;
 import it.unisa.diem.se.group5.calculator.strategy.SaverRestorer;
@@ -44,7 +42,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
@@ -160,8 +157,8 @@ public class FXMLDocumentController implements Initializable {
         //UserDefined Operation View
         userOperationsObs = userOperations.getCurrentOperations();
         
-        nameClm.setCellValueFactory(new PropertyValueFactory<UserDefinedOperation, String>("name"));
-        definitionClm.setCellValueFactory(new PropertyValueFactory<UserDefinedOperation, String>("operationsString"));
+        nameClm.setCellValueFactory(new PropertyValueFactory<>("name"));
+        definitionClm.setCellValueFactory(new PropertyValueFactory<>("operationsString"));
         
         nameClm.setCellFactory(TextFieldTableCell.forTableColumn());
         definitionClm.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -458,19 +455,13 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    private void saveVariables(ActionEvent event) {  
-        VariableStack storageStack = new VariableStack();
-        storageStack.save(variables);
+    private void saveVariables(ActionEvent event) {
+        compute("save");
     }
     
     @FXML
     private void restoreVariables(ActionEvent event) {
-        VariableStack storageStack = new VariableStack();
-        try{
-        variables.setVariablesMap(storageStack.restore());
-        }catch(StackSizeException e){
-            showGenericAlert("ERROR",e.getMsgHeader(),e.getMessage(),"Errore");
-        }
+        compute ("restore");
         variableChange(null);
     }
     

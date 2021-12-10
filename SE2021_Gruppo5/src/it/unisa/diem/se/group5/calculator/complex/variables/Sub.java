@@ -1,11 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Sub
+ * 
  */
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Map;
 import java.util.Stack;
 
@@ -34,16 +33,11 @@ public class Sub extends AbstractOnVariableOperation {
         if(variablesMap.get(var) == null)
             throw new NotSelectedVariableException("La variabile non contiene alcun valore.\nInizializzarla prima");
         
-        Stack<ComplexNumber> tmp = new Stack<>();
-        tmp.push(stack.peek());
-        tmp.push(variablesMap.get(var));
+        ComplexNumber sub = stack.peek();
+        ComplexNumber variable = variablesMap.get(var);
+        ComplexNumber result = new ComplexNumber (variable.getReal() - sub.getReal(),variable.getImaginary() - sub.getImaginary());
         
-        
-        
-        Operation sub = new it.unisa.diem.se.group5.calculator.complex.commonoperations.Sub(tmp);
-        sub.execute();
-        
-        variablesMap.replace(var, tmp.pop()); 
+        variablesMap.replace(var, result); 
     }
     
 }

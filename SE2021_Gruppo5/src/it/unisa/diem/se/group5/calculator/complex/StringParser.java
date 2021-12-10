@@ -46,8 +46,10 @@ public class StringParser {
             boolean isVariableOperation = toParse.matches("^[><+-][a-z]$");
             boolean isTrascendentalOperation = toParse.matches("^acos$|^arg$|^atan$|^asin$|^cos$|^exp$|"
                                                                + "^log$|^mod$|^pow$|^sin$|^tan$|");
+            boolean isVariablesStackOperation = toParse.matches("^save$|^restore$|");
             boolean isUserDefinedOperation = isUserDefined(toParse);
-            check =  check || isStackOrCommonOperation || isVariableOperation || isUserDefinedOperation || isTrascendentalOperation;
+            check =  check || isStackOrCommonOperation || isVariableOperation || isUserDefinedOperation 
+                    || isTrascendentalOperation || isVariablesStackOperation;
             return check;
         }     
     }    

@@ -14,6 +14,7 @@ import it.unisa.diem.se.group5.calculator.complex.transcendental.TrascendentalOp
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import it.unisa.diem.se.group5.calculator.complex.variables.VariablesOperations;
+import it.unisa.diem.se.group5.calculator.complex.variablestack.VariablesStackOperations;
 import java.util.List;
 
 
@@ -72,9 +73,15 @@ public class Calculator {
     private Map<String, Operation> trascendentalOperations;
     
     /**
+     * Mappa contenente l'associazione gra simbolo e operazioni trascendenti.
+     */
+    private Map<String, Operation> variablesStackOperations;
+    
+    /**
      * Costruisce un calcolatore dotato di StringParser e stack di numeri complessi
      * 
      * @param stack Stack di numeri complessi 
+     * @param variables Collexione di variabili dalla a alla z
      */     
     public Calculator(Stack stack,Variables variables){
         this.parser = new StringParser();
@@ -83,6 +90,7 @@ public class Calculator {
         stackOperations = new StackOperations(stack).get();
         variablesOperations = new VariablesOperations(stack).get();
         trascendentalOperations = new TrascendentalOperations(stack).get();
+        variablesStackOperations = new VariablesStackOperations().get();
         this.variables = variables;
         this.userDefined = UserDefinedOperations.getInstance();
     }
@@ -138,6 +146,9 @@ public class Calculator {
                 stackOperations.get(input).execute();
             else if (trascendentalOperations.containsKey(input))
                 trascendentalOperations.get(input).execute();
+            else if (variablesStackOperations.containsKey(input)){
+                variablesStackOperations.get(input).execute();
+            }
             else if (parser.isUserDefined(input)){
                 executeUserDefined(input);
             }
@@ -170,7 +181,7 @@ public class Calculator {
         } catch (NotEnoughOperandsException neoex) {
             restoreStack(tmp);
             throw new NotEnoughOperandsException("Impossibile eseguire l'operazione " + input + ".\n" + neoex.getMessage());
-        } catch (Exception ex){
+        } catch (RuntimeException ex){
             stack = tmp;
             throw ex;
         }                
@@ -184,13 +195,5 @@ public class Calculator {
     private void restoreStack(Stack<ComplexNumber> toRestore){
         stack.clear();
         stack.addAll(toRestore);
-    }
-    
-    public void restoreVaraibles(){
-        
-    }
-    
-    public void saveVariables(){
-        
     }
 }
