@@ -80,7 +80,7 @@ public class MulTest {
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackException() {
-        ComplexNumber op1 = new ComplexNumber(3,10);  
+        ComplexNumber op1 = new ComplexNumber(324.32,1122.422d);  
         stack.push(op1);     
         op.execute();
     }

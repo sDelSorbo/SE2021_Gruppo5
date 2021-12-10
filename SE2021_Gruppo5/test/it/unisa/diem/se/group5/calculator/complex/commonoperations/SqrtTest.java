@@ -75,6 +75,8 @@ public class SqrtTest {
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackException() {     
+        ComplexNumber op1 = new ComplexNumber(0.34,-543);  
+        stack.push(op1); 
         op.execute();
     }
     

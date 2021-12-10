@@ -75,7 +75,9 @@ public class SignInvTest {
     * Test di EmptyStackException.
     */
     @Test (expected = EmptyStackException.class)
-    public void testEmptyStackException() {  
+    public void testEmptyStackException() { 
+        ComplexNumber op1 = new ComplexNumber(-934.22,+12.43d);  
+        stack.push(op1); 
         op.execute();
     }
     

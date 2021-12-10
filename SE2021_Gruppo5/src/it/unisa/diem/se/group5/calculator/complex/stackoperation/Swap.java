@@ -25,7 +25,7 @@ public class Swap extends AbstractOnStackOperation{
      *
      */
     @Override
-    public void execute(){
+    public void execute() throws EmptyStackException{
         ComplexNumber element1 = stack.pop();
         
         try{

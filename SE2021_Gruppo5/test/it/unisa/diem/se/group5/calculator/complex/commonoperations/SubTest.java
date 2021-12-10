@@ -79,7 +79,7 @@ public class SubTest {
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackException() {
-        ComplexNumber op1 = new ComplexNumber(3,10);  
+        ComplexNumber op1 = new ComplexNumber(12.3223,0.005);  
         stack.push(op1);     
         op.execute();
     }
