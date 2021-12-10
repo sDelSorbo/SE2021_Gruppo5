@@ -27,7 +27,7 @@ public class UserDefinedOperationValidator {
     }
     
     static public boolean validateOperations(String toValidate) throws MalformedUserDefinedOperationException{
-        if (!parser.validateInstruction(toValidate)) {
+        if (!parser.validateInstructions(toValidate)) {
             throw new MalformedUserDefinedOperationException("Le istruzioni inserite non sono valide");
         }        
         return true;
