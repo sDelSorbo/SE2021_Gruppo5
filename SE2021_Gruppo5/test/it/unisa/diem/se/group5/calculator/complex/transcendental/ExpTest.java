@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author delso
+ * @author roberto
  */
 public class ExpTest {
     
@@ -27,7 +27,7 @@ public class ExpTest {
     }
         
     /**
-     * Test of execute method, of class Cos.
+     * Test del metodo execute, della classe Cos.
      */ 
     @Test
     public void testExecute() {

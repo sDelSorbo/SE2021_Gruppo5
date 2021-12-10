@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author delso
+ * @author roberto
  */
 public class ArgTest {
     
@@ -28,7 +28,7 @@ public class ArgTest {
     }
     
     /**
-     * Test of execute method, of class Arg.
+     * Test del metodo execute, della classe Arg.
      */
     @Test
     public void testExecute() {

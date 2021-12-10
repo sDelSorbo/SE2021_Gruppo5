@@ -33,7 +33,8 @@ public class Tan extends AbstractOnStackOperation{
     public void execute() throws EmptyStackException {
         ComplexNumber op1 = stack.pop();
         Operation op;
-        op = new Div(stack);
+        Stack<ComplexNumber> tmp = new Stack<>();
+        op = new Div(tmp);
         
         double realSin = cosh(op1.getImaginary()) * Math.sin(op1.getReal());
         double imgSin = sinh(op1.getImaginary()) * Math.cos(op1.getReal());
@@ -43,9 +44,11 @@ public class Tan extends AbstractOnStackOperation{
         double imgCos = -sinh(op1.getImaginary()) * Math.sin(op1.getReal());
         ComplexNumber cos = new ComplexNumber(realCos, imgCos);
         
-        stack.push(sin);
-        stack.push(cos);
+        tmp.push(sin);
+        tmp.push(cos);
         op.execute();
+        ComplexNumber tmp_result=tmp.pop();
+        stack.push(tmp_result);
     }
     
 }

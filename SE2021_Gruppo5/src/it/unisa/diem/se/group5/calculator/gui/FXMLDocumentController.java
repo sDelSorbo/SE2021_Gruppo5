@@ -184,12 +184,8 @@ public class FXMLDocumentController implements Initializable {
         userDefRemove.disableProperty().bind(userDefListProp.emptyProperty().or(userDefName.textProperty().isEmpty()));
         userDefModify.disableProperty().bind(userDefListProp.emptyProperty().or(userDefName.textProperty().isEmpty()));        
         userDefList.disableProperty().bind(userDefName.textProperty().isEmpty());
-        
-        //FileChooser
-        fileChooser.getExtensionFilters().addAll(
-            new ExtensionFilter("Data Files", "*.dat"),
-            new ExtensionFilter("CSV Files", "*.csv")
-        );
+        userDefAdd.disableProperty().bind(userDefName.textProperty().isEmpty().or(userDefList.textProperty().isEmpty()));
+
     }
     
     /**
@@ -571,8 +567,8 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void exportOperationsCSV(ActionEvent event) {
-        String suffix = ".csv";
-        exportFile("CSV",suffix);
+        String suff = ".csv";
+        exportFile("CSV",suff);
     }
 
     @FXML
@@ -591,8 +587,8 @@ public class FXMLDocumentController implements Initializable {
                 if (!filename.getName().endsWith(suffix)) {
                     filename = new File(filename.getName() + suffix);
                 }
-                if (type.equals("CSV")){
-                    if(!(strategy instanceof CSVSaveRestore)){                        
+                if (type.equals("CSV")){        
+                    if(!(strategy instanceof CSVSaveRestore)){    
                         strategy = new CSVSaveRestore();
                         ((CSVSaveRestore)strategy).setPath(filename);
                     }
