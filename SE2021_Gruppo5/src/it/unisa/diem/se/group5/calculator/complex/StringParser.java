@@ -79,7 +79,7 @@ public class StringParser {
      * @param toParse serie di operazioni da validare
      * @return <code>true</code> se le operazioni sono corrette
      */
-    public boolean validateInstruction(String toParse) {
+    public boolean validateInstructions(String toParse) {
         String[] st = toParse.split("\\s");
         for (String s: st){
             if (!(isOperation(s) || isNumber(s))) 
