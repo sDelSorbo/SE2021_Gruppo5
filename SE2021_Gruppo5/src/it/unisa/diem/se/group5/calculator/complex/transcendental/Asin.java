@@ -33,31 +33,34 @@ public class Asin extends AbstractOnStackOperation{
     @Override
     public void execute() throws EmptyStackException {
         ComplexNumber c = stack.pop();
+        Stack<ComplexNumber> tmp = new Stack<>();
         
         ComplexNumber imaginaryOne = new ComplexNumber(0, 1);
         ComplexNumber imaginaryOneInv = new ComplexNumber(0, -1);
         ComplexNumber one = new ComplexNumber(1, 0);
         
         Operation op, op1, op2, op3, op4;
-        op = new Log(stack);
-        op1 = new Sqrt(stack);
-        op2 = new Mul(stack);
-        op3 = new Add(stack);
-        op4 = new Sub(stack);
+        op = new Log(tmp);
+        op1 = new Sqrt(tmp);
+        op2 = new Mul(tmp);
+        op3 = new Add(tmp);
+        op4 = new Sub(tmp);
        
-        stack.push(one);
-        stack.push(c);
-        stack.push(c);
+        tmp.push(one);
+        tmp.push(c);
+        tmp.push(c);
         op2.execute();
         op4.execute();
         op1.execute(); 
-        stack.push(imaginaryOne);
-        stack.push(c);
+        tmp.push(imaginaryOne);
+        tmp.push(c);
         op2.execute();
         op3.execute();
         op.execute();
-        stack.push(imaginaryOneInv);
+        tmp.push(imaginaryOneInv);
         op2.execute();
+        ComplexNumber tmp_result=tmp.pop();
+        stack.push(tmp_result);
         
     }
     

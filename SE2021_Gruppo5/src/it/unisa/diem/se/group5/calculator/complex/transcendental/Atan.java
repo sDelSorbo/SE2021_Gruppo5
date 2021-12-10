@@ -30,6 +30,7 @@ public class Atan extends AbstractOnStackOperation{
     @Override
     public void execute() throws EmptyStackException {
         ComplexNumber c = stack.pop();
+        Stack<ComplexNumber> tmp = new Stack<>();
       
         ComplexNumber ImaginaryOneInv = new ComplexNumber(0, -1);
         ComplexNumber One = new ComplexNumber(1, 0);
@@ -38,19 +39,21 @@ public class Atan extends AbstractOnStackOperation{
         ComplexNumber two = new ComplexNumber(2.0, 0.0);
         
         Operation op1, op2, op3;
-        op1 = new Div(stack);
-        op2 = new Log(stack);
-        op3 = new Mul(stack);
+        op1 = new Div(tmp);
+        op2 = new Log(tmp);
+        op3 = new Mul(tmp);
        
        
-        stack.push(num);
-        stack.push(den);
+        tmp.push(num);
+        tmp.push(den);
         op1.execute();
         op2.execute();
-        stack.push(ImaginaryOneInv);
+        tmp.push(ImaginaryOneInv);
         op3.execute();
-        stack.push(two);
+       tmp.push(two);
         op1.execute();
+        ComplexNumber tmp_result=tmp.pop();
+        stack.push(tmp_result);
          
     }
 }
