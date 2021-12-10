@@ -168,7 +168,7 @@ public class Calculator {
             for (String op: operations)
                 this.elaborate(op);           
         } catch (NotEnoughOperandsException neoex) {
-            restore(tmp);
+            restoreStack(tmp);
             throw new NotEnoughOperandsException("Impossibile eseguire l'operazione " + input + ".\n" + neoex.getMessage());
         } catch (Exception ex){
             stack = tmp;
@@ -181,8 +181,16 @@ public class Calculator {
      * 
      * @param toRestore condizione dello stack da ripristinare
      */
-    private void restore(Stack<ComplexNumber> toRestore){
+    private void restoreStack(Stack<ComplexNumber> toRestore){
         stack.clear();
         stack.addAll(toRestore);
+    }
+    
+    public void restoreVaraibles(){
+        
+    }
+    
+    public void saveVariables(){
+        
     }
 }
