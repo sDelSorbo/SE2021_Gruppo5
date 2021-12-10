@@ -41,6 +41,18 @@ public class CalculatorTest {
         complexNumberStack.pop();
     }
 
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
     /**
      * Test del metodo elaborate della classe Calculator.
      */

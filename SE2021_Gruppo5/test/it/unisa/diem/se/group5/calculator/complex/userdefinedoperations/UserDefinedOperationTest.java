@@ -6,8 +6,12 @@ package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -16,6 +20,22 @@ import static org.junit.Assert.*;
 public class UserDefinedOperationTest {
     
     public UserDefinedOperationTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
 
 
@@ -84,6 +104,59 @@ public class UserDefinedOperationTest {
         expResult = true;
         result = instance.equals(instance2);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setName method, of class UserDefinedOperation.
+     */
+    @Test
+    public void testSetName() {
+        System.out.println("setName");
+        String name = "";
+        UserDefinedOperation instance = new UserDefinedOperation();
+        instance.setName(name);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setOperationsList method, of class UserDefinedOperation.
+     */
+    @Test
+    public void testSetOperationsList() {
+        System.out.println("setOperationsList");
+        List<String> operationsList = null;
+        UserDefinedOperation instance = new UserDefinedOperation();
+        instance.setOperationsList(operationsList);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setOperationsString method, of class UserDefinedOperation.
+     */
+    @Test
+    public void testSetOperationsString() {
+        System.out.println("setOperationsString");
+        String operations = "";
+        UserDefinedOperation instance = new UserDefinedOperation();
+        instance.setOperationsString(operations);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of hashCode method, of class UserDefinedOperation.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        UserDefinedOperation instance = new UserDefinedOperation();
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

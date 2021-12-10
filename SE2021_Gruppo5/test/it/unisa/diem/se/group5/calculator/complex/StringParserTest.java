@@ -377,5 +377,20 @@ public class StringParserTest {
         result = spr.validateInstructions(toParse);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of validateInstructions method, of class StringParser.
+     */
+    @Test
+    public void testValidateInstructions() {
+        System.out.println("validateInstructions");
+        String toParse = "";
+        StringParser instance = new StringParser();
+        boolean expResult = false;
+        boolean result = instance.validateInstructions(toParse);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

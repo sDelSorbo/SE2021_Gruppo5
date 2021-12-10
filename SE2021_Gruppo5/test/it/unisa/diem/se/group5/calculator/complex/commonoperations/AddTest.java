@@ -19,13 +19,13 @@ public class AddTest {
     
     Stack<ComplexNumber> stack; 
     Operation op;
-    
+
     @Before
     public void setUp() {
         stack = new Stack<>();
         op=new Add(stack);
     }
-    
+
     /**
      * Test del metodo execute, della classe Add.
      */

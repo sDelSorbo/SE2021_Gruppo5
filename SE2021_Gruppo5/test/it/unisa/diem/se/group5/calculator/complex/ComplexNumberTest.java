@@ -155,5 +155,4 @@ public class ComplexNumberTest {
         assertEquals(expResult, result2);
         assertEquals(expResult, result3);
     }
-
 }
