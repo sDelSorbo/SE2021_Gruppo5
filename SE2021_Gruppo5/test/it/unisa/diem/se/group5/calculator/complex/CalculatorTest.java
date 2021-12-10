@@ -1,7 +1,6 @@
 /*
  * CalculatorTest
  *
- * Version 1.0m 
  */
 package it.unisa.diem.se.group5.calculator.complex;
 
@@ -41,18 +40,6 @@ public class CalculatorTest {
         complexNumberStack.pop();
     }
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     /**
      * Test del metodo elaborate della classe Calculator.
      */
@@ -85,7 +72,7 @@ public class CalculatorTest {
         input = "-";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-6,6);
+        expResult = new ComplexNumber(6,-6);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -96,7 +83,7 @@ public class CalculatorTest {
         input = "/";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(2.04166667d,-2.04166667d);
+        expResult = new ComplexNumber(-0.24489796d,-0.24489796d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -108,7 +95,7 @@ public class CalculatorTest {
         input = "*";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(20.4166667d,-20.4166667d);
+        expResult = new ComplexNumber(-2.4489796d,-2.4489796d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -116,7 +103,7 @@ public class CalculatorTest {
         input = "sqrt";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(4.96438287d,-2.05631472d);
+        expResult = new ComplexNumber(0.71217994d,-1.71935448d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -124,7 +111,7 @@ public class CalculatorTest {
         input = "+-";        
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-4.96438287d,+2.05631472d);
+        expResult = new ComplexNumber(-0.71217994d,+1.71935448d);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);
@@ -147,7 +134,7 @@ public class CalculatorTest {
         input = "addsub";
         instance.elaborate(input);
         
-        expResult = new ComplexNumber(-7,0);
+        expResult = new ComplexNumber(+7,0);
         result = complexNumberStack.pop();
         complexNumberStack.push(result);
         assertEquals(expResult, result);

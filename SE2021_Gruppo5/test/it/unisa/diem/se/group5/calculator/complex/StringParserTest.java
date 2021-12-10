@@ -384,13 +384,18 @@ public class StringParserTest {
     @Test
     public void testValidateInstructions() {
         System.out.println("validateInstructions");
-        String toParse = "";
+        String toParse = "+ - +- 5.43";
         StringParser instance = new StringParser();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.validateInstructions(toParse);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        toParse = "addsub +5j-32 +- 5.43";
+        instance = new StringParser();
+        expResult = false;
+        result = instance.validateInstructions(toParse);
+        assertEquals(expResult, result);
+        
     }
     
 }

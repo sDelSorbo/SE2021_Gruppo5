@@ -6,6 +6,7 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -22,9 +23,10 @@ public class Dup extends AbstractOnStackOperation{
     /**
      * Duplica il primo elemento di uno stack.
      * 
+     * @throws EmptyStackException 
      */
     @Override
-    public void execute() {
+    public void execute() throws EmptyStackException{
         ComplexNumber element = stack.peek();
         stack.push(element);
     }

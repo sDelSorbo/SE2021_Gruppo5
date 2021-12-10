@@ -8,6 +8,7 @@ import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
 import java.util.Stack;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import java.util.EmptyStackException;
 
 /**
  * Questa classe implementa un'operazione di over di uno stack.
@@ -26,11 +27,16 @@ public class Over extends AbstractOnStackOperation{
      * 
      */
     @Override
-    public void execute() {
+    public void execute() throws EmptyStackException{
         ComplexNumber last = stack.pop();
-        ComplexNumber penultimate = stack.peek();
-        stack.push(last);
-        stack.push(penultimate);        
+        try{
+            ComplexNumber penultimate = stack.peek();
+            stack.push(last);
+            stack.push(penultimate);
+        } catch (EmptyStackException ex) {
+            stack.push(last);
+            throw new EmptyStackException();
+        }
     }
     
 }

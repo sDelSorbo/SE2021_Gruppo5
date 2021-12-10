@@ -6,6 +6,7 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -19,12 +20,14 @@ public class Drop extends AbstractOnStackOperation{
         super(stack);
     }
 
+    
     /**
      * Rimuove il primo elemento di uno stack.
      * 
+     * @throws EmptyStackException 
      */
     @Override
-    public void execute() {
+    public void execute() throws EmptyStackException{
         stack.pop();        
     }
     
