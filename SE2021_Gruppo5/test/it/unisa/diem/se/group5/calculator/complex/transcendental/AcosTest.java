@@ -64,6 +64,5 @@ public class AcosTest {
         op.execute();
         ComplexNumber result4=stack.pop();
         assertEquals(expResult3, result4);
-    
-}
+    }
 }

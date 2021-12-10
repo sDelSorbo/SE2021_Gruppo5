@@ -76,14 +76,10 @@ public class AddTest {
     * Test di EmptyStackException.
     */
     @Test (expected = NotSelectedVariableException.class)
-    public void testA() {
+    public void testNotSelectedVariableExceptionOnExecute() {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);
         stack.push(op1);
         op.execute();
-    }
- 
-    
-    
-    
+    } 
 }
