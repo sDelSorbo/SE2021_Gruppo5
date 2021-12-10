@@ -38,20 +38,6 @@ public class CSVSaveRestoreTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of setPath method, of class CSVSaveRestore.
-     */
-    @Test
-    public void testSetPath() {
-        System.out.println("setPath");
-        File file;
-        file = new File("test.txt");
-        CSVSaveRestore instance = new CSVSaveRestore();
-        instance.setPath(file);
-        
-    }
-
     /**
      * Test of save method, of class CSVSaveRestore.
      */

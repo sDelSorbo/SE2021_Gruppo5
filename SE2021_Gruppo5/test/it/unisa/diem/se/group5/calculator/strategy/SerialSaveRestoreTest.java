@@ -37,18 +37,6 @@ public class SerialSaveRestoreTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of setPath method, of class SerialSaveRestore.
-     */
-    @Test
-    public void testSetPath() {
-        System.out.println("setPath");
-        File path = null;
-        SerialSaveRestore instance = new SerialSaveRestore();
-        instance.setPath(path);
-    }
-
     /**
      * Test of save method, of class SerialSaveRestore.
      */
@@ -64,7 +52,7 @@ public class SerialSaveRestoreTest {
         UserDefinedOperation op = new UserDefinedOperation("sub","- -");
         listToSave.add(op);
         userOperations.setCurrentOperations(listToSave);
-        CSVSaveRestore instance = new CSVSaveRestore();
+        SerialSaveRestore instance = new SerialSaveRestore();
         instance.setPath(file);
         instance.save(userOperations);
         instance.restore(restoredOperations);
@@ -89,7 +77,7 @@ public class SerialSaveRestoreTest {
         UserDefinedOperation op = new UserDefinedOperation("sub","- -");
         listToSave.add(op);
         userOperations.setCurrentOperations(listToSave);
-        CSVSaveRestore instance = new CSVSaveRestore();
+        SerialSaveRestore instance = new SerialSaveRestore();
         instance.setPath(file);
         instance.save(userOperations);
         instance.restore(restoredOperations);
