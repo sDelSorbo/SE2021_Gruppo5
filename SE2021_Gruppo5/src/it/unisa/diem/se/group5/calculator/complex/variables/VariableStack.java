@@ -39,7 +39,7 @@ public class VariableStack {
             variablesMap.put(String.valueOf(alphabet), null);
         }
         if(variablesStack.isEmpty())
-            throw new StackSizeException("Impossibile Effettuare La Restore","Lo stack è vuoto, nessuna variabile salvata in precedenza");
+            throw new StackSizeException("Impossibile effettuare la Restore","Lo stack è vuoto, nessuna variabile salvata in precedenza");
         variablesMap = variablesStack.pop();
         return variablesMap;
     }

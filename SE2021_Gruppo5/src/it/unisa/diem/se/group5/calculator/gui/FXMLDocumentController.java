@@ -506,9 +506,9 @@ public class FXMLDocumentController implements Initializable {
     private void importOperationsCSV(ActionEvent event) {
         
         Stage stg = (Stage) inputText.getScene().getWindow();
-        fc.setTitle("Export Operations To CSV");
-        fc.setInitialFileName("Untitled.csv");
+        fc.setTitle("Import Operations from CSV");
         File filename= fc.showOpenDialog(stg);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"));
         if(strategy==null){
             strategy = new CSVSaveRestore();
             ((CSVSaveRestore)strategy).setPath(filename);
@@ -519,8 +519,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void importOperationSerial(ActionEvent event) {
         Stage stg = (Stage) inputText.getScene().getWindow();
-        fc.setTitle("Export Operations To CSV");
-        fc.setInitialFileName("Untitled.csv");
+        fc.setTitle("Import Operations");
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(".dot", "*.dot"));
         File filename= fc.showOpenDialog(stg);
         if(strategy==null){
             strategy = new SerialSaveRestore();
