@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
@@ -9,7 +6,7 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
- *
+ * Classe che permette di salvare il valore della variabile in cima allo stack
  * @author Marco
  */
 public class Save extends AbstractOnVariableOperation {

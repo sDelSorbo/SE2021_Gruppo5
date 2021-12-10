@@ -17,9 +17,8 @@ public class Add extends AbstractOnVariableOperation {
     public Add(Stack<ComplexNumber> stack) {
         super(stack);
     }
-    
     /**
-     * Metodo statico per caricare il numero complesso in cima allo stack in una variabile
+     * Metodo per sommare il valore della variabile al valore in cima allo stack
      * 
      * @param stack Stack di numeri complessi
      * @param var Variable nella quale caricare il valore 

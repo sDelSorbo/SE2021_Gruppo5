@@ -4,13 +4,10 @@
  */
 package it.unisa.diem.se.group5.calculator.complex.variablestack;
 
-import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
-import java.util.Map;
-import java.util.Stack;
 
 /**
- *
+ * Classe che permette di effettuare la restore delle variabili aggiornando la map
  * @author Marco
  */
 public class RestoreVariables extends AbstractOnVariablesStackOperation{
@@ -20,7 +17,9 @@ public class RestoreVariables extends AbstractOnVariablesStackOperation{
     public RestoreVariables() {
         super();
     }
-
+/**
+ * Metodo che effettua la restore delle variabili e quindi aggiorna la map
+ */
     @Override
     public void execute() { 
             variables.setVariablesMap(variableStack.pop());

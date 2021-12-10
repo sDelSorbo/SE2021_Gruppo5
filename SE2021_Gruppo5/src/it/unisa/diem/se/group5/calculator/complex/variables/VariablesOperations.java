@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
- *
+ * Classe che rappresenta una map che associa ad ogni simbolo una operazione
  * @author Marco
  */
 public class VariablesOperations {
@@ -25,7 +25,10 @@ public class VariablesOperations {
         variablesOperations.put("+", new Add(stack));
         variablesOperations.put("-", new Sub(stack));
     }
-    
+    /**
+     * Metodo che ritorna una Map che associa ad ogni simbolo una operazione
+     * @return 
+     */
     public Map<String,Operation> get(){
         return variablesOperations;
     }

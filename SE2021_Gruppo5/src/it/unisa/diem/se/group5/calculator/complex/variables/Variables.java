@@ -30,7 +30,7 @@ public class Variables {
     private static Map<String, ComplexNumber> variablesMap; 
  
     /**
-     * Costruttore della classe Variables che inizializza le 26 variabili a 0.
+     * Costruttore della classe Variables che inizializza le 26 variabili a null.
      */
     private Variables() {
         variablesMap = new HashMap<>();
@@ -88,39 +88,16 @@ public class Variables {
     }
     
     /**
-     * Metodo statico per caricare il numero complesso in cima allo stack in una variabile
-     * 
-     * @param stack Stack di numeri complessi
-     * @param var Variable nella quale caricare il valore 
+     * Metodo che ritorna la variabile selezionata al momento della chiamata
+     * @return 
      */
-
-    /**
-     * Metodo statico per salvare il valore di una variabile in cima allo stack
-     * 
-     * @param stack Stack di numeri complessi
-     * @param var Variabile il cui valore deve essere salvato nello stack
-     */
-
-    /**
-     * Metodo statico per sommare il valore della variabile data con il valore del numero complesso
-     * in cima allo stack
-     * 
-     * @param stack Stack di numeri complessi
-     * @param var Variabile il cui valore deve essere sommato al numero complesso in cima allo stack
-     */
-
-    /**
-     * Metodo statico per sottrarrelal valore del numero complesso in cima allo stack al valore
-     * della variabile data
-     * 
-     * @param stack Stack di numeri complessi
-     * @param var Variabile il cui valore deve essere sottratto al numero complesso in cima allo stack
-     */
-    
     public String getSelectedVar() {
         return selectedVar;
     }
-    
+    /**
+     * Metodo che setta la variabile selezionata al valore di var
+     * @param var parametro che indica il valore a cui settare la variabile
+     */
     public void setSelectedVar(String var) {
         this.selectedVar = var;
     }

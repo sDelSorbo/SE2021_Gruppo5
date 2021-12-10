@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.Stack;
 
 /**
- *
+ * Classe che permette di caricare il numero complesso dalla cima dello stack in una variabile
  * @author Marco
  */
 public class Load extends AbstractOnVariableOperation {
@@ -18,7 +15,7 @@ public class Load extends AbstractOnVariableOperation {
     }
     
     /**
-     * Metodo statico per caricare il numero complesso dalla cima dello stack in una variabile
+     * Metodo per caricare il numero complesso dalla cima dello stack in una variabile
      * 
      * @param stack Stack di numeri complessi
      * @param var Variable nella quale caricare il valore 

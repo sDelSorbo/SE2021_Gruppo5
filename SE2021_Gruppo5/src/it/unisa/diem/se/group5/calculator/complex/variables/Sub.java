@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
- *
+ * Classe che permette di sottrarre il valore della variabile al valore in cima allo stack
  * @author Marco
  */
 public class Sub extends AbstractOnVariableOperation {
@@ -19,7 +19,7 @@ public class Sub extends AbstractOnVariableOperation {
     }
     
     /**
-     * Metodo statico per caricare il numero complesso in cima allo stack in una variabile
+     * Metodo per sottrarre il valore della variabile al valore in cima allo stack
      * 
      * @param stack Stack di numeri complessi
      * @param var Variable nella quale caricare il valore 
