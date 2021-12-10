@@ -38,7 +38,7 @@ public class VariableStack {
     
     public  Map<String,ComplexNumber> pop() throws EmptyVariableStackException{
         if(variablesStack.isEmpty())
-            throw new EmptyVariableStackException ("Impossibile effettuare la Restore","Lo stack è vuoto, nessuna variabile salvata in precedenza");
+            throw new EmptyVariableStackException ("Lo stack è vuoto, nessuna variabile salvata in precedenza");
         Map<String,ComplexNumber> toPop = variablesStack.pop();
         return toPop;
     }
