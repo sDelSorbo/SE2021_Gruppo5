@@ -5,7 +5,7 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
-import it.unisa.diem.se.group5.calculator.complex.stackoperation.Over;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -48,4 +48,14 @@ public class OverTest {
         assertEquals(result1, expResult1);
         assertEquals(result2, expResult2);
     }   
+    
+    /**
+     * Test di EmptyStackException.
+     */
+    @Test (expected = EmptyStackException.class)
+    public void testEmptyStackExceptionOnExecute (){
+        System.out.println("EmptyStackException On Over");
+        
+        op.execute();
+    }
 }

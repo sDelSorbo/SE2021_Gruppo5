@@ -5,7 +5,7 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
-import it.unisa.diem.se.group5.calculator.complex.stackoperation.Dup;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -47,5 +47,15 @@ public class DupTest {
         ComplexNumber expResult2 = op2;
         ComplexNumber result2 = stack.pop();       
         assertEquals(result2, expResult2);
+    }
+    
+    /**
+     * Test di EmptyStackException.
+     */
+    @Test (expected = EmptyStackException.class)
+    public void testEmptyStackExceptionOnExecute (){
+        System.out.println("EmptyStackException On Dup");
+        
+        op.execute();
     }
 }

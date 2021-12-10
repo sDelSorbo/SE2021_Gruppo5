@@ -5,7 +5,7 @@ package it.unisa.diem.se.group5.calculator.complex.stackoperation;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
-import it.unisa.diem.se.group5.calculator.complex.stackoperation.Drop;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -50,5 +50,13 @@ public class DropTest {
         assertEquals(result, expResult);
     }
     
-    
+    /**
+     * Test di EmptyStackException.
+     */
+    @Test (expected = EmptyStackException.class)
+    public void testEmptyStackExceptionOnExecute (){
+        System.out.println("EmptyStackException On Drop");
+        
+        op.execute();
+    }
 }
