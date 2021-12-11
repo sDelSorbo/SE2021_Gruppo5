@@ -32,6 +32,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -180,8 +181,7 @@ public class FXMLDocumentController implements Initializable {
         userDefRemove.disableProperty().bind(userDefListProp.emptyProperty().or(userDefName.textProperty().isEmpty()));
         userDefModify.disableProperty().bind(userDefListProp.emptyProperty().or(userDefName.textProperty().isEmpty()));        
         userDefList.disableProperty().bind(userDefName.textProperty().isEmpty());
-        userDefAdd.disableProperty().bind(userDefName.textProperty().isEmpty().or(userDefList.textProperty().isEmpty()));
-
+        userDefAdd.disableProperty().bind(userDefName.textProperty().isEmpty().or(userDefList.textProperty().isEmpty()));        
     }
     
     /**
@@ -220,7 +220,7 @@ public class FXMLDocumentController implements Initializable {
         clearAndFocus();
     }
     
-    //Aggiustare
+    
     @FXML
     private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
         String name = userDefName.getText().trim().toLowerCase();
@@ -415,7 +415,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void removeUserDefinedOperatioContext(ActionEvent event) {
         UserDefinedOperation toRemove = userOpTab.getSelectionModel().getSelectedItem();
-        remove (toRemove);
+        if (toRemove != null)
+            remove (toRemove);
     }
 
     private void remove(UserDefinedOperation toRemove){
