@@ -9,11 +9,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Classe che crea una map che associa alla stringa "save" l'operazione di save e alla "restore" l'operazione di restore
+ * Classe che crea una map che associa alla stringa "save" l'operazione di save 
+ * e alla "restore" l'operazione di restore.
+ * 
  * @author Marco
  */
 public class VariablesStackOperations {
     
+    /**
+     * Mappa che associa i simboli alle operazioni sulle variabili
+     */
     Map<String,Operation> variablesStackOperations;
     
     public VariablesStackOperations(){

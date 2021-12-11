@@ -16,6 +16,9 @@ import java.util.Stack;
  * @author Marco
  */
 public class CommonOperations {
+    /**
+     * Mappa delle operzioni
+     */
     Map<String,Operation> commonOperations;
     
     public CommonOperations(Stack<ComplexNumber> stack){

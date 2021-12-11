@@ -12,6 +12,9 @@ package it.unisa.diem.se.group5.calculator.complex.commonoperations;
  */
 public interface Operation {
  
+    /**
+     * Esegue un'operazione.
+     */
     public void execute ();
     
 }

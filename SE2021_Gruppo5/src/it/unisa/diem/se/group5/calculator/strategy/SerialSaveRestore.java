@@ -21,14 +21,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * Classe che permette di salvare su File in maniera serializzata le operazioni definite dall'utente
+ * Classe che permette di salvare su File in maniera serializzata le operazioni 
+ * definite dall'utente
+ * 
  * @author Gianpaolo
  */
 public class SerialSaveRestore implements Strategy{
     
-    File path;
     /**
-     * Metodo che permette di settare il file su cui effettuare le operazioni di save e restore
+     * Path dove eseguire il salvataggio o dal quale eseguire il restore.
+     */
+    File path;
+    
+    /**
+     * Metodo che permette di settare il file su cui effettuare le operazioni 
+     * di save e restore
+     * 
      * @param path 
      */
     public void setPath(File path) {

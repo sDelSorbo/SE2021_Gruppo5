@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * VariablesOperations
+ *
  */
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
@@ -16,14 +16,22 @@ import java.util.Stack;
  */
 public class VariablesOperations {
     
+    /**
+     * Mappa che associa il simbolo all'operazione sullo stack
+     */
     Map<String,Operation> variablesOperations;
     
+    /**
+     * Costruttore che associa i simboli alle operazioni.
+     * 
+     * @param stack stack sul quale eseguire le operazioni
+     */
     public VariablesOperations(Stack<ComplexNumber> stack){
         variablesOperations = new HashMap<>();
-        variablesOperations.put(">", new Load(stack));
-        variablesOperations.put("<", new Save(stack));
-        variablesOperations.put("+", new Add(stack));
-        variablesOperations.put("-", new Sub(stack));
+        variablesOperations.put(">", new LoadVariable(stack));
+        variablesOperations.put("<", new SaveVariable(stack));
+        variablesOperations.put("+", new AddVariable(stack));
+        variablesOperations.put("-", new SubVariable(stack));
     }
     /**
      * Metodo che ritorna una Map che associa ad ogni simbolo una operazione

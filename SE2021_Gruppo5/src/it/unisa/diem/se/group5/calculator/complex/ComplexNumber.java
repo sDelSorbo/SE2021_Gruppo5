@@ -1,7 +1,6 @@
 /**
  * ComplexNumber
  * 
- * Version 1.0m
  */
 package it.unisa.diem.se.group5.calculator.complex;
 

@@ -1,11 +1,10 @@
 /**
  * NotANumberException
- * 
- * Version 1.0
+ *
  */
 package it.unisa.diem.se.group5.calculator.complex;
 /**
- *
+ * Eccezione lanciata in caso l'input del calculator non sia un numero
  * @author marco
  */
 public class NotANumberException extends RuntimeException{

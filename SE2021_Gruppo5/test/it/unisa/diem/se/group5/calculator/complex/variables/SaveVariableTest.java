@@ -1,14 +1,17 @@
 /*
- * LoadTestVariables
+ * SaveTestVariables
  */
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Stack;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
-import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
@@ -17,65 +20,62 @@ import org.junit.runners.MethodSorters;
  * @author delso
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LoadTest {
+public class SaveVariableTest {
     
     Stack<ComplexNumber> stack; 
     Operation op;
     Variables variables;
     
+    
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op = new Load(stack);         
-        variables = Variables.getInstance();
+        op=new SaveVariable(stack);
+        
     }
-
     /**
-     * Test del metodo execute della classe Load.
+     * Test del metodo execute della classe SaveVariable.
      */
     @Test
     public void testExecute() {
-        System.out.println("LoadVar");
-        variables.setVariable("a", new ComplexNumber(0,0));
-        variables.setVariable("b", new ComplexNumber(0,0));
-        variables.setVariable("c", new ComplexNumber(0,0));
+        System.out.println("SaveVar");
+        variables = Variables.getInstance();
+        variables.setVariable("a", new ComplexNumber(60.3,-12));
+        variables.setVariable("b", new ComplexNumber(-789,123.456));
+        variables.setVariable("c", new ComplexNumber(321,987));
         
-        ComplexNumber op1 = new ComplexNumber(30,10.5);
-        ComplexNumber op2 = new ComplexNumber(3,46);
-        ComplexNumber op3 = new ComplexNumber(-1,-1);
         
-        ComplexNumber expResult1 = new ComplexNumber(30,10.5);
-        ComplexNumber expResult2 = new ComplexNumber(3,46);
-        ComplexNumber expResult3 = new ComplexNumber(-1,-1);
+        ComplexNumber expResult1 = new ComplexNumber(60.3,-12);
+        ComplexNumber expResult2 = new ComplexNumber(-789,123.456);
+        ComplexNumber expResult3 = new ComplexNumber(321,987);
         
-        stack.push(op1);
+ 
         variables.setSelectedVar("a");
         op.execute();
         ComplexNumber result = variables.getValue("a");
         assertEquals(expResult1, result);
         
-        stack.push(op2);
         variables.setSelectedVar("b");
         op.execute();
         ComplexNumber result1 = variables.getValue("b");
         assertEquals(expResult2, result1);
         
-        stack.push(op3);
+
         variables.setSelectedVar("c");
         op.execute();
         ComplexNumber result2 = variables.getValue("c");
         assertEquals(expResult3, result2);
-        
     }
     
-    /**
+   /**
     * Test di NotSelectedVariableException.
     */
     @Test (expected = NotSelectedVariableException.class)
-    public void atestNotSelectedVariableExceptionOnExecute() {
+    public void testA() {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);
-        variables.setSelectedVar(null);
+        stack.push(op1);
         op.execute();
-    }
+    }    
+    
 }

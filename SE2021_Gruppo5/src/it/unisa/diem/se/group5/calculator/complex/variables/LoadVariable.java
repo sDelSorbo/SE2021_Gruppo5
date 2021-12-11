@@ -6,17 +6,17 @@ import java.util.Stack;
 
 /**
  * Classe che permette di caricare il numero complesso dalla cima dello stack in una variabile
+ * 
  * @author Marco
  */
-public class Load extends AbstractOnVariableOperation {
+public class LoadVariable extends AbstractOnVariableOperation {
     
-    public Load(Stack<ComplexNumber> stack) {
+    public LoadVariable(Stack<ComplexNumber> stack) {
         super(stack);
     }
     
     /**
      * Metodo per caricare il numero complesso dalla cima dello stack in una variabile
-     * 
      */
     @Override
     public void execute() throws NotSelectedVariableException{

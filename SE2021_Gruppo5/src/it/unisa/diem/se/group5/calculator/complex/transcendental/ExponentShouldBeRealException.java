@@ -11,17 +11,17 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 public class ExponentShouldBeRealException extends RuntimeException{
 
     /**
-     * Creates a new instance of <code>ExponentShouldBeRealException</code>
-     * without detail message.
+     * Crea una nuova instanza di <code>ExponentShouldBeRealException</code>
+     * senza messaggio sull'eccezione.
      */
     public ExponentShouldBeRealException() {
     }
 
     /**
-     * Constructs an instance of <code>ExponentShouldBeRealException</code> with
-     * the specified detail message.
+     * Costruisce un'instanza di <code>ExponentShouldBeRealException</code> with
+     * the specificato messaggio sull'eccezione.
      *
-     * @param msg the detail message.
+     * @param msg the messaggio sull'eccezione.
      */
     public ExponentShouldBeRealException(String msg) {
         super(msg);

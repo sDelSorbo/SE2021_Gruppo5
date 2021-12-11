@@ -11,18 +11,18 @@ package it.unisa.diem.se.group5.calculator.complex.variables;
 public class NotSelectedVariableException extends RuntimeException{
 
     /**
-     * Creates a new instance of <code>NotSelectedVariableException</code>
-     * without detail message.
+     * Crea una nuova instanza di <code>NotSelectedVariableException</code>
+     * senza messaggio sull'eccezione.
      */
     public NotSelectedVariableException() {
         super("Variabile Non selezionata");
     }
 
     /**
-     * Constructs an instance of <code>NotSelectedVariableException</code> with
-     * the specified detail message.
+     * Costruisce un'instanza di <code>NotSelectedVariableException</code> with
+     * the specificato messaggio sull'eccezione.
      *
-     * @param msg the detail message.
+     * @param msg the messaggio sull'eccezione.
      */
     public NotSelectedVariableException(String msg) {
         super(msg);

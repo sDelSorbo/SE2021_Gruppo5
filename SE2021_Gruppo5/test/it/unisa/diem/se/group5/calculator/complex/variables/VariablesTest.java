@@ -6,13 +6,8 @@ package it.unisa.diem.se.group5.calculator.complex.variables;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**

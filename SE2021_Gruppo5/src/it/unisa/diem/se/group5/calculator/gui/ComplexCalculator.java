@@ -11,7 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * Classe principale dell'applicazione. Traduce il file XML nell'applicazione JavaFX
+ * 
  * @author delso
  */
 public class ComplexCalculator extends Application {

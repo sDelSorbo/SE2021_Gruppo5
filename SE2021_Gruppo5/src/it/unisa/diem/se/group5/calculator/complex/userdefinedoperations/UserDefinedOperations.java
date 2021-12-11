@@ -13,23 +13,46 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
+ * Classe che rappresenta la lista delle iperazioni definite dall'utente
+ * 
  * @author Marco
  */
 public class UserDefinedOperations implements Serializable{
+    /**
+     * Lista di istruzioni corrente
+     */
     private ObservableList<UserDefinedOperation> currentOperations;
+    
+    /**
+     * Instanza della classe
+     */
     private static UserDefinedOperations instance= null;
     
-    public UserDefinedOperations(){
+    /**
+     * Costruttore privato che inizilaizza la lista di istruzioni
+     */
+    private UserDefinedOperations(){
         currentOperations = FXCollections.observableArrayList();
     }
     
+    /**
+     * Ritorna l'istanza della classe
+     * 
+     * @return istanza della classe 
+     */
     public static UserDefinedOperations getInstance(){
         if (instance == null)
             instance = new UserDefinedOperations();
         return instance;
     }
    
+    /**
+     * Aggiunge un elemento alla lista delle operazioni definite dall'utente
+     * 
+     * @param operation da inserire nella lista
+     * @throws UserDefinedOperationAlreadyExistsException nel caso in cui l'operazione
+     *                                       che si tenta di inserire sia già definita.
+     */
     public void add(UserDefinedOperation operation) throws UserDefinedOperationAlreadyExistsException{
         if (currentOperations.contains(operation))
             throw new UserDefinedOperationAlreadyExistsException("L'operazione è già definita."
@@ -37,6 +60,14 @@ public class UserDefinedOperations implements Serializable{
         currentOperations.add(operation);       
     }
     
+    /**
+     * Rimuove un'operazione dalla lista delle operazioni definite dall'utente.
+     * 
+     * @param toRemove da rimuovere dalla lista
+     * @throws UserDefinedOperationInUseException in caso l'operazione sia in uso da un'altra
+     *                                            operazione definita dall'utente
+     * @throws NoSuchElementException  in caso in cui l'operazione non fosse nellaa lista.
+     */
     public void remove(UserDefinedOperation toRemove) throws UserDefinedOperationInUseException, NoSuchElementException{
         String name = toRemove.getName();
         if (currentOperations.contains(toRemove)){
@@ -54,7 +85,13 @@ public class UserDefinedOperations implements Serializable{
         }
     }
     
-    //RIVEDERE
+    /**
+     * Modifica la definizione di un'operazione definita dall'utente
+     * 
+     * @param toModify operazione da modificare
+     * @throws NoSuchElementException in caso l'operazione da modificare non fosse presente
+     * @throws MalformedUserDefinedOperationException in caso le operazioni non fossero ben formulate
+     */
     public void modify (UserDefinedOperation toModify) throws NoSuchElementException, MalformedUserDefinedOperationException {
         if (currentOperations.contains(toModify)){
             // Validate new Operations
@@ -69,16 +106,9 @@ public class UserDefinedOperations implements Serializable{
             currentOperations.get(index).setOperationsString(toModify.getOperationsString());
         } else {
             throw new NoSuchElementException("L'operazione non è presente. Impossibile modificarla");
-        }
-            
+        }       
         
-            
-        
-        
-        
-        
-        
-        
+        /*
         boolean check = false;
         if (currentOperations.contains(toModify)) {            
             check =UserDefinedOperationValidator.validateOperations(toModify.getOperationsString()) && 
@@ -93,10 +123,16 @@ public class UserDefinedOperations implements Serializable{
         if (!check) {
             throw new MalformedUserDefinedOperationException("Impossibile modificare l'operazione");
         } else {
-        }
+        }*/
     }
  
-    
+    /**
+     * Ritorna la lista delle istruzioni che compongono l'operazione definita 
+     * dall'utente sotto forma di lista di singole istruzioni.
+     * 
+     * @param input noem dell'operazione definita dall'utente
+     * @return ritorna la lista delle istruzioni che la compongono
+     */
     public List<String> getListOfOperations(String input){
         UserDefinedOperation tmp = new UserDefinedOperation(input, "");
         int index = currentOperations.indexOf(tmp);
@@ -123,6 +159,11 @@ public class UserDefinedOperations implements Serializable{
         return currentOp;
     }
     
+    /**
+     * Restituisce le operazioni definite dall'utente tokenizzate.
+     * 
+     * @return lista delle singole operazioni 
+     */
     public List<String> getCurrentOperationsTokenized() {
         List<String> tokenized = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(getCurrentOperationsString()," ");

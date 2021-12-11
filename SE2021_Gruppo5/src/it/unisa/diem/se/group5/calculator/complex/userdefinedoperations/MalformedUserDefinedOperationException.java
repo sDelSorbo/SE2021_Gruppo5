@@ -13,19 +13,19 @@ package it.unisa.diem.se.group5.calculator.complex.userdefinedoperations;
 public class MalformedUserDefinedOperationException extends RuntimeException{
 
     /**
-     * Creates a new instance of
-     * <code>MalformedUserDefinedOperationException</code> without detail
-     * message.
+     * Costruisce un'instanza di
+     * <code>MalformedUserDefinedOperationException</code> senza messaggio sulla
+     * eccezione.
      */
     public MalformedUserDefinedOperationException() {
     }
 
     /**
-     * Constructs an instance of
-     * <code>MalformedUserDefinedOperationException</code> with the specified
-     * detail message.
+     * Costruisce un'instanza di
+     * <code>MalformedUserDefinedOperationException</code> con lo  specificato
+     * messaggio sull'eccezione.
      *
-     * @param msg the detail message.
+     * @param msg the messaggio sull'eccezione.
      */
     public MalformedUserDefinedOperationException(String msg) {
         super(msg);

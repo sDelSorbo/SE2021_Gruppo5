@@ -5,6 +5,7 @@
 package it.unisa.diem.se.group5.calculator.complex.commonoperations;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -24,7 +25,7 @@ public class SignInv extends AbstractOnStackOperation {
      * 
      */
     @Override
-    public void execute() {
+    public void execute() throws EmptyStackException{
         ComplexNumber op = stack.pop();       
         ComplexNumber result = new ComplexNumber(-op.getReal(),-op.getImaginary());
         stack.push(result);

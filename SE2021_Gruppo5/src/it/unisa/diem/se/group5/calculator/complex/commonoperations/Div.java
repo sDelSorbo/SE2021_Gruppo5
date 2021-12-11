@@ -33,7 +33,7 @@ public class Div extends AbstractOnStackOperation {
      * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
-    public void execute() throws ArithmeticException{
+    public void execute() throws ArithmeticException, EmptyStackException{
         ComplexNumber op1 = stack.pop();
         try{
             ComplexNumber op2 = stack.pop(); 

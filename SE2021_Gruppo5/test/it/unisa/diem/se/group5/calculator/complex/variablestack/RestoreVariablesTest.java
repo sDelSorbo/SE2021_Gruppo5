@@ -4,10 +4,11 @@
  */
 package it.unisa.diem.se.group5.calculator.complex.variablestack;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
+import java.util.EmptyStackException;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,23 +18,20 @@ import static org.junit.Assert.*;
  */
 public class RestoreVariablesTest {
     
-    public RestoreVariablesTest() {
-    }
+    private Variables variables;
     
-    @BeforeClass
-    public static void setUpClass() {
+    public RestoreVariablesTest() {       
     }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        variables = Variables.getInstance();
+        variables.setVariable("a", new ComplexNumber(2.4242,4332));
+        variables.setVariable("d", new ComplexNumber(2.4242,4332));
+        variables.setVariable("q", new ComplexNumber(2.4242,4332));
+        
+        Operation save = new SaveVariables();
+        save.execute();        
     }
 
     /**
@@ -41,11 +39,33 @@ public class RestoreVariablesTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("execute");
+        System.out.println("Execute");
+        variables.setVariable("a", new ComplexNumber(5,234));
+        variables.setVariable("d", new ComplexNumber());
+        variables.setVariable("q", new ComplexNumber(0.34,45));
         RestoreVariables instance = new RestoreVariables();
         instance.execute();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        ComplexNumber aExpected = new ComplexNumber(2.4242,4332);
+        ComplexNumber dExpected = new ComplexNumber(2.4242,4332);
+        ComplexNumber qExpected = new ComplexNumber(2.4242,4332);
+        
+        ComplexNumber a = variables.getValue("a");
+        ComplexNumber d = variables.getValue("d");
+        ComplexNumber q = variables.getValue("q");
+                
+        assertEquals(aExpected, a);
+        assertEquals(dExpected, d);
+        assertEquals(qExpected, q);
     }
     
+    
+    @Test(expected=EmptyVariableStackException.class)
+    public void testEmptyVariableStackException() {
+        System.out.println("EmptyVariableStackException on Execute");
+        RestoreVariables instance = new RestoreVariables();
+        instance.execute();
+        // Nel caso in cui questo sia il test eseguito per primo
+        instance.execute();      
+    }   
 }

@@ -1,5 +1,5 @@
 /*
- * SaveTestVariables
+ * SubTestVariables
  */
 package it.unisa.diem.se.group5.calculator.complex.variables;
 
@@ -20,7 +20,7 @@ import org.junit.runners.MethodSorters;
  * @author delso
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class SaveTest {
+public class SubVariableTest {
     
     Stack<ComplexNumber> stack; 
     Operation op;
@@ -30,39 +30,45 @@ public class SaveTest {
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op=new Save(stack);
+        op=new SubVariable(stack);
         
     }
+
     /**
-     * Test del metodo execute della classe Save.
+     * Test del metodo execute della classe SubVariable.
      */
     @Test
     public void testExecute() {
-        System.out.println("SaveVar");
+        System.out.println("SubVar");
         variables = Variables.getInstance();
-        variables.setVariable("a", new ComplexNumber(60.3,-12));
-        variables.setVariable("b", new ComplexNumber(-789,123.456));
-        variables.setVariable("c", new ComplexNumber(321,987));
+        variables.setVariable("a", new ComplexNumber(30,10.5));
+        variables.setVariable("b", new ComplexNumber(4,45));
+        variables.setVariable("c", new ComplexNumber(3.45,5.223));
+        
+        ComplexNumber op1 = new ComplexNumber(20,1);
+        ComplexNumber op2 = new ComplexNumber(3,46);
+        ComplexNumber op3 = new ComplexNumber(-1,-1);
+        
+        ComplexNumber expResult1 = new ComplexNumber(10,9.5);
+        ComplexNumber expResult2 = new ComplexNumber(1,-1);
+        ComplexNumber expResult3 = new ComplexNumber(4.45,6.223);
         
         
-        ComplexNumber expResult1 = new ComplexNumber(60.3,-12);
-        ComplexNumber expResult2 = new ComplexNumber(-789,123.456);
-        ComplexNumber expResult3 = new ComplexNumber(321,987);
-        
- 
+        stack.push(op1);
         variables.setSelectedVar("a");
-        op.execute();
+        op.execute();      
         ComplexNumber result = variables.getValue("a");
         assertEquals(expResult1, result);
         
+        stack.push(op2);
         variables.setSelectedVar("b");
-        op.execute();
+        op.execute();      
         ComplexNumber result1 = variables.getValue("b");
         assertEquals(expResult2, result1);
         
-
+        stack.push(op3);
         variables.setSelectedVar("c");
-        op.execute();
+        op.execute();      
         ComplexNumber result2 = variables.getValue("c");
         assertEquals(expResult3, result2);
     }
@@ -76,6 +82,6 @@ public class SaveTest {
         stack.push(op1);
         stack.push(op1);
         op.execute();
-    }    
+    }
     
 }

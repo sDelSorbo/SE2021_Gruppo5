@@ -1,10 +1,14 @@
-
+/**
+ * SaverRestorer
+ * 
+ */
 package it.unisa.diem.se.group5.calculator.strategy;
 
 import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefinedOperations;
 
 /**
  * Classe che gestisce la save e la restore delle operazioni
+ * 
  * @author Marco
  */
 public class SaverRestorer {

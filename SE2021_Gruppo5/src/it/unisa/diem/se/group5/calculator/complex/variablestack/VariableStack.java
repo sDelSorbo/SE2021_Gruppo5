@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * VariableStack
+ * 
  */
 package it.unisa.diem.se.group5.calculator.complex.variablestack;
 
@@ -11,20 +11,29 @@ import java.util.Stack;
 
 /**
  * Classe che rappresenta lo stack delle Map delle variabili salvate
+ * 
  * @author gianpaolotobia
  */
 public class VariableStack {
     
+    /**
+     * Istanze dello stack
+     */
     private static VariableStack instance = null;
     
+    /**
+     * Stack delle variabili
+     */
     private Stack<Map<String, ComplexNumber>> variablesStack;
     
     private VariableStack() {
         variablesStack = new Stack<>();
     }
+    
     /**
      * Metodo statico che restituisce l'istanza dell'oggetto variableStack
-     * @return 
+     * 
+     * @return l'istanza della classe.
      */
     public static VariableStack getInstance () {
         if (instance == null)
