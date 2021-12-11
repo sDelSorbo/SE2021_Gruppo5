@@ -159,25 +159,17 @@ public class ComplexNumber {
     }
     
     @Override
-    public String toString() {       
-        boolean secondElementPositive = true;
-        
-        if (this.imaginary < 0)
-            secondElementPositive = false;
-        
-        String realPart = (this.real == 0 ? "0.0" : real.toString());
-        
-        String imgPart = (secondElementPositive ? "+" : "") + (this.imaginary == 0 ? "0.0" : imaginary.toString()) + "j";
-                
-        if (this.real == 0 && this.imaginary == 0 || (this.real != 0 && this.imaginary == 0)){
-            imgPart = "";
-        }        
-        if (this.real == 0 && this.imaginary != 0){
-            realPart = "";
-        }
-        
-        return realPart+imgPart;
+    public String toString(){       
+        String sign = "";
+        if(real==0 && imaginary==0)
+            return String.valueOf(0);
+        if(imaginary==0)
+            return String.valueOf(real);
+        if(real==0)
+            return String.valueOf(imaginary) +"j";
+        if(imaginary>0)
+            sign ="+";
+        return String.valueOf(real) + sign + String.valueOf(imaginary) + "j";
     }
-    
 }
 
