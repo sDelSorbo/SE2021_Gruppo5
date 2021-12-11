@@ -1,5 +1,6 @@
 /*
  * SinTest
+ * 
  */
 package it.unisa.diem.se.group5.calculator.complex.transcendental;
 

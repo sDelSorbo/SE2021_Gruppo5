@@ -59,8 +59,8 @@ public class Acos extends AbstractOnStackOperation{
         op.execute();
         tmp.push(imaginaryOneInv);
         op2.execute();
-        ComplexNumber tmp_result=tmp.pop();
-        stack.push(tmp_result);
+        ComplexNumber tmpResult=tmp.pop();
+        stack.push(tmpResult);
           
     }
     

@@ -17,15 +17,13 @@ public class Load extends AbstractOnVariableOperation {
     /**
      * Metodo per caricare il numero complesso dalla cima dello stack in una variabile
      * 
-     * @param stack Stack di numeri complessi
-     * @param var Variable nella quale caricare il valore 
      */
     @Override
     public void execute() {
         String var = variables.getSelectedVar();
-        if(var==null)
+        if(var == null)
             throw new NotSelectedVariableException();
-        ComplexNumber n = stack.peek();
+        ComplexNumber n = stack.pop();
         variables.getVariablesMap().replace(var, n);
     }
     

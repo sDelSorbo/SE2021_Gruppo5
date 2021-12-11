@@ -6,8 +6,6 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
-import static java.lang.Math.cosh;
-import static java.lang.Math.sinh;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
@@ -29,10 +27,10 @@ public class Cos extends AbstractOnStackOperation{
      */
     @Override
     public void execute() throws EmptyStackException {
-        ComplexNumber op1 = stack.pop();            
-        double real = cosh(op1.getImaginary()) * Math.cos(op1.getReal());
-        double img = -sinh(op1.getImaginary()) * Math.sin(op1.getReal());
-        ComplexNumber result = new ComplexNumber(real, img);
+        ComplexNumber op1 = stack.pop();      
+        double re = op1.getReal();
+        double im = op1.getImaginary();
+        ComplexNumber result = new ComplexNumber(Math.cos(re) * Math.cosh(im), -Math.sin(re) * Math.sinh(im));
         stack.push(result);
     }
     

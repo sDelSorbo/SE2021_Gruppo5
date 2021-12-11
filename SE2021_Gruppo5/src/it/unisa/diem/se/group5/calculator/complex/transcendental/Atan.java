@@ -50,7 +50,7 @@ public class Atan extends AbstractOnStackOperation{
         op2.execute();
         tmp.push(ImaginaryOneInv);
         op3.execute();
-       tmp.push(two);
+        tmp.push(two);
         op1.execute();
         ComplexNumber tmp_result=tmp.pop();
         stack.push(tmp_result);

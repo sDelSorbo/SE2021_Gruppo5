@@ -20,8 +20,6 @@ public class Add extends AbstractOnVariableOperation {
     /**
      * Metodo per sommare il valore della variabile al valore in cima allo stack
      * 
-     * @param stack Stack di numeri complessi
-     * @param var Variable nella quale caricare il valore 
      */
     @Override
     public void execute() {

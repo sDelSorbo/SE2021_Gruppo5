@@ -20,9 +20,7 @@ public class Sub extends AbstractOnVariableOperation {
     
     /**
      * Metodo per sottrarre il valore della variabile al valore in cima allo stack
-     * 
-     * @param stack Stack di numeri complessi
-     * @param var Variable nella quale caricare il valore 
+     *  
      */
     @Override
     public void execute() {

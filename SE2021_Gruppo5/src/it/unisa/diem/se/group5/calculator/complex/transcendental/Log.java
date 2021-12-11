@@ -26,9 +26,11 @@ public class Log extends AbstractOnStackOperation{
      * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
-    public void execute() throws EmptyStackException {
+    public void execute() throws EmptyStackException, ArithmeticException {
         ComplexNumber op1 = stack.pop();
-        
+        if (op1.getReal() == 0 && op1.getImaginary() == 0){
+            throw new ArithmeticException("Impossibile eseguire il logaritmo di zero");
+        }
         double realSquare = op1.getReal() * op1.getReal();
         double imgSquare = op1.getImaginary() * op1.getImaginary();
         double mod = (Math.sqrt(realSquare + imgSquare));
