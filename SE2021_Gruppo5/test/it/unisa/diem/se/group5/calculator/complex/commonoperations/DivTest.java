@@ -32,7 +32,7 @@ public class DivTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("div");
+        System.out.println("Div");
         ComplexNumber op1 = new ComplexNumber(1,2);
         ComplexNumber op2 = new ComplexNumber(2,-3);
         ComplexNumber op3 = new ComplexNumber();
@@ -76,7 +76,8 @@ public class DivTest {
         ComplexNumber result5=stack.pop();
         assertEquals(expResult5, result5);
     }
-        /**
+    
+    /**
      * Test di ArithmeticException.
      */
     @Test (expected = ArithmeticException.class)
@@ -87,6 +88,7 @@ public class DivTest {
         stack.push(op1);
         op.execute();
     }
+    
      /**
      * Test di NullPointerException.
      */
@@ -98,6 +100,7 @@ public class DivTest {
         stack.push(op1);
         op.execute();
     }
+    
     /**
     * Test di EmptyStackException.
     */
@@ -106,7 +109,5 @@ public class DivTest {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);     
         op.execute();
-    }
-    
-    
+    } 
 }

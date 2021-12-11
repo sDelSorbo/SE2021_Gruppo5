@@ -6,10 +6,7 @@ package it.unisa.diem.se.group5.calculator.complex.variables;
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Stack;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
@@ -67,15 +64,16 @@ public class SaveTest {
         assertEquals(expResult3, result2);
     }
     
-   /**
-    * Test di NotSelectedVariableException.
+    /**
+    * Test di NotSelectedVariableException. Jnuit permette di specificare l'ordine con cui si eseguono i test,
+    * in questo caso è stato scelto per "nomi ascendenti". Il test è stato chiamato "atestNotSelectedVariableExceptionOnExecute" per dare
+    * la priorità a quest'ultimo altrimenti non sarebbe stato possibile testare l'eccezione.
     */
     @Test (expected = NotSelectedVariableException.class)
-    public void testA() {
+    public void atestNotSelectedVariableExceptionOnExecute() {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);
         stack.push(op1);
         op.execute();
-    }    
-    
+    } 
 }

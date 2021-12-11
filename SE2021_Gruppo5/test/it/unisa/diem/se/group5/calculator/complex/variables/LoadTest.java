@@ -69,13 +69,15 @@ public class LoadTest {
     }
     
     /**
-    * Test di NotSelectedVariableException.
+    * Test di NotSelectedVariableException. Jnuit permette di specificare l'ordine con cui si eseguono i test,
+    * in questo caso è stato scelto per "nomi ascendenti". Il test è stato chiamato "atestNotSelectedVariableExceptionOnExecute" per dare
+    * la priorità a quest'ultimo altrimenti non sarebbe stato possibile testare l'eccezione.
     */
     @Test (expected = NotSelectedVariableException.class)
     public void atestNotSelectedVariableExceptionOnExecute() {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);
-        variables.setSelectedVar(null);
+        stack.push(op1);
         op.execute();
-    }
+    } 
 }

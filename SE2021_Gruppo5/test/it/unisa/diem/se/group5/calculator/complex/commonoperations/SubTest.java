@@ -30,7 +30,7 @@ public class SubTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("sub");
+        System.out.println("Sub");
         ComplexNumber op1 = new ComplexNumber(2,4);
         ComplexNumber op2 = new ComplexNumber(-5,5);
         ComplexNumber op3 = new ComplexNumber();
@@ -74,6 +74,7 @@ public class SubTest {
         ComplexNumber result5=stack.pop();
         assertEquals(expResult5, result5);
     }
+    
     /**
     * Test di EmptyStackException.
     */

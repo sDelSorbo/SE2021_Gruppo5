@@ -70,7 +70,6 @@ public class LogTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Log");
-        
         op.execute();
     }
     

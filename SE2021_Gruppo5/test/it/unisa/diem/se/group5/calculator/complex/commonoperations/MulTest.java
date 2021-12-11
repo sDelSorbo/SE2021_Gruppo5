@@ -31,7 +31,7 @@ public class MulTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("mul");
+        System.out.println("Mul");
         ComplexNumber op1 = new ComplexNumber(1,4);
         ComplexNumber op2 = new ComplexNumber(-7,8);
         ComplexNumber op3 = new ComplexNumber();
@@ -75,6 +75,7 @@ public class MulTest {
         ComplexNumber result5=stack.pop();
         assertEquals(expResult5, result5);
     }
+    
     /**
     * Test di EmptyStackException.
     */

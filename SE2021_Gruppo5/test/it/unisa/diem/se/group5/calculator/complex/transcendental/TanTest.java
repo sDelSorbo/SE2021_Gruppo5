@@ -71,7 +71,6 @@ public class TanTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Tan");
-        
         op.execute();
     }
 }
