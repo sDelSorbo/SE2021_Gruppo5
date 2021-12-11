@@ -15,6 +15,7 @@ import it.unisa.diem.se.group5.calculator.complex.userdefinedoperations.UserDefi
 import it.unisa.diem.se.group5.calculator.complex.variables.Variables;
 import it.unisa.diem.se.group5.calculator.complex.variables.VariablesOperations;
 import it.unisa.diem.se.group5.calculator.complex.variablestack.VariablesStackOperations;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -173,27 +174,32 @@ public class Calculator {
      */
     private void executeUserDefined(String input) throws RuntimeException{
         List<String> operations = userDefined.getListOfOperations(input);
-        Stack<ComplexNumber> tmp = (Stack<ComplexNumber>) stack.clone();
+        Stack<ComplexNumber> tmpS = (Stack<ComplexNumber>) stack.clone();
+        Map<String,ComplexNumber> tmpV = new HashMap<>();
+        tmpV.putAll(variables.getVariablesMap());
         
         try {
             for (String op: operations)
                 this.elaborate(op);           
         } catch (NotEnoughOperandsException neoex) {
-            restoreStack(tmp);
+            restoreStack(tmpS,tmpV);
             throw new NotEnoughOperandsException("Impossibile eseguire l'operazione " + input + ".\n" + neoex.getMessage());
         } catch (RuntimeException ex){
-            stack = tmp;
+            stack = tmpS;
             throw ex;
         }                
     }
     
     /**
-     * Ripristina lo stack in caso di errore
+     * Ripristina lo stack e le variabili in caso di errore
      * 
-     * @param toRestore condizione dello stack da ripristinare
+     * @param toRestoreS condizione dello stack da ripristinare
+     * @param toRestoreV condizione delle variabili da ripristinare
      */
-    private void restoreStack(Stack<ComplexNumber> toRestore){
+    private void restoreStack(Stack<ComplexNumber> toRestoreS, Map<String,ComplexNumber> toReatoreV){
         stack.clear();
-        stack.addAll(toRestore);
+        stack.addAll(toRestoreS);
+        
+        variables.setVariablesMap(toReatoreV);
     }
 }
