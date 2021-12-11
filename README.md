@@ -1,15 +1,15 @@
 GIAMPA UN PO' DI LINK DOVE COPIARE:
--[Raccolta](https://github.com/matiassingers/awesome-readme)
--[Bello1](https://github.com/Hexworks/zircon#readme)
--[Bello2](https://github.com/othneildrew/Best-README-Template)
--[Tools](https://github.com/abhisheknaiidu/awesome-github-profile-readme)
--[Bello3](https://github.com/L0garithmic/FastColabCopy#readme)
--[minmale](https://github.com/L0garithmic/FastColabCopy#readme)
--[Semplice](https://github.com/PostHog/posthog#readme)
--[GuardtPurChist](https://github.com/Redocly/redoc#readme)
--[ultimoFic1](https://github.com/shama/gaze#readme)
--[ultimoFic2](https://github.com/thelounge/thelounge#readme)
--CI VOGLIO GLI EMOJI, USA GLI EMOJI
+- [Raccolta](https://github.com/matiassingers/awesome-readme)
+- [Bello1](https://github.com/Hexworks/zircon#readme)
+- [Bello2](https://github.com/othneildrew/Best-README-Template)
+- [Tools](https://github.com/abhisheknaiidu/awesome-github-profile-readme)
+- [Bello3](https://github.com/L0garithmic/FastColabCopy#readme)
+- [minmale](https://github.com/L0garithmic/FastColabCopy#readme)
+- [Semplice](https://github.com/PostHog/posthog#readme)
+- [GuardtPurChist](https://github.com/Redocly/redoc#readme)
+- [ultimoFic1](https://github.com/shama/gaze#readme)
+- [ultimoFic2](https://github.com/thelounge/thelounge#readme)
+- CI VOGLIO GLI EMOJI, USA GLI EMOJI
 
 
 # Scientific Programmable Calculator -  Group 5
