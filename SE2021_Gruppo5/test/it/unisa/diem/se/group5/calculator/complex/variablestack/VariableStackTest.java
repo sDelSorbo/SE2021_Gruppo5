@@ -5,7 +5,9 @@
 package it.unisa.diem.se.group5.calculator.complex.variablestack;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,43 +41,54 @@ public class VariableStackTest {
     }
 
     /**
-     * Test of getInstance method, of class VariableStack.
+     * Test del metodo getInstance, della classe VariableStack
      */
     @Test
     public void testGetInstance() {
         System.out.println("getInstance");
-        VariableStack expResult = null;
+        Stack<Map<String, ComplexNumber>> expResult = null;
         VariableStack result = VariableStack.getInstance();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
     }
 
     /**
-     * Test of add method, of class VariableStack.
+     * Test del metodo add, della classe VariableStack.
      */
     @Test
     public void testAdd() {
         System.out.println("add");
-        Map<String, ComplexNumber> toSave = null;
-        VariableStack instance = null;
+        Map<String, ComplexNumber> toSave = new HashMap();
+        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
+            toSave.put(String.valueOf(alphabet), null);
+        }
+        toSave.put("a", new ComplexNumber(1,2));
+        toSave.put("b", new ComplexNumber(3,4));
+        toSave.put("c", new ComplexNumber(0,2));
+        
+        VariableStack instance = VariableStack.getInstance();
         instance.add(toSave);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(toSave.equals(instance.pop()));
     }
 
     /**
-     * Test of pop method, of class VariableStack.
+     * Test del metodo pop, della classe VariableStack.
      */
     @Test
     public void testPop() {
         System.out.println("pop");
-        VariableStack instance = null;
-        Map<String, ComplexNumber> expResult = null;
+        Map<String, ComplexNumber> toSave = new HashMap();
+        for(char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
+            toSave.put(String.valueOf(alphabet), null);
+        }
+        toSave.put("a", new ComplexNumber(1.333,4.765));
+        toSave.put("b", new ComplexNumber(0.123,9.8123));
+        toSave.put("c", new ComplexNumber(0,-2.222));
+        VariableStack instance = VariableStack.getInstance();
+        instance.add(toSave);
+        Map<String, ComplexNumber> expResult = toSave;
         Map<String, ComplexNumber> result = instance.pop();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
     
 }
