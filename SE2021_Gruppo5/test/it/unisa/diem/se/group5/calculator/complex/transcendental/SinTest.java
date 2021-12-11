@@ -6,6 +6,7 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,6 +65,15 @@ public class SinTest {
         assertEquals(expResult3, result4);
     }
     
+    /**
+     * Test di EmptyStackException.
+     */
+    @Test (expected = EmptyStackException.class)
+    public void testEmptyStackExceptionOnExecute (){
+        System.out.println("EmptyStackException On Sin");
+        
+        op.execute();
+    }
 }
 
     
