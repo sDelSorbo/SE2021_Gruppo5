@@ -69,7 +69,6 @@ public class ExpTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Exp");
-        
         op.execute();
     }
 }

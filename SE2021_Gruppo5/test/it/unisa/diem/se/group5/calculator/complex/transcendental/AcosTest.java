@@ -32,8 +32,6 @@ public class AcosTest {
     /**
      * Test del metodo execute, della classe Acos.
      */
-    
-
     @Test
     public void testExecute() {
         System.out.println("Acos");
@@ -73,7 +71,6 @@ public class AcosTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Acos");
-        
         op.execute();
     }
 }

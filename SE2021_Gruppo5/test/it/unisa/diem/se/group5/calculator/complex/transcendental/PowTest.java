@@ -95,7 +95,7 @@ public class PowTest {
     }
     
     /**
-     * Test of execute method, of class Pow.
+     * Test del metodo execute della classe Pow.
      */
     @Test (expected = ExponentShouldBeRealException.class)
     public void testExponentShouldBeRealExceptionOnExecute (){
@@ -109,12 +109,11 @@ public class PowTest {
     }
     
     /**
-     * Test of execute method, of class Pow.
+     * Test di EmptyStackException.
     */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Pow");
-        
         op.execute();
     }
     

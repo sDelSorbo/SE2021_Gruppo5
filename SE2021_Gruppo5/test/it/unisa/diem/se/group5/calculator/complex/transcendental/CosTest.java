@@ -70,7 +70,6 @@ public class CosTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Cos");
-        
         op.execute();
     }
 }

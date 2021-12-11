@@ -70,7 +70,6 @@ public class ModTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Mod");
-        
         op.execute();
     }
 }

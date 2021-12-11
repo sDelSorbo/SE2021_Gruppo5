@@ -70,8 +70,7 @@ public class SinTest {
      */
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
-        System.out.println("EmptyStackException On Sin");
-        
+        System.out.println("EmptyStackException On Sin");  
         op.execute();
     }
 }

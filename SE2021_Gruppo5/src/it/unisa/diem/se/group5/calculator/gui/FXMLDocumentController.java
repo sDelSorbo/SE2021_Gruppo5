@@ -365,12 +365,25 @@ public class FXMLDocumentController implements Initializable {
     private void showHelp(ActionEvent event) {
         showGenericAlert("INFORMATION", 
                   "• E' possibile inserire numeri complessi nel formato a+bj.\n"
-                + "• Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt, +-.\n"         
-                + "• '>var' per inserire nella variabile il valore nella cima dello \n   stack.\n"
-                + "• '<var' per inserire il valore nella variabile nella cima dello \n   stack.\n"
-                + "• '+var' per aggiungere il valore nella cima dello stack alla \n   variabile.\n"
-                + "• '-var' per sottrarre il valore nella cima dello stack alla \n    variabile.\n"
-                + "• Premendo il tasto Expand è possibile inserire operazioni\n   programmabili."
+                + "• Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt per calcolare la radice, +- che inverte il segno, mod per\n   "
+                + "calcolare il modulo, arg per calcolare l'argomento, "
+                + "exp per\n   calcolare l'esponenziale, log per calcolare il logaritmo\n   naturale, sin per il seno, cos per il cos, tan per la tangente\n"
+                + "• E' possibile effettuare operazioni sullo stack, tra cui: drop,\n   che rimuove l'elemento in cima allo stack;"
+                + "dup, che inserisce\n   una copia dell'ultimo elemento dello stack, swap, che\n   scambia gli ultimi due elementi dello stack;"
+                + "over che inserisce\n   una copia del penultimo elemento dello stack; oppure è\n   possibile digitare il comando clear per eliminare tutti gli\n   elementi dallo stack\n"
+                + "• Cliccando il tasto inv inoltre è possibile usufruire delle\n   funzioni trigonometriche inverse\n"         
+                + "• '>x' per inserire nella variabile il valore nella cima dello \n   stack.\n"
+                + "• '<x' per inserire il valore nella variabile nella cima dello \n   stack.\n"
+                + "• '+x' per aggiungere il valore nella cima dello stack alla \n   variabile.\n"
+                + "• '-x' per sottrarre il valore nella cima dello stack alla \n    variabile.\n"
+                + "• Premendo il tasto Expand è possibile inserire operazioni\n   programmabili.\n"
+                + "• Per inserire le operazioni programmibili è necessario definire\n   un nome e una lista di operazioni"
+                + "  separate da uno spazio.\n"
+                + "• Le operazioni programmabili possono essere rimosse\n   digitando il nome dell'operazione da eliminare e cliccando sul\n   tasto remove"
+                + " oppure selezionando un'operazione dalla\n   tabella e cliccando il tasto destro.\n"
+                + "• Le operazioni programmabili possono essere modificate\n   digitando il nome dell'operazione da eliminare e cliccando sul\n   tasto modify"
+                + " oppure cliccando due volte su un'operazione\n   direttamente dalla tabella.\n"
+
                 ,"Manuale Complex Calculator v 0.2","Help");
     }   
   

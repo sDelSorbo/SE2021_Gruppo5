@@ -71,6 +71,7 @@ public class SignInvTest {
         ComplexNumber result5=stack.pop();
         assertEquals(expResult5, result5);
     }
+    
     /**
     * Test di EmptyStackException.
     */

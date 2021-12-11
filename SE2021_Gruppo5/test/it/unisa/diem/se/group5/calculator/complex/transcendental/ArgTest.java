@@ -70,7 +70,6 @@ public class ArgTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Arg");
-        
         op.execute();
     }
 }

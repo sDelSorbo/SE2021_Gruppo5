@@ -71,7 +71,6 @@ public class AsinTest {
     @Test (expected = EmptyStackException.class)
     public void testEmptyStackExceptionOnExecute (){
         System.out.println("EmptyStackException On Asin");
-        
         op.execute();
     }
 }
