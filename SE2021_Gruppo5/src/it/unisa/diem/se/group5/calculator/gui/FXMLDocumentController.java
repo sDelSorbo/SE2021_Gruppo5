@@ -411,7 +411,6 @@ public class FXMLDocumentController implements Initializable {
         remove (toRemove);
     }
     
-    
     @FXML
     private void removeUserDefinedOperatioContext(ActionEvent event) {
         UserDefinedOperation toRemove = userOpTab.getSelectionModel().getSelectedItem();
