@@ -19,7 +19,7 @@ public class Load extends AbstractOnVariableOperation {
      * 
      */
     @Override
-    public void execute() {
+    public void execute() throws NotSelectedVariableException{
         String var = variables.getSelectedVar();
         if(var == null)
             throw new NotSelectedVariableException();

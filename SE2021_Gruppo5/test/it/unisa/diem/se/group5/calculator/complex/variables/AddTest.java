@@ -21,25 +21,22 @@ public class AddTest {
     
     Stack<ComplexNumber> stack; 
     Operation op;
-    Variables variables;
-    
-    
+    Variables variables;   
     
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op = new Add(stack);        
+        op = new Add(stack);  
+        variables = Variables.getInstance();
     }
-
-
+    
     /**
      * Test del metodo execute della classe Add.
      */
     
     @Test
     public void testExecute() {
-        System.out.println("AddVar");
-        variables = Variables.getInstance();
+        System.out.println("AddVar");        
         variables.setVariable("a", new ComplexNumber(3,1));
         variables.setVariable("b", new ComplexNumber(4,45));
         variables.setVariable("c", new ComplexNumber(3.45,5.223));
@@ -76,7 +73,7 @@ public class AddTest {
     * Test di EmptyStackException.
     */
     @Test (expected = NotSelectedVariableException.class)
-    public void testNotSelectedVariableExceptionOnExecute() {
+    public void atestNotSelectedVariableExceptionOnExecute() {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);
         stack.push(op1);

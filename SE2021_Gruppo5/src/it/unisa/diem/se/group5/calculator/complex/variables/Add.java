@@ -22,7 +22,7 @@ public class Add extends AbstractOnVariableOperation {
      * 
      */
     @Override
-    public void execute() {
+    public void execute() throws NotSelectedVariableException{
         String var = variables.getSelectedVar();
         Map<String, ComplexNumber> variablesMap = variables.getVariablesMap();
         if(var==null)

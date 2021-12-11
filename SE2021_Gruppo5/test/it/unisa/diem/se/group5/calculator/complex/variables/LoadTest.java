@@ -7,6 +7,7 @@ import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import java.util.Stack;
 import org.junit.Before;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
@@ -25,7 +26,8 @@ public class LoadTest {
     @Before
     public void setUp() {
         stack = new Stack<>();
-        op=new Load(stack); 
+        op = new Load(stack);         
+        variables = Variables.getInstance();
     }
 
     /**
@@ -33,8 +35,7 @@ public class LoadTest {
      */
     @Test
     public void testExecute() {
-       /* System.out.println("LoadVar");
-        variables = Variables.getInstance();
+        System.out.println("LoadVar");
         variables.setVariable("a", new ComplexNumber(0,0));
         variables.setVariable("b", new ComplexNumber(0,0));
         variables.setVariable("c", new ComplexNumber(0,0));
@@ -64,17 +65,17 @@ public class LoadTest {
         op.execute();
         ComplexNumber result2 = variables.getValue("c");
         assertEquals(expResult3, result2);
-        */
+        
     }
     
     /**
     * Test di NotSelectedVariableException.
     */
     @Test (expected = NotSelectedVariableException.class)
-    public void testA() {
+    public void atestNotSelectedVariableExceptionOnExecute() {
         ComplexNumber op1 = new ComplexNumber(3,10);  
         stack.push(op1);
-        stack.push(op1);
+        variables.setSelectedVar(null);
         op.execute();
     }
 }
