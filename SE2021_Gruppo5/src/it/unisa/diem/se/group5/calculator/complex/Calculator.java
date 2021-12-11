@@ -156,7 +156,7 @@ public class Calculator {
             else{
                 String varOp = String.valueOf(input.charAt(0));
                 String varName= input.substring(1);
-                
+                variables.setSelectedVar(varName);
                 if (variablesOperations.containsKey(varOp))
                     variablesOperations.get(varOp).execute();                
                 }
@@ -181,13 +181,10 @@ public class Calculator {
         try {
             for (String op: operations)
                 this.elaborate(op);           
-        } catch (NotEnoughOperandsException neoex) {
+        } catch (RuntimeException neoex) {
             restoreStack(tmpS,tmpV);
             throw new NotEnoughOperandsException("Impossibile eseguire l'operazione " + input + ".\n" + neoex.getMessage());
-        } catch (RuntimeException ex){
-            stack = tmpS;
-            throw ex;
-        }                
+        }         
     }
     
     /**
