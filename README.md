@@ -115,7 +115,7 @@ Clicking on the extend button, the calculator shows the section to define the cu
 
 Example of usage.
 
-![prova2](https://user-images.githubusercontent.com/86788672/145711985-3957d8f9-cee7-4546-94ea-019fd05447a4.gif)
+<img align="center" src="https://user-images.githubusercontent.com/86788672/145711985-3957d8f9-cee7-4546-94ea-019fd05447a4.gif">
 
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
