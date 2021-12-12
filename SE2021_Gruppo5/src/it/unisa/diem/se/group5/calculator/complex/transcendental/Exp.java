@@ -26,11 +26,14 @@ public class Exp extends AbstractOnStackOperation{
      * @throws EmptyStackException in caso di operandi non sufficienti
      */
     @Override
-    public void execute() throws EmptyStackException {
+    public void execute() throws EmptyStackException, ArithmeticException {
         ComplexNumber op1 = stack.pop();
+        if (op1.getReal() >= 1000) {
+            throw new ArithmeticException("Il valore è non calcolabile.\nImpossibile eseguire l'operazione");
+        }
         double real = Math.exp(op1.getReal()) * Math.cos(op1.getImaginary());
         double img = Math.exp(op1.getReal()) * Math.sin(op1.getImaginary());
-        ComplexNumber result = new ComplexNumber(real, img);        
+        ComplexNumber result = new ComplexNumber(real, img);
         stack.push(result);
     }
     
