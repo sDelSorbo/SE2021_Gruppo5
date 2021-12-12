@@ -1,17 +1,3 @@
-GIAMPA UN PO' DI LINK DOVE COPIARE:
-- [Raccolta](https://github.com/matiassingers/awesome-readme)
-- [Bello1](https://github.com/Hexworks/zircon#readme)
-- [Bello2](https://github.com/othneildrew/Best-README-Template)
-- [Tools](https://github.com/abhisheknaiidu/awesome-github-profile-readme)
-- [Bello3](https://github.com/L0garithmic/FastColabCopy#readme)
-- [minmale](https://github.com/L0garithmic/FastColabCopy#readme)
-- [Semplice](https://github.com/PostHog/posthog#readme)
-- [GuardtPurChist](https://github.com/Redocly/redoc#readme)
-- [ultimoFic1](https://github.com/shama/gaze#readme)
-- [ultimoFic2](https://github.com/thelounge/thelounge#readme)
-- CI VOGLIO GLI EMOJI, USA GLI EMOJI
-
-
 # Scientific Programmable Calculator -  Group 5
 
 Application implementing a
@@ -39,7 +25,8 @@ If you want to start to use the calculator, you must insert inside the text area
 <img width="703" alt="Schermata 2021-12-12 alle 10 25 53" src="https://user-images.githubusercontent.com/86788672/145707131-369e27a2-cf59-4879-bc09-6b2e15ab059f.png">
 
 
-https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-b10e-8d20fb202bbd.mov
+![prova1](https://user-images.githubusercontent.com/86788672/145712129-864cd70d-351e-43f2-85dc-629ea227e027.gif)
+
 
 # GUI Components
  - 2 Table view (Fort the stack and for the user defined operations)
@@ -90,7 +77,8 @@ Clicking on the extend bottton, the calculator shows the section to define the c
 
 Example of usage.
 
-https://user-images.githubusercontent.com/86788672/145707938-b7343515-4d3d-4fd4-a853-87d54bad52cd.mov
+![prova2](https://user-images.githubusercontent.com/86788672/145711985-3957d8f9-cee7-4546-94ea-019fd05447a4.gif)
+
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
 
