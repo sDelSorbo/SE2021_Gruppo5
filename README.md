@@ -42,7 +42,15 @@ If you want to start to use the calculator, you must insert inside the text area
 https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-b10e-8d20fb202bbd.mov
 
 # GUI Components
-
+ - 2 Table view (Fort the stack and for the user defined operations)
+ - 36 bottons for the operations
+ - 1 Botton to extend the calculator 
+ - 3 Botton to manage the user defined operations
+ - 2 Labels
+ - 3 Text box (for the name of the user defined operation, for the insert of complex number and for the value of the variables)
+ - 1 Text area (for the list of operations)
+ - 1 Combo box to select the variables
+ - 1 menu bar (Containing the features to save and restore variables, to export and import the user defined operations, the manual, the possibility to use the dark mode, and the exit)
 
 ## Manual & Features
  • It is possible to enter complex numbers in the format a + bj.
