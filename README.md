@@ -40,22 +40,23 @@
  <p id=about-the-project>
  </p>
  
-# About The Project
+# About The Project ✌
 The application is a scientific programmable calculator that can handle complex number and a series of operations on them. The application shows a modern GUI to insert and compute operation on Numbers.
 
  <p id=technology>
  </p>
  
-# Technology
+# Technology 🚨
 The Scientific Programmable Calculator is built using:
 - Java 1.8.0
 - JavaFX 2
 - Scen Builder 2.0
+- JUnit 4.13
  
  <p id=getting-started>
  </p>
  
-# Getting Started
+# Getting Started 👀
 To use the calculator clone it from the repository
 ```shell
   $ git clone https://github.com/sDelSorbo/SE2021_Gruppo5
@@ -66,7 +67,7 @@ To use it properly check the Techonology used for the application.
  <p id=key-features>
  </p>
 
-# Key Features
+# Key Features ✨
  • It is possible to enter complex numbers in the format a + bj using the keyboard or the GUI.
  
  • The operations supported on complex numbers are +, -, *, /, sqrt to calculate the root, +- which reverses the sign, mod to calculate the modulus, arg to calculate the argument, exp to calculate the exponential, log to calculate the natural logarithm, sin for the sine, cos for the cos, tan for the tangent.
@@ -102,7 +103,7 @@ To use it properly check the Techonology used for the application.
  <p id=demo
  </p>
   
-# Demo
+# Demo 📈
 If you want to start to use the calculator, you must insert inside the text area a complex number in cartesian notation, or using the keyboard and than press enter, or using the bottons present on the interface and than press "=". Than the number is shown in the stack table, in this way it is possible to continue performing the operations on the numbers present in the stack (For the operation that require two operands it's necessary that the stack has at least two elements).
 
      
@@ -133,7 +134,7 @@ In the menu bar into the File menu, there is the possibility to export or import
  <p id=member>
  </p>
  
-## Members
+## Members 👨‍💻
 - Marco Pastore
 - Giovanni Paolo Tobia
 - Roberto Catania
@@ -142,7 +143,7 @@ In the menu bar into the File menu, there is the possibility to export or import
  <p id=documents>
  </p>
  
-## Documents
+## Documents 📚
 - [Trello Board](https://trello.com/b/pMJVqzBj/complex-calculator)
 - [ProductBacklog on GoogleSheet](https://docs.google.com/spreadsheets/d/14UquHFHBIGx-HTueg0Jz7TeBvM6C4fpM-KOCCMaoxsU/edit#gid=0)
 - [Definition of Done and Definition of Formatting on GoogleSheet](https://docs.google.com/spreadsheets/d/14UquHFHBIGx-HTueg0Jz7TeBvM6C4fpM-KOCCMaoxsU/edit#gid=1751564930)
