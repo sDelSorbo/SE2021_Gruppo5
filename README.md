@@ -81,9 +81,12 @@ Clicking on the extend bottton, the calculator shows the section to define the c
 <img width="1163" alt="Schermata 2021-12-12 alle 10 45 49" src="https://user-images.githubusercontent.com/86788672/145707694-80f7f3f3-a5e8-4979-809b-271ec87d42d4.png">
 
 
-
 https://user-images.githubusercontent.com/86788672/145707938-b7343515-4d3d-4fd4-a853-87d54bad52cd.mov
 
+Example of usage 
+
 <img width="260" alt="Schermata 2021-12-12 alle 11 02 32" src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">
+
+In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations
 
 <img width="260" alt="Schermata 2021-12-12 alle 11 02 42" src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
