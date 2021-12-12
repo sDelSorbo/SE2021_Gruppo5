@@ -41,8 +41,10 @@ If you want to start to use the calculator, you must insert inside the text area
 
 https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-b10e-8d20fb202bbd.mov
 
+# GUI Components
 
-## Manuale & Features
+
+## Manual & Features
  • It is possible to enter complex numbers in the format a + bj.
  
  • The operations supported on complex numbers are +, -, *, /, sqrt to calculate the root, + - which reverses the sign, mod to calculate the modulus, arg to
@@ -80,3 +82,6 @@ https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-
 
 https://user-images.githubusercontent.com/86788672/145707938-b7343515-4d3d-4fd4-a853-87d54bad52cd.mov
 
+<img width="260" alt="Schermata 2021-12-12 alle 11 02 32" src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">
+
+<img width="260" alt="Schermata 2021-12-12 alle 11 02 42" src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
