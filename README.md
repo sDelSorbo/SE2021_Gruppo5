@@ -21,9 +21,9 @@
 </h3>
 
 <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
 
+  <summary>Table of Contents</summary>
+  <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
     </li>
@@ -35,8 +35,7 @@
     <li><a href="#demo">Demo</a></li>
     <li><a href="#member">Members</a></li>
     <li><a href="#documents">Document</a></li>
-
-</details>
+  </ol>
 
  <p id=about-the-project>
  </p>
@@ -106,23 +105,29 @@ To use it properly check the Techonology used for the application.
 # Demo
 If you want to start to use the calculator, you must insert inside the text area a complex number in cartesian notation, or using the keyboard and than press enter, or using the bottons present on the interface and than press "=". Than the number is shown in the stack table, in this way it is possible to continue performing the operations on the numbers present in the stack (For the operation that require two operands it's necessary that the stack has at least two elements).
 
-![Interface](https://user-images.githubusercontent.com/86788672/145712129-864cd70d-351e-43f2-85dc-629ea227e027.gif)
-
+     
+<p align="center">
+<img src="https://user-images.githubusercontent.com/86788672/145712129-864cd70d-351e-43f2-85dc-629ea227e027.gif">
+  </p>
 
 Clicking on the extend button, the calculator shows the section to define the customize operations.
 
 <img width="1163" align="center" alt="Schermata 2021-12-12 alle 10 45 49" src="https://user-images.githubusercontent.com/86788672/145707694-80f7f3f3-a5e8-4979-809b-271ec87d42d4.png">
 
 Example of usage.
+  
+<p align="center">
+  
+<img  src="https://user-images.githubusercontent.com/86788672/145711985-3957d8f9-cee7-4546-94ea-019fd05447a4.gif">
 
-<img align="center" src="https://user-images.githubusercontent.com/86788672/145711985-3957d8f9-cee7-4546-94ea-019fd05447a4.gif">
-
+</p>
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
 
-<img width="260" align = "center" alt="Schermata 2021-12-12 alle 11 02 32" src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">                          
-<img width="260" align = "center" alt="Schermata 2021-12-12 alle 11 02 42" src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
-
+  
+<img src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">  
+<img src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
+                                                                                                       
 <br>
  
  <p id=member>
