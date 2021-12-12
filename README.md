@@ -34,7 +34,7 @@ based on Java
 - [Software Architecture](https://docs.google.com/document/d/1LJW1D86G4Fjmwc3ORH5G7jr4w8MLYj2CTo4fMrzn9iU/edit)
 
 
-## Manual
+## Features
  • E' possibile inserire numeri complessi nel formato a+bj.
  
  • Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt per calcolare la radice, +- che inverte il segno, mod per calcolare il modulo, arg per         
