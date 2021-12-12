@@ -67,4 +67,5 @@ based on Java
 
 <img width="589" alt="Schermata 2021-12-12 alle 10 14 25" src="https://user-images.githubusercontent.com/86788672/145706791-d432e61c-5820-4c14-9f9c-81e022bd2e63.png">
 
-<img width="589" alt="Schermata 2021-12-12 alle 10 14 12" src="https://user-images.githubusercontent.com/86788672/145706799-96bed002-8374-4e2c-aa05-8677ea39b817.png">
+<img width="1050" alt="Schermata 2021-12-12 alle 10 13 52" src="https://user-images.githubusercontent.com/86788672/145706816-e23537f4-5835-4dd8-8ea9-970323c7fe68.png">
+
