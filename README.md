@@ -42,7 +42,7 @@ If you want to start to use the calculator, you must insert inside the text area
 https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-b10e-8d20fb202bbd.mov
 
 
-## Features
+## Manuale & Features
  • It is possible to enter complex numbers in the format a + bj.
  
  • The operations supported on complex numbers are +, -, *, /, sqrt to calculate the root, + - which reverses the sign, mod to calculate the modulus, arg to
