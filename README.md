@@ -37,7 +37,7 @@ based on Java
 ## Features
  • E' possibile inserire numeri complessi nel formato a+bj.
  
- • Le operazioni supportate sui numeri complessi sono +, -, *, /,\n   sqrt per calcolare la radice, +- che inverte il segno, mod per calcolare il modulo, arg per         
+ • Le operazioni supportate sui numeri complessi sono +, -, *, /, sqrt per calcolare la radice, +- che inverte il segno, mod per calcolare il modulo, arg per         
    calcolare l'argomento, exp per calcolare l'esponenziale, log per calcolare il logaritmo naturale, sin per il seno, cos per il cos, tan per la tangente.
    
  • E' possibile effettuare operazioni sullo stack, tra cui: drop, che rimuove l'elemento in cima allo stack dup, che inserisce una copia dell'ultimo elemento dello    
