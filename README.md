@@ -34,7 +34,8 @@ based on Java
 - [Software Architecture](https://docs.google.com/document/d/1LJW1D86G4Fjmwc3ORH5G7jr4w8MLYj2CTo4fMrzn9iU/edit)
 
 ## Getting Started
-If you want to start to use the calculator, you must insert inside the text area a complex number in cartesian notation.
+If you want to start to use the calculator, you must insert inside the text area a complex number in cartesian notation, or using the keyboard and than press enter, or using the bottons present on the interface and than press "=". Than the number is shown in the stack table, in this way it is possible to continue performing the operations on the numbers present in the stack (For the operation that require two operands it's necessary that the stack has at least two elements.
+
 <img width="703" alt="Schermata 2021-12-12 alle 10 25 53" src="https://user-images.githubusercontent.com/86788672/145707131-369e27a2-cf59-4879-bc09-6b2e15ab059f.png">
 
 
