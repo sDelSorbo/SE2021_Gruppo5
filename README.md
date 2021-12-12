@@ -72,12 +72,11 @@ https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-
  • The programmable operations can be modified by typing the name of the operation to be deleted and clicking on the modify button or by double clicking on
    an operation directly from the table.
    
-   
-<img width="589" alt="Schermata 2021-12-12 alle 10 14 12" src="https://user-images.githubusercontent.com/86788672/145706788-0f058c52-8b90-4367-a424-e2db4f2f04ee.png">
+ <img width="703" alt="Schermata 2021-12-12 alle 10 44 47" src="https://user-images.githubusercontent.com/86788672/145707692-99003f00-8ca7-4fdf-a0cc-93e48c575269.png">
+
+<img width="1163" alt="Schermata 2021-12-12 alle 10 45 49" src="https://user-images.githubusercontent.com/86788672/145707694-80f7f3f3-a5e8-4979-809b-271ec87d42d4.png">
 
 
-<img width="589" alt="Schermata 2021-12-12 alle 10 14 25" src="https://user-images.githubusercontent.com/86788672/145706791-d432e61c-5820-4c14-9f9c-81e022bd2e63.png">
+https://user-images.githubusercontent.com/86788672/145707723-7c01f003-f474-46ae-8dc2-13480bb2bc16.mov
 
-
-<img width="1050" alt="Schermata 2021-12-12 alle 10 13 52" src="https://user-images.githubusercontent.com/86788672/145706816-e23537f4-5835-4dd8-8ea9-970323c7fe68.png">
 
