@@ -76,6 +76,8 @@ https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-
    
  <img width="703" alt="Schermata 2021-12-12 alle 10 44 47" src="https://user-images.githubusercontent.com/86788672/145707692-99003f00-8ca7-4fdf-a0cc-93e48c575269.png">
 
+Clicking on the extend bottton, the calculator shows the section to define the customize operations
+
 <img width="1163" alt="Schermata 2021-12-12 alle 10 45 49" src="https://user-images.githubusercontent.com/86788672/145707694-80f7f3f3-a5e8-4979-809b-271ec87d42d4.png">
 
 
