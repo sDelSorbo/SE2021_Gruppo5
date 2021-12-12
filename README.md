@@ -23,7 +23,7 @@
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ol>
+
     <li>
       <a href="#about-the-project">About The Project</a>
     </li>
@@ -35,7 +35,7 @@
     <li><a href="#demo">Demo</a></li>
     <li><a href="#member">Members</a></li>
     <li><a href="#documents">Document</a></li>
-  </ol>
+
 </details>
 
  <p id=about-the-project>
