@@ -36,7 +36,7 @@ public class Tan extends AbstractOnStackOperation{
         
         stack.push(ComplexOperationHelper.div(sin,cos));
         } catch (ArithmeticException | NumberFormatException ex) {
-            throw new ArithmeticException("Impossibile eseguire la tangente di pi/2 + 2kpi.");
+            throw new ArithmeticException("Impossibile eseguire la tangente di pi/2 + kpi.");
         }
     }
 }
