@@ -28,7 +28,7 @@ public class Sin extends AbstractOnStackOperation{
     @Override
     public void execute() throws EmptyStackException {
         ComplexNumber op1 = stack.pop();            
-        double real = Math.sin(op1.getReal() * Math.cosh(op1.getImaginary()));
+        double real = Math.sin(op1.getReal()) * Math.cosh(op1.getImaginary());
         double img = Math.cos(op1.getReal()) * Math.sinh(op1.getImaginary());
         ComplexNumber result = new ComplexNumber(real, img);
         stack.push(result);

@@ -31,6 +31,7 @@ public class CosTest {
     /**
      * Test del metodo execute, della classe Cos.
      */
+    
     @Test
     public void testExecute() {
         System.out.println("Cos");
@@ -38,10 +39,14 @@ public class CosTest {
         ComplexNumber op2 = new ComplexNumber(Math.PI/2,0);
         ComplexNumber op3 = new ComplexNumber(Math.PI,0);
         ComplexNumber op4 = new ComplexNumber(Math.PI/6,0);
+        ComplexNumber op5 = new ComplexNumber(0.476,3.18);
+        ComplexNumber op6 = new ComplexNumber(8.1482,7.72178);
         ComplexNumber expResult = new ComplexNumber((double) Math.round(Math.sqrt(2)/2 * 100000000) / 100000000,0);
         ComplexNumber expResult1 = new ComplexNumber((double) Math.round(0 * 100000000) / 100000000,0);
         ComplexNumber expResult2 = new ComplexNumber((double) Math.round(-1 * 100000000) / 100000000,0);
         ComplexNumber expResult3 = new ComplexNumber((double) Math.round(Math.sqrt(3)/2 * 100000000) / 100000000,0);
+        ComplexNumber expResult4 = new ComplexNumber(10.70527875,-5.49991417);
+        ComplexNumber expResult5 = new ComplexNumber(-327.25206072,-1079.9944108);
           
         stack.push(op1);
         op.execute();
@@ -62,6 +67,16 @@ public class CosTest {
         op.execute();
         ComplexNumber result4=stack.pop();
         assertEquals(expResult3, result4);
+        
+        stack.push(op5);
+        op.execute();
+        ComplexNumber result5=stack.pop();
+        assertEquals(expResult4, result5);
+        
+        stack.push(op6);
+        op.execute();
+        ComplexNumber result6=stack.pop();
+        assertEquals(expResult5, result6);
     }
     
     /**

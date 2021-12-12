@@ -36,12 +36,12 @@ public class TanTest {
         System.out.println("Tan");
         ComplexNumber op1 = new ComplexNumber(0.563,1.453);
         ComplexNumber op2 = new ComplexNumber(1,2);
-        ComplexNumber op3 = new ComplexNumber(-1,-1);
-        ComplexNumber op4 = new ComplexNumber(1,-1);
+        ComplexNumber op3 = new ComplexNumber(0.92,-3);
+        ComplexNumber op4 = new ComplexNumber(40,-2.67);
         ComplexNumber expResult = new ComplexNumber(0.09403715,0.94947922);
         ComplexNumber expResult1 = new ComplexNumber(0.03381283,1.01479361);
-        ComplexNumber expResult2 = new ComplexNumber(-0.27175259,-1.08392332);
-        ComplexNumber expResult3 = new ComplexNumber(0.27175259,-1.08392332);
+        ComplexNumber expResult2 = new ComplexNumber(0.00478523,-1.00130794);
+        ComplexNumber expResult3 = new ComplexNumber(-0.00954301,-1.00101386);
        
         stack.push(op1);
         op.execute();
