@@ -71,6 +71,17 @@ public class ExpTest {
         System.out.println("EmptyStackException On Exp");
         op.execute();
     }
+    
+    /**
+     * Test di EmptyStackException.
+     */
+    @Test (expected =  ArithmeticException.class)
+    public void testArithmeticExceptionOnExecute (){
+        System.out.println("ArithmeticException On Exp");
+        ComplexNumber tooHigh = new ComplexNumber(100000);
+        stack.push(tooHigh);
+        op.execute();
+    }
 }
 
     
