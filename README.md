@@ -39,7 +39,8 @@ If you want to start to use the calculator, you must insert inside the text area
 <img width="703" alt="Schermata 2021-12-12 alle 10 25 53" src="https://user-images.githubusercontent.com/86788672/145707131-369e27a2-cf59-4879-bc09-6b2e15ab059f.png">
 
 
-https://user-images.githubusercontent.com/86788672/145707537-cb229fc4-bc5a-4e16-b10e-8d20fb202bbd.mov
+![prova1](https://user-images.githubusercontent.com/86788672/145712129-864cd70d-351e-43f2-85dc-629ea227e027.gif)
+
 
 # GUI Components
  - 2 Table view (Fort the stack and for the user defined operations)
