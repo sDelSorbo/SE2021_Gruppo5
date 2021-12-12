@@ -86,4 +86,4 @@ https://user-images.githubusercontent.com/86788672/145707938-b7343515-4d3d-4fd4-
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations
 
-<img width="260" alt="Schermata 2021-12-12 alle 11 02 32" src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png"> <img width="260" alt="Schermata 2021-12-12 alle 11 02 42" src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
+<img width="260" alt="Schermata 2021-12-12 alle 11 02 32" src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">                          <img width="260" alt="Schermata 2021-12-12 alle 11 02 42" src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
