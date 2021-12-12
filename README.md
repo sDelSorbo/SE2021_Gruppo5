@@ -90,7 +90,8 @@ Clicking on the extend bottton, the calculator shows the section to define the c
 
 Example of usage.
 
-https://user-images.githubusercontent.com/86788672/145707938-b7343515-4d3d-4fd4-a853-87d54bad52cd.mov
+![prova2](https://user-images.githubusercontent.com/86788672/145711885-b5856fe2-61df-4106-9951-0f783ae84471.gif)
+
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
 
