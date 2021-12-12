@@ -33,36 +33,40 @@ based on Java
 - [Dod, Dof](https://docs.google.com/spreadsheets/d/14UquHFHBIGx-HTueg0Jz7TeBvM6C4fpM-KOCCMaoxsU/edit#gid=1751564930)
 - [Software Architecture](https://docs.google.com/document/d/1LJW1D86G4Fjmwc3ORH5G7jr4w8MLYj2CTo4fMrzn9iU/edit)
 
+## Getting Started
+If you want to start to use the calculator, you must insert inside the text area a complex number in cartesian notation.
+<img width="703" alt="Schermata 2021-12-12 alle 10 25 53" src="https://user-images.githubusercontent.com/86788672/145707131-369e27a2-cf59-4879-bc09-6b2e15ab059f.png">
+
 
 ## Features
- • E' possibile inserire numeri complessi nel formato a+bj.
+ • It is possible to enter complex numbers in the format a + bj.
  
- • Le operazioni supportate sui numeri complessi sono +, -, *, /, sqrt per calcolare la radice, +- che inverte il segno, mod per calcolare il modulo, arg per         
-   calcolare l'argomento, exp per calcolare l'esponenziale, log per calcolare il logaritmo naturale, sin per il seno, cos per il cos, tan per la tangente.
+ • The operations supported on complex numbers are +, -, *, /, sqrt to calculate the root, + - which reverses the sign, mod to calculate the modulus, arg to
+   calculate the argument, exp to calculate the exponential, log to calculate the natural logarithm, sin for the sine, cos for the cos, tan for the tangent.
    
- • E' possibile effettuare operazioni sullo stack, tra cui: drop, che rimuove l'elemento in cima allo stack dup, che inserisce una copia dell'ultimo elemento dello    
-   stack, swap, che\n   scambia gli ultimi due elementi dello stack; over che inserisce una copia del penultimo elemento dello stack; oppure è possibile digitare il    
-   comando clear per eliminare tutti gli elementi dallo stack.
+ • It is possible to operate on the stack, including: drop, which removes the element in the dup stack, which makes a copy of the last element
+   stack, swap, which \ n swaps the last two elements of the stack; above what a copy of the penultimate element of the stack; or you can type the
+   clear command to delete all elements from the stack.
    
- • Cliccando il tasto inv inoltre è possibile usufruire delle funzioni trigonometriche inverse       
+ • By clicking the inv key, it is also possible to take advantage of the inverse trigonometric functions
  
- • '>x' per inserire nella variabile il valore nella cima dello stack.
+ • '> x' to insert the value at the top of the stack into the variable.
  
- • '<x' per inserire il valore nella variabile nella cima dello stack.
+ • '<x' to insert the value into the variable at the top of the stack.
  
- • '+x' per aggiungere il valore nella cima dello stack alla variabile.
+ • '+ x' to add the value at the top of the stack to the variable.
  
- • '-x' per sottrarre il valore nella cima dello stack alla variabile.
+ • '-x' to subtract the value at the top of the stack from the variable.
  
- • Premendo il tasto Expand è possibile inserire operazioni programmabili.
+ • By pressing the Expand key you can enter programmable operations.
  
- • Per inserire le operazioni programmibili è necessario definire\n   un nome e una lista di operazioni separate da uno spazio.
+ • To insert programmable operations it is necessary to define \ n a name and a list of operations separated by a space.
  
- • Le operazioni programmabili possono essere rimosse digitando il nome dell'operazione da eliminare e cliccando sul tasto remove oppure selezionando un'operazione      
-   dalla tabella e cliccando il tasto destro.
+ • The programmable operations can be removed by typing the name of the operation to be deleted and clicking on the remove button or by selecting an operation
+   from the table and right clicking.
  
- • Le operazioni programmabili possono essere modificate digitando il nome dell'operazione da eliminare e cliccando sul tasto modify oppure cliccando due volte su 
-   un'operazione direttamente dalla tabella.
+ • The programmable operations can be modified by typing the name of the operation to be deleted and clicking on the modify button or by double clicking on
+   an operation directly from the table.
    
    
 <img width="589" alt="Schermata 2021-12-12 alle 10 14 12" src="https://user-images.githubusercontent.com/86788672/145706788-0f058c52-8b90-4367-a424-e2db4f2f04ee.png">
