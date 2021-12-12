@@ -63,9 +63,13 @@ based on Java
  
  • Le operazioni programmabili possono essere modificate digitando il nome dell'operazione da eliminare e cliccando sul tasto modify oppure cliccando due volte su 
    un'operazione direttamente dalla tabella.
+   
+   
 <img width="589" alt="Schermata 2021-12-12 alle 10 14 12" src="https://user-images.githubusercontent.com/86788672/145706788-0f058c52-8b90-4367-a424-e2db4f2f04ee.png">
 
+
 <img width="589" alt="Schermata 2021-12-12 alle 10 14 25" src="https://user-images.githubusercontent.com/86788672/145706791-d432e61c-5820-4c14-9f9c-81e022bd2e63.png">
+
 
 <img width="1050" alt="Schermata 2021-12-12 alle 10 13 52" src="https://user-images.githubusercontent.com/86788672/145706816-e23537f4-5835-4dd8-8ea9-970323c7fe68.png">
 
