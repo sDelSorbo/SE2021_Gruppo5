@@ -29,7 +29,7 @@ public class Exp extends AbstractOnStackOperation{
     public void execute() throws EmptyStackException, ArithmeticException {
         ComplexNumber op1 = stack.pop();
         if (op1.getReal() >= 1000) {
-            throw new ArithmeticException("Il valore è non calcolabile.\nImpossibile eseguire l'operazione");
+            throw new ArithmeticException("Il valore è non calcolabile poichè troppo elevato.\nImpossibile eseguire l'esponenziale");
         }
         double real = Math.exp(op1.getReal()) * Math.cos(op1.getImaginary());
         double img = Math.exp(op1.getReal()) * Math.sin(op1.getImaginary());
