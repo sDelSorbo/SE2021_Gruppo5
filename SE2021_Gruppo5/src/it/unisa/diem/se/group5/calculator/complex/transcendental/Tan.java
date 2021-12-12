@@ -30,7 +30,7 @@ public class Tan extends AbstractOnStackOperation{
     */
     @Override
     public void execute() throws EmptyStackException, ArithmeticException {
-        ComplexNumber op1 = stack.peek();
+        ComplexNumber op1 = stack.pop();
         
         try {        
         ComplexNumber sin = sin(op1);
