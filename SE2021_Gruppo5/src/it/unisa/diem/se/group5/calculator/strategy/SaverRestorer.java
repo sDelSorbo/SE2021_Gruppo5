@@ -19,7 +19,8 @@ public class SaverRestorer {
     }
     /**
      * Metodo che permette di effettuare la save su file delle operazioni
-     * @param strategy 
+     * 
+     * @param strategy contenente l'algoritmo di slavataggio
      */
     public void save (Strategy strategy){
         strategy.save(userOperations);
@@ -27,7 +28,8 @@ public class SaverRestorer {
     }
     /**
      * Metodo che permette di effettuare la restore da file delle operazioni
-     * @param strategy 
+     * 
+     * @param strategy  contenente l'algoritmo di slavataggio
      */
     public void restore (Strategy strategy){
         strategy.restore(userOperations);

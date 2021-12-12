@@ -35,7 +35,7 @@ public class VariablesOperations {
     }
     /**
      * Metodo che ritorna una Map che associa ad ogni simbolo una operazione
-     * @return 
+     * @return l'associazione tra simboli e operazioni sulle variabili
      */
     public Map<String,Operation> get(){
         return variablesOperations;

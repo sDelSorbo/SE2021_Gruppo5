@@ -6,8 +6,6 @@ package it.unisa.diem.se.group5.calculator.complex.transcendental;
 
 import it.unisa.diem.se.group5.calculator.complex.ComplexNumber;
 import it.unisa.diem.se.group5.calculator.complex.commonoperations.AbstractOnStackOperation;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Div;
-import it.unisa.diem.se.group5.calculator.complex.commonoperations.Operation;
 import static java.lang.Math.cosh;
 import static java.lang.Math.sinh;
 import java.util.EmptyStackException;
@@ -31,25 +29,47 @@ public class Tan extends AbstractOnStackOperation{
     * @throws EmptyStackException in caso di operandi non sufficienti
     */
     @Override
-    public void execute() throws EmptyStackException {
-        ComplexNumber op1 = stack.pop();
-        Operation op;
-        Stack<ComplexNumber> tmp = new Stack<>();
-        op = new Div(tmp);
+    public void execute() throws EmptyStackException, ArithmeticException {
+        ComplexNumber op1 = stack.peek();
+        
+        try {        
+        ComplexNumber sin = sin(op1);
+        ComplexNumber cos = cos(op1);
+        
+        stack.push(div(sin,cos));
+        } catch (ArithmeticException | NumberFormatException ex) {
+            throw new ArithmeticException("Impossibile eseguire la tangente di pi/2 + 2kpi.");
+        }
 
-        double realSin = cosh(op1.getImaginary()) * Math.sin(op1.getReal());
-        double imgSin = sinh(op1.getImaginary()) * Math.cos(op1.getReal());
-        ComplexNumber sin = new ComplexNumber(realSin, imgSin);
+    }
+    
+    private ComplexNumber sin(ComplexNumber num) {
+        return new ComplexNumber(cosh(num.getImaginary())*Math.sin(num.getReal()),sinh(num.getImaginary())*Math.cos(num.getReal()));
+    }
+    
+    private ComplexNumber cos(ComplexNumber num) {
+        return new ComplexNumber(cosh(num.getImaginary())*Math.cos(num.getReal()),-sinh(num.getImaginary())*Math.sin(num.getReal()));
+    }
+    
+    private ComplexNumber div(ComplexNumber div1, ComplexNumber div2) {
+        double den = Math.pow(mod(div2),2);
+        return new ComplexNumber((div1.getReal()*div2.getReal()+div1.getImaginary()*div2.getImaginary())/den,(div1.getImaginary()*div2.getReal()-div1.getReal()*div2.getImaginary())/den);
+    }
+    
+    private double cosh(double theta) {
+        return (Math.exp(theta)+Math.exp(-theta))/2;
+    }
+    
+    private double sinh(double theta) {
+        return (Math.exp(theta)-Math.exp(-theta))/2;
+    }
 
-        double realCos = cosh(op1.getImaginary()) * Math.cos(op1.getReal());
-        double imgCos = -sinh(op1.getImaginary()) * Math.sin(op1.getReal());
-        ComplexNumber cos = new ComplexNumber(realCos, imgCos);
-
-        tmp.push(sin);
-        tmp.push(cos);
-        op.execute();
-        ComplexNumber tmp_result=tmp.pop();
-        stack.push(tmp_result);
+    public double mod(ComplexNumber num) {
+        if (num.getReal()!=0 || num.getImaginary()!=0) {
+            return Math.sqrt(num.getReal()*num.getReal()+num.getImaginary()*num.getImaginary());
+        } else {
+            return 0d;
+        }
     }
 
 }

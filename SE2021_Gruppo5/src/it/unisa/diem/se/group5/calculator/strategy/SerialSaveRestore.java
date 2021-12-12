@@ -37,7 +37,7 @@ public class SerialSaveRestore implements Strategy{
      * Metodo che permette di settare il file su cui effettuare le operazioni 
      * di save e restore
      * 
-     * @param path 
+     * @param path del file su cui salvare e ripristinre il file
      */
     public void setPath(File path) {
         this.path = path;

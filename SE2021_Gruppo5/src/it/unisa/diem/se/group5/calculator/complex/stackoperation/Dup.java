@@ -23,7 +23,7 @@ public class Dup extends AbstractOnStackOperation{
     /**
      * Duplica il primo elemento di uno stack.
      * 
-     * @throws EmptyStackException 
+     * @throws EmptyStackException in caso lo stack sia vuoto
      */
     @Override
     public void execute() throws EmptyStackException{

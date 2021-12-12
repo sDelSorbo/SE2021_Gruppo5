@@ -24,7 +24,7 @@ public class Over extends AbstractOnStackOperation{
      * Esegue il comando over aggiungendo in cima allo stack una copia del
      * penultimo elemento
      * 
-     * @throws EmptyStackException 
+     * @throws EmptyStackException in caso lo stack sia vuoto
      */
     @Override
     public void execute() throws EmptyStackException{

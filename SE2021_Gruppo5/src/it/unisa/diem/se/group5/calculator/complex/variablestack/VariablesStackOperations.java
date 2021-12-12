@@ -28,7 +28,8 @@ public class VariablesStackOperations {
     }
     /**
      * Metodo che restituisce una map che associa ad una stringa un'operazione di save o restore
-     * @return 
+     * 
+     * @return l'associazione tra operazioni sullo stack delle variabili e i simboli
      */
     public Map<String,Operation> get(){
         return variablesStackOperations;
