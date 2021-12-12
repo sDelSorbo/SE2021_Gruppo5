@@ -46,7 +46,7 @@ public class Sqrt extends AbstractOnStackOperation{
     public void execute() throws EmptyStackException{
         ComplexNumber op = stack.pop();
         double r = Math.sqrt(mod(op) );
-        double theta = arg(op)/2f;
+        double theta = arg(op)/2d;
         ComplexNumber result =  new ComplexNumber(r*Math.cos(theta),r*Math.sin(theta));
         stack.push(result);
     }
