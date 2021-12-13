@@ -108,7 +108,7 @@ If you want to start to use the calculator, you must insert inside the text area
 
      
 <p align="center">
-<img src="https://user-images.githubusercontent.com/86788672/145712129-864cd70d-351e-43f2-85dc-629ea227e027.gif">
+<img src="https://user-images.githubusercontent.com/86788672/145767678-8076f155-386a-4004-9b9e-e04d017b8f9e.gif">
   </p>
 
 Clicking on the extend button, the calculator shows the section to define the customize operations.
@@ -119,14 +119,14 @@ Example of usage.
   
 <p align="center">
   
-<img  src="https://user-images.githubusercontent.com/86788672/145767337-d01f4836-6da0-4b77-955b-40c574218367.gif">
+<img  src="">
 
 </p>
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
 
   
-<img src="https://user-images.githubusercontent.com/86788672/145767412-6a42d2d0-7604-45b8-a5c9-0b24b6643756.gif">  
+<img src="https://user-images.githubusercontent.com/86788672/145767594-d172d1cc-c9eb-47cc-bb18-6b9c23573fbe.gif">  
                                                                                                        
 <br>
  
