@@ -122,10 +122,13 @@ Example of usage.
 </p>
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
-
+  
+<p align="center">
   
 <img src="https://user-images.githubusercontent.com/86788672/145767594-d172d1cc-c9eb-47cc-bb18-6b9c23573fbe.gif">  
-                                                                                                       
+        
+  </p>
+  
 <br>
  
  <p id=member>
