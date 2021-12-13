@@ -119,14 +119,14 @@ Example of usage.
   
 <p align="center">
   
-<img  src="https://user-images.githubusercontent.com/86788672/145766583-69843b0e-1dd4-42e1-99e7-6125d0d9c660.gif">
+<img  src="https://user-images.githubusercontent.com/86788672/145767337-d01f4836-6da0-4b77-955b-40c574218367.gif">
 
 </p>
 
 In the menu bar into the File menu, there is the possibility to export or import the user defined operations, in order to save and restore new and old operations.
 
   
-<img src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">  
+<img src="https://user-images.githubusercontent.com/86788672/145767412-6a42d2d0-7604-45b8-a5c9-0b24b6643756.gif">  
                                                                                                        
 <br>
  
