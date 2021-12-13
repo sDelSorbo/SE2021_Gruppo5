@@ -376,7 +376,7 @@ public class FXMLDocumentController implements Initializable {
                 + "• E' possibile effettuare operazioni sullo stack, tra cui: drop,\n   che rimuove l'elemento in cima allo stack;"
                 + "dup, che inserisce\n   una copia dell'ultimo elemento dello stack, swap, che\n   scambia gli ultimi due elementi dello stack;"
                 + "over che inserisce\n   una copia del penultimo elemento dello stack; oppure è\n   possibile digitare il comando clear per eliminare tutti gli\n   elementi dallo stack\n"
-                + "• Cliccando il tasto inv inoltre è possibile usufruire delle\n   funzioni trigonometriche inverse\n"         
+                + "• Cliccando il tasto BCK è possibile eliminare una cifra alla\n   volta dalla text box, mentre con il tasto C è possibile ripulirla\n   completamente.\n"         
                 + "• '>x' per inserire nella variabile il valore nella cima dello \n   stack.\n"
                 + "• '<x' per inserire il valore nella variabile nella cima dello \n   stack.\n"
                 + "• '+x' per aggiungere il valore nella cima dello stack alla \n   variabile.\n"
@@ -389,7 +389,7 @@ public class FXMLDocumentController implements Initializable {
                 + "• Le operazioni programmabili possono essere modificate\n   digitando il nome dell'operazione da eliminare e cliccando sul\n   tasto modify"
                 + " oppure cliccando due volte su un'operazione\n   direttamente dalla tabella.\n"
 
-                ,"Manuale Complex Calculator v 0.2","Help");
+                ,"Manuale Complex Calculator v 1.1","Help");
     }   
   
     
