@@ -108,8 +108,6 @@ If you want to start to use the calculator, you must insert inside the text area
 
      
 <p align="center">
-<img src="https://user-images.githubusercontent.com/86788672/145767678-8076f155-386a-4004-9b9e-e04d017b8f9e.gif">
-  </p>
 
 Clicking on the extend button, the calculator shows the section to define the customize operations.
 
@@ -119,7 +117,7 @@ Example of usage.
   
 <p align="center">
   
-<img  src="">
+<img  src="https://user-images.githubusercontent.com/86788672/145767678-8076f155-386a-4004-9b9e-e04d017b8f9e.gif">
 
 </p>
 
