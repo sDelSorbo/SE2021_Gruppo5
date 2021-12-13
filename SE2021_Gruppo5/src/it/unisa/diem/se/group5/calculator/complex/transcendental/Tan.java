@@ -31,8 +31,8 @@ public class Tan extends AbstractOnStackOperation{
         ComplexNumber op1 = stack.pop();
         
         try {        
-        ComplexNumber sin = ComplexOperationHelper.sin(op1);
-        ComplexNumber cos = ComplexOperationHelper.cos(op1);
+            ComplexNumber sin = ComplexOperationHelper.sin(op1);
+            ComplexNumber cos = ComplexOperationHelper.cos(op1);
         
         stack.push(ComplexOperationHelper.div(sin,cos));
         } catch (ArithmeticException | NumberFormatException ex) {

@@ -50,55 +50,54 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
     
-    private boolean inverted = false; 
     
     /**
-     *
+     * Notifica se l'interfaccia è estesa o meno
      */
     private boolean extended = false;      
     
     /**
-     *
+     * Stack dei numeri complessi osservabile
      */
     private ObservableList<ComplexNumber> complexNumberStack;
     
     /**
-     *
+     * Stack dei numeri complessi
      */
     private Stack<ComplexNumber> stack = new Stack<>();
     
     /**
-     *
+     * Calcolatore che si occupa di gestire gli input
      */
     private Calculator calculator;
     
     /**
-     *
+     * Lista osservabile delle operazioni definite dall'utente
      */
     ObservableList<UserDefinedOperation> userOperationsObs; 
     
     /**
-     *
+     * Lista delle operazioni definite dall'utente
      */
     UserDefinedOperations  userOperations = UserDefinedOperations.getInstance();
     
     /**
-     * 
+     * Selettore del file
      */
     private FileChooser fileChooser = new FileChooser();
     
-    /**
-     * 
+    /** 
+     * Variabili
      */
     Variables variables;   
 
     /**
-     * 
+     * Strategia di salvataggio e restore
      */
     private static Strategy strategy;
     
     /**
-     * 
+     * Gestore del salvataggio
      */
     private static SaverRestorer saverRestorer = new SaverRestorer();
     
@@ -185,7 +184,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * 
+     * Ripulisce la text area e gli da il focus
      */
     private void clearAndFocus(){
         inputText.clear();
@@ -214,15 +213,23 @@ public class FXMLDocumentController implements Initializable {
         clearAndFocus();
     }
     
+    /**
+     * Call attivata alla pressione del tasto enter
+     * @param event evento relativo alla pressione del tasto enter
+     */
     @FXML
     private void onEnter(ActionEvent event) {
         onEnterPressed(event);
         clearAndFocus();
     }
     
-    
+    /**
+     * Aggiunge una operazione definita dall'utente.
+     * 
+     * @param event evento di aggiunta operazione definita dall'utente
+     */
     @FXML
-    private void addUserDefinedOperation(ActionEvent event) throws MalformedUserDefinedOperationException{
+    private void addUserDefinedOperation(ActionEvent event){
         String name = userDefName.getText().trim().toLowerCase();
         String operations = userDefList.getText().trim().toLowerCase();
         UserDefinedOperation userDefOp = null;
@@ -308,7 +315,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     /**
-     * 
+     * Agggiorna le varaibili selezionate nella combo box
      * @param event 
      */
     @FXML
@@ -329,8 +336,9 @@ public class FXMLDocumentController implements Initializable {
     }
         
     /**
+     * Estende l'interfaccia grafica o la riduce
      * 
-     * @param event 
+     * @param event evento di pressione del tasto extend
      */
     @FXML
     private void OnExtend(ActionEvent event) {
@@ -388,6 +396,11 @@ public class FXMLDocumentController implements Initializable {
     }   
   
     
+    /**
+     * Gestisce la pressione di uno dei tasti della clacolatrice.
+     * 
+     * @param event pressione di un tasto della calcolatrice
+     */
     @FXML
     private void onOperation(ActionEvent event) {
         Button pressed = (Button) event.getSource();
@@ -400,23 +413,19 @@ public class FXMLDocumentController implements Initializable {
             inputText.setText(inputText.getText() + operation);
             return;
         }
+        if (operation.matches("BCK") && inputText.getText().length() >0 ){
+            inputText.setText(inputText.getText().substring(0, inputText.getText().length()-1));
+            return;
+        }
         compute(operation);
         inputText.requestFocus();
     }
-    
-    @FXML
-    private void darkApplication(ActionEvent event) {
-        Parent parent = comboVariable.getScene().getRoot();
-        if (((MenuItem)event.getSource()).getText().equals("Dark Mode"))
-            ((MenuItem)event.getSource()).setText("Light Mode");
-        else ((MenuItem)event.getSource()).setText("Dark Mode");
-        String path="it/unisa/diem/se/group5/calculator/gui/resource/darkmode.css";
-        if(!parent.getStylesheets().contains(path))
-            parent.getStylesheets().add(path);
-        else
-            parent.getStylesheets().remove(path);
-    }
 
+    /**
+     * Rimozione dell'operazione definita dall'utente
+     * 
+     * @param event pressione del bottone di rimozione
+     */
     @FXML
     private void removeUserDefinedOperation(ActionEvent event) {
         String name = userDefName.getText().toLowerCase();
@@ -424,6 +433,11 @@ public class FXMLDocumentController implements Initializable {
         remove (toRemove);
     }
     
+    /**
+     * Rimozione dell'operazione definita deall'utente tramite context menu
+     * 
+     * @param event pressione del pulsante remove nella context area
+     */
     @FXML
     private void removeUserDefinedOperatioContext(ActionEvent event) {
         UserDefinedOperation toRemove = userOpTab.getSelectionModel().getSelectedItem();
@@ -431,6 +445,11 @@ public class FXMLDocumentController implements Initializable {
             remove (toRemove);
     }
 
+    /**
+     * Gestisce la rimozione dell'operzazione definita dall'untente
+     * 
+     * @param toRemove operazione da rimuovere
+     */
     private void remove(UserDefinedOperation toRemove){
         try {
             userOperations.remove(toRemove);
@@ -440,17 +459,32 @@ public class FXMLDocumentController implements Initializable {
         userDefName.clear();
     }
     
+    /**
+     * Gestisce il salvataggio delle variabili.
+     * 
+     * @param event pressione del tasto save nella menu bar
+     */
     @FXML
     private void saveVariables(ActionEvent event) {
         compute("save");
     }
     
+    /**
+     * Gestisce il ripristino delle variabili.
+     * 
+     * @param event pressione del tasto restore nella menu bar
+     */
     @FXML
     private void restoreVariables(ActionEvent event) {
         compute ("restore");
         variableChange(null);
     }
     
+    /**
+     * Aggiorna il nome  delle operazioni definite dall'utente
+     * 
+     * @param event evento di pressione del tasto modify 
+     */
     @FXML
     private void updateUserDefName(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {
         UserDefinedOperation toModify = userOpTab.getSelectionModel().getSelectedItem();
@@ -464,6 +498,11 @@ public class FXMLDocumentController implements Initializable {
         userOpTab.refresh();
     }
     
+    /**
+     * Aggiorna le istruzioni delle operazioni definite dall'utente
+     * 
+     * @param event evento di pressione del tasto modify 
+     */
     @FXML
     void updateUserDefDefinition(TableColumn.CellEditEvent<UserDefinedOperation, String> event) {        
         String name = userOpTab.getSelectionModel().getSelectedItem().getName();
@@ -471,6 +510,11 @@ public class FXMLDocumentController implements Initializable {
         modify(name, operations);
     }    
     
+    /**
+     * Modifica delle operazioni definie dall'utente dall tabella.
+     * 
+     * @param event pressione sul nome nella tabella
+     */
     @FXML
     private void modifyUserDefinedOperation(ActionEvent event) {
         String name = userDefName.getText().toLowerCase();
@@ -478,6 +522,12 @@ public class FXMLDocumentController implements Initializable {
         modify(name, operations);    
     }
     
+    /**
+     * Gestisce la modifica delle operazioni definite dall'utente.
+     * 
+     * @param name nome della user defined operation da modificare
+     * @param operations operazioni della user defined operation da modificare
+     */
     private void modify(String name, String operations) {
         UserDefinedOperation toModify = new UserDefinedOperation(name , operations);
         try {
@@ -488,35 +538,34 @@ public class FXMLDocumentController implements Initializable {
         userOpTab.refresh();
     }
 
-    @FXML
-    private void invertTrascendental(ActionEvent event) {
-        if (inverted){
-            expButton.setText("exp");
-            sinButton.setText("sin");
-            cosButton.setText("cos");
-            tanButton.setText("tan");
-            inverted = false;
-        } else {            
-            expButton.setText("log");
-            sinButton.setText("asin");
-            cosButton.setText("acos");
-            tanButton.setText("atan");
-            inverted = true;
-        }        
-    }
-    
+    /**
+     * Permette di importare un file in CSV
+     * 
+     * @param event pressione sul tasto import nella menu bar
+     */
     @FXML
     private void importOperationsCSV(ActionEvent event) {        
         String suffix = ".csv";
         importFile ("CSV",suffix);        
     }
     
+    /**
+     * Permette di importare un file in Object
+     * 
+     * @param event pressione sul tasto import nella menu bar
+     */
     @FXML
     private void importOperationSerial(ActionEvent event) {
         String suffix = ".dat";
         importFile ("SERIAL",suffix);    
     }
     
+    /**
+     * Gestisce l'import delle operazioni definite dall'utente in un file
+     * 
+     * @param type tipo di salvataggio
+     * @param suffix suffisso del file
+     */
     private void importFile(String type, String suffix) {
         Stage stg = (Stage) inputText.getScene().getWindow();
         fileChooser.setTitle("Export Operations To " + type);
@@ -542,18 +591,34 @@ public class FXMLDocumentController implements Initializable {
         }       
     }   
     
+    /**
+     * Permette di esportare un file in CSV
+     * 
+     * @param event pressione sul tasto import nella menu bar
+     */
     @FXML
     private void exportOperationsCSV(ActionEvent event) {
         String suff = ".csv";
         exportFile("CSV",suff);
     }
-
+    
+    /**
+     * Permette di esportare un file in Oggetto
+     * 
+     * @param event pressione sul tasto import nella menu bar
+     */
     @FXML
     private void exportOperationSerial(ActionEvent event) {
         String suffix = ".dat";
         exportFile("SERIAL",suffix);
     }
     
+    /**
+     * Gestisce l'export delle operazioni definite dall'utente in un file
+     * 
+     * @param type tipo di salvataggio
+     * @param suffix suffisso del file
+     */
     private void exportFile (String type, String suffix){
         Stage stg = (Stage) inputText.getScene().getWindow();
         fileChooser.setTitle("Export Operations To" + type);
