@@ -119,7 +119,7 @@ Example of usage.
   
 <p align="center">
   
-<img  src="https://user-images.githubusercontent.com/86788672/145711985-3957d8f9-cee7-4546-94ea-019fd05447a4.gif">
+<img  src="https://user-images.githubusercontent.com/86788672/145766583-69843b0e-1dd4-42e1-99e7-6125d0d9c660.gif">
 
 </p>
 
@@ -127,7 +127,6 @@ In the menu bar into the File menu, there is the possibility to export or import
 
   
 <img src="https://user-images.githubusercontent.com/86788672/145708111-fbcb8715-3c0f-470b-b2d4-0f569cbc685d.png">  
-<img src="https://user-images.githubusercontent.com/86788672/145708115-718b13c2-313d-4a32-a645-0eacbfea699e.png">
                                                                                                        
 <br>
  
